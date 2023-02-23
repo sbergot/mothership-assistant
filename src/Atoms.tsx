@@ -29,7 +29,7 @@ export function Tag({ children, variant }: Props) {
 }
 
 export function Title({ children }: Children) {
-  return <div className="text-center text-xl">{children}</div>
+  return <div className="text-center text-xl mb-2">{children}</div>
 }
 
 export function Divider() {

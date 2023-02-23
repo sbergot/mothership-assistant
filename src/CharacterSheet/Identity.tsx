@@ -14,15 +14,15 @@ export function Identity() {
       <div>
         <label>Class</label>
         <select className="input">
-        <option value="marine">Marine</option>
-        <option value="teamster">Teamster</option>
-        <option value="android">Android</option>
-        <option value="scientist">Scientist</option>
+          <option value="marine">Marine</option>
+          <option value="teamster">Teamster</option>
+          <option value="android">Android</option>
+          <option value="scientist">Scientist</option>
         </select>
       </div>
       <div>
         <label>High score</label>
-        <input className="input" type='number' />
+        <input className="input" type="number" />
       </div>
     </Block>
   );
