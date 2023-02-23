@@ -1,0 +1,18 @@
+import { Children } from "./UITypes";
+
+export function Layout({ children }: Children) {
+  return (
+    <div className="p-4 mx-auto max-w-3xl bg-mother-1">
+      <h1 className="text-6xl">
+        <a href="/">Mothership assistant</a>
+      </h1>
+      <h2>Mothership is a tabletop rpg by Tuesday Knight Games</h2>
+      <a className="link" href="www.tuesdayknightgames.com">
+        www.tuesdayknightgames.com
+      </a>
+      <div className="mt-4 uppercase font-bold">
+        {children}
+      </div>
+    </div>
+  );
+}

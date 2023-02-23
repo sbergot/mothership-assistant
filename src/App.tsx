@@ -1,8 +1,13 @@
+import { Block, Input } from "./Atoms"
+
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <Block>
+      <div>
+        Hello world from Block!
+      </div>
+      <Input />
+    </Block>
   )
 }
 
