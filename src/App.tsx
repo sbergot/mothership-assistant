@@ -1,13 +1,8 @@
-import { Block, Input } from "./Atoms"
+import { CharacterSheet } from "./CharacterSheet/CharacterSheet"
 
 function App() {
   return (
-    <Block>
-      <div>
-        Hello world from Block!
-      </div>
-      <Input />
-    </Block>
+    <CharacterSheet />
   )
 }
 

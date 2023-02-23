@@ -1,8 +1,7 @@
 :root {
   font-family: 'Space Mono', monospace;
-
   color-scheme: light dark;
-  color: rgba(30, 30, 30, 0.87);
+  color: #000000;
   background-color: #ffffff;
 }
 
@@ -14,4 +13,13 @@
   .link {
     @apply text-orange-700 underline;
   }
+
+  .input {
+    @apply p-2 w-full rounded-lg text-mother-4 uppercase
+  }
+}
+
+.diagonalRising
+{
+  transform: skew(-30deg);
 }
