@@ -1,12 +1,14 @@
-import { Block, Divider } from "../Atoms";
+import { Block, Button, Divider, Title } from "../Atoms";
 
 export function Skills() {
   return <Block variant="light">
+    <Title>Skills</Title>
     <Divider />
     <div className="flex justify-center items-center gap-8">
     <Skill bonus={10} name="Art" />
     <Skill bonus={10} name="Athletics" />
     <Skill bonus={10} name="Mathematics" />
+    <Button>Train skill</Button>
     </div>
   </Block>
 }

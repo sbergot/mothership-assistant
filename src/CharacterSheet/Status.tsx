@@ -1,4 +1,4 @@
-import { Block, Divider, Tag, Title } from "../Atoms";
+import { Block, Button, Divider, Tag, Title } from "../Atoms";
 
 export function Status() {
   return (
@@ -15,7 +15,7 @@ export function Status() {
         <Tag variant="dark">Trauma response</Tag>
         <Tag variant="dark">Coward</Tag>
         <Tag variant="dark">Deflated</Tag>
-        <Tag variant="light-border">Add condition</Tag>
+        <Button>Add condition</Button>
       </div>
     </Block>
   );

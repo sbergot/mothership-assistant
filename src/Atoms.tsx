@@ -1,13 +1,12 @@
 import { Children } from "./UITypes";
 
-type ColorVariant =  "light" | "light-border" | "dark";
+type ColorVariant =  "light" | "dark";
 
 interface Props extends Children {
   variant: ColorVariant
 }
 
 const variantColors: Record<ColorVariant, string> = {
-  "light-border": "bg-mother-3 text-mother-4 border-mother-4",
   dark: "bg-mother-4 text-mother-1 border-mother-4",
   light: "bg-mother-3 text-mother-4 border-mother-3"
 }
@@ -34,4 +33,12 @@ export function Title({ children }: Children) {
 
 export function Divider() {
   return <div className="bg-mother-2 w-1/2 h-0.5 mx-auto my-2" />
+}
+
+export function Button({ children }: Children) {
+  return (
+    <span className="py-1 px-2 rounded-lg border-2 bg-mother-3 text-mother-4 border-mother-4 cursor-pointer hover:bg-mother-4 hover:text-mother-1 hover:border-mother-1 transition-colors">
+      {children}
+    </span>
+  );
 }
