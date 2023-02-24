@@ -2,9 +2,9 @@ export type CharacterClass = "marine" | "teamster" | "android" | "scientist"
 
 export type SkillType = "tata";
 
-export type ArmorType = "standardBattleDress";
+export type ArmorType = "standardCrewAttire" | "advancedBattleDress" | "standardBattleDress" | "hazardSuit" | "vaccsuit";
 
-export type ArmorSpeedType = "normal";
+export type ArmorSpeedType = "normal" | "disadvantage";
 
 export type WeaponRangeType = "adjacent" | "close" | "long";
 
@@ -20,7 +20,7 @@ export type ConditionType = "conditionType";
 
 export type WoundType = "bleeding";
 
-export type ContractorType = "pioneer";
+export type ContractorType = "archaeologist" | "asteroidMiner" | "android" | "bodyguard" | "captain" | "chaplain" | "corporateFixer" | "doctor" | "engineer" | "gunner" | "marineGrunt" | "marineOfficer" | "pilot" | "pioneer" | "scientist" | "survivalGuide" | "surgeon" | "teamster" | "therapist" | "voidUrchin";
 
 export interface Condition {
   conditionType: ConditionType;
@@ -82,7 +82,7 @@ export interface Equipment extends WithId {
 export interface Item extends WithId {
   "title": string,
   "subtitle": string | null,
-  "description": string,
+  "description": string | null,
   "cost": number,
   "quantity": number
 }
@@ -90,17 +90,19 @@ export interface Item extends WithId {
 export interface BaseCharacter extends WithId {
   "name": string,
   "pronouns": string,
+  thumbnailPath?: string,
   "wounds": number,
   "maxWounds": number,
   "equipment": Equipment[],
   "armor": Armor[],
   "weapons":Weapon[],
+  "items": Item[],
 }
 
 export interface Contractor extends BaseCharacter {
   "type":ContractorType,
   "occupation": string,
-  "salary":500,
+  "salary": number,
   "combat": number,
   "instinct": number,
   "loyalty": number,
@@ -128,7 +130,6 @@ export interface Character extends BaseCharacter {
   "skillTrainingYearsRemaining": number,
   "skillTrainingMonthsRemaining": number,
   "skills": SkillType[],
-  "items": Item[],
   "conditions": Condition[],
   "creationComplete": boolean,
   "woundEffects": Wound[],
