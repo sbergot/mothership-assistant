@@ -1,4 +1,5 @@
 import { Block, Button, Divider, Tag, Title } from "../Atoms";
+import { Weapon as WeaponType } from "../types";
 
 export function Weapons() {
   return (
@@ -14,4 +15,8 @@ export function Weapons() {
       </div>
     </Block>
   );
+}
+
+function Weapon({}: WeaponType) {
+
 }
