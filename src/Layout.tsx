@@ -10,7 +10,7 @@ export function Layout({ children }: Children) {
       <a className="link" href="www.tuesdayknightgames.com">
         www.tuesdayknightgames.com
       </a>
-      <div className="mt-4 uppercase font-bold">
+      <div className="mt-4 text-lg uppercase font-bold text-mother-6">
         {children}
       </div>
     </div>

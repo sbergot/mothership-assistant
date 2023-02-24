@@ -20,8 +20,8 @@ interface SkillProps {
 
 export function Skill({ bonus, name }: SkillProps) {
   return (
-    <span className="rounded-lg border-2 bg-mother-4 text-mother-1 border-mother-4 text-lg">
-      <span className="inline-block px-1 rounded-md bg-mother-1 text-mother-4">+ {bonus}</span>
+    <span className="rounded-lg border-2 bg-mother-5 text-mother-1 border-mother-5 text-lg">
+      <span className="inline-block px-1 rounded-md bg-mother-1 text-mother-5">+ {bonus}</span>
       <span className="px-2">{name}</span>
     </span>
   );

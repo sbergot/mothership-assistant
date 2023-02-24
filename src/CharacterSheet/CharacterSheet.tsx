@@ -1,4 +1,5 @@
 import { Armor } from "./Armor";
+import { Contractors } from "./Contractors";
 import { Equipment } from "./Equipment";
 import { Identity } from "./Identity";
 import { Saves } from "./Saves";
@@ -18,6 +19,7 @@ export function CharacterSheet() {
       <Weapons />
       <Armor />
       <Equipment />
+      <Contractors />
     </>
   );
 }

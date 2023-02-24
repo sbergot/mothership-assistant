@@ -6,15 +6,15 @@ export type ArmorType = "standardBattleDress";
 
 export type ArmorSpeedType = "normal";
 
-export type WeaponRangeType = "close";
+export type WeaponRangeType = "adjacent" | "close" | "long";
 
-export type CriticalType = "Gunshot";
+export type CriticalType = "Gunshot" | "Gunshot[+]" | "Bleeding [+]" | "Blunt Force" | "Blunt Force [+]" | "Fire/Explosives" | "Fire/Explosives [-]" | "Fire/Explosives [+]" | "Bleeding" | "Bleeding [+] or Gore [+]" | "Gore [+]" | "Bleeding + Gore";
 
-export type WeaponType = "Revolver";
+export type WeaponType = string;
 
-export type DamageType = "xd10";
+export type DamageType = "fixedDamage" | "fixedWounds" | "xd5" | "xd10" | "d5MinusOneWounds" | "d10x10" | "d100";
 
-export type RollMode = "advantage";
+export type RollMode = "advantage" | null;
 
 export type ConditionType = "conditionType";
 
@@ -60,14 +60,14 @@ export interface Weapon extends WithId {
   "cost": number,
   "weaponRange": WeaponRangeType,
   "damageString": string,
-  "shots": number,
-  "magazineSize": number,
+  "shots": number | null,
+  "magazineSize": number | null,
+  "magazines": number | null,
   "critical": CriticalType,
   "special": string,
   "weaponType": WeaponType,
-  "magazines": number,
   "damage": Damage[],
-  "baseType": WeaponType
+  "baseType": string
 }
 
 export interface Equipment extends WithId {
