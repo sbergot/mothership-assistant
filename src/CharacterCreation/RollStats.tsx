@@ -1,8 +1,8 @@
-import { Block, Button, Button2, Title } from "../Atoms";
+import { Block, Button2, Title } from "../Atoms";
 import { allStats } from "../Data/data";
 import { Rating } from "../Molecules";
 import { roll } from "../Services/diceServices";
-import { Character, Updater } from "../types";
+import { Character } from "../types";
 import { StepProps } from "./types";
 
 function rollStats(character: Character): Character {

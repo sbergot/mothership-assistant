@@ -243,3 +243,8 @@ export interface Character extends BaseCharacter {
 }
 
 export type Updater = (update: (c: Character) => Character) => void
+
+export interface ClassDefinition {
+  name: CharacterClass,
+  shortDescription: string[]
+}
