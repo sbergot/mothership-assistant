@@ -1,4 +1,4 @@
-import { Armor, Contractor, Weapon } from "../types";
+import { Armor, Character, Contractor, Weapon } from "../types";
 
 export const weapons: Weapon[] = [
   {
@@ -1776,7 +1776,7 @@ export const armors: Armor[] = [
   },
 ];
 
-export const data = {
+export const data: Character = {
   id: "0ecc90a8-4473-4c19-bd59-55eee0651d3a",
   characterClass: "android",
   name: "SHALONDA WASKO",
