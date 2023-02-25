@@ -3,6 +3,7 @@ import { allStats } from "../Data/data";
 import { Rating } from "../Molecules";
 import { roll } from "../Services/diceServices";
 import { Character, Updater } from "../types";
+import { StepProps } from "./types";
 
 function rollStats(character: Character): Character {
   let newChar = character;
@@ -12,12 +13,8 @@ function rollStats(character: Character): Character {
   return newChar;
 }
 
-interface Props {
-  character: Character;
-  setCharacter: Updater;
-}
-
-export function RollStats({ character, setCharacter }: Props) {
+export function RollStats({ character, setCharacter, onConfirm }: StepProps) {
+  const done = character.strength > 0;
   return (
     <div className="flex flex-col">
       <Block variant="light">
@@ -30,7 +27,10 @@ export function RollStats({ character, setCharacter }: Props) {
         </div>
       </Block>
       <div className="self-center">
-        <Button2 onClick={() => setCharacter(rollStats)}>Roll</Button2>
+        <Button2 disabled={done} onClick={() => setCharacter(rollStats)}>Roll</Button2>
+      </div>
+      <div className="self-center">
+        <Button2 disabled={!done} onClick={onConfirm}>Confirm</Button2>
       </div>
     </div>
   );

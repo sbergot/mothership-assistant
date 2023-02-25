@@ -1,6 +1,7 @@
 export type CharacterClass = "marine" | "teamster" | "android" | "scientist";
 
 export type StatType = "strength" | "speed" | "intellect" | "combat";
+export type SaveType = "sanity" | "fear" | "body";
 
 export type SkillType =
   | "linguistics"
