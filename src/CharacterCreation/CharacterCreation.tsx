@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { initCharacter } from "../characterServices";
+import { initCharacter } from "../Services/characterServices";
 import { RollStats } from "./RollStats";
 
 export function CharacterCreation() {

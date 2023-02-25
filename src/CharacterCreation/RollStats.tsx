@@ -1,13 +1,23 @@
 import { Block, Button, Button2, Title } from "../Atoms";
+import { allStats } from "../Data/data";
 import { Rating } from "../Molecules";
+import { roll } from "../Services/diceServices";
 import { Character, Updater } from "../types";
+
+function rollStats(character: Character): Character {
+  let newChar = character;
+  allStats.forEach(stat => {
+    newChar = {...newChar, [stat]: roll(10, 2) + 25}
+  });
+  return newChar;
+}
 
 interface Props {
   character: Character;
   setCharacter: Updater;
 }
 
-export function RollStats({ character }: Props) {
+export function RollStats({ character, setCharacter }: Props) {
   return (
     <div className="flex flex-col">
       <Block variant="light">
@@ -20,7 +30,7 @@ export function RollStats({ character }: Props) {
         </div>
       </Block>
       <div className="self-center">
-        <Button2>Roll</Button2>
+        <Button2 onClick={() => setCharacter(rollStats)}>Roll</Button2>
       </div>
     </div>
   );

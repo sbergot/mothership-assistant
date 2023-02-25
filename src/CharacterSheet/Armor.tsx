@@ -16,7 +16,7 @@ export function Armor({ character }: Props) {
             {a.name} (AP {a.armorPoints})
           </Tag>
         ))}
-        <Button>Add armor</Button>
+        <Button onClick={() => {}}>Add armor</Button>
       </div>
     </Block>
   );

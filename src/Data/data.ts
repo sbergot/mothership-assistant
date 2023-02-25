@@ -1,4 +1,6 @@
-import { Armor, Character, Contractor, Weapon } from "../types";
+import { Armor, Character, Contractor, StatType, Weapon } from "../types";
+
+export const allStats: StatType[] = ["combat", "intellect", "speed", "strength"]; 
 
 export const weapons: Weapon[] = [
   {

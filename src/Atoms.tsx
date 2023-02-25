@@ -37,19 +37,29 @@ export function Divider() {
   return <div className="bg-mother-4 w-1/2 h-0.5 mx-auto my-2" />;
 }
 
-export function Button({ children }: Children) {
+interface ButtonProps extends Children {
+  onClick(): void;
+}
+
+export function Button({ children, onClick }: ButtonProps) {
   return (
-    <span className="py-1 px-2 rounded-lg border-2 bg-mother-3 border-mother-5 cursor-pointer hover:bg-mother-5 hover:text-mother-1 hover:border-mother-1 transition-colors">
+    <span
+      onClick={onClick}
+      className="py-1 px-2 rounded-lg border-2 bg-mother-3 border-mother-5 cursor-pointer hover:bg-mother-5 hover:text-mother-1 hover:border-mother-1 transition-colors"
+    >
       {children}
     </span>
   );
 }
 
-export function Button2({ children }: Children) {
+export function Button2({ children, onClick }: ButtonProps) {
   return (
-    <div className="px-4 py-1 rounded-3xl bg-mother-6 text-mother-1 cursor-pointer hover:bg-mother-5 transition-colors">
-    {children}
-  </div>
+    <div
+      onClick={onClick}
+      className="px-4 py-1 rounded-3xl bg-mother-6 text-mother-1 cursor-pointer hover:bg-mother-5 transition-colors"
+    >
+      {children}
+    </div>
   );
 }
 

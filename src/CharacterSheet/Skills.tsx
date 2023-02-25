@@ -12,7 +12,7 @@ export function Skills({ character }: Props) {
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.skills.map(s => <Skill bonus={10} name={s} />)}
-        <Button>Train skill</Button>
+        <Button onClick={() => {}}>Train skill</Button>
       </div>
     </Block>
   );

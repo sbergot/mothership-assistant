@@ -12,8 +12,8 @@ export function Equipment({ character }: Props) {
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.equipment.map(e => <Tag variant="dark">{e.name}</Tag>)}
-        <Button>Add equipment</Button>
-        <Button>Custom item</Button>
+        <Button onClick={() => {}}>Add equipment</Button>
+        <Button onClick={() => {}}>Custom item</Button>
       </div>
     </Block>
   );

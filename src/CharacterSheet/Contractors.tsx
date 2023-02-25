@@ -18,7 +18,7 @@ export function Contractors({ character }: Props) {
         ))}
       </div>
       <div className="flex justify-center items-center mt-2">
-        <Button>Add contractor</Button>
+        <Button onClick={() => {}}>Add contractor</Button>
       </div>
     </Block>
   );

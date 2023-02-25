@@ -19,7 +19,7 @@ export function Weapons({ character }: Props) {
         <Weapon weapon={{ ...weapons[1], shots: 3 }} />
       </div>
       <div className="flex justify-center items-center gap-8 mt-4">
-        <Button>Add weapon</Button>
+        <Button onClick={() => {}}>Add weapon</Button>
       </div>
     </Block>
   );

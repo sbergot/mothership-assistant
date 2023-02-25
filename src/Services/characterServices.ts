@@ -1,5 +1,5 @@
 import { uuidv4 } from "./services";
-import { Character } from "./types";
+import { Character } from "../types";
 
 export function initCharacter(): Character {
     return {

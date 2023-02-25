@@ -36,7 +36,7 @@ export function Status({ character }: Props) {
         {character.conditions.map((c) => (
           <Tag variant="dark">{c.conditionType}</Tag>
         ))}
-        <Button>Add condition</Button>
+        <Button onClick={() => {}}>Add condition</Button>
       </div>
     </Block>
   );
