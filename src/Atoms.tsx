@@ -45,6 +45,14 @@ export function Button({ children }: Children) {
   );
 }
 
+export function Button2({ children }: Children) {
+  return (
+    <div className="px-4 py-1 rounded-3xl bg-mother-6 text-mother-1 cursor-pointer hover:bg-mother-5 transition-colors">
+    {children}
+  </div>
+  );
+}
+
 interface ProgressProps {
   current: number;
   max: number;
