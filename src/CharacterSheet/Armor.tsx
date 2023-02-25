@@ -1,13 +1,21 @@
 import { Block, Button, Divider, Tag, Title } from "../Atoms";
+import { Character } from "../types";
 
-export function Armor() {
+interface Props {
+  character: Character;
+}
+
+export function Armor({ character }: Props) {
   return (
     <Block variant="light">
       <Title>Armor</Title>
       <Divider />
-      <div className="flex justify-center items-center gap-8">
-        <Tag variant="dark">Fatigues (AP 2)</Tag>
-        <Tag variant="dark">Standard battle dress (AP 7)</Tag>
+      <div className="flex flex-wrap justify-center items-center gap-4">
+        {character.armor.map((a) => (
+          <Tag variant="dark">
+            {a.name} (AP {a.armorPoints})
+          </Tag>
+        ))}
         <Button>Add armor</Button>
       </div>
     </Block>

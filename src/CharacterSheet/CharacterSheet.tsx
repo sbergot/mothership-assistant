@@ -1,3 +1,4 @@
+import { Character } from "../types";
 import { Armor } from "./Armor";
 import { Contractors } from "./Contractors";
 import { Equipment } from "./Equipment";
@@ -8,18 +9,22 @@ import { Stats } from "./Stats";
 import { Status } from "./Status";
 import { Weapons } from "./Weapons";
 
-export function CharacterSheet() {
+interface Props {
+  character: Character;
+}
+
+export function CharacterSheet({ character }: Props) {
   return (
     <>
-      <Identity />
-      <Status />
-      <Stats />
-      <Saves />
-      <Skills />
-      <Weapons />
-      <Armor />
-      <Equipment />
-      <Contractors />
+      <Identity character={character} />
+      <Status character={character} />
+      <Stats character={character} />
+      <Saves character={character} />
+      <Skills character={character} />
+      <Weapons character={character} />
+      <Armor character={character} />
+      <Equipment character={character} />
+      <Contractors character={character} />
     </>
   );
 }

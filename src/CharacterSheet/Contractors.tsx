@@ -1,16 +1,21 @@
 import { Block, Button, Divider, Tag, Title } from "../Atoms";
 import { contractors } from "../Data/data";
 import { Rating, Gauge } from "../Molecules";
-import { Contractor } from "../types";
+import { Character, Contractor } from "../types";
 
-export function Contractors() {
+interface Props {
+  character: Character;
+}
+
+export function Contractors({ character }: Props) {
   return (
     <Block variant="light">
       <Title>Contractors</Title>
       <Divider />
-      <div className="flex flex-row-wrap justify-center items-center gap-8">
-        <ContractorShort contractor={contractors[0]} />
-        <ContractorShort contractor={contractors[1]} />
+      <div className="flex flex-wrap justify-center items-center gap-8">
+        {character.contractors.map((c) => (
+          <ContractorShort contractor={c} />
+        ))}
       </div>
       <div className="flex justify-center items-center mt-2">
         <Button>Add contractor</Button>
@@ -20,7 +25,7 @@ export function Contractors() {
 }
 
 interface ContractorProps {
-  contractor: Contractor
+  contractor: Contractor;
 }
 
 export function ContractorShort({ contractor }: ContractorProps) {
@@ -30,12 +35,12 @@ export function ContractorShort({ contractor }: ContractorProps) {
         {contractor.name}
       </div>
       <div className="p-4">
-      <div className="flex gap-4">
-        <Rating title="Combat" value={contractor.combat} />
-        <Rating title="Instinct" value={contractor.instinct} />
-        <Rating title="Loyalty" value={contractor.loyalty} />
-      </div>
-      <Gauge title="Wounds" limitName="Maximum" current={0} limit={1} />
+        <div className="flex gap-4">
+          <Rating title="Combat" value={contractor.combat} />
+          <Rating title="Instinct" value={contractor.instinct} />
+          <Rating title="Loyalty" value={contractor.loyalty} />
+        </div>
+        <Gauge title="Wounds" limitName="Maximum" current={0} limit={1} />
       </div>
     </div>
   );

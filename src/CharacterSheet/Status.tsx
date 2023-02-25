@@ -1,21 +1,41 @@
 import { Block, Button, Divider, Tag, Title } from "../Atoms";
 import { Gauge } from "../Molecules";
+import { Character } from "../types";
 
-export function Status() {
+interface Props {
+  character: Character;
+}
+
+export function Status({ character }: Props) {
   return (
     <Block variant="light">
       <Title>Status report</Title>
       <div className="flex justify-around">
-        <Gauge title="Health" limitName="Maximum" current={19} limit={20} />
-        <Gauge title="Wounds" limitName="Maximum" current={0} limit={3} />
-        <Gauge title="Stress" limitName="Minimum" current={2} limit={2} />
+        <Gauge
+          title="Health"
+          limitName="Maximum"
+          current={character.health}
+          limit={character.maxHealth}
+        />
+        <Gauge
+          title="Wounds"
+          limitName="Maximum"
+          current={character.wounds}
+          limit={character.maxWounds}
+        />
+        <Gauge
+          title="Stress"
+          limitName="Minimum"
+          current={character.stress}
+          limit={character.minStress}
+        />
       </div>
       <Divider />
       <Title>Warning!</Title>
-      <div className="flex flex-row-wrap justify-center gap-2">
-        <Tag variant="dark">Trauma response</Tag>
-        <Tag variant="dark">Coward</Tag>
-        <Tag variant="dark">Deflated</Tag>
+      <div className="flex flex-wrap justify-center gap-2">
+        {character.conditions.map((c) => (
+          <Tag variant="dark">{c.conditionType}</Tag>
+        ))}
         <Button>Add condition</Button>
       </div>
     </Block>
