@@ -1,5 +1,5 @@
 import { Block, Title } from "../Atoms";
-import { Rating } from "./Rating";
+import { Rating } from "../Molecules";
 
 export function Saves() {
   return (

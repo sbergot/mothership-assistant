@@ -1,4 +1,4 @@
-import { CharacterSheet } from "./CharacterSheet/CharacterSheet"
+import { CharacterSheet } from "./CharacterSheet"
 
 function App() {
   return (

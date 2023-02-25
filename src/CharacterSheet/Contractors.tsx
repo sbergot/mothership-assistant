@@ -1,8 +1,7 @@
 import { Block, Button, Divider, Tag, Title } from "../Atoms";
 import { contractors } from "../Data/data";
+import { Rating, Gauge } from "../Molecules";
 import { Contractor } from "../types";
-import { Gauge } from "./Gauge";
-import { Rating } from "./Rating";
 
 export function Contractors() {
   return (

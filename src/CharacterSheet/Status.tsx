@@ -1,5 +1,5 @@
 import { Block, Button, Divider, Tag, Title } from "../Atoms";
-import { Gauge } from "./Gauge";
+import { Gauge } from "../Molecules";
 
 export function Status() {
   return (
