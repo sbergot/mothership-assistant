@@ -1,9 +1,10 @@
 import { Block, Button, Button2, Title } from "../Atoms";
 import { Rating } from "../Molecules";
-import { Character } from "../types";
+import { Character, Updater } from "../types";
 
 interface Props {
   character: Character;
+  setCharacter: Updater;
 }
 
 export function RollStats({ character }: Props) {

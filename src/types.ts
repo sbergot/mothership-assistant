@@ -240,3 +240,5 @@ export interface Character extends BaseCharacter {
   woundEffects: Wound[];
   contractors: Contractor[];
 }
+
+export type Updater = (update: (c: Character) => Character) => void
