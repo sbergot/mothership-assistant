@@ -1,8 +1,56 @@
 import { useState } from "react";
 import { Block, Button2, Title } from "../Atoms";
-import { CharacterClass } from "../types";
+import { allStats } from "../Data/data";
+import { Rating } from "../Molecules";
+import { Character, CharacterClass, StatType } from "../types";
 import { Children } from "../UITypes";
 import { StepProps } from "./types";
+
+interface StatSelectionProps {
+  onSelect(stat: StatType): void;
+}
+
+function StatSelection({ onSelect }: StatSelectionProps) {
+  return (
+    <div className="flex justify-center gap-4">
+      {allStats.map((s) => (
+        <Button2 onClick={() => onSelect(s)}>{s}</Button2>
+      ))}
+    </div>
+  );
+}
+
+interface ClassBonusProps {
+  setCharacter(update: (c: Character) => Character): void;
+}
+
+function AndroidStatSelection({ setCharacter }: ClassBonusProps) {
+  return (
+    <div className="flex flex-col">
+      <div>Androids get a Stat modifier of -10. Choose one:</div>
+      <StatSelection
+        onSelect={(stat) =>
+          setCharacter((c) => ({ ...c, [stat]: c[stat] - 10 }))
+        }
+      />
+    </div>
+  );
+}
+
+function ScientistStatSelection({ setCharacter }: ClassBonusProps) {
+  return (
+    <div className="flex flex-col">
+      <div>Scientists get a Stat modifier of +5. Choose one:</div>
+      <StatSelection
+        onSelect={(stat) =>
+          setCharacter((c) => ({ ...c, [stat]: c[stat] + 5 }))
+        }
+      />
+    </div>
+  );
+}
+
+
 
 export function SelectClass({ character, onConfirm }: StepProps) {
   const done = false;
@@ -12,12 +60,23 @@ export function SelectClass({ character, onConfirm }: StepProps) {
   const [newCharacter, setCharacter] = useState({ ...character });
   function onSelection(className: CharacterClass) {
     setSelectedClass(className);
-    setCharacter(c => ({...c, characterClass: className}))
+    setCharacter((c) => ({ ...c, characterClass: className }));
   }
   return (
     <div className="flex flex-col">
       <Block variant="light">
         <Title>3. Select your class</Title>
+        <div className="flex justify-center gap-8">
+          <Rating title="Strength" value={newCharacter.strength} />
+          <Rating title="Speed" value={newCharacter.speed} />
+          <Rating title="Intellect" value={newCharacter.intellect} />
+          <Rating title="Combat" value={newCharacter.combat} />
+        </div>
+        <div className="flex justify-center gap-8">
+          <Rating title="Sanity" value={newCharacter.sanity} />
+          <Rating title="Fear" value={newCharacter.fear} />
+          <Rating title="Body" value={newCharacter.body} />
+        </div>
         <div className="flex flex-wrap justify-center gap-4">
           <ClassSummary
             className="marine"
@@ -59,7 +118,7 @@ export function SelectClass({ character, onConfirm }: StepProps) {
         </div>
       </Block>
       <div className="self-center">
-      <Button2 disabled={!done} onClick={() => onConfirm(newCharacter)}>
+        <Button2 disabled={!done} onClick={() => onConfirm(newCharacter)}>
           Confirm
         </Button2>
       </div>

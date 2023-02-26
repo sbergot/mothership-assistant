@@ -7,7 +7,7 @@ import { StepProps } from "./types";
 
 export function RollStats({ character, onConfirm }: StepProps) {
   const [newCharacter, setCharacter] = useState({ ...character });
-  const done = newCharacter.sanity > 0;
+  const done = newCharacter.strength > 0;
 
   function rollStats(): void {
     let newChar = character;
