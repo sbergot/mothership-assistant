@@ -1,36 +1,42 @@
+import { useState } from "react";
 import { Block, Button2, Title } from "../Atoms";
 import { allStats } from "../Data/data";
 import { Rating } from "../Molecules";
 import { roll } from "../Services/diceServices";
-import { Character } from "../types";
 import { StepProps } from "./types";
 
-function rollStats(character: Character): Character {
-  let newChar = character;
-  allStats.forEach(stat => {
-    newChar = {...newChar, [stat]: roll(10, 2) + 25}
-  });
-  return newChar;
-}
+export function RollStats({ character, onConfirm }: StepProps) {
+  const [newCharacter, setCharacter] = useState({ ...character });
+  const done = newCharacter.sanity > 0;
 
-export function RollStats({ character, setCharacter, onConfirm }: StepProps) {
-  const done = character.strength > 0;
+  function rollStats(): void {
+    let newChar = character;
+    allStats.forEach((save) => {
+      newChar = { ...newChar, [save]: roll(10, 2) + 25 };
+    });
+    setCharacter(newChar);
+  }
+
   return (
     <div className="flex flex-col">
       <Block variant="light">
         <Title>1. Roll 2d10 + 25 for each stat</Title>
         <div className="flex justify-center gap-8">
-          <Rating title="Strength" value={character.strength} />
-          <Rating title="Speed" value={character.speed} />
-          <Rating title="Intellect" value={character.intellect} />
-          <Rating title="Combat" value={character.combat} />
+          <Rating title="Strength" value={newCharacter.strength} />
+          <Rating title="Speed" value={newCharacter.speed} />
+          <Rating title="Intellect" value={newCharacter.intellect} />
+          <Rating title="Combat" value={newCharacter.combat} />
         </div>
       </Block>
       <div className="self-center">
-        <Button2 disabled={done} onClick={() => setCharacter(rollStats)}>Roll</Button2>
+        <Button2 disabled={done} onClick={rollStats}>
+          Roll
+        </Button2>
       </div>
       <div className="self-center">
-        <Button2 disabled={!done} onClick={onConfirm}>Confirm</Button2>
+        <Button2 disabled={!done} onClick={() => onConfirm(newCharacter)}>
+          Confirm
+        </Button2>
       </div>
     </div>
   );

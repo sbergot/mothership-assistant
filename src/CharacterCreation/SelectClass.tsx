@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { Block, Button2, Title } from "../Atoms";
-import { allStats } from "../Data/data";
-import { Rating } from "../Molecules";
-import { roll } from "../Services/diceServices";
-import { Character, CharacterClass } from "../types";
+import { CharacterClass } from "../types";
 import { Children } from "../UITypes";
 import { StepProps } from "./types";
 
-export function SelectClass({ character, setCharacter, onConfirm }: StepProps) {
-  const done = character.strength > 0;
+export function SelectClass({ character, onConfirm }: StepProps) {
+  const done = false;
   const [selectedClass, setSelectedClass] = useState<CharacterClass | null>(
     null
   );
+  const [newCharacter, setCharacter] = useState({ ...character });
+  function onSelection(className: CharacterClass) {
+    setSelectedClass(className);
+    setCharacter(c => ({...c, characterClass: className}))
+  }
   return (
     <div className="flex flex-col">
       <Block variant="light">
@@ -19,8 +21,8 @@ export function SelectClass({ character, setCharacter, onConfirm }: StepProps) {
         <div className="flex flex-wrap justify-center gap-4">
           <ClassSummary
             className="marine"
-            onClick={setSelectedClass}
-            selected={selectedClass == "marine"}
+            onClick={onSelection}
+            selected={selectedClass}
           >
             <div>+10 combat</div>
             <div>+10 body save</div>
@@ -29,8 +31,8 @@ export function SelectClass({ character, setCharacter, onConfirm }: StepProps) {
           </ClassSummary>
           <ClassSummary
             className="android"
-            onClick={setSelectedClass}
-            selected={selectedClass == "android"}
+            onClick={onSelection}
+            selected={selectedClass}
           >
             <div>+20 intellect</div>
             <div>-10 to 1 stat</div>
@@ -39,16 +41,16 @@ export function SelectClass({ character, setCharacter, onConfirm }: StepProps) {
           </ClassSummary>
           <ClassSummary
             className="teamster"
-            onClick={setSelectedClass}
-            selected={selectedClass == "teamster"}
+            onClick={onSelection}
+            selected={selectedClass}
           >
             <div>+5 to all stats</div>
             <div>+10 to all saves</div>
           </ClassSummary>
           <ClassSummary
             className="scientist"
-            onClick={setSelectedClass}
-            selected={selectedClass == "scientist"}
+            onClick={onSelection}
+            selected={selectedClass}
           >
             <div>+10 intellect</div>
             <div>+5 to 1 stat</div>
@@ -57,7 +59,7 @@ export function SelectClass({ character, setCharacter, onConfirm }: StepProps) {
         </div>
       </Block>
       <div className="self-center">
-        <Button2 disabled={!done} onClick={onConfirm}>
+      <Button2 disabled={!done} onClick={() => onConfirm(newCharacter)}>
           Confirm
         </Button2>
       </div>
@@ -67,7 +69,7 @@ export function SelectClass({ character, setCharacter, onConfirm }: StepProps) {
 
 interface ClassSummaryProps extends Children {
   className: CharacterClass;
-  selected: boolean;
+  selected: CharacterClass | null;
   onClick(name: CharacterClass): void;
 }
 
@@ -77,7 +79,7 @@ function ClassSummary({
   children,
   onClick,
 }: ClassSummaryProps) {
-  const classes = selected ? "bg-mother-6" : "bg-mother-1";
+  const classes = selected == className ? "bg-mother-6" : "bg-mother-1";
   return (
     <div
       onClick={() => onClick(className)}

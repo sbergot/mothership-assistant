@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { initCharacter } from "../Services/characterServices";
+import { Character } from "../types";
 import { RollSaves } from "./RollSaves";
 import { RollStats } from "./RollStats";
 import { SelectClass } from "./SelectClass";
@@ -10,7 +11,8 @@ const Steps: ((props: StepProps) => JSX.Element)[] = [RollStats, RollSaves, Sele
 export function CharacterCreation() {
   const [character, setCharacter] = useState(initCharacter());
   const [step, setStep] = useState(0);
-  function next() {
+  function next(character: Character) {
+    setCharacter(character);
     setStep((i) => i + 1);
   }
   const Step = Steps[step];
@@ -18,6 +20,6 @@ export function CharacterCreation() {
     return <div>error</div>;
   }
   return (
-    <Step character={character} setCharacter={setCharacter} onConfirm={next} />
+    <Step character={character} onConfirm={next} />
   );
 }
