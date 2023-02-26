@@ -2,9 +2,10 @@ import { useState } from "react";
 import { initCharacter } from "../Services/characterServices";
 import { RollSaves } from "./RollSaves";
 import { RollStats } from "./RollStats";
+import { SelectClass } from "./SelectClass";
 import { StepProps } from "./types";
 
-const Steps: ((props: StepProps) => JSX.Element)[] = [RollStats, RollSaves];
+const Steps: ((props: StepProps) => JSX.Element)[] = [RollStats, RollSaves, SelectClass];
 
 export function CharacterCreation() {
   const [character, setCharacter] = useState(initCharacter());
