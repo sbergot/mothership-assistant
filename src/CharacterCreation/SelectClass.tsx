@@ -1,21 +1,70 @@
 import { useState } from "react";
-import { Block, Button2, Title } from "../Atoms";
+import { Block, Button, Button2, Title } from "../Atoms";
 import { allStats } from "../Data/data";
 import { Rating } from "../Molecules";
 import { Character, CharacterClass, StatType } from "../types";
 import { Children } from "../UITypes";
 import { StepProps } from "./types";
 
+
+const classBonuses: Record<CharacterClass, (c: Character) => Character> = {
+  marine(c) {
+    return {
+      ...c,
+      combat: c.combat + 10,
+      body: c.body + 10,
+      fear: c.fear + 20,
+      maxWounds: 3,
+    };
+  },
+  android(c) {
+    return {
+      ...c,
+      intellect: c.intellect + 20,
+      fear: c.fear + 60,
+      maxWounds: 3,
+    };
+  },
+  scientist(c) {
+    return {
+      ...c,
+      intellect: c.intellect + 10,
+      sanity: c.sanity + 20,
+    };
+  },
+  teamster(c) {
+    return {
+      ...c,
+      combat: c.combat + 5,
+      strength: c.strength + 5,
+      speed: c.speed + 5,
+      intellect: c.intellect + 5,
+      body: c.body + 10,
+      fear: c.fear + 10,
+      sanity: c.sanity + 10,
+    };
+  },
+};
+
 interface StatSelectionProps {
   onSelect(stat: StatType): void;
 }
 
 function StatSelection({ onSelect }: StatSelectionProps) {
+  const [selectedStat, setSelectedStat] = useState<StatType | null>(
+    null
+  );
+
+  function onStatSelection(stat: StatType) {
+    setSelectedStat(stat);
+    onSelect(stat);
+  }
+
   return (
     <div className="flex justify-center gap-4">
-      {allStats.map((s) => (
-        <Button2 onClick={() => onSelect(s)}>{s}</Button2>
-      ))}
+      {allStats.map((s) => {
+        return <Button dark={s === selectedStat} onClick={() => onStatSelection(s)}>{s}</Button>
+      })}
     </div>
   );
 }
@@ -50,6 +99,55 @@ function ScientistStatSelection({ updateCharacter }: ClassBonusProps) {
   );
 }
 
+interface ClassOptionsProps {
+  onSelection(className: CharacterClass): void;
+  selectedClass: CharacterClass | null;
+}
+
+function ClassOptions({ onSelection, selectedClass }: ClassOptionsProps) {
+  return (
+    <div className="flex flex-wrap justify-center gap-4">
+      <ClassSummary
+        className="marine"
+        onClick={onSelection}
+        selected={selectedClass}
+      >
+        <div>+10 combat</div>
+        <div>+10 body save</div>
+        <div>+20 fear save</div>
+        <div>+1 wound</div>
+      </ClassSummary>
+      <ClassSummary
+        className="android"
+        onClick={onSelection}
+        selected={selectedClass}
+      >
+        <div>+20 intellect</div>
+        <div>-10 to 1 stat</div>
+        <div>+60 to fear save</div>
+        <div>+1 wound</div>
+      </ClassSummary>
+      <ClassSummary
+        className="teamster"
+        onClick={onSelection}
+        selected={selectedClass}
+      >
+        <div>+5 to all stats</div>
+        <div>+10 to all saves</div>
+      </ClassSummary>
+      <ClassSummary
+        className="scientist"
+        onClick={onSelection}
+        selected={selectedClass}
+      >
+        <div>+10 intellect</div>
+        <div>+5 to 1 stat</div>
+        <div>+30 to sanity save</div>
+      </ClassSummary>
+    </div>
+  );
+}
+
 export function SelectClass({ character, onConfirm }: StepProps) {
   const [done, setDone] = useState(false);
   const [selectedClass, setSelectedClass] = useState<CharacterClass | null>(
@@ -59,12 +157,15 @@ export function SelectClass({ character, onConfirm }: StepProps) {
 
   function onSelection(className: CharacterClass) {
     setSelectedClass(className);
-    setCharacter({ ...character, characterClass: className });
+    setCharacter(
+      classBonuses[className]({ ...character, characterClass: className })
+    );
     setDone(className === "teamster" || className === "marine");
   }
 
   function setCharacterBonus(update: (c: Character) => Character) {
-    setCharacter(update);
+    if (selectedClass === null) { throw new Error("impossible"); }
+    setCharacter(update(classBonuses[selectedClass]({ ...character, characterClass: selectedClass })));
     setDone(true);
   }
 
@@ -83,45 +184,7 @@ export function SelectClass({ character, onConfirm }: StepProps) {
           <Rating title="Fear" value={newCharacter.fear} />
           <Rating title="Body" value={newCharacter.body} />
         </div>
-        <div className="flex flex-wrap justify-center gap-4">
-          <ClassSummary
-            className="marine"
-            onClick={onSelection}
-            selected={selectedClass}
-          >
-            <div>+10 combat</div>
-            <div>+10 body save</div>
-            <div>+20 fear save</div>
-            <div>+1 wound</div>
-          </ClassSummary>
-          <ClassSummary
-            className="android"
-            onClick={onSelection}
-            selected={selectedClass}
-          >
-            <div>+20 intellect</div>
-            <div>-10 to 1 stat</div>
-            <div>+60 to fear save</div>
-            <div>+1 wound</div>
-          </ClassSummary>
-          <ClassSummary
-            className="teamster"
-            onClick={onSelection}
-            selected={selectedClass}
-          >
-            <div>+5 to all stats</div>
-            <div>+10 to all saves</div>
-          </ClassSummary>
-          <ClassSummary
-            className="scientist"
-            onClick={onSelection}
-            selected={selectedClass}
-          >
-            <div>+10 intellect</div>
-            <div>+5 to 1 stat</div>
-            <div>+30 to sanity save</div>
-          </ClassSummary>
-        </div>
+        <ClassOptions onSelection={onSelection} selectedClass={selectedClass} />
         <div className="mt-2">
           {selectedClass == "android" && (
             <AndroidStatSelection updateCharacter={setCharacterBonus} />

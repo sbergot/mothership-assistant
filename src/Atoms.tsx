@@ -39,24 +39,30 @@ export function Divider() {
 
 interface ButtonProps extends Children {
   onClick(): void;
-  disabled?: boolean;
+  dark?: boolean;
 }
 
-export function Button({ children, onClick }: ButtonProps) {
+export function Button({ children, onClick, dark }: ButtonProps) {
+  const colors = dark ? "bg-mother-6 text-mother-1 hover:bg-mother-5" : " bg-mother-3 border-mother-5 hover:bg-mother-5 hover:text-mother-1 hover:border-mother-1";
   return (
     <span
       onClick={onClick}
-      className="py-1 px-2 rounded-lg border-2 bg-mother-3 border-mother-5 cursor-pointer hover:bg-mother-5 hover:text-mother-1 hover:border-mother-1 transition-colors"
+      className={`py-1 px-2 rounded-lg border-2 cursor-pointer transition-colors ${colors}`}
     >
       {children}
     </span>
   );
 }
 
-export function Button2({ children, onClick, disabled }: ButtonProps) {
+interface Button2Props extends Children {
+  onClick(): void;
+  disabled?: boolean;
+}
+
+export function Button2({ children, onClick, disabled }: Button2Props) {
   const classes = disabled
     ? "bg-mother-4 text-mother-1 cursor-not-allowed"
-    : "bg-mother-6 text-mother-1 cursor-pointer hover:bg-mother-5 transition-colors";
+    : "cursor-pointer bg-mother-6 text-mother-1 hover:bg-mother-5 transition-colors";
   return (
     <div onClick={onClick} className={`px-4 py-1 rounded-3xl ${classes}`}>
       {children}
