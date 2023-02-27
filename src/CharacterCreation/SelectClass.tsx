@@ -21,47 +21,53 @@ function StatSelection({ onSelect }: StatSelectionProps) {
 }
 
 interface ClassBonusProps {
-  setCharacter(update: (c: Character) => Character): void;
+  updateCharacter(update: (c: Character) => Character): void;
 }
 
-function AndroidStatSelection({ setCharacter }: ClassBonusProps) {
+function AndroidStatSelection({ updateCharacter }: ClassBonusProps) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-center">
       <div>Androids get a Stat modifier of -10. Choose one:</div>
       <StatSelection
         onSelect={(stat) =>
-          setCharacter((c) => ({ ...c, [stat]: c[stat] - 10 }))
+          updateCharacter((c) => ({ ...c, [stat]: c[stat] - 10 }))
         }
       />
     </div>
   );
 }
 
-function ScientistStatSelection({ setCharacter }: ClassBonusProps) {
+function ScientistStatSelection({ updateCharacter }: ClassBonusProps) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-center">
       <div>Scientists get a Stat modifier of +5. Choose one:</div>
       <StatSelection
         onSelect={(stat) =>
-          setCharacter((c) => ({ ...c, [stat]: c[stat] + 5 }))
+          updateCharacter((c) => ({ ...c, [stat]: c[stat] + 5 }))
         }
       />
     </div>
   );
 }
 
-
-
 export function SelectClass({ character, onConfirm }: StepProps) {
-  const done = false;
+  const [done, setDone] = useState(false);
   const [selectedClass, setSelectedClass] = useState<CharacterClass | null>(
     null
   );
   const [newCharacter, setCharacter] = useState({ ...character });
+
   function onSelection(className: CharacterClass) {
     setSelectedClass(className);
-    setCharacter((c) => ({ ...c, characterClass: className }));
+    setCharacter({ ...character, characterClass: className });
+    setDone(className === "teamster" || className === "marine");
   }
+
+  function setCharacterBonus(update: (c: Character) => Character) {
+    setCharacter(update);
+    setDone(true);
+  }
+
   return (
     <div className="flex flex-col">
       <Block variant="light">
@@ -115,6 +121,14 @@ export function SelectClass({ character, onConfirm }: StepProps) {
             <div>+5 to 1 stat</div>
             <div>+30 to sanity save</div>
           </ClassSummary>
+        </div>
+        <div className="mt-2">
+          {selectedClass == "android" && (
+            <AndroidStatSelection updateCharacter={setCharacterBonus} />
+          )}
+          {selectedClass == "scientist" && (
+            <ScientistStatSelection updateCharacter={setCharacterBonus} />
+          )}
         </div>
       </Block>
       <div className="self-center">
