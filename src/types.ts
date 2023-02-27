@@ -246,5 +246,6 @@ export type Updater = (update: (c: Character) => Character) => void
 
 export interface ClassDefinition {
   name: CharacterClass,
-  traumaResponse: string
+  traumaResponse: string,
+  skills: string[],
 }
