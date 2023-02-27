@@ -54,3 +54,11 @@ export function createRepository<T>(key: string) {
   }
   return useRepository;
 }
+
+export function toDict<T, K extends string>(arr: T[], keySelector: (elt: T) => K): Record<K, T> {
+  const res = {} as Record<K, T>;
+  arr.forEach(elt => {
+    res[keySelector(elt)] = elt;
+  });
+  return res;
+}

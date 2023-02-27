@@ -1,3 +1,4 @@
+import { toDict } from "../Services/services";
 import {
   Armor,
   ClassDefinition,
@@ -19,31 +20,23 @@ export const allSaves: SaveType[] = ["sanity", "fear", "body"];
 export const classDefinitions: ClassDefinition[] = [
   {
     name: "teamster",
-    shortDescription: ["+5 to all stats", "+10 to all saves"],
+    traumaResponse: "Once per session, you may take advantage on a panic check",
   },
   {
     name: "android",
-    shortDescription: [
-      "+20 intellect",
-      "-10 to 1 stat",
-      "+60 to fear save",
-      "+1 wound",
-    ],
+    traumaResponse: "Fear saves made by close friendly players are at disadvantage",
   },
   {
     name: "scientist",
-    shortDescription: ["+10 intellect", "+5 to 1 stat", "+30 to sanity save"],
+    traumaResponse: "Whenever you fail a sanity save, all close friendly players gain 1 stress",
   },
   {
     name: "marine",
-    shortDescription: [
-      "+10 combat",
-      "+10 body save",
-      "+20 fear save",
-      "+1 wound",
-    ],
+    traumaResponse: "Once per session, you may take advantage on a panic check",
   },
 ];
+
+export const classDefinitionsDict = toDict(classDefinitions, c => c.name);
 
 export const weapons: Weapon[] = [
   {
