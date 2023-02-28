@@ -43,7 +43,9 @@ interface ButtonProps extends Children {
 }
 
 export function Button({ children, onClick, dark }: ButtonProps) {
-  const colors = dark ? "bg-mother-6 text-mother-1 hover:bg-mother-5" : " bg-mother-3 border-mother-5 hover:bg-mother-5 hover:text-mother-1 hover:border-mother-1";
+  const colors = dark
+    ? "bg-mother-6 text-mother-1 hover:bg-mother-5"
+    : " bg-mother-3 border-mother-5 hover:bg-mother-5 hover:text-mother-1 hover:border-mother-1";
   return (
     <span
       onClick={onClick}

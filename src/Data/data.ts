@@ -5,6 +5,8 @@ import {
   Contractor,
   SaveType,
   SkillDefinition,
+  SkillDefinitionExtended,
+  SkillLevel,
   SkillType,
   StatType,
   Weapon,
@@ -42,12 +44,12 @@ export const classDefinitions: ClassDefinition[] = [
     name: "scientist",
     traumaResponse:
       "Whenever you fail a sanity save, all close friendly players gain 1 stress",
-    skills: [""],
+    skills: ["1 Master Skill and an Expert and Trained Skill Prerequisite", "Bonus: 1 Trained Skill"],
   },
   {
     name: "marine",
     traumaResponse: "Once per session, you may take advantage on a panic check",
-    skills: [""],
+    skills: ["Industrial Equipment, Zero-G", "Bonus: 1 Trained Skill and 1 Expert Skill"],
   },
 ];
 
@@ -2025,11 +2027,28 @@ export const allSkills: SkillDefinition[] = [
     key: "xenoesoterism",
     name: "xenoesoterism",
     level: "Master",
-    prerequisites: [],
+    prerequisites: ["mysticism"],
   },
 ];
 
-export const allSkillsDict: Record<SkillType, SkillDefinition> = toDict(
-  allSkills,
-  (s) => s.key
-);
+function buildSkillData(): Record<SkillType, SkillDefinitionExtended> {
+  const res = toDict(
+    allSkills.map((s) => ({ ...s, unlocks: [] as SkillType[] })),
+    (s) => s.key
+  );
+  Object.values(res).forEach((skill1) =>
+    skill1.prerequisites.forEach((skill2) => {
+      res[skill2].unlocks.push(skill1.key);
+    })
+  );
+  return res;
+}
+
+export const allSkillsDict: Record<SkillType, SkillDefinitionExtended> =
+  buildSkillData();
+
+export const skillBonuses: Record<SkillLevel, number> = {
+  Trained: 10,
+  Expert: 15,
+  Master: 20
+}

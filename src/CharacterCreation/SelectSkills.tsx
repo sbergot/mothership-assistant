@@ -1,10 +1,30 @@
-import { Block, Button2, Title } from "../Atoms";
-import { classDefinitionsDict } from "../Data/data";
+import { useState } from "react";
+import { Block, Button, Button2, Tag, Title } from "../Atoms";
+import { allSkills, allSkillsDict, classDefinitionsDict } from "../Data/data";
+import { Skill } from "../Molecules";
+import { SkillDefinition, SkillType } from "../types";
 import { StepProps } from "./types";
 
+interface SelectSkillProps {
+  onSelect(s: SkillType): void;
+  filter(s: SkillDefinition): boolean;
+}
+
+function SelectSkill({ onSelect, filter }: SelectSkillProps) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      {allSkills.filter(filter).map((s) => (
+        <Button onClick={() => onSelect(s.key)}>{s.name}</Button>
+      ))}
+    </div>
+  );
+}
+
 export function SelectSkills({ character, onConfirm }: StepProps) {
+  const [newCharacter, setCharacter] = useState({ ...character });
   const done = true;
-  const { characterClass } = character;
+  const { characterClass } = newCharacter;
+
   return (
     <div className="flex flex-col">
       <Block variant="light">
@@ -15,15 +35,24 @@ export function SelectSkills({ character, onConfirm }: StepProps) {
           </div>
           <div className="px-4 text-base">
             <div className="flex flex-col gap-1">
-              {classDefinitionsDict[characterClass].traumaResponse}
+              {classDefinitionsDict[characterClass].skills.map(line => <div>{line}</div>)}
             </div>
           </div>
         </div>
+        <div className="flex flex-wrap gap-2">
+          {newCharacter.skills.map(s => <Skill skill={allSkillsDict[s]} />)}
+        </div>
+        <SelectSkill filter={(s) => s.level === "Trained"} onSelect={(s) => setCharacter(c => ({...c, skills: [...c.skills, s]}))} />
       </Block>
       <div className="self-center">
-        <Button2 disabled={!done} onClick={() => onConfirm(character)}>
+        <div className="flex items-center gap-4">
+        <Button2 onClick={() => setCharacter({ ...character })}>
+          Reset
+        </Button2>
+        <Button2 disabled={!done} onClick={() => onConfirm(newCharacter)}>
           Confirm
         </Button2>
+        </div>
       </div>
     </div>
   );

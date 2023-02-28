@@ -1,3 +1,6 @@
+import { skillBonuses } from "./Data/data";
+import { SkillDefinition } from "./types";
+
 interface RatingProps {
   title: string;
   value: number;
@@ -35,5 +38,20 @@ export function Gauge({ current, limit, title, limitName }: GaugeProps) {
         <div>{limitName}</div>
       </div>
     </div>
+  );
+}
+
+interface SkillProps {
+  skill: SkillDefinition
+}
+
+export function Skill({ skill }: SkillProps) {
+  return (
+    <span className="rounded-lg border-2 bg-mother-5 text-mother-1 border-mother-5 text-lg">
+      <span className="inline-block px-1 rounded-md bg-mother-1 text-mother-5">
+        +{skillBonuses[skill.level]}
+      </span>
+      <span className="px-2">{skill.name}</span>
+    </span>
   );
 }

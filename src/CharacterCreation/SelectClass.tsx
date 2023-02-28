@@ -6,7 +6,6 @@ import { Character, CharacterClass, StatType } from "../types";
 import { Children } from "../UITypes";
 import { StepProps } from "./types";
 
-
 const classBonuses: Record<CharacterClass, (c: Character) => Character> = {
   marine(c) {
     return {
@@ -15,6 +14,7 @@ const classBonuses: Record<CharacterClass, (c: Character) => Character> = {
       body: c.body + 10,
       fear: c.fear + 20,
       maxWounds: 3,
+      skills: ["militaryTraining", "athletics"],
     };
   },
   android(c) {
@@ -23,6 +23,7 @@ const classBonuses: Record<CharacterClass, (c: Character) => Character> = {
       intellect: c.intellect + 20,
       fear: c.fear + 60,
       maxWounds: 3,
+      skills: ["linguistics", "computers", "mathematics"],
     };
   },
   scientist(c) {
@@ -42,6 +43,7 @@ const classBonuses: Record<CharacterClass, (c: Character) => Character> = {
       body: c.body + 10,
       fear: c.fear + 10,
       sanity: c.sanity + 10,
+      skills: ["industrialEquipment", "zeroG"]
     };
   },
 };
@@ -51,9 +53,7 @@ interface StatSelectionProps {
 }
 
 function StatSelection({ onSelect }: StatSelectionProps) {
-  const [selectedStat, setSelectedStat] = useState<StatType | null>(
-    null
-  );
+  const [selectedStat, setSelectedStat] = useState<StatType | null>(null);
 
   function onStatSelection(stat: StatType) {
     setSelectedStat(stat);
@@ -63,7 +63,11 @@ function StatSelection({ onSelect }: StatSelectionProps) {
   return (
     <div className="flex justify-center gap-4">
       {allStats.map((s) => {
-        return <Button dark={s === selectedStat} onClick={() => onStatSelection(s)}>{s}</Button>
+        return (
+          <Button dark={s === selectedStat} onClick={() => onStatSelection(s)}>
+            {s}
+          </Button>
+        );
       })}
     </div>
   );
@@ -164,8 +168,17 @@ export function SelectClass({ character, onConfirm }: StepProps) {
   }
 
   function setCharacterBonus(update: (c: Character) => Character) {
-    if (selectedClass === null) { throw new Error("impossible"); }
-    setCharacter(update(classBonuses[selectedClass]({ ...character, characterClass: selectedClass })));
+    if (selectedClass === null) {
+      throw new Error("impossible");
+    }
+    setCharacter(
+      update(
+        classBonuses[selectedClass]({
+          ...character,
+          characterClass: selectedClass,
+        })
+      )
+    );
     setDone(true);
   }
 

@@ -56,6 +56,10 @@ export interface SkillDefinition {
   prerequisites: SkillType[];
 }
 
+export interface SkillDefinitionExtended extends SkillDefinition {
+  unlocks: SkillType[];
+}
+
 export type ArmorType =
   | "standardCrewAttire"
   | "advancedBattleDress"
@@ -250,10 +254,10 @@ export interface Character extends BaseCharacter {
   contractors: Contractor[];
 }
 
-export type Updater = (update: (c: Character) => Character) => void
+export type Updater = (update: (c: Character) => Character) => void;
 
 export interface ClassDefinition {
-  name: CharacterClass,
-  traumaResponse: string,
-  skills: string[],
+  name: CharacterClass;
+  traumaResponse: string;
+  skills: string[];
 }

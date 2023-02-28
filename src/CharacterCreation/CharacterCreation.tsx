@@ -7,6 +7,7 @@ import { RollHealth } from "./RollHealth";
 import { RollSaves } from "./RollSaves";
 import { RollStats } from "./RollStats";
 import { SelectClass } from "./SelectClass";
+import { SelectSkills } from "./SelectSkills";
 import { StepProps } from "./types";
 
 const Steps: ((props: StepProps) => JSX.Element)[] = [
@@ -16,6 +17,7 @@ const Steps: ((props: StepProps) => JSX.Element)[] = [
   RollHealth,
   GainStress,
   NoteTraumaResponse,
+  SelectSkills
 ];
 
 export function CharacterCreation() {
