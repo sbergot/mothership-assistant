@@ -5,6 +5,7 @@ import {
   Contractor,
   SaveType,
   SkillDefinition,
+  SkillType,
   StatType,
   Weapon,
 } from "../types";
@@ -1881,16 +1882,36 @@ export const allSkills: SkillDefinition[] = [
     level: "Expert",
     prerequisites: ["geology"],
   },
-  { key: "ecology", name: "ecology", level: "Expert", prerequisites: ["botany", "geology"] },
-  { key: "explosives", name: "explosives", level: "Expert", prerequisites: ["juryRigging", "chemistry"] },
+  {
+    key: "ecology",
+    name: "ecology",
+    level: "Expert",
+    prerequisites: ["botany", "geology"],
+  },
+  {
+    key: "explosives",
+    name: "explosives",
+    level: "Expert",
+    prerequisites: ["juryRigging", "chemistry"],
+  },
   {
     key: "fieldMedicine",
     name: "field medicine",
     level: "Expert",
     prerequisites: ["zoology", "botany"],
   },
-  { key: "firearms", name: "firearms", level: "Expert", prerequisites: ["rimwise", "militaryTraining"] },
-  { key: "hacking", name: "hacking", level: "Expert", prerequisites: ["computers"] },
+  {
+    key: "firearms",
+    name: "firearms",
+    level: "Expert",
+    prerequisites: ["rimwise", "militaryTraining"],
+  },
+  {
+    key: "hacking",
+    name: "hacking",
+    level: "Expert",
+    prerequisites: ["computers"],
+  },
   {
     key: "handToHandCombat",
     name: "handToHand combat",
@@ -1903,17 +1924,42 @@ export const allSkills: SkillDefinition[] = [
     level: "Expert",
     prerequisites: ["industrialEquipment", "juryRigging"],
   },
-  { key: "mysticism", name: "mysticism", level: "Expert", prerequisites: ["art", "archaelogy", "theology"] },
-  { key: "pathology", name: "pathology", level: "Expert", prerequisites: ["botany", "zoology"] },
+  {
+    key: "mysticism",
+    name: "mysticism",
+    level: "Expert",
+    prerequisites: ["art", "archaelogy", "theology"],
+  },
+  {
+    key: "pathology",
+    name: "pathology",
+    level: "Expert",
+    prerequisites: ["botany", "zoology"],
+  },
   {
     key: "pharmacology",
     name: "pharmacology",
     level: "Expert",
     prerequisites: ["chemistry"],
   },
-  { key: "physics", name: "physics", level: "Expert", prerequisites: ["mathematics"] },
-  { key: "piloting", name: "piloting", level: "Expert", prerequisites: ["piloting"] },
-  { key: "psychology", name: "psychology", level: "Expert", prerequisites: ["zoology"] },
+  {
+    key: "physics",
+    name: "physics",
+    level: "Expert",
+    prerequisites: ["mathematics"],
+  },
+  {
+    key: "piloting",
+    name: "piloting",
+    level: "Expert",
+    prerequisites: ["piloting"],
+  },
+  {
+    key: "psychology",
+    name: "psychology",
+    level: "Expert",
+    prerequisites: ["zoology"],
+  },
   {
     key: "wildernessSurvival",
     name: "wilderness survival",
@@ -1921,7 +1967,12 @@ export const allSkills: SkillDefinition[] = [
     prerequisites: ["botany", "militaryTraining"],
   },
   { key: "ai", name: "ai", level: "Master", prerequisites: ["hacking"] },
-  { key: "command", name: "command", level: "Master", prerequisites: ["firearms", "piloting"] },
+  {
+    key: "command",
+    name: "command",
+    level: "Master",
+    prerequisites: ["firearms", "piloting"],
+  },
   {
     key: "cybernetics",
     name: "cybernetics",
@@ -1934,22 +1985,42 @@ export const allSkills: SkillDefinition[] = [
     level: "Master",
     prerequisites: ["mechanicalRepair"],
   },
-  { key: "exobiology", name: "exobiology", level: "Master", prerequisites: ["pathology"] },
-  { key: "hyperspace", name: "hyperspace", level: "Master", prerequisites: ["physics", "mysticism", "piloting"] },
+  {
+    key: "exobiology",
+    name: "exobiology",
+    level: "Master",
+    prerequisites: ["pathology"],
+  },
+  {
+    key: "hyperspace",
+    name: "hyperspace",
+    level: "Master",
+    prerequisites: ["physics", "mysticism", "piloting"],
+  },
   {
     key: "planetology",
     name: "planetology",
     level: "Master",
     prerequisites: ["ecology", "asteroidMining"],
   },
-  { key: "robotics", name: "robotics", level: "Master", prerequisites: ["mechanicalRepair"] },
+  {
+    key: "robotics",
+    name: "robotics",
+    level: "Master",
+    prerequisites: ["mechanicalRepair"],
+  },
   {
     key: "sophontology",
     name: "sophontology",
     level: "Master",
     prerequisites: ["psychology", "linguistics"],
   },
-  { key: "surgery", name: "surgery", level: "Master", prerequisites: ["fieldMedicine", "pathology"] },
+  {
+    key: "surgery",
+    name: "surgery",
+    level: "Master",
+    prerequisites: ["fieldMedicine", "pathology"],
+  },
   {
     key: "xenoesoterism",
     name: "xenoesoterism",
@@ -1957,3 +2028,8 @@ export const allSkills: SkillDefinition[] = [
     prerequisites: [],
   },
 ];
+
+export const allSkillsDict: Record<SkillType, SkillDefinition> = toDict(
+  allSkills,
+  (s) => s.key
+);

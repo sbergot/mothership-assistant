@@ -1,4 +1,5 @@
 import { Block, Button, Divider, Title } from "../Atoms";
+import { allSkillsDict } from "../Data/data";
 import { Character } from "../types";
 
 interface Props {
@@ -11,7 +12,7 @@ export function Skills({ character }: Props) {
       <Title>Skills</Title>
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-4">
-        {character.skills.map(s => <Skill bonus={10} name={s} />)}
+        {character.skills.map(s => <Skill bonus={10} name={allSkillsDict[s].name} />)}
         <Button onClick={() => {}}>Train skill</Button>
       </div>
     </Block>

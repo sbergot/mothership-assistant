@@ -34,7 +34,6 @@ export type SkillType =
   | "physics"
   | "piloting"
   | "psychology"
-  | "tactics"
   | "wildernessSurvival"
   | "ai"
   | "command"
