@@ -4,6 +4,7 @@ import {
   ClassDefinition,
   Contractor,
   SaveType,
+  SkillDefinition,
   StatType,
   Weapon,
 } from "../types";
@@ -21,16 +22,25 @@ export const classDefinitions: ClassDefinition[] = [
   {
     name: "teamster",
     traumaResponse: "Once per session, you may take advantage on a panic check",
-    skills: ["Industrial Equipment, Zero-G", "Bonus: 1 Trained Skill and 1 Expert Skill"],
+    skills: [
+      "Industrial Equipment, Zero-G",
+      "Bonus: 1 Trained Skill and 1 Expert Skill",
+    ],
   },
   {
     name: "android",
-    traumaResponse: "Fear saves made by close friendly players are at disadvantage",
-    skills: ["Linguistics, Computers, Mathematics", "Bonus: 1 Expert Skill", "OR: 2 Trained Skills"],
+    traumaResponse:
+      "Fear saves made by close friendly players are at disadvantage",
+    skills: [
+      "Linguistics, Computers, Mathematics",
+      "Bonus: 1 Expert Skill",
+      "OR: 2 Trained Skills",
+    ],
   },
   {
     name: "scientist",
-    traumaResponse: "Whenever you fail a sanity save, all close friendly players gain 1 stress",
+    traumaResponse:
+      "Whenever you fail a sanity save, all close friendly players gain 1 stress",
     skills: [""],
   },
   {
@@ -40,7 +50,7 @@ export const classDefinitions: ClassDefinition[] = [
   },
 ];
 
-export const classDefinitionsDict = toDict(classDefinitions, c => c.name);
+export const classDefinitionsDict = toDict(classDefinitions, (c) => c.name);
 
 export const weapons: Weapon[] = [
   {
@@ -1815,5 +1825,135 @@ export const armors: Armor[] = [
     notes:
       "Includes short-range comms, headlamp, and radiation shielding. Decompression within 1d5 rounds if punctured.",
     armorSpeed: "disadvantage",
+  },
+];
+
+export const allSkills: SkillDefinition[] = [
+  {
+    key: "linguistics",
+    name: "linguistics",
+    level: "Trained",
+    prerequisites: [],
+  },
+  { key: "computers", name: "computers", level: "Trained", prerequisites: [] },
+  {
+    key: "mathematics",
+    name: "mathematics",
+    level: "Trained",
+    prerequisites: [],
+  },
+  {
+    key: "archaelogy",
+    name: "archaelogy",
+    level: "Trained",
+    prerequisites: [],
+  },
+  { key: "rimwise", name: "rimwise", level: "Trained", prerequisites: [] },
+  { key: "art", name: "art", level: "Trained", prerequisites: [] },
+  { key: "athletics", name: "athletics", level: "Trained", prerequisites: [] },
+  { key: "botany", name: "botany", level: "Trained", prerequisites: [] },
+  { key: "chemistry", name: "chemistry", level: "Trained", prerequisites: [] },
+  { key: "geology", name: "geology", level: "Trained", prerequisites: [] },
+  {
+    key: "industrialEquipment",
+    name: "industrial equipment",
+    level: "Trained",
+    prerequisites: [],
+  },
+  {
+    key: "juryRigging",
+    name: "jury rigging",
+    level: "Trained",
+    prerequisites: [],
+  },
+  {
+    key: "militaryTraining",
+    name: "military training",
+    level: "Trained",
+    prerequisites: [],
+  },
+  { key: "theology", name: "theology", level: "Trained", prerequisites: [] },
+  { key: "zeroG", name: "zero-G", level: "Trained", prerequisites: [] },
+  { key: "zoology", name: "zoology", level: "Trained", prerequisites: [] },
+  {
+    key: "asteroidMining",
+    name: "asteroid mining",
+    level: "Expert",
+    prerequisites: ["geology"],
+  },
+  { key: "ecology", name: "ecology", level: "Expert", prerequisites: ["botany", "geology"] },
+  { key: "explosives", name: "explosives", level: "Expert", prerequisites: ["juryRigging", "chemistry"] },
+  {
+    key: "fieldMedicine",
+    name: "field medicine",
+    level: "Expert",
+    prerequisites: ["zoology", "botany"],
+  },
+  { key: "firearms", name: "firearms", level: "Expert", prerequisites: ["rimwise", "militaryTraining"] },
+  { key: "hacking", name: "hacking", level: "Expert", prerequisites: ["computers"] },
+  {
+    key: "handToHandCombat",
+    name: "handToHand combat",
+    level: "Expert",
+    prerequisites: ["athletics", "rimwise", "militaryTraining"],
+  },
+  {
+    key: "mechanicalRepair",
+    name: "mechanical repair",
+    level: "Expert",
+    prerequisites: ["industrialEquipment", "juryRigging"],
+  },
+  { key: "mysticism", name: "mysticism", level: "Expert", prerequisites: ["art", "archaelogy", "theology"] },
+  { key: "pathology", name: "pathology", level: "Expert", prerequisites: ["botany", "zoology"] },
+  {
+    key: "pharmacology",
+    name: "pharmacology",
+    level: "Expert",
+    prerequisites: ["chemistry"],
+  },
+  { key: "physics", name: "physics", level: "Expert", prerequisites: ["mathematics"] },
+  { key: "piloting", name: "piloting", level: "Expert", prerequisites: ["piloting"] },
+  { key: "psychology", name: "psychology", level: "Expert", prerequisites: ["zoology"] },
+  {
+    key: "wildernessSurvival",
+    name: "wilderness survival",
+    level: "Expert",
+    prerequisites: ["botany", "militaryTraining"],
+  },
+  { key: "ai", name: "ai", level: "Master", prerequisites: ["hacking"] },
+  { key: "command", name: "command", level: "Master", prerequisites: ["firearms", "piloting"] },
+  {
+    key: "cybernetics",
+    name: "cybernetics",
+    level: "Master",
+    prerequisites: ["mechanicalRepair"],
+  },
+  {
+    key: "engineering",
+    name: "engineering",
+    level: "Master",
+    prerequisites: ["mechanicalRepair"],
+  },
+  { key: "exobiology", name: "exobiology", level: "Master", prerequisites: ["pathology"] },
+  { key: "hyperspace", name: "hyperspace", level: "Master", prerequisites: ["physics", "mysticism", "piloting"] },
+  {
+    key: "planetology",
+    name: "planetology",
+    level: "Master",
+    prerequisites: ["ecology", "asteroidMining"],
+  },
+  { key: "robotics", name: "robotics", level: "Master", prerequisites: ["mechanicalRepair"] },
+  {
+    key: "sophontology",
+    name: "sophontology",
+    level: "Master",
+    prerequisites: ["psychology", "linguistics"],
+  },
+  { key: "surgery", name: "surgery", level: "Master", prerequisites: ["fieldMedicine", "pathology"] },
+  {
+    key: "xenoesoterism",
+    name: "xenoesoterism",
+    level: "Master",
+    prerequisites: [],
   },
 ];

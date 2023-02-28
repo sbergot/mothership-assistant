@@ -48,6 +48,15 @@ export type SkillType =
   | "surgery"
   | "xenoesoterism";
 
+export type SkillLevel = "Trained" | "Expert" | "Master";
+
+export interface SkillDefinition {
+  key: SkillType;
+  name: string;
+  level: SkillLevel;
+  prerequisites: SkillType[];
+}
+
 export type ArmorType =
   | "standardCrewAttire"
   | "advancedBattleDress"
