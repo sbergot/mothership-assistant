@@ -25,7 +25,7 @@ export const classDefinitions: ClassDefinition[] = [
   {
     name: "teamster",
     traumaResponse: "Once per session, you may take advantage on a panic check",
-    skills: [
+    initialSkills: [
       "Industrial Equipment, Zero-G",
       "Bonus: 1 Trained Skill and 1 Expert Skill",
     ],
@@ -34,7 +34,7 @@ export const classDefinitions: ClassDefinition[] = [
     name: "android",
     traumaResponse:
       "Fear saves made by close friendly players are at disadvantage",
-    skills: [
+    initialSkills: [
       "Linguistics, Computers, Mathematics",
       "Bonus: 1 Expert Skill",
       "OR: 2 Trained Skills",
@@ -44,12 +44,12 @@ export const classDefinitions: ClassDefinition[] = [
     name: "scientist",
     traumaResponse:
       "Whenever you fail a sanity save, all close friendly players gain 1 stress",
-    skills: ["1 Master Skill and an Expert and Trained Skill Prerequisite", "Bonus: 1 Trained Skill"],
+    initialSkills: ["1 Master Skill and an Expert and Trained Skill Prerequisite", "Bonus: 1 Trained Skill"],
   },
   {
     name: "marine",
     traumaResponse: "Once per session, you may take advantage on a panic check",
-    skills: ["Industrial Equipment, Zero-G", "Bonus: 1 Trained Skill and 1 Expert Skill"],
+    initialSkills: ["Industrial Equipment, Zero-G", "Bonus: 1 Trained Skill and 1 Expert Skill"],
   },
 ];
 

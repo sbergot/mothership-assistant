@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Block, Button, Button2, Tag, Title } from "../Atoms";
 import { allSkills, allSkillsDict, classDefinitionsDict } from "../Data/data";
 import { Skill } from "../Molecules";
-import { SkillDefinition, SkillType } from "../types";
+import { Character, SkillDefinition, SkillType } from "../types";
 import { StepProps } from "./types";
 
 interface SelectSkillProps {
@@ -20,6 +20,16 @@ function SelectSkill({ onSelect, filter }: SelectSkillProps) {
   );
 }
 
+interface SkillSelectionProps {
+  character: Character;
+  onSelect(s: SkillType): void;
+  onFinish(): void;
+}
+
+function AndroidSkillSelection({ onSelect, onFinish, character }: SkillSelectionProps) {
+  const [selectedSkills, setSelectedSkills] = useState<SkillType[]>([]);
+}
+
 export function SelectSkills({ character, onConfirm }: StepProps) {
   const [newCharacter, setCharacter] = useState({ ...character });
   const done = true;
@@ -35,7 +45,7 @@ export function SelectSkills({ character, onConfirm }: StepProps) {
           </div>
           <div className="px-4 text-base">
             <div className="flex flex-col gap-1">
-              {classDefinitionsDict[characterClass].skills.map(line => <div>{line}</div>)}
+              {classDefinitionsDict[characterClass].initialSkills.map(line => <div>{line}</div>)}
             </div>
           </div>
         </div>
