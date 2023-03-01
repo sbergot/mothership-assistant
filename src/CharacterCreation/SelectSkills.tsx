@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Block, Button, Button2, Tag, Title } from "../Atoms";
 import { allSkills, allSkillsDict, classDefinitionsDict } from "../Data/data";
 import { Skill } from "../Molecules";
-import { Character, SkillDefinition, SkillType } from "../types";
+import { toDict } from "../Services/services";
+import { Character, SkillDefinition, SkillLevel, SkillType } from "../types";
 import { StepProps } from "./types";
 
 interface SelectSkillProps {
@@ -20,10 +21,37 @@ function SelectSkill({ onSelect, filter }: SelectSkillProps) {
   );
 }
 
-function isPrerequisiteOk(selectedSkills: SkillType[], skill: SkillType): boolean {
-  const { prerequisites } = allSkillsDict[skill];
-  if (prerequisites.length === 0) { return true; }
-  return prerequisites.some(p => selectedSkills.includes(p));
+type SkillFilter = (s: SkillDefinition) => boolean;
+
+function isPrerequisiteOk(selectedSkills: SkillType[]): SkillFilter {
+  const selectedDict = toDict(selectedSkills, (s) => s);
+  return (s: SkillDefinition) => {
+    const { prerequisites } = allSkillsDict[s.key];
+    if (prerequisites.length === 0) {
+      return true;
+    }
+    return !!selectedDict[s.key];
+  };
+}
+
+function isSkillLevel(level: SkillLevel): SkillFilter {
+  return (s: SkillDefinition) => s.level === level;
+}
+
+function and(cb1: SkillFilter, cb2: SkillFilter): SkillFilter {
+  return (s: SkillDefinition) => cb1(s) && cb2(s);
+}
+
+function or(cb1: SkillFilter, cb2: SkillFilter): SkillFilter {
+  return (s: SkillDefinition) => cb1(s) || cb2(s);
+}
+
+function never(s: SkillDefinition) {
+  return false;
+}
+
+function always(s: SkillDefinition) {
+  return true;
 }
 
 interface SkillSelectionProps {
@@ -32,9 +60,99 @@ interface SkillSelectionProps {
   onFinish(): void;
 }
 
-function AndroidSkillSelection({ onSelect, onFinish, character }: SkillSelectionProps) {
+function AndroidSkillSelection({
+  onSelect,
+  onFinish,
+  character,
+}: SkillSelectionProps) {
   const [selectedSkills, setSelectedSkills] = useState<SkillType[]>([]);
-  <SelectSkill onSelect={onSelect} filter={() => true} />
+
+  useEffect(() => {
+    if (selectedSkills.length > 1) {
+      onFinish();
+    }
+    if (
+      selectedSkills.length === 1 &&
+      allSkillsDict[selectedSkills[0]].level == "Expert"
+    ) {
+      onFinish();
+    }
+  }, [selectedSkills]);
+
+  function getFilter(): SkillFilter {
+    if (selectedSkills.length === 0) {
+      return or(isSkillLevel("Trained"), isSkillLevel("Expert"));
+    }
+    if (selectedSkills.length === 1) {
+      return allSkillsDict[selectedSkills[0]].level == "Trained"
+        ? isSkillLevel("Trained")
+        : never;
+    }
+    return never;
+  }
+
+  <SelectSkill
+    onSelect={onSelect}
+    filter={and(isPrerequisiteOk(character.skills), getFilter())}
+  />;
+}
+
+function TeamsterSkillSelection({
+  onSelect,
+  onFinish,
+  character,
+}: SkillSelectionProps) {
+  const [selectedSkills, setSelectedSkills] = useState<SkillType[]>([]);
+
+  useEffect(() => {
+    if (selectedSkills.length > 1) {
+      onFinish();
+    }
+  }, [selectedSkills]);
+
+  function getFilter(): SkillFilter {
+    if (selectedSkills.length === 0) {
+      return isSkillLevel("Trained");
+    }
+    if (selectedSkills.length === 1) {
+      return isSkillLevel("Expert");
+    }
+    return never;
+  }
+
+  <SelectSkill
+    onSelect={onSelect}
+    filter={and(isPrerequisiteOk(character.skills), getFilter())}
+  />;
+}
+
+function ScientistSkillSelection({
+  onSelect,
+  onFinish,
+  character,
+}: SkillSelectionProps) {
+  const [selectedSkills, setSelectedSkills] = useState<SkillType[]>([]);
+
+  useEffect(() => {
+    if (selectedSkills.length > 3) {
+      onFinish();
+    }
+  }, [selectedSkills]);
+
+  function getFilter(): SkillFilter {
+    if (selectedSkills.length === 0) {
+      return always;
+    }
+    if (selectedSkills.length === 1) {
+      return isSkillLevel("Expert");
+    }
+    return never;
+  }
+
+  <SelectSkill
+    onSelect={onSelect}
+    filter={and(isPrerequisiteOk(character.skills), getFilter())}
+  />;
 }
 
 export function SelectSkills({ character, onConfirm }: StepProps) {
@@ -52,23 +170,34 @@ export function SelectSkills({ character, onConfirm }: StepProps) {
           </div>
           <div className="px-4 text-base">
             <div className="flex flex-col gap-1">
-              {classDefinitionsDict[characterClass].initialSkills.map(line => <div>{line}</div>)}
+              {classDefinitionsDict[characterClass].initialSkills.map(
+                (line) => (
+                  <div>{line}</div>
+                )
+              )}
             </div>
           </div>
         </div>
         <div className="flex flex-wrap gap-2">
-          {newCharacter.skills.map(s => <Skill skill={allSkillsDict[s]} />)}
+          {newCharacter.skills.map((s) => (
+            <Skill skill={allSkillsDict[s]} />
+          ))}
         </div>
-        <SelectSkill filter={(s) => s.level === "Trained"} onSelect={(s) => setCharacter(c => ({...c, skills: [...c.skills, s]}))} />
+        <SelectSkill
+          filter={(s) => s.level === "Trained"}
+          onSelect={(s) =>
+            setCharacter((c) => ({ ...c, skills: [...c.skills, s] }))
+          }
+        />
       </Block>
       <div className="self-center">
         <div className="flex items-center gap-4">
-        <Button2 onClick={() => setCharacter({ ...character })}>
-          Reset
-        </Button2>
-        <Button2 disabled={!done} onClick={() => onConfirm(newCharacter)}>
-          Confirm
-        </Button2>
+          <Button2 onClick={() => setCharacter({ ...character })}>
+            Reset
+          </Button2>
+          <Button2 disabled={!done} onClick={() => onConfirm(newCharacter)}>
+            Confirm
+          </Button2>
         </div>
       </div>
     </div>
