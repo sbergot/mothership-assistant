@@ -20,6 +20,12 @@ function SelectSkill({ onSelect, filter }: SelectSkillProps) {
   );
 }
 
+function isPrerequisiteOk(selectedSkills: SkillType[], skill: SkillType): boolean {
+  const { prerequisites } = allSkillsDict[skill];
+  if (prerequisites.length === 0) { return true; }
+  return prerequisites.some(p => selectedSkills.includes(p));
+}
+
 interface SkillSelectionProps {
   character: Character;
   onSelect(s: SkillType): void;
@@ -28,6 +34,7 @@ interface SkillSelectionProps {
 
 function AndroidSkillSelection({ onSelect, onFinish, character }: SkillSelectionProps) {
   const [selectedSkills, setSelectedSkills] = useState<SkillType[]>([]);
+  <SelectSkill onSelect={onSelect} filter={() => true} />
 }
 
 export function SelectSkills({ character, onConfirm }: StepProps) {
