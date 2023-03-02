@@ -1,9 +1,20 @@
 import { useEffect, useState } from "react";
 import { Block, Button, Button2, Tag, Title } from "../Atoms";
-import { allSkillLevels, allSkills, allSkillsDict, classDefinitionsDict } from "../Data/data";
+import {
+  allSkillLevels,
+  allSkills,
+  allSkillsDict,
+  classDefinitionsDict,
+} from "../Data/data";
 import { Skill } from "../Molecules";
 import { toDict } from "../Services/services";
-import { Character, CharacterClass, SkillDefinition, SkillLevel, SkillType } from "../types";
+import {
+  Character,
+  CharacterClass,
+  SkillDefinition,
+  SkillLevel,
+  SkillType,
+} from "../types";
 import { StepProps } from "./types";
 
 interface SelectSkillProps {
@@ -15,7 +26,9 @@ function SelectSkill({ onSelect, filter }: SelectSkillProps) {
   return (
     <div className="flex flex-wrap gap-2">
       {allSkills.filter(filter).map((s) => (
-        <Button key={s.key} onClick={() => onSelect(s.key)}>{s.name}</Button>
+        <Button key={s.key} onClick={() => onSelect(s.key)}>
+          {s.name}
+        </Button>
       ))}
     </div>
   );
@@ -30,7 +43,14 @@ function isPrerequisiteOk(selectedSkills: SkillType[]): SkillFilter {
     if (prerequisites.length === 0) {
       return true;
     }
-    return prerequisites.some(p => !!selectedDict[p]);
+    return prerequisites.some((p) => !!selectedDict[p]);
+  };
+}
+
+function isNotSelected(selectedSkills: SkillType[]): SkillFilter {
+  const selectedDict = toDict(selectedSkills, (s) => s);
+  return (s: SkillDefinition) => {
+    return !selectedDict[s.key];
   };
 }
 
@@ -50,51 +70,73 @@ function never(s: SkillDefinition) {
   return false;
 }
 
-function always(s: SkillDefinition) {
-  return true;
-}
-
 interface SkillSelectionProps {
   character: Character;
   onSelect(s: SkillType): void;
   onFinish(): void;
 }
 
+const scientistSkills: Record<SkillLevel, number> = {
+  Trained: 2,
+  Expert: 1,
+  Master: 1,
+};
+
+const marineSkills: Record<SkillLevel, number> = {
+  Trained: 3,
+  Expert: 1,
+  Master: 0,
+};
+
+const teamsterSkills: Record<SkillLevel, number> = {
+  Trained: 3,
+  Expert: 1,
+  Master: 0,
+};
+
+const androidSkills1: Record<SkillLevel, number> = {
+  Trained: 4,
+  Expert: 1,
+  Master: 0,
+};
+
+const androidSkills2: Record<SkillLevel, number> = {
+  Trained: 5,
+  Expert: 0,
+  Master: 0,
+};
+
+const androidSkills3: Record<SkillLevel, number> = {
+  Trained: 3,
+  Expert: 1,
+  Master: 0,
+};
+
 function AndroidSkillSelection({
   onSelect,
   onFinish,
   character,
 }: SkillSelectionProps) {
-  const [selectedSkills, setSelectedSkills] = useState<SkillType[]>([]);
-
-  useEffect(() => {
-    if (selectedSkills.length > 1) {
-      onFinish();
-    }
-    if (
-      selectedSkills.length === 1 &&
-      allSkillsDict[selectedSkills[0]].level == "Expert"
-    ) {
-      onFinish();
-    }
-  }, [selectedSkills]);
-
-  function getFilter(): SkillFilter {
-    if (selectedSkills.length === 0) {
-      return or(isSkillLevel("Trained"), isSkillLevel("Expert"));
-    }
-    if (selectedSkills.length === 1) {
-      return allSkillsDict[selectedSkills[0]].level == "Trained"
-        ? isSkillLevel("Trained")
-        : never;
-    }
-    return never;
+  const skillNbrByLevel = computeSkillNbrByLevel(character);
+  let budget = androidSkills1;
+  if (skillNbrByLevel.Trained === 3 && skillNbrByLevel.Expert === 0) {
+    budget = androidSkills1;
+  }
+  if (skillNbrByLevel.Trained > 3 && skillNbrByLevel.Expert === 0) {
+    budget = androidSkills2;
+  }
+  if (skillNbrByLevel.Trained === 3 && skillNbrByLevel.Expert === 1) {
+    budget = androidSkills3;
   }
 
-  return <SelectSkill
-    onSelect={onSelect}
-    filter={and(isPrerequisiteOk(character.skills), getFilter())}
-  />;
+  return (
+    <DefaultSkillSelection
+      onFinish={onFinish}
+      onSelect={onSelect}
+      character={character}
+      budget={budget}
+    />
+  );
 }
 
 function TeamsterSkillSelection({
@@ -102,34 +144,14 @@ function TeamsterSkillSelection({
   onFinish,
   character,
 }: SkillSelectionProps) {
-  const [selectedSkills, setSelectedSkills] = useState<SkillType[]>([]);
-
-  useEffect(() => {
-    if (selectedSkills.length > 1) {
-      onFinish();
-    }
-  }, [selectedSkills]);
-
-  function getFilter(): SkillFilter {
-    if (selectedSkills.length === 0) {
-      return isSkillLevel("Trained");
-    }
-    if (selectedSkills.length === 1) {
-      return isSkillLevel("Expert");
-    }
-    return never;
-  }
-
-  return <SelectSkill
-    onSelect={onSelect}
-    filter={and(isPrerequisiteOk(character.skills), getFilter())}
-  />;
-}
-
-const scientistSkills: Record<SkillLevel, number> = {
-  Trained: 2,
-  Expert: 1,
-  Master: 1
+  return (
+    <DefaultSkillSelection
+      onFinish={onFinish}
+      onSelect={onSelect}
+      character={character}
+      budget={teamsterSkills}
+    />
+  );
 }
 
 function ScientistSkillSelection({
@@ -137,37 +159,14 @@ function ScientistSkillSelection({
   onFinish,
   character,
 }: SkillSelectionProps) {
-
-  let remaining : Record<SkillLevel, number> = scientistSkills;
-  character.skills.forEach(skill => {
-    const level = allSkillsDict[skill].level;
-    remaining = {...remaining, [level]: remaining[level] - 1};
-  });
-
-  useEffect(() => {
-    if (Object.values(remaining).every(v => v === 0)) {
-      onFinish();
-    }
-  }, [character]);
-
-  function getFilter(): SkillFilter {
-    let filter = never;
-    allSkillLevels.forEach(s => {
-      if (remaining[s] > 0) {
-        filter = or(filter, isSkillLevel(s));
-      }
-    })
-    return filter;
-  }
-
-  function internalOnSelect(skill: SkillType) {
-    onSelect(skill);
-  }
-
-  return <SelectSkill
-    onSelect={internalOnSelect}
-    filter={and(isPrerequisiteOk(character.skills), getFilter())}
-  />;
+  return (
+    <DefaultSkillSelection
+      onFinish={onFinish}
+      onSelect={onSelect}
+      character={character}
+      budget={scientistSkills}
+    />
+  );
 }
 
 function MarineSkillSelection({
@@ -175,53 +174,94 @@ function MarineSkillSelection({
   onFinish,
   character,
 }: SkillSelectionProps) {
-  const [remaining, setRemaining] = useState<Record<SkillLevel, number>>({
-    Trained: 1,
-    Expert: 1,
-    Master: 0
-  });
+  return (
+    <DefaultSkillSelection
+      onFinish={onFinish}
+      onSelect={onSelect}
+      character={character}
+      budget={marineSkills}
+    />
+  );
+}
+
+function DefaultSkillSelection({
+  onSelect,
+  onFinish,
+  character,
+  budget,
+}: SkillSelectionProps & { budget: Record<SkillLevel, number> }) {
+  const remaining: Record<SkillLevel, number> = computeRemaining(
+    budget,
+    character
+  );
 
   useEffect(() => {
-    setRemaining({
-      Trained: 1,
-      Expert: 1,
-      Master: 0
-    })
-  }, [character]);
-
-  useEffect(() => {
-    if (Object.values(remaining).every(v => v === 0)) {
+    if (Object.values(remaining).every((v) => v === 0)) {
       onFinish();
     }
-  }, [remaining]);
+  }, [character]);
 
   function getFilter(): SkillFilter {
     let filter = never;
-    allSkillLevels.forEach(s => {
+    allSkillLevels.forEach((s) => {
       if (remaining[s] > 0) {
         filter = or(filter, isSkillLevel(s));
       }
-    })
+    });
     return filter;
   }
 
   function internalOnSelect(skill: SkillType) {
-    const level = allSkillsDict[skill].level
-    setRemaining(r => ({...r, [level]: r[level] - 1}))
     onSelect(skill);
   }
 
-  return <SelectSkill
-    onSelect={internalOnSelect}
-    filter={and(isPrerequisiteOk(character.skills), getFilter())}
-  />;
+  return (
+    <SelectSkill
+      onSelect={internalOnSelect}
+      filter={and(
+        isNotSelected(character.skills),
+        and(isPrerequisiteOk(character.skills), getFilter())
+      )}
+    />
+  );
 }
 
-const selectors: Record<CharacterClass, (props: SkillSelectionProps) => JSX.Element> = {
+const selectors: Record<
+  CharacterClass,
+  (props: SkillSelectionProps) => JSX.Element
+> = {
   android: AndroidSkillSelection,
   marine: MarineSkillSelection,
   scientist: ScientistSkillSelection,
-  teamster: TeamsterSkillSelection
+  teamster: TeamsterSkillSelection,
+};
+
+function computeRemaining(
+  budget: Record<SkillLevel, number>,
+  character: Character
+) {
+  let remaining: Record<SkillLevel, number> = budget;
+  character.skills.forEach((skill) => {
+    const level = allSkillsDict[skill].level;
+    remaining = { ...remaining, [level]: remaining[level] - 1 };
+  });
+  return remaining;
+}
+
+function computeSkillNbrByLevel(character: Character) {
+  let skillNbrByLevel: Record<SkillLevel, number> = {
+    Trained: 0,
+    Expert: 0,
+    Master: 0,
+  };
+  character.skills.forEach((skill) => {
+    const level = allSkillsDict[skill].level;
+    skillNbrByLevel = {
+      ...skillNbrByLevel,
+      [level]: skillNbrByLevel[level] + 1,
+    };
+  });
+  return skillNbrByLevel;
 }
 
 export function SelectSkills({ character, onConfirm }: StepProps) {
