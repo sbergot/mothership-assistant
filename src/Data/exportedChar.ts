@@ -60,7 +60,6 @@ export const data: Character = {
       "physics",
       "piloting",
       "psychology",
-      "tactics",
       "wildernessSurvival",
       "ai",
       "command",
