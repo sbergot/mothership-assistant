@@ -121,9 +121,11 @@ function getSkillsBudget(character: Character): Record<SkillLevel, number> {
     };
   }
 
+  // case for marine & android. Pick 2 trained or 1 expert
   const skillNbrByLevel = computeSkillNbrByLevel(character);
   const preselectedSkillsNbr = character.characterClass === "marine" ? 2 : 3;
 
+  // no bonus skill selected
   if (
     skillNbrByLevel.Trained === preselectedSkillsNbr &&
     skillNbrByLevel.Expert === 0
@@ -134,6 +136,7 @@ function getSkillsBudget(character: Character): Record<SkillLevel, number> {
       Master: 0,
     };
   }
+  // one or more trained skill selected
   if (
     skillNbrByLevel.Trained > preselectedSkillsNbr &&
     skillNbrByLevel.Expert === 0
@@ -144,6 +147,7 @@ function getSkillsBudget(character: Character): Record<SkillLevel, number> {
       Master: 0,
     };
   }
+  // one expert skill selected
   if (
     skillNbrByLevel.Trained === preselectedSkillsNbr &&
     skillNbrByLevel.Expert === 1
