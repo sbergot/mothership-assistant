@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Block, Button, Button2, Tag, Title } from "../Atoms";
-import { allSkills, allSkillsDict, classDefinitionsDict } from "../Data/data";
+import { allSkillLevels, allSkills, allSkillsDict, classDefinitionsDict } from "../Data/data";
 import { Skill } from "../Molecules";
 import { toDict } from "../Services/services";
-import { Character, SkillDefinition, SkillLevel, SkillType } from "../types";
+import { Character, CharacterClass, SkillDefinition, SkillLevel, SkillType } from "../types";
 import { StepProps } from "./types";
 
 interface SelectSkillProps {
@@ -91,7 +91,7 @@ function AndroidSkillSelection({
     return never;
   }
 
-  <SelectSkill
+  return <SelectSkill
     onSelect={onSelect}
     filter={and(isPrerequisiteOk(character.skills), getFilter())}
   />;
@@ -120,7 +120,7 @@ function TeamsterSkillSelection({
     return never;
   }
 
-  <SelectSkill
+  return <SelectSkill
     onSelect={onSelect}
     filter={and(isPrerequisiteOk(character.skills), getFilter())}
   />;
@@ -131,34 +131,107 @@ function ScientistSkillSelection({
   onFinish,
   character,
 }: SkillSelectionProps) {
-  const [selectedSkills, setSelectedSkills] = useState<SkillType[]>([]);
+  const [remaining, setRemaining] = useState<Record<SkillLevel, number>>({
+    Trained: 2,
+    Expert: 1,
+    Master: 1
+  });
 
   useEffect(() => {
-    if (selectedSkills.length > 3) {
+    setRemaining({
+      Trained: 2,
+      Expert: 1,
+      Master: 1
+    })
+  }, [character]);
+
+  useEffect(() => {
+    if (Object.values(remaining).every(v => v === 0)) {
       onFinish();
     }
-  }, [selectedSkills]);
+  }, [remaining]);
 
   function getFilter(): SkillFilter {
-    if (selectedSkills.length === 0) {
-      return always;
-    }
-    if (selectedSkills.length === 1) {
-      return isSkillLevel("Expert");
-    }
-    return never;
+    let filter = never;
+    allSkillLevels.forEach(s => {
+      if (remaining[s] > 0) {
+        filter = or(filter, isSkillLevel(s));
+      }
+    })
+    return filter;
   }
 
-  <SelectSkill
-    onSelect={onSelect}
+  function internalOnSelect(skill: SkillType) {
+    const level = allSkillsDict[skill].level
+    setRemaining(r => ({...r, [level]: r[level] - 1}))
+    onSelect(skill);
+  }
+
+  return <SelectSkill
+    onSelect={internalOnSelect}
     filter={and(isPrerequisiteOk(character.skills), getFilter())}
   />;
 }
 
+function MarineSkillSelection({
+  onSelect,
+  onFinish,
+  character,
+}: SkillSelectionProps) {
+  const [remaining, setRemaining] = useState<Record<SkillLevel, number>>({
+    Trained: 1,
+    Expert: 1,
+    Master: 0
+  });
+
+  useEffect(() => {
+    setRemaining({
+      Trained: 1,
+      Expert: 1,
+      Master: 0
+    })
+  }, [character]);
+
+  useEffect(() => {
+    if (Object.values(remaining).every(v => v === 0)) {
+      onFinish();
+    }
+  }, [remaining]);
+
+  function getFilter(): SkillFilter {
+    let filter = never;
+    allSkillLevels.forEach(s => {
+      if (remaining[s] > 0) {
+        filter = or(filter, isSkillLevel(s));
+      }
+    })
+    return filter;
+  }
+
+  function internalOnSelect(skill: SkillType) {
+    const level = allSkillsDict[skill].level
+    setRemaining(r => ({...r, [level]: r[level] - 1}))
+    onSelect(skill);
+  }
+
+  return <SelectSkill
+    onSelect={internalOnSelect}
+    filter={and(isPrerequisiteOk(character.skills), getFilter())}
+  />;
+}
+
+const selectors: Record<CharacterClass, (props: SkillSelectionProps) => JSX.Element> = {
+  android: AndroidSkillSelection,
+  marine: MarineSkillSelection,
+  scientist: ScientistSkillSelection,
+  teamster: TeamsterSkillSelection
+}
+
 export function SelectSkills({ character, onConfirm }: StepProps) {
   const [newCharacter, setCharacter] = useState({ ...character });
-  const done = true;
+  const [done, setDone] = useState(false);
   const { characterClass } = newCharacter;
+  const Selector = selectors[characterClass];
 
   return (
     <div className="flex flex-col">
@@ -183,11 +256,12 @@ export function SelectSkills({ character, onConfirm }: StepProps) {
             <Skill skill={allSkillsDict[s]} />
           ))}
         </div>
-        <SelectSkill
-          filter={(s) => s.level === "Trained"}
+        <Selector
+          character={character}
           onSelect={(s) =>
             setCharacter((c) => ({ ...c, skills: [...c.skills, s] }))
           }
+          onFinish={() => setDone(true)}
         />
       </Block>
       <div className="self-center">

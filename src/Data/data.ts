@@ -19,6 +19,8 @@ export const allStats: StatType[] = [
   "strength",
 ];
 
+export const allSkillLevels: SkillLevel[] = ["Trained", "Expert", "Master"]
+
 export const allSaves: SaveType[] = ["sanity", "fear", "body"];
 
 export const classDefinitions: ClassDefinition[] = [
