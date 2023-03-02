@@ -31,6 +31,7 @@ const classBonuses: Record<CharacterClass, (c: Character) => Character> = {
       ...c,
       intellect: c.intellect + 10,
       sanity: c.sanity + 20,
+      maxWounds: 2,
     };
   },
   teamster(c) {
@@ -43,7 +44,8 @@ const classBonuses: Record<CharacterClass, (c: Character) => Character> = {
       body: c.body + 10,
       fear: c.fear + 10,
       sanity: c.sanity + 10,
-      skills: ["industrialEquipment", "zeroG"]
+      skills: ["industrialEquipment", "zeroG"],
+      maxWounds: 2,
     };
   },
 };
@@ -64,7 +66,7 @@ function StatSelection({ onSelect }: StatSelectionProps) {
     <div className="flex justify-center gap-4">
       {allStats.map((s) => {
         return (
-          <Button dark={s === selectedStat} onClick={() => onStatSelection(s)}>
+          <Button key={s} dark={s === selectedStat} onClick={() => onStatSelection(s)}>
             {s}
           </Button>
         );

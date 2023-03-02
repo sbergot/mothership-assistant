@@ -15,7 +15,7 @@ function SelectSkill({ onSelect, filter }: SelectSkillProps) {
   return (
     <div className="flex flex-wrap gap-2">
       {allSkills.filter(filter).map((s) => (
-        <Button onClick={() => onSelect(s.key)}>{s.name}</Button>
+        <Button key={s.key} onClick={() => onSelect(s.key)}>{s.name}</Button>
       ))}
     </div>
   );
@@ -30,7 +30,7 @@ function isPrerequisiteOk(selectedSkills: SkillType[]): SkillFilter {
     if (prerequisites.length === 0) {
       return true;
     }
-    return !!selectedDict[s.key];
+    return prerequisites.some(p => !!selectedDict[p]);
   };
 }
 
@@ -126,30 +126,29 @@ function TeamsterSkillSelection({
   />;
 }
 
+const scientistSkills: Record<SkillLevel, number> = {
+  Trained: 2,
+  Expert: 1,
+  Master: 1
+}
+
 function ScientistSkillSelection({
   onSelect,
   onFinish,
   character,
 }: SkillSelectionProps) {
-  const [remaining, setRemaining] = useState<Record<SkillLevel, number>>({
-    Trained: 2,
-    Expert: 1,
-    Master: 1
-  });
 
-  useEffect(() => {
-    setRemaining({
-      Trained: 2,
-      Expert: 1,
-      Master: 1
-    })
-  }, [character]);
+  let remaining : Record<SkillLevel, number> = scientistSkills;
+  character.skills.forEach(skill => {
+    const level = allSkillsDict[skill].level;
+    remaining = {...remaining, [level]: remaining[level] - 1};
+  });
 
   useEffect(() => {
     if (Object.values(remaining).every(v => v === 0)) {
       onFinish();
     }
-  }, [remaining]);
+  }, [character]);
 
   function getFilter(): SkillFilter {
     let filter = never;
@@ -162,8 +161,6 @@ function ScientistSkillSelection({
   }
 
   function internalOnSelect(skill: SkillType) {
-    const level = allSkillsDict[skill].level
-    setRemaining(r => ({...r, [level]: r[level] - 1}))
     onSelect(skill);
   }
 
@@ -257,7 +254,7 @@ export function SelectSkills({ character, onConfirm }: StepProps) {
           ))}
         </div>
         <Selector
-          character={character}
+          character={newCharacter}
           onSelect={(s) =>
             setCharacter((c) => ({ ...c, skills: [...c.skills, s] }))
           }
