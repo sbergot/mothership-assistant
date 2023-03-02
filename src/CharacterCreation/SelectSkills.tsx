@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Block, Button, Button2, Tag, Title } from "../Atoms";
+import { Block, Button, Button2, Title } from "../Atoms";
 import {
   allSkillLevels,
   allSkills,
@@ -10,7 +10,6 @@ import { Skill } from "../Molecules";
 import { toDict } from "../Services/services";
 import {
   Character,
-  CharacterClass,
   SkillDefinition,
   SkillLevel,
   SkillType,
@@ -76,120 +75,58 @@ interface SkillSelectionProps {
   onFinish(): void;
 }
 
-const scientistSkills: Record<SkillLevel, number> = {
-  Trained: 2,
-  Expert: 1,
-  Master: 1,
-};
+function getSkillsBudget(character: Character): Record<SkillLevel, number> {
+  if (character.characterClass === "teamster") {
+    return {
+      Trained: 3,
+      Expert: 1,
+      Master: 0,
+    };
+  }
+  if (character.characterClass === "scientist") {
+    return {
+      Trained: 2,
+      Expert: 1,
+      Master: 1,
+    };
+  }
 
-const marineSkills: Record<SkillLevel, number> = {
-  Trained: 3,
-  Expert: 1,
-  Master: 0,
-};
-
-const teamsterSkills: Record<SkillLevel, number> = {
-  Trained: 3,
-  Expert: 1,
-  Master: 0,
-};
-
-const androidSkills1: Record<SkillLevel, number> = {
-  Trained: 4,
-  Expert: 1,
-  Master: 0,
-};
-
-const androidSkills2: Record<SkillLevel, number> = {
-  Trained: 5,
-  Expert: 0,
-  Master: 0,
-};
-
-const androidSkills3: Record<SkillLevel, number> = {
-  Trained: 3,
-  Expert: 1,
-  Master: 0,
-};
-
-function AndroidSkillSelection({
-  onSelect,
-  onFinish,
-  character,
-}: SkillSelectionProps) {
   const skillNbrByLevel = computeSkillNbrByLevel(character);
-  let budget = androidSkills1;
-  if (skillNbrByLevel.Trained === 3 && skillNbrByLevel.Expert === 0) {
-    budget = androidSkills1;
+  const preselectedSkillsNbr = character.characterClass === "marine"
+    ? 2
+    : 3;
+
+  if (skillNbrByLevel.Trained === preselectedSkillsNbr && skillNbrByLevel.Expert === 0) {
+    return {
+      Trained: preselectedSkillsNbr + 1,
+      Expert: 1,
+      Master: 0,
+    };
   }
-  if (skillNbrByLevel.Trained > 3 && skillNbrByLevel.Expert === 0) {
-    budget = androidSkills2;
+  if (skillNbrByLevel.Trained > preselectedSkillsNbr && skillNbrByLevel.Expert === 0) {
+    return {
+      Trained: preselectedSkillsNbr + 2,
+      Expert: 0,
+      Master: 0,
+    };
   }
-  if (skillNbrByLevel.Trained === 3 && skillNbrByLevel.Expert === 1) {
-    budget = androidSkills3;
+  if (skillNbrByLevel.Trained === preselectedSkillsNbr && skillNbrByLevel.Expert === 1) {
+    return {
+      Trained: preselectedSkillsNbr,
+      Expert: 1,
+      Master: 0,
+    };
   }
 
-  return (
-    <DefaultSkillSelection
-      onFinish={onFinish}
-      onSelect={onSelect}
-      character={character}
-      budget={budget}
-    />
-  );
+  throw new Error("impossible");
 }
 
-function TeamsterSkillSelection({
+function SkillSelection({
   onSelect,
   onFinish,
   character,
 }: SkillSelectionProps) {
-  return (
-    <DefaultSkillSelection
-      onFinish={onFinish}
-      onSelect={onSelect}
-      character={character}
-      budget={teamsterSkills}
-    />
-  );
-}
-
-function ScientistSkillSelection({
-  onSelect,
-  onFinish,
-  character,
-}: SkillSelectionProps) {
-  return (
-    <DefaultSkillSelection
-      onFinish={onFinish}
-      onSelect={onSelect}
-      character={character}
-      budget={scientistSkills}
-    />
-  );
-}
-
-function MarineSkillSelection({
-  onSelect,
-  onFinish,
-  character,
-}: SkillSelectionProps) {
-  return (
-    <DefaultSkillSelection
-      onFinish={onFinish}
-      onSelect={onSelect}
-      character={character}
-      budget={marineSkills}
-    />
-  );
-}
-
-function DefaultSkillSelection({
-  onSelect,
-  onFinish,
-  character,
-  budget,
-}: SkillSelectionProps & { budget: Record<SkillLevel, number> }) {
+  const budget = getSkillsBudget(character);
   const remaining: Record<SkillLevel, number> = computeRemaining(
     budget,
     character
@@ -226,16 +163,6 @@ function DefaultSkillSelection({
   );
 }
 
-const selectors: Record<
-  CharacterClass,
-  (props: SkillSelectionProps) => JSX.Element
-> = {
-  android: AndroidSkillSelection,
-  marine: MarineSkillSelection,
-  scientist: ScientistSkillSelection,
-  teamster: TeamsterSkillSelection,
-};
-
 function computeRemaining(
   budget: Record<SkillLevel, number>,
   character: Character
@@ -268,7 +195,6 @@ export function SelectSkills({ character, onConfirm }: StepProps) {
   const [newCharacter, setCharacter] = useState({ ...character });
   const [done, setDone] = useState(false);
   const { characterClass } = newCharacter;
-  const Selector = selectors[characterClass];
 
   return (
     <div className="flex flex-col">
@@ -293,7 +219,7 @@ export function SelectSkills({ character, onConfirm }: StepProps) {
             <Skill skill={allSkillsDict[s]} />
           ))}
         </div>
-        <Selector
+        <SkillSelection
           character={newCharacter}
           onSelect={(s) =>
             setCharacter((c) => ({ ...c, skills: [...c.skills, s] }))

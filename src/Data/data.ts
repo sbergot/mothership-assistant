@@ -51,7 +51,11 @@ export const classDefinitions: ClassDefinition[] = [
   {
     name: "marine",
     traumaResponse: "Once per session, you may take advantage on a panic check",
-    initialSkills: ["Industrial Equipment, Zero-G", "Bonus: 1 Trained Skill and 1 Expert Skill"],
+    initialSkills: [
+      "Military Training, Athletics",
+      "Bonus: 1 Expert Skill",
+      "OR: 2 Trained Skills",
+  ],
   },
 ];
 
