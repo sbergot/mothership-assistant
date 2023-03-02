@@ -8,12 +8,7 @@ import {
 } from "../Data/data";
 import { Skill } from "../Molecules";
 import { toDict } from "../Services/services";
-import {
-  Character,
-  SkillDefinition,
-  SkillLevel,
-  SkillType,
-} from "../types";
+import { Character, SkillDefinition, SkillLevel, SkillType } from "../types";
 import { StepProps } from "./types";
 
 interface SelectSkillProps {
@@ -22,13 +17,48 @@ interface SelectSkillProps {
 }
 
 function SelectSkill({ onSelect, filter }: SelectSkillProps) {
+  const filteredSkills = allSkills.filter(filter);
+  const trainedSkills = filteredSkills.filter(isSkillLevel("Trained"));
+  const expertSkills = filteredSkills.filter(isSkillLevel("Expert"));
+  const masterSkills = filteredSkills.filter(isSkillLevel("Master"));
   return (
-    <div className="flex flex-wrap gap-2">
-      {allSkills.filter(filter).map((s) => (
-        <Button key={s.key} onClick={() => onSelect(s.key)}>
-          {s.name}
-        </Button>
-      ))}
+    <div className="flex flex-col gap-2">
+      {trainedSkills.length > 0 && (
+        <>
+          <Title>Trained skills</Title>
+          <div className="flex flex-wrap gap-2">
+            {trainedSkills.map((s) => (
+              <Button key={s.key} onClick={() => onSelect(s.key)}>
+                {s.name}
+              </Button>
+            ))}
+          </div>
+        </>
+      )}
+      {expertSkills.length > 0 && (
+        <>
+          <Title>Expert skills</Title>
+          <div className="flex flex-wrap gap-2">
+            {expertSkills.map((s) => (
+              <Button key={s.key} onClick={() => onSelect(s.key)}>
+                {s.name}
+              </Button>
+            ))}
+          </div>
+        </>
+      )}
+      {masterSkills.length > 0 && (
+        <>
+          <Title>Master skills</Title>
+          <div className="flex flex-wrap gap-2">
+            {masterSkills.map((s) => (
+              <Button key={s.key} onClick={() => onSelect(s.key)}>
+                {s.name}
+              </Button>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -92,25 +122,32 @@ function getSkillsBudget(character: Character): Record<SkillLevel, number> {
   }
 
   const skillNbrByLevel = computeSkillNbrByLevel(character);
-  const preselectedSkillsNbr = character.characterClass === "marine"
-    ? 2
-    : 3;
+  const preselectedSkillsNbr = character.characterClass === "marine" ? 2 : 3;
 
-  if (skillNbrByLevel.Trained === preselectedSkillsNbr && skillNbrByLevel.Expert === 0) {
+  if (
+    skillNbrByLevel.Trained === preselectedSkillsNbr &&
+    skillNbrByLevel.Expert === 0
+  ) {
     return {
       Trained: preselectedSkillsNbr + 1,
       Expert: 1,
       Master: 0,
     };
   }
-  if (skillNbrByLevel.Trained > preselectedSkillsNbr && skillNbrByLevel.Expert === 0) {
+  if (
+    skillNbrByLevel.Trained > preselectedSkillsNbr &&
+    skillNbrByLevel.Expert === 0
+  ) {
     return {
       Trained: preselectedSkillsNbr + 2,
       Expert: 0,
       Master: 0,
     };
   }
-  if (skillNbrByLevel.Trained === preselectedSkillsNbr && skillNbrByLevel.Expert === 1) {
+  if (
+    skillNbrByLevel.Trained === preselectedSkillsNbr &&
+    skillNbrByLevel.Expert === 1
+  ) {
     return {
       Trained: preselectedSkillsNbr,
       Expert: 1,
@@ -139,28 +176,19 @@ function SkillSelection({
   }, [character]);
 
   function getFilter(): SkillFilter {
-    let filter = never;
+    let isInBudget = never;
     allSkillLevels.forEach((s) => {
       if (remaining[s] > 0) {
-        filter = or(filter, isSkillLevel(s));
+        isInBudget = or(isInBudget, isSkillLevel(s));
       }
     });
-    return filter;
+    return and(
+      isNotSelected(character.skills),
+      and(isPrerequisiteOk(character.skills), isInBudget)
+    );
   }
 
-  function internalOnSelect(skill: SkillType) {
-    onSelect(skill);
-  }
-
-  return (
-    <SelectSkill
-      onSelect={internalOnSelect}
-      filter={and(
-        isNotSelected(character.skills),
-        and(isPrerequisiteOk(character.skills), getFilter())
-      )}
-    />
-  );
+  return <SelectSkill onSelect={onSelect} filter={getFilter()} />;
 }
 
 function computeRemaining(
@@ -214,7 +242,7 @@ export function SelectSkills({ character, onConfirm }: StepProps) {
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mt-2">
           {newCharacter.skills.map((s) => (
             <Skill skill={allSkillsDict[s]} />
           ))}
