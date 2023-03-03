@@ -3285,7 +3285,28 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "tranqPistol",
         },
       ],
-      equipments: [],
+      equipments: [
+        {
+          id: "2c19a38f-d317-4c8a-97bc-f7bf05f99efa",
+          name: "Bioscanner",
+          description:
+            "Allows the user to scan the immediate area for signs of life. Generally can scan for 100m in all directions, without being blocked by most known metals. Can tell the location of signs of life, but not what that life is.",
+          equipped: true,
+          quantity: 1,
+          cost: 150,
+          baseType: "bioscanner",
+        },
+        {
+          id: "b7f539b5-8529-4d1c-8209-dc439cc8e342",
+          name: "Sample Collection Kit",
+          description:
+            "Used to research xenoflora and xenofauna in the field. Can take vital signs, DNA samples ,and collect other data on foreign material. Results may not be instaneous and may require a lab for complete analysis.",
+          equipped: true,
+          quantity: 1,
+          cost: 250,
+          baseType: "sampleKit",
+        },
+      ],
     },
     {
       armors: [
@@ -3302,8 +3323,46 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "normal",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "ab7d880c-5a00-490e-a528-23d77278c5db",
+          name: "Ramhorn",
+          equipped: true,
+          cost: 2000,
+          weaponRange: "close",
+          damageString: "1 Wound",
+          shots: 1,
+          magazineSize: 4,
+          critical: "Fire/Explosives [+]",
+          special: "If liquid fuel tank is destroyed, 1 Wound to all Close.",
+          weaponType: "Flamethrower",
+          magazines: 1,
+          damage: [{ damageType: "fixedWounds", amount: 1, rollMode: null }],
+          baseType: "flamethrower",
+        },
+      ],
+      equipments: [
+        {
+          id: "bfe89e47-9519-497a-820d-2bca1f0d9a88",
+          name: "Pain Pills",
+          description:
+            "When ingested, immediately restores 1d10 health and lowers Stress by 1. There is a danger of addiction and/or overdose if used frequently.",
+          equipped: true,
+          quantity: 5,
+          cost: 450,
+          baseType: "painPills",
+        },
+        {
+          id: "34242b6c-6a70-48e8-be0d-28ddd1c7ab6d",
+          name: "Electronic Tool Set",
+          description:
+            "A full set of tools for doing detailed repair or construction work on electronics.",
+          equipped: true,
+          quantity: 1,
+          cost: 650,
+          baseType: "electronicToolSet",
+        },
+      ],
     },
     {
       armors: [
@@ -3320,8 +3379,59 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "disadvantage",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "8ff97137-970d-4d03-b5a8-ad7060985ed6",
+          name: "HAN-290",
+          equipped: true,
+          cost: 350,
+          weaponRange: "close",
+          damageString: "1d10 DMG + 2d10 DMG when removed.",
+          shots: 1,
+          magazineSize: 1,
+          critical: "Bleeding [+]",
+          special: "100m micro-filament. Body Save or become entangled.",
+          weaponType: "Rigging Gun",
+          magazines: 0,
+          damage: [
+            { damageType: "xd10", amount: 1, rollMode: null },
+            { damageType: "xd10", amount: 2, rollMode: null },
+          ],
+          baseType: "riggingGun",
+        },
+      ],
+      equipments: [
+        {
+          id: "b7f539b5-8529-4d1c-8209-dc439cc8e342",
+          name: "Sample Collection Kit",
+          description:
+            "Used to research xenoflora and xenofauna in the field. Can take vital signs, DNA samples ,and collect other data on foreign material. Results may not be instaneous and may require a lab for complete analysis.",
+          equipped: true,
+          quantity: 1,
+          cost: 250,
+          baseType: "sampleKit",
+        },
+        {
+          id: "e7531adb-f7af-4f5b-9a57-9ae5c55f5148",
+          name: "Flashlight",
+          description:
+            "Handheld or shoulder mounted. Illuminates 10m ahead of the user.",
+          equipped: true,
+          quantity: 1,
+          cost: 10,
+          baseType: "flashlight",
+        },
+        {
+          id: "8d6ff2d3-6b5a-439d-8c31-503eba44a65d",
+          name: "Lab rat (small pet)",
+          description:
+            "Small to medium-sized organic pet animal. Larger or rare pets cost 2d10x.",
+          equipped: true,
+          quantity: 1,
+          cost: 200000,
+          baseType: "petOrganic",
+        },
+      ],
     },
     {
       armors: [
@@ -3338,26 +3448,123 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "disadvantage",
         },
       ],
+      weapons: [
+        {
+          id: "b303958f-bd9c-4f8d-8886-f020619ecf86",
+          name: "Halls B Series",
+          equipped: true,
+          cost: 275,
+          weaponRange: "close",
+          damageString: "1 DMG",
+          shots: 3,
+          magazineSize: 3,
+          critical: "Blunt Force",
+          special:
+            "Body Save or become stuck. Strength [-] Check to escape. Quick-hardening foam covers 1sqm.",
+          weaponType: "Foam Gun",
+          magazines: 1,
+          damage: [{ damageType: "fixedDamage", amount: 1, rollMode: null }],
+          baseType: "foamGun",
+        },
+      ],
+      equipments: [
+        {
+          id: "beedc60b-300e-4a98-aa71-d36653e5c000",
+          name: "Foldable Stretcher",
+          description:
+            "Portable stretcher that can fit within a rucksack. Allows the user to safely strap down the patient and carry them to a location where their wounds can be better treated. Unfolds to roughly 2m.",
+          equipped: true,
+          quantity: 1,
+          cost: 100,
+          baseType: "foldableStretcher",
+        },
+        {
+          id: "09abd73c-b7f3-4fe5-9ddc-08d2a1bb3822",
+          name: "First Aid Kit",
+          description:
+            "An assortment of bandages and treatments to help stop bleeding, bandage cuts, and treat other minor injuries.",
+          equipped: true,
+          quantity: 1,
+          cost: 75,
+          baseType: "firstAidKit",
+        },
+        {
+          id: "c34bb469-5cdb-4c76-96f7-a6f991c5f41f",
+          name: "Radiation Pills",
+          description:
+            "Reduces Radiation Damage (see pg. xx.x) by 2d10 for 2d10 minutes.",
+          equipped: true,
+          quantity: 5,
+          cost: 200,
+          baseType: "radiationPills",
+        },
+      ],
+    },
+    {
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "3912ebcd-144c-4df1-a2f9-a8a37fed34ca",
+          name: "Lab Coat",
+          equipped: true,
+          armorPoints: 1,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
       weapons: [],
       equipments: [],
     },
     {
-      armors: [],
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "3912ebcd-144c-4df1-a2f9-a8a37fed34ca",
+          name: "Lab Coat",
+          equipped: true,
+          armorPoints: 1,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
       weapons: [],
       equipments: [],
     },
     {
-      armors: [],
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "3912ebcd-144c-4df1-a2f9-a8a37fed34ca",
+          name: "Scrubs",
+          equipped: true,
+          armorPoints: 1,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
       weapons: [],
       equipments: [],
     },
     {
-      armors: [],
-      weapons: [],
-      equipments: [],
-    },
-    {
-      armors: [],
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "3912ebcd-144c-4df1-a2f9-a8a37fed34ca",
+          name: "Scrubs",
+          equipped: true,
+          armorPoints: 1,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
       weapons: [],
       equipments: [],
     },
