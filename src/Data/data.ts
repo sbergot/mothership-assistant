@@ -2596,14 +2596,12 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           ],
           baseType: "combatShotgun",
         },
-  
       ],
       equipments: [
         {
           id: "a74517cd-3f6c-493e-b981-5558ba8075be",
           name: "Dog",
-          description:
-            "",
+          description: "",
           equipped: true,
           quantity: 1,
           cost: 120,
@@ -2612,8 +2610,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
         {
           id: "a74517cd-3f6c-493e-b981-5558ba8075be",
           name: "Leash",
-          description:
-            "",
+          description: "",
           equipped: true,
           quantity: 1,
           cost: 10,
@@ -2622,8 +2619,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
         {
           id: "a74517cd-3f6c-493e-b981-5558ba8075be",
           name: "Tennis ball",
-          description:
-            "",
+          description: "",
           equipped: true,
           quantity: 1,
           cost: 10,
@@ -2645,7 +2641,42 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "normal",
         },
       ],
-      weapons: [],
+      weapons: [
+        {
+          id: "61aa11ff-7c02-473c-8ec1-89bd57e322e5",
+          name: "FN Slug",
+          equipped: true,
+          cost: 750,
+          weaponRange: "close",
+          damageString: "1d10 DMG [+]",
+          shots: 6,
+          magazineSize: 6,
+          critical: "Gunshot",
+          special: "",
+          weaponType: "Revolver",
+          magazines: 1,
+          damage: [{ damageType: "xd10", amount: 1, rollMode: "advantage" }],
+          baseType: "revolver",
+        },
+        {
+          id: "a2e7c6f0-42e0-48c4-833f-e04aad946fde",
+          name: "",
+          equipped: true,
+          cost: 70,
+          weaponRange: "long",
+          damageString: "1d5-1 Wounds",
+          shots: 1,
+          magazineSize: 1,
+          critical: "Fire/Explosives",
+          special: "All Close must Body Save to avoid.",
+          weaponType: "Frag Grenade",
+          magazines: 1,
+          damage: [
+            { damageType: "d5MinusOneWounds", amount: 1, rollMode: null },
+          ],
+          baseType: "fragGrenade",
+        },
+      ],
       equipments: [],
     },
     {
@@ -2662,8 +2693,35 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "normal",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "61aa11ff-7c02-473c-8ec1-89bd57e322e5",
+          name: "FN Slug",
+          equipped: true,
+          cost: 750,
+          weaponRange: "close",
+          damageString: "1d10 DMG [+]",
+          shots: 1,
+          magazineSize: 6,
+          critical: "Gunshot",
+          special: "",
+          weaponType: "Revolver",
+          magazines: 0,
+          damage: [{ damageType: "xd10", amount: 1, rollMode: "advantage" }],
+          baseType: "revolver",
+        },
+      ],
+      equipments: [
+        {
+          id: "a74517cd-3f6c-493e-b981-5558ba8075be",
+          name: "Challenge Coin",
+          description: "",
+          equipped: true,
+          quantity: 1,
+          cost: 10,
+          baseType: "challengeCoin",
+        },
+      ],
     },
     {
       armors: [
@@ -2680,8 +2738,37 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "disadvantage",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "3ffb8ddc-4d79-4953-a905-5d07f85acae2",
+          name: "Overmatch Arms SW-512",
+          equipped: true,
+          cost: 1800,
+          weaponRange: "long",
+          damageString: "4d10[+] DMG",
+          shots: 5,
+          magazineSize: 5,
+          critical: "Gunshot[+]",
+          special:
+            "Two-handed. Heavy. Barrel can be maneuvered to fire around corners.",
+          weaponType: "Heavy Machine Gun",
+          magazines: 1,
+          damage: [{ damageType: "xd10", amount: 4, rollMode: "advantage" }],
+          baseType: "heavyMachineGun",
+        },
+      ],
+      equipments: [
+        {
+          id: "c5884110-e11e-42df-9858-584a464d1bbe",
+          name: "Heads-Up Display (HUD)",
+          description:
+            "Often worn by marines, the HUD allows the wearer to see through the body cams of others in their unit, and can connect to any smart-link upgaded weapon.",
+          equipped: true,
+          quantity: 1,
+          cost: 75,
+          baseType: "headsUpDisplayHUD",
+        },
+      ],
     },
   ],
   android: [
@@ -2700,8 +2787,47 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "disadvantage",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "1a79f24a-47cb-4139-983b-10ab1d8a5b10",
+          name: "SK 109 Seeker",
+          equipped: true,
+          cost: 12000,
+          weaponRange: "long",
+          damageString: "1d10x10 DMG",
+          shots: 3,
+          magazineSize: 3,
+          critical: "Gunshot[+]",
+          special:
+            "If not braced/prone when firing, Body Save or be knocked down.",
+          weaponType: "Smart Rifle",
+          magazines: 1,
+          damage: [{ damageType: "d10x10", amount: 1, rollMode: null }],
+          baseType: "smartRifle",
+        },
+      ],
+      equipments: [
+        {
+          id: "e7dbea4f-110d-4d6e-b195-0741fe1363a8",
+          name: "Infrared Goggles",
+          description:
+            "Allows the wearer to see heat signatures, sometimes up to several hours old. Add night vision for (+1kcr).",
+          equipped: true,
+          quantity: 1,
+          cost: 100,
+          baseType: "infraredGoggles",
+        },
+        {
+          id: "8963d89f-6d8e-4f6e-bcb4-342495b0cf1c",
+          name: "Mylar Blanket",
+          description:
+            "Lightweight blanket made of heat-reflective material. Often used for thermal control of patients suffering from extreme cold or other trauma.",
+          equipped: true,
+          quantity: 1,
+          cost: 10,
+          baseType: "mylarBlanket",
+        },
+      ],
     },
     {
       armors: [
@@ -2718,8 +2844,45 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "disadvantage",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "61aa11ff-7c02-473c-8ec1-89bd57e322e5",
+          name: "FN Slug",
+          equipped: true,
+          cost: 750,
+          weaponRange: "close",
+          damageString: "1d10 DMG [+]",
+          shots: 6,
+          magazineSize: 6,
+          critical: "Gunshot",
+          special: "",
+          weaponType: "Revolver",
+          magazines: 1,
+          damage: [{ damageType: "xd10", amount: 1, rollMode: "advantage" }],
+          baseType: "revolver",
+        },
+      ],
+      equipments: [
+        {
+          id: "b2241949-dbc5-4e95-b9a9-654efa74c46d",
+          name: "Long-range comms",
+          description:
+            "Rucksack-sized communication device for use in surface-to-ship comunication.",
+          equipped: true,
+          quantity: 1,
+          cost: 65,
+          baseType: "longrangecomms",
+        },
+        {
+          id: "e7531adb-f7af-4f5b-9a57-9ae5c55f5148",
+          name: "Satchel",
+          description: "",
+          equipped: true,
+          quantity: 1,
+          cost: 10,
+          baseType: "satchel",
+        },
+      ],
     },
     {
       armors: [
@@ -2736,8 +2899,55 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "normal",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "61aa11ff-7c02-473c-8ec1-89bd57e322e5",
+          name: "FN Slug",
+          equipped: true,
+          cost: 750,
+          weaponRange: "close",
+          damageString: "1d10 DMG [+]",
+          shots: 6,
+          magazineSize: 6,
+          critical: "Gunshot",
+          special: "",
+          weaponType: "Revolver",
+          magazines: 0,
+          damage: [{ damageType: "xd10", amount: 1, rollMode: "advantage" }],
+          baseType: "revolver",
+        },
+      ],
+      equipments: [
+        {
+          id: "a1f3ad43-5634-490b-ac20-31f24563ab69",
+          name: "First Aid Kit",
+          description:
+            "An assortment of bandages and treatments to help stop bleeding, bandage cuts, and treat other minor injuries.",
+          equipped: true,
+          quantity: 1,
+          cost: 75,
+          baseType: "firstAidKit",
+        },
+        {
+          id: "e7531adb-f7af-4f5b-9a57-9ae5c55f5148",
+          name: "Flashlight",
+          description:
+            "Handheld or shoulder mounted. Illuminates 10m ahead of the user.",
+          equipped: true,
+          quantity: 1,
+          cost: 10,
+          baseType: "flashlight",
+        },
+        {
+          id: "e7531adb-f7af-4f5b-9a57-9ae5c55f5148",
+          name: "Defibrillator",
+          description: "",
+          equipped: true,
+          quantity: 1,
+          cost: 10,
+          baseType: "defibrillator",
+        },
+      ],
     },
     {
       armors: [
@@ -2852,7 +3062,25 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "normal",
         },
       ],
-      weapons: [],
+      weapons: [
+        {
+          id: "cbe6bc4c-ea53-4ed7-a28b-334ddd4347e1",
+          name: "D&C 7",
+          equipped: true,
+          cost: 850,
+          weaponRange: "close",
+          damageString: "1 DMG",
+          shots: 3,
+          magazineSize: 6,
+          critical: "Blunt Force",
+          special:
+            "If DMG dealt: target must Body Save or be unconscious 1d10 rounds.",
+          weaponType: "Tranq Pistol",
+          magazines: 0,
+          damage: [{ damageType: "fixedDamage", amount: 1, rollMode: null }],
+          baseType: "tranqPistol",
+        },
+      ],
       equipments: [],
     },
     {
@@ -3184,6 +3412,16 @@ export const allEquipment: Equipment[] = [
     quantity: 1,
     cost: 30,
     baseType: "shortrangecomms",
+  },
+  {
+    id: "b2241949-dbc5-4e95-b9a9-654efa74c46d",
+    name: "Long-range comms",
+    description:
+      "Rucksack-sized communication device for use in surface-to-ship comunication.",
+    equipped: true,
+    quantity: 1,
+    cost: 65,
+    baseType: "longrangecomms",
   },
   {
     id: "9f87a41f-26b9-4c43-ad0c-854d76fc0243",
