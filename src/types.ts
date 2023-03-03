@@ -65,7 +65,8 @@ export type ArmorType =
   | "advancedBattleDress"
   | "standardBattleDress"
   | "hazardSuit"
-  | "vaccsuit";
+  | "vaccsuit"
+  | "fatigues";
 
 export type ArmorSpeedType = "normal" | "disadvantage";
 
@@ -260,4 +261,10 @@ export interface ClassDefinition {
   name: CharacterClass;
   traumaResponse: string;
   initialSkills: string[];
+}
+
+export interface Loadout {
+  armors: Armor[];
+  weapons: Weapon[];
+  equipments: Equipment[];
 }

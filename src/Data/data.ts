@@ -1,8 +1,13 @@
 import { toDict } from "../Services/services";
 import {
   Armor,
+  Character,
+  CharacterClass,
   ClassDefinition,
   Contractor,
+  Equipment,
+  Item,
+  Loadout,
   SaveType,
   SkillDefinition,
   SkillDefinitionExtended,
@@ -670,7 +675,7 @@ export const contractors: Contractor[] = [
         special: "",
         weaponType: "Scalpel",
         magazines: null,
-        damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
+        damage: [{ damageType: "xd5", amount: 1, rollMode: "advantage" }],
         baseType: "scalpel",
       },
     ],
@@ -1804,17 +1809,6 @@ export const armors: Armor[] = [
     armorSpeed: "normal",
   },
   {
-    armorType: "standardCrewAttire",
-    id: "b9508895-755f-4cb2-bced-bc5864b18d35",
-    name: "Standard Crew Attire",
-    equipped: true,
-    armorPoints: 1,
-    cost: 20,
-    oxygenSupply: 0,
-    notes: "",
-    armorSpeed: "normal",
-  },
-  {
     armorType: "hazardSuit",
     id: "76be828f-38e9-4b68-9ed2-8cec406225c9",
     name: "Hazard Suit",
@@ -2165,7 +2159,7 @@ export const trinkets: string[] = [
   "Interstellar Compass, Always Points to Homeworld",
 ];
 
-export const patches = [
+export const patches: string[] = [
   "“I’m Not A Rocket Scientist / But You’re An Idiot”",
   "Medic Patch (Skull and Crossbones over Cross)",
   "“Don’t Run You’ll Only Die Tired” Backpatch",
@@ -2266,4 +2260,1129 @@ export const patches = [
   "Double Cherry",
   "“Volunteer”",
   "“Solve Et Coagula” (Baphomet)",
+];
+
+export const loadouts: Record<CharacterClass, Loadout[]> = {
+  marine: [
+    {
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          name: "Standard Crew Attire",
+          equipped: true,
+          armorPoints: 1,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [
+        {
+          id: "049414da-9cd0-4ac0-a7f0-49e65031b5c1",
+          name: "",
+          equipped: true,
+          cost: 50,
+          weaponRange: "adjacent",
+          damageString: "1d5 DMG",
+          shots: null,
+          magazineSize: null,
+          critical: "Bleeding [+]",
+          special: "",
+          weaponType: "Combat Knife",
+          magazines: null,
+          damage: [{ damageType: "xd5", amount: 1, rollMode: "advantage" }],
+          baseType: "knife",
+        },
+      ],
+      equipments: [
+        {
+          id: "a74517cd-3f6c-493e-b981-5558ba8075be",
+          name: "Stimpak",
+          description:
+            "Cures cryosickness. Restores 1d10 Health and grants Advantage to Strength and Combat for 2d10 minutes. There is a danger of addiction and/or overdose if used frequently. ",
+          equipped: true,
+          quantity: 5,
+          cost: 600,
+          baseType: "stimpak",
+        },
+      ],
+    },
+    {
+      armors: [
+        {
+          armorType: "advancedBattleDress",
+          id: "55d58171-d63d-4aa7-8afd-05b50c48c209",
+          name: "Advanced Battle Dress",
+          equipped: true,
+          armorPoints: 10,
+          cost: 1500,
+          oxygenSupply: 1,
+          notes:
+            "Includes short-range comms, body cam, headlamp, HUD, exoskeleton weave ([+] on Strength Checks), and radiation shielding. Ignores the first Wound you suffer.",
+          armorSpeed: "disadvantage",
+        },
+      ],
+      weapons: [
+        {
+          id: "ab7d880c-5a00-490e-a528-23d77278c5db",
+          name: "Ramhorn",
+          equipped: true,
+          cost: 2000,
+          weaponRange: "close",
+          damageString: "1 Wound",
+          shots: 4,
+          magazineSize: 4,
+          critical: "Fire/Explosives [+]",
+          special: "If liquid fuel tank is destroyed, 1 Wound to all Close.",
+          weaponType: "Flamethrower",
+          magazines: 1,
+          damage: [{ damageType: "fixedWounds", amount: 1, rollMode: null }],
+          baseType: "flamethrower",
+        },
+        {
+          id: "6c9d6e1b-aac1-4cef-99a5-aa414a3b9bd5",
+          name: "",
+          equipped: true,
+          cost: 150,
+          weaponRange: "adjacent",
+          damageString: "2d10 DMG [+]",
+          shots: null,
+          magazineSize: null,
+          critical: "Gore [+]",
+          special: "",
+          weaponType: "Boarding Axe",
+          magazines: null,
+          damage: [{ damageType: "xd10", amount: 2, rollMode: "advantage" }],
+          baseType: "boardingAxe",
+        },
+            ],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "standardBattleDress",
+          id: "2008b970-e981-4d46-8bda-9e46aeeccaa9",
+          name: "Standard Battle Dress",
+          equipped: true,
+          armorPoints: 7,
+          cost: 750,
+          oxygenSupply: 0,
+          notes: "Includes short-range comms.",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [
+        {
+          id: "af8bfb9a-4207-4eaa-a2dc-df67c0054b7c",
+          name: "KANO X9",
+          equipped: true,
+          cost: 1400,
+          weaponRange: "close",
+          damageString: "1 Wound",
+          shots: 4,
+          magazineSize: 4,
+          critical: "Gunshot",
+          special: "1d10 DMG at Long Range.",
+          weaponType: "Combat Shotgun",
+          magazines: 1,
+          damage: [
+            { damageType: "fixedWounds", amount: 1, rollMode: null },
+            { damageType: "xd10", amount: 1, rollMode: null },
+          ],
+          baseType: "combatShotgun",
+        },
+      ],
+      equipments: [
+        {
+          id: "26684d34-dedb-427c-9e49-6bdcd9a6f72e",
+          name: "Rucksack",
+          description: "Large, durable, waterproof backpack.",
+          equipped: true,
+          quantity: 1,
+          cost: 50,
+          baseType: "rucksack",
+        },
+      ],
+    },
+    {
+      armors: [
+        {
+          armorType: "standardBattleDress",
+          id: "2008b970-e981-4d46-8bda-9e46aeeccaa9",
+          name: "Standard Battle Dress",
+          equipped: true,
+          armorPoints: 7,
+          cost: 750,
+          oxygenSupply: 0,
+          notes: "Includes short-range comms.",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "standardBattleDress",
+          id: "2008b970-e981-4d46-8bda-9e46aeeccaa9",
+          name: "Standard Battle Dress",
+          equipped: true,
+          armorPoints: 7,
+          cost: 750,
+          oxygenSupply: 0,
+          notes: "Includes short-range comms.",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "standardBattleDress",
+          id: "2008b970-e981-4d46-8bda-9e46aeeccaa9",
+          name: "Standard Battle Dress",
+          equipped: true,
+          armorPoints: 7,
+          cost: 750,
+          oxygenSupply: 0,
+          notes: "Includes short-range comms.",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "fatigues",
+          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          name: "Fatigues",
+          equipped: true,
+          armorPoints: 2,
+          cost: 50,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "fatigues",
+          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          name: "Fatigues",
+          equipped: true,
+          armorPoints: 2,
+          cost: 50,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          name: "Dress Uniform",
+          equipped: true,
+          armorPoints: 1,
+          cost: 70,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "advancedBattleDress",
+          id: "55d58171-d63d-4aa7-8afd-05b50c48c209",
+          name: "Advanced Battle Dress",
+          equipped: true,
+          armorPoints: 10,
+          cost: 1500,
+          oxygenSupply: 1,
+          notes:
+            "Includes short-range comms, body cam, headlamp, HUD, exoskeleton weave ([+] on Strength Checks), and radiation shielding. Ignores the first Wound you suffer.",
+          armorSpeed: "disadvantage",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+  ],
+  android: [
+    {
+      armors: [
+        {
+          armorType: "vaccsuit",
+          id: "4999a652-c93a-42c3-a6ce-c19acd965a25",
+          name: "Vaccsuit",
+          equipped: true,
+          armorPoints: 3,
+          cost: 1000,
+          oxygenSupply: 12,
+          notes:
+            "Includes short-range comms, headlamp, and radiation shielding. Decompression within 1d5 rounds if punctured.",
+          armorSpeed: "disadvantage",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "vaccsuit",
+          id: "4999a652-c93a-42c3-a6ce-c19acd965a25",
+          name: "Vaccsuit",
+          equipped: true,
+          armorPoints: 3,
+          cost: 1000,
+          oxygenSupply: 12,
+          notes:
+            "Includes short-range comms, headlamp, and radiation shielding. Decompression within 1d5 rounds if punctured.",
+          armorSpeed: "disadvantage",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "hazardSuit",
+          id: "76be828f-38e9-4b68-9ed2-8cec406225c9",
+          name: "Hazard Suit",
+          equipped: true,
+          armorPoints: 5,
+          cost: 750,
+          oxygenSupply: 1,
+          notes:
+            "Includes air filter, extreme heat/cold protection, hydration reclamation (1L of water lasts 4 days), short-range comms, headlamp, and radiation shielding.",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "hazardSuit",
+          id: "76be828f-38e9-4b68-9ed2-8cec406225c9",
+          name: "Hazard Suit",
+          equipped: true,
+          armorPoints: 5,
+          cost: 750,
+          oxygenSupply: 1,
+          notes:
+            "Includes air filter, extreme heat/cold protection, hydration reclamation (1L of water lasts 4 days), short-range comms, headlamp, and radiation shielding.",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "standardBattleDress",
+          id: "2008b970-e981-4d46-8bda-9e46aeeccaa9",
+          name: "Standard Battle Dress",
+          equipped: true,
+          armorPoints: 7,
+          cost: 750,
+          oxygenSupply: 0,
+          notes: "Includes short-range comms.",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          name: "Standard Crew Attire",
+          equipped: true,
+          armorPoints: 1,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          name: "Standard Crew Attire",
+          equipped: true,
+          armorPoints: 1,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          name: "Standard Crew Attire",
+          equipped: true,
+          armorPoints: 1,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [],
+      weapons: [],
+      equipments: [],
+    },
+  ],
+  scientist: [
+    {
+      armors: [
+        {
+          armorType: "hazardSuit",
+          id: "76be828f-38e9-4b68-9ed2-8cec406225c9",
+          name: "Hazard Suit",
+          equipped: true,
+          armorPoints: 5,
+          cost: 750,
+          oxygenSupply: 1,
+          notes:
+            "Includes air filter, extreme heat/cold protection, hydration reclamation (1L of water lasts 4 days), short-range comms, headlamp, and radiation shielding.",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "hazardSuit",
+          id: "76be828f-38e9-4b68-9ed2-8cec406225c9",
+          name: "Hazard Suit",
+          equipped: true,
+          armorPoints: 5,
+          cost: 750,
+          oxygenSupply: 1,
+          notes:
+            "Includes air filter, extreme heat/cold protection, hydration reclamation (1L of water lasts 4 days), short-range comms, headlamp, and radiation shielding.",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "vaccsuit",
+          id: "4999a652-c93a-42c3-a6ce-c19acd965a25",
+          name: "Vaccsuit",
+          equipped: true,
+          armorPoints: 3,
+          cost: 1000,
+          oxygenSupply: 12,
+          notes:
+            "Includes short-range comms, headlamp, and radiation shielding. Decompression within 1d5 rounds if punctured.",
+          armorSpeed: "disadvantage",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "vaccsuit",
+          id: "4999a652-c93a-42c3-a6ce-c19acd965a25",
+          name: "Vaccsuit",
+          equipped: true,
+          armorPoints: 3,
+          cost: 1000,
+          oxygenSupply: 12,
+          notes:
+            "Includes short-range comms, headlamp, and radiation shielding. Decompression within 1d5 rounds if punctured.",
+          armorSpeed: "disadvantage",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          name: "Standard Crew Attire",
+          equipped: true,
+          armorPoints: 1,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [],
+      weapons: [],
+      equipments: [],
+    },
+  ],
+  teamster: [
+    {
+      armors: [
+        {
+          armorType: "vaccsuit",
+          id: "4999a652-c93a-42c3-a6ce-c19acd965a25",
+          name: "Vaccsuit",
+          equipped: true,
+          armorPoints: 3,
+          cost: 1000,
+          oxygenSupply: 12,
+          notes:
+            "Includes short-range comms, headlamp, and radiation shielding. Decompression within 1d5 rounds if punctured.",
+          armorSpeed: "disadvantage",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "vaccsuit",
+          id: "4999a652-c93a-42c3-a6ce-c19acd965a25",
+          name: "Vaccsuit",
+          equipped: true,
+          armorPoints: 3,
+          cost: 1000,
+          oxygenSupply: 12,
+          notes:
+            "Includes short-range comms, headlamp, and radiation shielding. Decompression within 1d5 rounds if punctured.",
+          armorSpeed: "disadvantage",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "vaccsuit",
+          id: "4999a652-c93a-42c3-a6ce-c19acd965a25",
+          name: "Vaccsuit",
+          equipped: true,
+          armorPoints: 3,
+          cost: 1000,
+          oxygenSupply: 12,
+          notes:
+            "Includes short-range comms, headlamp, and radiation shielding. Decompression within 1d5 rounds if punctured.",
+          armorSpeed: "disadvantage",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "hazardSuit",
+          id: "76be828f-38e9-4b68-9ed2-8cec406225c9",
+          name: "Hazard Suit",
+          equipped: true,
+          armorPoints: 5,
+          cost: 750,
+          oxygenSupply: 1,
+          notes:
+            "Includes air filter, extreme heat/cold protection, hydration reclamation (1L of water lasts 4 days), short-range comms, headlamp, and radiation shielding.",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          name: "Standard Crew Attire",
+          equipped: true,
+          armorPoints: 1,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          name: "Standard Crew Attire",
+          equipped: true,
+          armorPoints: 1,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          name: "Standard Crew Attire",
+          equipped: true,
+          armorPoints: 1,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [],
+      equipments: [],
+    },
+    {
+      armors: [],
+      weapons: [],
+      equipments: [],
+    },
+  ],
+};
+
+export const allEquipment: Equipment[] = [
+  {
+    id: "9e9bd59c-9741-43a9-bfa0-3849e25ad12d",
+    name: "Bioscanner",
+    description:
+      "Allows the user to scan the immediate area for signs of life. Generally can scan for 100m in all directions, without being blocked by most known metals. Can tell the location of signs of life, but not what that life is.",
+    equipped: true,
+    quantity: 1,
+    cost: 150,
+    baseType: "bioscanner",
+  },
+  {
+    id: "71a79f33-7378-40bd-8ba4-e92feff13f83",
+    name: "Assorted Tools",
+    description:
+      "Wrenches, spanners, screwdrivers, etc. Can be used as weapons (doing the same Damage as a Crowbar).",
+    equipped: true,
+    quantity: 0,
+    cost: 20,
+    baseType: "assortedTools",
+  },
+  {
+    id: "2b7e7469-4453-4759-8fed-ea134251288f",
+    name: "Automed",
+    description:
+      "Nanotech pills that assist your body in repairing Damage by granting Advantage to Body Saves meant to repel disease and poison, as well as attempts to heal from rest.",
+    equipped: true,
+    quantity: 5,
+    cost: 1500,
+    baseType: "automed",
+  },
+  {
+    id: "397b61e3-bcff-4951-a553-5f0d09218374",
+    name: "Binoculars",
+    description:
+      "20x magnification. Add thermal vision (+300cr) or night vision (+1kcr).",
+    equipped: true,
+    quantity: 1,
+    cost: 300,
+    baseType: "binoculars",
+  },
+  {
+    id: "614d7d96-df08-4632-ab53-603409223d81",
+    name: "Bioscanner",
+    description:
+      "Allows the user to scan the immediate area for signs of life. Generally can scan for 100m in all directions, without being blocked by most known metals. Can tell the location of signs of life, but not what that life is.",
+    equipped: true,
+    quantity: 1,
+    cost: 150,
+    baseType: "bioscanner",
+  },
+  {
+    id: "a11a54b2-51b4-41b3-800b-1ca20141e18f",
+    name: "Body Cam",
+    description:
+      "A camera worn on your clothing that can stream video back to a control center so your other crewmembers can see what you’re seeing. Add thermal vision (+300cr) or night vision (+1kcr).",
+    equipped: true,
+    quantity: 1,
+    cost: 50,
+    baseType: "bodyCam",
+  },
+  {
+    id: "e2c58873-c4bd-450a-9720-4e9764282b36",
+    name: "Chemlight",
+    description:
+      "Small disposable glowsticks capable of dim illumination in a 1m radius.",
+    equipped: true,
+    quantity: 5,
+    cost: 5,
+    baseType: "chemlight",
+  },
+  {
+    id: "d91e2c74-cbd5-481e-9094-6512d8b34d8d",
+    name: "Long-range Comms",
+    description:
+      "Rucksack-sized communication device for use in surface-to-ship comunication.",
+    equipped: true,
+    quantity: 1,
+    cost: 65,
+    baseType: "longrangeComms",
+  },
+  {
+    id: "b2241949-dbc5-4e95-b9a9-654efa74c46d",
+    name: "Short-range comms",
+    description:
+      "Allows communication from ship-to-ship within a reasonable distance, as well as surface-to-surface within a dozen kilometers. Blocked by radio jammer.",
+    equipped: true,
+    quantity: 1,
+    cost: 30,
+    baseType: "shortrangecomms",
+  },
+  {
+    id: "9f87a41f-26b9-4c43-ad0c-854d76fc0243",
+    name: "Cybernetic Diagnostic Scanner",
+    description:
+      "Allows the user to scan androids and other cybernetic organisms in order to diagnose any physical or mental issues they may be having. Often distrusted by androids.",
+    equipped: true,
+    quantity: 1,
+    cost: 500,
+    baseType: "cyberneticDiagnostic",
+  },
+  {
+    id: "79ddeda6-b02f-4264-9507-8687af65ee64",
+    name: "Drone (Recon)",
+    description:
+      "Remote controlled drone. Requires two hands to operate receiver. Can fly up to 450m high, to a distance of 3km from operator. Battery operated. Can run for 2 hours. Can record and transmit footage to receiver. If purchased separately, can be equipped with up to two of the following (at their regular cost): binoculars, radio jammer, Geiger counter, medscanner, personal locator, infrared goggles, emergency beacon, cybernetic diagnostic scanner, bioscanner.",
+    equipped: true,
+    quantity: 1,
+    cost: 5000,
+    baseType: "droneRecon",
+  },
+  {
+    id: "2a0fa003-306e-4482-956b-fe42dde145bd",
+    name: "Drone (Salvage)",
+    description:
+      "Remote controlled drone. Requires two hands to operate receiver. Can fly up to 10m high, to anywhere Long Range from the operator. Battery operated. Can run for 2 hours. Can record and transmit footage to receiver. Can be equipped with a laser cutter if purchased separately. Can carry up to 225kg.",
+    equipped: true,
+    quantity: 1,
+    cost: 10000,
+    baseType: "droneSalvage",
+  },
+  {
+    id: "ce6f905e-b132-4cf2-bb59-317169dd4ff5",
+    name: "Electronic Tool Set",
+    description:
+      "A full set of tools for doing detailed repair or construction work on electronics.",
+    equipped: true,
+    quantity: 1,
+    cost: 650,
+    baseType: "electronicToolSet",
+  },
+  {
+    id: "8bb41c35-3cbc-43d9-a43c-2adeab9c6afa",
+    name: "Emergency Beacon",
+    description:
+      "A small device that sends up a flare and then emits a loud beep every few seconds. Additionally, sends out a call on all radio channels to ships or vehicles in the area, but can be blocked by a radio jammer.",
+    equipped: true,
+    quantity: 1,
+    cost: 30,
+    baseType: "emergencyBeacon",
+  },
+  {
+    id: "9ced184e-2273-4a2e-92ca-55e9f8397b07",
+    name: "Exoloader",
+    description:
+      "Open-air mechanical exo-skeleton used for heavy lifting (up to 5000kg). Loader claws deal 1 Wound. User can only wear Standard Crew Attire or Standard Battle Dress while operating. Battery operated (48 hours of use).",
+    equipped: true,
+    quantity: 1,
+    cost: 100000,
+    baseType: "exoloader",
+  },
+  {
+    id: "ea8a8b6b-d312-44ec-a022-6ce813f1222d",
+    name: "Explosives & Detonator",
+    description:
+      "Explosive charge powerful enough to blow open an airlock. All Close organisms must make a Body Save or take a Wound (Explosive). Detonator works at Long Range, but can be blocked by a radio jammer.",
+    equipped: true,
+    quantity: 1,
+    cost: 500,
+    baseType: "explosivesDetonator",
+  },
+  {
+    id: "a1f3ad43-5634-490b-ac20-31f24563ab69",
+    name: "First Aid Kit",
+    description:
+      "An assortment of bandages and treatments to help stop bleeding, bandage cuts, and treat other minor injuries.",
+    equipped: true,
+    quantity: 1,
+    cost: 75,
+    baseType: "firstAidKit",
+  },
+  {
+    id: "e7531adb-f7af-4f5b-9a57-9ae5c55f5148",
+    name: "Flashlight",
+    description:
+      "Handheld or shoulder mounted. Illuminates 10m ahead of the user.",
+    equipped: true,
+    quantity: 1,
+    cost: 10,
+    baseType: "flashlight",
+  },
+  {
+    id: "1d7e67e8-6a71-46da-a16b-dc28a90ce08d",
+    name: "Foldable Stretcher",
+    description:
+      "Portable stretcher that can fit within a rucksack. Allows the user to safely strap down the patient and carry them to a location where their wounds can be better treated. Unfolds to roughly 2m.",
+    equipped: true,
+    quantity: 1,
+    cost: 100,
+    baseType: "foldableStretcher",
+  },
+  {
+    id: "7afa3897-f77a-4d9e-91ed-865c7a15dbde",
+    name: "Geiger Counter",
+    description: "Detects radiation and displays radiation levels.",
+    equipped: true,
+    quantity: 1,
+    cost: 20,
+    baseType: "geigerCounter",
+  },
+  {
+    id: "c5884110-e11e-42df-9858-584a464d1bbe",
+    name: "Heads-Up Display (HUD)",
+    description:
+      "Often worn by marines, the HUD allows the wearer to see through the body cams of others in their unit, and can connect to any smart-link upgaded weapon.",
+    equipped: true,
+    quantity: 1,
+    cost: 75,
+    baseType: "headsUpDisplayHUD",
+  },
+  {
+    id: "e7dbea4f-110d-4d6e-b195-0741fe1363a8",
+    name: "Infrared Goggles",
+    description:
+      "Allows the wearer to see heat signatures, sometimes up to several hours old. Add night vision for (+1kcr).",
+    equipped: true,
+    quantity: 1,
+    cost: 100,
+    baseType: "infraredGoggles",
+  },
+  {
+    id: "ab4f9c16-4a0c-473b-9d3d-413ad2fa078f",
+    name: "Jetpack",
+    description:
+      "Allows wearer to fly up to 100m high. Fuel-operated for 1 hour. Deals 1d100 DMG if destroyed.",
+    equipped: true,
+    quantity: 1,
+    cost: 75000,
+    baseType: "jetpack",
+  },
+  {
+    id: "533e9bae-cadc-4ac8-8e67-a85fac0564fe",
+    name: "Lockpick Set",
+    description:
+      "A highly advanced set of tools meant for hacking basic airlock and electronic door systems.",
+    equipped: true,
+    quantity: 1,
+    cost: 40,
+    baseType: "lockpickSet",
+  },
+  {
+    id: "636712d1-2b0b-4436-bb19-c6b139d839ae",
+    name: "MRE",
+    description:
+      "“Meals, Ready-to-Eat.” Self-contained, individual field rations in lightweight packaging. Each one has sufficient sustenance for a single person for one day (does not include water).",
+    equipped: true,
+    quantity: 7,
+    cost: 70,
+    baseType: "mre",
+  },
+  {
+    id: "44244b64-2345-433f-a6bc-719d4f92cb34",
+    name: "Mag-boots",
+    description:
+      "Grants a magnetic grip to the wearer, allowing them to easily walk on the exterior of a ship (in space, while docked, or free-floating), metal based asteroids, or any other magnetic surface.",
+    equipped: true,
+    quantity: 1,
+    cost: 55,
+    baseType: "magboots",
+  },
+  {
+    id: "6e15c923-2790-4a1f-b492-2e02ca3261f6",
+    name: "Medscanner",
+    description:
+      "Allows the user to scan a living or dead body to analyze it for disease or abnormalities, without having to do a biopsy (or autopsy). Results are often non-instantaneous and may require a lab for analysis.",
+    equipped: true,
+    quantity: 1,
+    cost: 150,
+    baseType: "medscanner",
+  },
+  {
+    id: "0015660a-0c8a-48a6-9773-c06a1dead4fc",
+    name: "MoHab Unit",
+    description: "Tent, canteen, stove, rucksack, compass, and sleeping bag.",
+    equipped: true,
+    quantity: 1,
+    cost: 1000,
+    baseType: "moHabUnit",
+  },
+  {
+    id: "8963d89f-6d8e-4f6e-bcb4-342495b0cf1c",
+    name: "Mylar Blanket",
+    description:
+      "Lightweight blanket made of heat-reflective material. Often used for thermal control of patients suffering from extreme cold or other trauma.",
+    equipped: true,
+    quantity: 1,
+    cost: 10,
+    baseType: "mylarBlanket",
+  },
+  {
+    id: "ad441a9b-c710-4b7f-9162-3d3a11f75ae2",
+    name: "Oxygen Tank",
+    description:
+      "When attached to a vaccsuit provides up to 12 hours of oxygen under normal circumstances, 4 hours under stressful circumstances. Explosive.",
+    equipped: true,
+    quantity: 1,
+    cost: 50,
+    baseType: "oxygenTank",
+  },
+  {
+    id: "6b49568c-74b7-42a3-928f-8fded50a81ea",
+    name: "Paracord (50m)",
+    description: "General purpose lightweight nylon rope.",
+    equipped: true,
+    quantity: 1,
+    cost: 10,
+    baseType: "paracord",
+  },
+  {
+    id: "f65f41ff-f8eb-4a17-9483-6277736d262b",
+    name: "Patch Kit",
+    description:
+      "Repairs punctured and torn vaccsuits, restoring their space readiness. Patched vaccsuits have an AP of 1.",
+    equipped: true,
+    quantity: 3,
+    cost: 200,
+    baseType: "patchKit",
+  },
+  {
+    id: "578f68bc-60f5-423b-baac-bc7ef2b63de7",
+    name: "Personal Locator",
+    description:
+      "Allows crewmembers at a control center (or on the bridge of a ship) to track the location of the wearer.",
+    equipped: true,
+    quantity: 1,
+    cost: 45,
+    baseType: "personalLocator",
+  },
+  {
+    id: "8d6ff2d3-6b5a-439d-8c31-503eba44a65d",
+    name: "Pet (Organic)",
+    description:
+      "Small to medium-sized organic pet animal. Larger or rare pets cost 2d10x.",
+    equipped: true,
+    quantity: 1,
+    cost: 200000,
+    baseType: "petOrganic",
+  },
+  {
+    id: "116e0071-8c33-4cb8-97a3-7b11dc59a388",
+    name: "Pet (Synthetic)",
+    description:
+      "Small to medium-sized synthetic pet animal. Larger or rare pets cost 2d10x.",
+    equipped: true,
+    quantity: 1,
+    cost: 15000,
+    baseType: "petSynthetic",
+  },
+  {
+    id: "e506c16b-151b-4991-9d61-240688a9624b",
+    name: "Pain Pills",
+    description:
+      "When ingested, immediately restores 1d10 health and lowers Stress by 1. There is a danger of addiction and/or overdose if used frequently.",
+    equipped: true,
+    quantity: 5,
+    cost: 450,
+    baseType: "painPills",
+  },
+  {
+    id: "35334853-396f-4c40-b14d-2ad82ae224da",
+    name: "Radiation Pills",
+    description:
+      "Reduces Radiation Damage (see pg. xx.x) by 2d10 for 2d10 minutes.",
+    equipped: true,
+    quantity: 5,
+    cost: 200,
+    baseType: "radiationPills",
+  },
+  {
+    id: "a9e6ce79-f85d-4cf8-8a0a-d6da2515a113",
+    name: "Portable Computer Terminal",
+    description:
+      "Flat computer monitor, keyboard and interface which allows the user to hack into pre-existing computers and networks, as well as perform standard computer tasks.",
+    equipped: true,
+    quantity: 1,
+    cost: 1500,
+    baseType: "portableComputerTerminal",
+  },
+  {
+    id: "a4470254-db14-46b1-9d3d-f7cbb8aa0fbc",
+    name: "Radio Jammer",
+    description:
+      "Rucksack-sized device which, when activated, renders incomprehensible the radio signals of all within 100km.",
+    equipped: true,
+    quantity: 1,
+    cost: 175,
+    baseType: "radioJammer",
+  },
+  {
+    id: "6838bc5c-f01b-4fca-b224-19d9fbb4a3fe",
+    name: "Rebreather",
+    description:
+      "When worn, filters toxic air and/or allows for underwater breathing for up to twenty minutes at a time without resurfacing. Can be connected to an oxygen tank.",
+    equipped: true,
+    quantity: 1,
+    cost: 45,
+    baseType: "rebreather",
+  },
+  {
+    id: "26684d34-dedb-427c-9e49-6bdcd9a6f72e",
+    name: "Rucksack",
+    description: "Large, durable, waterproof backpack.",
+    equipped: true,
+    quantity: 1,
+    cost: 50,
+    baseType: "rucksack",
+  },
+  {
+    id: "16199f8d-2c60-4378-ba4f-7167b8598f93",
+    name: "Sample Collection Kit",
+    description:
+      "Used to research xenoflora and xenofauna in the field. Can take vital signs, DNA samples ,and collect other data on foreign material. Results may not be instaneous and may require a lab for complete analysis.",
+    equipped: true,
+    quantity: 1,
+    cost: 250,
+    baseType: "sampleKit",
+  },
+  {
+    id: "ead3051e-cd0f-407f-8e8b-4d7bad11d7ad",
+    name: "Smart-link Add-On",
+    description:
+      "Grants remote viewing, recording, and operation of a ranged weapon as well as +5 DMG.",
+    equipped: true,
+    quantity: 1,
+    cost: 10000,
+    baseType: "smartLinkAddOn",
+  },
+  {
+    id: "a74517cd-3f6c-493e-b981-5558ba8075be",
+    name: "Stimpak",
+    description:
+      "Cures cryosickness. Restores 1d10 Health and grants Advantage to Strength and Combat for 2d10 minutes. There is a danger of addiction and/or overdose if used frequently. ",
+    equipped: true,
+    quantity: 5,
+    cost: 600,
+    baseType: "stimpak",
+  },
+  {
+    id: "09c4e92e-4812-43f2-8354-78bfcfee8791",
+    name: "Water Filtration Device",
+    description:
+      "Can pump 50 liters of filtered water per hour from even the most brackish swamps.",
+    equipped: true,
+    quantity: 1,
+    cost: 15,
+    baseType: "waterFiltrationDevice",
+  },
 ];
