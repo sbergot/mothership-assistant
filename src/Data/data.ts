@@ -2303,8 +2303,8 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           description:
             "Cures cryosickness. Restores 1d10 Health and grants Advantage to Strength and Combat for 2d10 minutes. There is a danger of addiction and/or overdose if used frequently. ",
           equipped: true,
-          quantity: 5,
-          cost: 600,
+          quantity: 1,
+          cost: 120,
           baseType: "stimpak",
         },
       ],
@@ -2357,7 +2357,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           damage: [{ damageType: "xd10", amount: 2, rollMode: "advantage" }],
           baseType: "boardingAxe",
         },
-            ],
+      ],
       equipments: [],
     },
     {
@@ -2405,6 +2405,15 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           cost: 50,
           baseType: "rucksack",
         },
+        {
+          id: "26684d34-dedb-427c-9e49-6bdcd9a6f72e",
+          name: "Campign gear",
+          description: "",
+          equipped: true,
+          quantity: 1,
+          cost: 100,
+          baseType: "campingGear",
+        },
       ],
     },
     {
@@ -2421,8 +2430,36 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "normal",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "b6f44416-34bf-4ba9-abf3-e5f66c1d7872",
+          name: "F20 “Arbiter”",
+          equipped: true,
+          cost: 2000,
+          weaponRange: "long",
+          damageString: "3d10 DMG",
+          shots: 5,
+          magazineSize: 5,
+          critical: "Gunshot",
+          special: "Pump-action grenade launcher holds x3 frag grenades.",
+          weaponType: "Pulse Rifle",
+          magazines: 1,
+          damage: [{ damageType: "xd10", amount: 3, rollMode: null }],
+          baseType: "pulseRifle",
+        },
+      ],
+      equipments: [
+        {
+          id: "e7dbea4f-110d-4d6e-b195-0741fe1363a8",
+          name: "Infrared Goggles",
+          description:
+            "Allows the wearer to see heat signatures, sometimes up to several hours old. Add night vision for (+1kcr).",
+          equipped: true,
+          quantity: 1,
+          cost: 100,
+          baseType: "infraredGoggles",
+        },
+      ],
     },
     {
       armors: [
@@ -2438,8 +2475,47 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "normal",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "1a79f24a-47cb-4139-983b-10ab1d8a5b10",
+          name: "SK 109 Seeker",
+          equipped: true,
+          cost: 12000,
+          weaponRange: "long",
+          damageString: "1d10x10 DMG",
+          shots: 3,
+          magazineSize: 3,
+          critical: "Gunshot[+]",
+          special:
+            "If not braced/prone when firing, Body Save or be knocked down.",
+          weaponType: "Smart Rifle",
+          magazines: 1,
+          damage: [{ damageType: "d10x10", amount: 1, rollMode: null }],
+          baseType: "smartRifle",
+        },
+      ],
+      equipments: [
+        {
+          id: "397b61e3-bcff-4951-a553-5f0d09218374",
+          name: "Binoculars",
+          description:
+            "20x magnification. Add thermal vision (+300cr) or night vision (+1kcr).",
+          equipped: true,
+          quantity: 1,
+          cost: 300,
+          baseType: "binoculars",
+        },
+        {
+          id: "578f68bc-60f5-423b-baac-bc7ef2b63de7",
+          name: "Personal Locator",
+          description:
+            "Allows crewmembers at a control center (or on the bridge of a ship) to track the location of the wearer.",
+          equipped: true,
+          quantity: 1,
+          cost: 45,
+          baseType: "personalLocator",
+        },
+      ],
     },
     {
       armors: [
@@ -2455,8 +2531,36 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "normal",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "3574dc47-35c8-4e22-8752-73a1374bedd3",
+          name: "ARMA 29",
+          equipped: true,
+          cost: 1200,
+          weaponRange: "long",
+          damageString: "2d10 DMG",
+          shots: 4,
+          magazineSize: 4,
+          critical: "Gunshot",
+          special: "Can be held one-handed.",
+          weaponType: "SMG",
+          magazines: 3,
+          damage: [{ damageType: "xd10", amount: 2, rollMode: null }],
+          baseType: "smg",
+        },
+      ],
+      equipments: [
+        {
+          id: "636712d1-2b0b-4436-bb19-c6b139d839ae",
+          name: "MRE",
+          description:
+            "“Meals, Ready-to-Eat.” Self-contained, individual field rations in lightweight packaging. Each one has sufficient sustenance for a single person for one day (does not include water).",
+          equipped: true,
+          quantity: 7,
+          cost: 70,
+          baseType: "mre",
+        },
+      ],
     },
     {
       armors: [
@@ -2472,8 +2576,60 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "normal",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "393845df-1efd-48b7-8ec7-112fd0ff5c13",
+          name: "KANO X9",
+          equipped: true,
+          cost: 1400,
+          weaponRange: "close",
+          damageString: "1 Wound",
+          shots: 2,
+          magazineSize: 4,
+          critical: "Gunshot",
+          special: "1d10 DMG at Long Range.",
+          weaponType: "Combat Shotgun",
+          magazines: 0,
+          damage: [
+            { damageType: "fixedWounds", amount: 1, rollMode: null },
+            { damageType: "xd10", amount: 1, rollMode: null },
+          ],
+          baseType: "combatShotgun",
+        },
+  
+      ],
+      equipments: [
+        {
+          id: "a74517cd-3f6c-493e-b981-5558ba8075be",
+          name: "Dog",
+          description:
+            "",
+          equipped: true,
+          quantity: 1,
+          cost: 120,
+          baseType: "dog",
+        },
+        {
+          id: "a74517cd-3f6c-493e-b981-5558ba8075be",
+          name: "Leash",
+          description:
+            "",
+          equipped: true,
+          quantity: 1,
+          cost: 10,
+          baseType: "leash",
+        },
+        {
+          id: "a74517cd-3f6c-493e-b981-5558ba8075be",
+          name: "Tennis ball",
+          description:
+            "",
+          equipped: true,
+          quantity: 1,
+          cost: 10,
+          baseType: "tennisBall",
+        },
+      ],
     },
     {
       armors: [
