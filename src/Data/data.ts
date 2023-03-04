@@ -3212,8 +3212,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
         {
           id: "ea8a8b6b-d312-44ec-a022-6ce813f1222d",
           name: "Explosives & Detonator",
-          description:
-            "Jump-9 ticket (destination blank)",
+          description: "Jump-9 ticket (destination blank)",
           equipped: true,
           quantity: 1,
           cost: 5000,
@@ -3240,8 +3239,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
         {
           id: "ea8a8b6b-d312-44ec-a022-6ce813f1222d",
           name: "VIP Corporate key card",
-          description:
-            "Jump-9 ticket (destination blank)",
+          description: "Jump-9 ticket (destination blank)",
           equipped: true,
           quantity: 1,
           cost: 10000,
@@ -3515,7 +3513,37 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
         },
       ],
       weapons: [],
-      equipments: [],
+      equipments: [
+        {
+          id: "6ca3a755-11d4-47cb-b5e3-95e91efe1c91",
+          name: "Screwdriver",
+          description:
+            "Wrenches, spanners, screwdrivers, etc. Can be used as weapons (doing the same Damage as a Crowbar).",
+          equipped: true,
+          quantity: 0,
+          cost: 20,
+          baseType: "assortedTools",
+        },
+        {
+          id: "6e15c923-2790-4a1f-b492-2e02ca3261f6",
+          name: "Medscanner",
+          description:
+            "Allows the user to scan a living or dead body to analyze it for disease or abnormalities, without having to do a biopsy (or autopsy). Results are often non-instantaneous and may require a lab for analysis.",
+          equipped: true,
+          quantity: 1,
+          cost: 150,
+          baseType: "medscanner",
+        },
+        {
+          id: "6e15c923-2790-4a1f-b492-2e02ca3261f6",
+          name: "Vaccine",
+          description: "",
+          equipped: true,
+          quantity: 1,
+          cost: 150,
+          baseType: "vaccine",
+        },
+      ],
     },
     {
       armors: [
@@ -3532,7 +3560,93 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
         },
       ],
       weapons: [],
-      equipments: [],
+      equipments: [
+        {
+          id: "de6c9bfd-29a8-4a53-8e62-fe5839b9b0d8",
+          name: "Cybernetic Diagnostic Scanner",
+          description:
+            "Allows the user to scan androids and other cybernetic organisms in order to diagnose any physical or mental issues they may be having. Often distrusted by androids.",
+          equipped: true,
+          quantity: 1,
+          cost: 500,
+          baseType: "cyberneticDiagnostic",
+        },
+        {
+          id: "6043fd78-40e5-4136-aaf7-43a98448d1c7",
+          name: "Portable Computer Terminal",
+          description:
+            "Flat computer monitor, keyboard and interface which allows the user to hack into pre-existing computers and networks, as well as perform standard computer tasks.",
+          equipped: true,
+          quantity: 1,
+          cost: 1500,
+          baseType: "portableComputerTerminal",
+        },
+      ],
+    },
+    {
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "3912ebcd-144c-4df1-a2f9-a8a37fed34ca",
+          name: "Scrubs",
+          equipped: true,
+          armorPoints: 1,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [
+        {
+          id: "c3d93d01-d3dc-4dc9-8417-0a8a0625ecd6",
+          name: "Scalpel",
+          equipped: true,
+          cost: 50,
+          weaponRange: "adjacent",
+          damageString: "1d5 DMG",
+          shots: null,
+          magazineSize: null,
+          critical: "Bleeding [+]",
+          special: "",
+          weaponType: "Scalpel",
+          magazines: null,
+          damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
+          baseType: "scalpel",
+        },
+      ],
+      equipments: [
+        {
+          id: "2b7e7469-4453-4759-8fed-ea134251288f",
+          name: "Automed",
+          description:
+            "Nanotech pills that assist your body in repairing Damage by granting Advantage to Body Saves meant to repel disease and poison, as well as attempts to heal from rest.",
+          equipped: true,
+          quantity: 6,
+          cost: 1500,
+          baseType: "automed",
+        },
+        {
+          id: "ad441a9b-c710-4b7f-9162-3d3a11f75ae2",
+          name: "Oxygen Tank",
+          description:
+            "When attached to a vaccsuit provides up to 12 hours of oxygen under normal circumstances, 4 hours under stressful circumstances. Explosive.",
+          equipped: true,
+          quantity: 1,
+          cost: 50,
+          baseType: "oxygenTank",
+        },
+        {
+          id: "ad441a9b-c710-4b7f-9162-3d3a11f75ae2",
+          name: "Filter mask",
+          description:
+            "",
+          equipped: true,
+          quantity: 1,
+          cost: 50,
+          baseType: "filterMask",
+        },
+      ],
     },
     {
       armors: [
@@ -3549,24 +3663,38 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
         },
       ],
       weapons: [],
-      equipments: [],
-    },
-    {
-      armors: [
+      equipments: [
         {
-          armorType: "standardCrewAttire",
-          id: "3912ebcd-144c-4df1-a2f9-a8a37fed34ca",
-          name: "Scrubs",
+          id: "ad441a9b-c710-4b7f-9162-3d3a11f75ae2",
+          name: "Vial of acid",
+          description:
+            "",
           equipped: true,
-          armorPoints: 1,
-          cost: 20,
-          oxygenSupply: 0,
-          notes: "",
-          armorSpeed: "normal",
+          quantity: 1,
+          cost: 50,
+          baseType: "vialOfAcid",
+        },
+        {
+          id: "8963d89f-6d8e-4f6e-bcb4-342495b0cf1c",
+          name: "Mylar Blanket",
+          description:
+            "Lightweight blanket made of heat-reflective material. Often used for thermal control of patients suffering from extreme cold or other trauma.",
+          equipped: true,
+          quantity: 1,
+          cost: 10,
+          baseType: "mylarBlanket",
+        },
+        {
+          id: "a1f3ad43-5634-490b-ac20-31f24563ab69",
+          name: "First Aid Kit",
+          description:
+            "An assortment of bandages and treatments to help stop bleeding, bandage cuts, and treat other minor injuries.",
+          equipped: true,
+          quantity: 1,
+          cost: 75,
+          baseType: "firstAidKit",
         },
       ],
-      weapons: [],
-      equipments: [],
     },
     {
       armors: [
@@ -3582,13 +3710,94 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "normal",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "c3d93d01-d3dc-4dc9-8417-0a8a0625ecd6",
+          name: "Utility knife",
+          equipped: true,
+          cost: 50,
+          weaponRange: "adjacent",
+          damageString: "1d5 DMG",
+          shots: null,
+          magazineSize: null,
+          critical: "Bleeding [+]",
+          special: "",
+          weaponType: "Scalpel",
+          magazines: null,
+          damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
+          baseType: "scalpel",
+        },
+      ],
+      equipments: [
+        {
+          id: "de6c9bfd-29a8-4a53-8e62-fe5839b9b0d8",
+          name: "Cybernetic Diagnostic Scanner",
+          description:
+            "Allows the user to scan androids and other cybernetic organisms in order to diagnose any physical or mental issues they may be having. Often distrusted by androids.",
+          equipped: true,
+          quantity: 1,
+          cost: 500,
+          baseType: "cyberneticDiagnostic",
+        },
+        {
+          id: "de6c9bfd-29a8-4a53-8e62-fe5839b9b0d8",
+          name: "Duct Tape",
+          description:
+            "",
+          equipped: true,
+          quantity: 1,
+          cost: 5,
+          baseType: "ductTape",
+        },
+      ],
     },
     {
-      armors: [],
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          name: "Civilian clothes",
+          equipped: true,
+          armorPoints: 1,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
       weapons: [],
-      equipments: [],
+      equipments: [
+        {
+          id: "de6c9bfd-29a8-4a53-8e62-fe5839b9b0d8",
+          name: "Briefcase",
+          description:
+            "",
+          equipped: true,
+          quantity: 1,
+          cost: 50,
+          baseType: "briefcase",
+        },
+        {
+          id: "de6c9bfd-29a8-4a53-8e62-fe5839b9b0d8",
+          name: "Prescription pad",
+          description:
+            "",
+          equipped: true,
+          quantity: 1,
+          cost: 5,
+          baseType: "prescriptionPad",
+        },
+        {
+          id: "de6c9bfd-29a8-4a53-8e62-fe5839b9b0d8",
+          name: "Fountain pen (Poison injector)",
+          description:
+            "",
+          equipped: true,
+          quantity: 1,
+          cost: 100,
+          baseType: "penPoison",
+        },
+      ],
     },
   ],
   teamster: [
