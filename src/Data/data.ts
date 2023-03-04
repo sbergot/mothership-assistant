@@ -417,6 +417,23 @@ export const weapons: Weapon[] = [
     damage: [{ damageType: "xd10", amount: 3, rollMode: null }],
     baseType: "vibechete",
   },
+  {
+    id: "0f56f168-fae2-4834-8d4d-50728ccab5c5",
+    name: "",
+    equipped: true,
+    cost: 150,
+    weaponRange: "close",
+    damageString: "1d5 DMG",
+    shots: 32,
+    magazineSize: 32,
+    critical: "Bleeding",
+    special:
+      "",
+    weaponType: "Nail Gun",
+    magazines: null,
+    damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
+    baseType: "nailGun",
+  },
 ];
 
 export const contractors: Contractor[] = [
@@ -3211,7 +3228,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       equipments: [
         {
           id: "ea8a8b6b-d312-44ec-a022-6ce813f1222d",
-          name: "Explosives & Detonator",
+          name: "Jump-9 ticket (destination blank)",
           description: "Jump-9 ticket (destination blank)",
           equipped: true,
           quantity: 1,
@@ -3816,8 +3833,47 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "disadvantage",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "9c3ae3e8-f570-4dff-b873-3ce7258332be",
+          name: "MNC Mode",
+          equipped: true,
+          cost: 1200,
+          weaponRange: "long",
+          damageString: "1d100 DMG",
+          shots: 6,
+          magazineSize: 6,
+          critical: "Bleeding [+] or Gore [+]",
+          special:
+            "Two-handed. Heavy. Must recharge between shots. Reload: 1hr (power), 6hr (solar).",
+          weaponType: "Laser Cutter",
+          magazines: 0,
+          damage: [{ damageType: "d100", amount: 1, rollMode: null }],
+          baseType: "laserCutter",
+        },
+      ],
+      equipments: [
+        {
+          id: "5833bf8f-0588-4593-8f05-35c7c312ed5b",
+          name: "Patch Kit",
+          description:
+            "Repairs punctured and torn vaccsuits, restoring their space readiness. Patched vaccsuits have an AP of 1.",
+          equipped: true,
+          quantity: 3,
+          cost: 200,
+          baseType: "patchKit",
+        },
+        {
+          id: "86016036-741e-463b-817d-9b0e91daa02e",
+          name: "Toolbelt with assorted tools",
+          description:
+            "Wrenches, spanners, screwdrivers, etc. Can be used as weapons (doing the same Damage as a Crowbar).",
+          equipped: true,
+          quantity: 0,
+          cost: 20,
+          baseType: "assortedTools",
+        },
+      ],
     },
     {
       armors: [
@@ -3834,8 +3890,52 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "disadvantage",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "61aa11ff-7c02-473c-8ec1-89bd57e322e5",
+          name: "FN Slug",
+          equipped: true,
+          cost: 750,
+          weaponRange: "close",
+          damageString: "1d10 DMG [+]",
+          shots: 6,
+          magazineSize: 6,
+          critical: "Gunshot",
+          special: "",
+          weaponType: "Revolver",
+          magazines: 0,
+          damage: [{ damageType: "xd10", amount: 1, rollMode: "advantage" }],
+          baseType: "revolver",
+        },
+        {
+          id: "f66cc43a-d7bc-4ba3-8dbc-3ab8be4815c3",
+          name: "",
+          equipped: true,
+          cost: 50,
+          weaponRange: "adjacent",
+          damageString: "1d5 DMG",
+          shots: null,
+          magazineSize: null,
+          critical: "Blunt Force [+]",
+          special: "",
+          weaponType: "Crowbar",
+          magazines: null,
+          damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
+          baseType: "crowbar",
+        },
+      ],
+      equipments: [
+        {
+          id: "544db096-89b9-45cb-bdac-b8285cf32484",
+          name: "Flashlight",
+          description:
+            "Handheld or shoulder mounted. Illuminates 10m ahead of the user.",
+          equipped: true,
+          quantity: 1,
+          cost: 10,
+          baseType: "flashlight",
+        },
+      ],
     },
     {
       armors: [
@@ -3852,8 +3952,49 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "disadvantage",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "8ff97137-970d-4d03-b5a8-ad7060985ed6",
+          name: "HAN-290",
+          equipped: true,
+          cost: 350,
+          weaponRange: "close",
+          damageString: "1d10 DMG + 2d10 DMG when removed.",
+          shots: 1,
+          magazineSize: 1,
+          critical: "Bleeding [+]",
+          special: "100m micro-filament. Body Save or become entangled.",
+          weaponType: "Rigging Gun",
+          magazines: 0,
+          damage: [
+            { damageType: "xd10", amount: 1, rollMode: null },
+            { damageType: "xd10", amount: 2, rollMode: null },
+          ],
+          baseType: "riggingGun",
+        },
+      ],
+      equipments: [
+        {
+          id: "544db096-89b9-45cb-bdac-b8285cf32484",
+          name: "Shovel",
+          description:
+            "",
+          equipped: true,
+          quantity: 1,
+          cost: 10,
+          baseType: "shovel",
+        },
+        {
+          id: "2a0fa003-306e-4482-956b-fe42dde145bd",
+          name: "Drone (Salvage)",
+          description:
+            "Remote controlled drone. Requires two hands to operate receiver. Can fly up to 10m high, to anywhere Long Range from the operator. Battery operated. Can run for 2 hours. Can record and transmit footage to receiver. Can be equipped with a laser cutter if purchased separately. Can carry up to 225kg.",
+          equipped: true,
+          quantity: 1,
+          cost: 10000,
+          baseType: "droneSalvage",
+        },
+      ],
     },
     {
       armors: [
@@ -3870,18 +4011,140 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "normal",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "0f56f168-fae2-4834-8d4d-50728ccab5c5",
+          name: "",
+          equipped: true,
+          cost: 500,
+          weaponRange: "adjacent",
+          damageString: "3d10 DMG",
+          shots: null,
+          magazineSize: null,
+          critical: "Bleeding + Gore",
+          special:
+            "When dealing a Wound, roll on BOTH the Bleeding AND Gore columns.",
+          weaponType: "Vibechete",
+          magazines: null,
+          damage: [{ damageType: "xd10", amount: 3, rollMode: null }],
+          baseType: "vibechete",
+        },
+      ],
+      equipments: [
+        {
+          id: "544db096-89b9-45cb-bdac-b8285cf32484",
+          name: "Spanner",
+          description:
+            "",
+          equipped: true,
+          quantity: 1,
+          cost: 10,
+          baseType: "spanner",
+        },
+        {
+          id: "26684d34-dedb-427c-9e49-6bdcd9a6f72e",
+          name: "Campign gear",
+          description: "",
+          equipped: true,
+          quantity: 1,
+          cost: 100,
+          baseType: "campingGear",
+        },
+        {
+          id: "09c4e92e-4812-43f2-8354-78bfcfee8791",
+          name: "Water Filtration Device",
+          description:
+            "Can pump 50 liters of filtered water per hour from even the most brackish swamps.",
+          equipped: true,
+          quantity: 1,
+          cost: 15,
+          baseType: "waterFiltrationDevice",
+        },
+      ],
     },
     {
-      armors: [],
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "2d661e23-ecbc-4183-95d4-7122eb6dd881",
+          name: "Heavy Duty Work Clothes",
+          equipped: true,
+          armorPoints: 2,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
       weapons: [],
-      equipments: [],
+      equipments: [
+        {
+          id: "ea8a8b6b-d312-44ec-a022-6ce813f1222d",
+          name: "Explosives & Detonator",
+          description:
+            "Explosive charge powerful enough to blow open an airlock. All Close organisms must make a Body Save or take a Wound (Explosive). Detonator works at Long Range, but can be blocked by a radio jammer.",
+          equipped: true,
+          quantity: 1,
+          cost: 500,
+          baseType: "explosivesDetonator",
+        },
+        {
+          id: "26684d34-dedb-427c-9e49-6bdcd9a6f72e",
+          name: "Cigarettes",
+          description: "",
+          equipped: true,
+          quantity: 10,
+          cost: 1000,
+          baseType: "cigarettes",
+        },
+      ],
     },
     {
-      armors: [],
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "2d661e23-ecbc-4183-95d4-7122eb6dd881",
+          name: "Heavy Duty Work Clothes",
+          equipped: true,
+          armorPoints: 2,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
       weapons: [],
-      equipments: [],
+      equipments: [
+        {
+          id: "2d8e1b7d-04f9-4757-b41a-107fc464cd7f",
+          name: "Drill",
+          description:
+            "Wrenches, spanners, screwdrivers, etc. Can be used as weapons (doing the same Damage as a Crowbar).",
+          equipped: true,
+          quantity: 0,
+          cost: 20,
+          baseType: "assortedTools",
+        },
+        {
+          id: "ceca45f4-be67-486e-8151-c344f8c3b5a2",
+          name: "Paracord (100m)",
+          description: "General purpose lightweight nylon rope.",
+          equipped: true,
+          quantity: 1,
+          cost: 10,
+          baseType: "paracord",
+        },
+        {
+          id: "79ddeda6-b02f-4264-9507-8687af65ee64",
+          name: "Drone (Recon)",
+          description:
+            "Remote controlled drone. Requires two hands to operate receiver. Can fly up to 450m high, to a distance of 3km from operator. Battery operated. Can run for 2 hours. Can record and transmit footage to receiver. If purchased separately, can be equipped with up to two of the following (at their regular cost): binoculars, radio jammer, Geiger counter, medscanner, personal locator, infrared goggles, emergency beacon, cybernetic diagnostic scanner, bioscanner.",
+          equipped: true,
+          quantity: 1,
+          cost: 5000,
+          baseType: "droneRecon",
+        },
+      ],
     },
     {
       armors: [
@@ -3897,8 +4160,47 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "normal",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "af8bfb9a-4207-4eaa-a2dc-df67c0054b7c",
+          name: "KANO X9",
+          equipped: true,
+          cost: 1400,
+          weaponRange: "close",
+          damageString: "1 Wound",
+          shots: 4,
+          magazineSize: 4,
+          critical: "Gunshot",
+          special: "1d10 DMG at Long Range.",
+          weaponType: "Combat Shotgun",
+          magazines: 0,
+          damage: [
+            { damageType: "fixedWounds", amount: 1, rollMode: null },
+            { damageType: "xd10", amount: 1, rollMode: null },
+          ],
+          baseType: "combatShotgun",
+        },
+      ],
+      equipments: [
+        {
+          name: "Cat",
+          id: "52b4c525-2eba-49da-b81b-05a7f1d2a30a",
+          description: "",
+          equipped: true,
+          cost: 0,
+          quantity: 1,
+          baseType: "extensionCord"
+        },
+        {
+          name: "Extension Cord (20m)",
+          id: "0c515bd9-c170-418e-9a21-61f05b5dc209",
+          description: "",
+          equipped: true,
+          cost: 0,
+          quantity: 1,
+          baseType: "extensionCord"
+        },
+      ],
     },
     {
       armors: [
@@ -3914,8 +4216,55 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "normal",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "0f56f168-fae2-4834-8d4d-50728ccab5c5",
+          name: "",
+          equipped: true,
+          cost: 150,
+          weaponRange: "close",
+          damageString: "1d5 DMG",
+          shots: 32,
+          magazineSize: 32,
+          critical: "Bleeding",
+          special:
+            "",
+          weaponType: "Nail Gun",
+          magazines: null,
+          damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
+          baseType: "nailGun",
+        },
+      ],
+      equipments: [
+        {
+          name: "Head Lamp",
+          id: "3c06fbf3-11d7-4c8d-9129-f6791eadfdfd",
+          description: "",
+          equipped: true,
+          cost: 0,
+          quantity: 1,
+          baseType: "headLamp"
+        },
+        {
+          id: "86016036-741e-463b-817d-9b0e91daa02e",
+          name: "Toolbelt with assorted tools",
+          description:
+            "Wrenches, spanners, screwdrivers, etc. Can be used as weapons (doing the same Damage as a Crowbar).",
+          equipped: true,
+          quantity: 0,
+          cost: 20,
+          baseType: "assortedTools",
+        },
+        {
+          name: "Lunch Box",
+          id: "cf041b93-54a4-4d17-9d26-401e2cb2286f",
+          description: "",
+          equipped: true,
+          cost: 0,
+          quantity: 1,
+          baseType: "lunchBox"
+        },
+      ],
     },
     {
       armors: [
@@ -3931,13 +4280,111 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           armorSpeed: "normal",
         },
       ],
-      weapons: [],
-      equipments: [],
+      weapons: [
+        {
+          id: "40b5d1c5-6155-4087-9b2c-d383045cde8c",
+          name: "Peabody",
+          equipped: true,
+          cost: 85,
+          weaponRange: "long",
+          damageString: "1d5 DMG",
+          shots: 2,
+          magazineSize: 2,
+          critical: "Fire/Explosives [-]",
+          special: "High intensity flare visible day and night from Long Range.",
+          weaponType: "Flare Gun",
+          magazines: 0,
+          damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
+          baseType: "flareGun",
+        },
+      ],
+      equipments: [
+        {
+          id: "09c4e92e-4812-43f2-8354-78bfcfee8791",
+          name: "Water Filtration Device",
+          description:
+            "Can pump 50 liters of filtered water per hour from even the most brackish swamps.",
+          equipped: true,
+          quantity: 1,
+          cost: 15,
+          baseType: "waterFiltrationDevice",
+        },
+        {
+          id: "578f68bc-60f5-423b-baac-bc7ef2b63de7",
+          name: "Personal Locator",
+          description:
+            "Allows crewmembers at a control center (or on the bridge of a ship) to track the location of the wearer.",
+          equipped: true,
+          quantity: 1,
+          cost: 45,
+          baseType: "personalLocator",
+        },
+        {
+          id: "578f68bc-60f5-423b-baac-bc7ef2b63de7",
+          name: "Subsurface scanner",
+          description:
+            "Allows crewmembers at a control center (or on the bridge of a ship) to track the location of the wearer.",
+          equipped: true,
+          quantity: 1,
+          cost: 1000,
+          baseType: "subsurfaceScanner",
+        },
+      ],
     },
     {
-      armors: [],
-      weapons: [],
-      equipments: [],
+      armors: [
+        {
+          armorType: "standardCrewAttire",
+          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          name: "Lounge Wear",
+          equipped: true,
+          armorPoints: 1,
+          cost: 20,
+          oxygenSupply: 0,
+          notes: "",
+          armorSpeed: "normal",
+        },
+      ],
+      weapons: [
+        {
+          id: "ab52ac46-a83b-462a-aab4-f72c27ce3036",
+          name: "",
+          equipped: true,
+          cost: 50,
+          weaponRange: "adjacent",
+          damageString: "1d5 DMG",
+          shots: null,
+          magazineSize: null,
+          critical: "Blunt Force [+]",
+          special: "",
+          weaponType: "Crowbar",
+          magazines: null,
+          damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
+          baseType: "crowbar",
+        },
+      ],
+      equipments: [
+        {
+          id: "bfe89e47-9519-497a-820d-2bca1f0d9a88",
+          name: "Pain Pills",
+          description:
+            "When ingested, immediately restores 1d10 health and lowers Stress by 1. There is a danger of addiction and/or overdose if used frequently.",
+          equipped: true,
+          quantity: 5,
+          cost: 450,
+          baseType: "painPills",
+        },
+        {
+          id: "bfe89e47-9519-497a-820d-2bca1f0d9a88",
+          name: "Six pack of beer",
+          description:
+            "",
+          equipped: true,
+          quantity: 1,
+          cost: 50,
+          baseType: "sixPackBeer",
+        },
+      ],
     },
   ],
 };
