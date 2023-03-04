@@ -1,5 +1,6 @@
 import { Block, Button2, Title } from "../Atoms";
 import { classDefinitionsDict } from "../Data/data";
+import { BlockWithTitle } from "../Molecules";
 import { StepProps } from "./types";
 
 export function NoteTraumaResponse({ character, onConfirm }: StepProps) {
@@ -9,16 +10,9 @@ export function NoteTraumaResponse({ character, onConfirm }: StepProps) {
     <div className="flex flex-col">
       <Block variant="light">
         <Title>6. Take note of your class's trauma response</Title>
-        <div className="rounded-xl bg-mother-4 text-mother-1 flex flex-col gap-2 pb-2 cursor-pointer">
-          <div className="rounded-3xl bg-mother-6 text-center relative">
-            {characterClass}
-          </div>
-          <div className="px-4 text-base">
-            <div className="flex flex-col gap-1">
-              {classDefinitionsDict[characterClass].traumaResponse}
-            </div>
-          </div>
-        </div>
+        <BlockWithTitle title={characterClass}>
+          {classDefinitionsDict[characterClass].traumaResponse}
+        </BlockWithTitle>
       </Block>
       <div className="self-center">
         <Button2 disabled={!done} onClick={() => onConfirm(character)}>

@@ -71,7 +71,7 @@ export const classDefinitionsDict = toDict(classDefinitions, (c) => c.name);
 
 export const weapons: Weapon[] = [
   {
-    id: "049414da-9cd0-4ac0-a7f0-49e65031b5c1",
+    id: "",
     name: "",
     equipped: true,
     cost: 50,
@@ -87,7 +87,7 @@ export const weapons: Weapon[] = [
     baseType: "scalpel",
   },
   {
-    id: "3574dc47-35c8-4e22-8752-73a1374bedd3",
+    id: "",
     name: "ARMA 29",
     equipped: true,
     cost: 1200,
@@ -103,7 +103,7 @@ export const weapons: Weapon[] = [
     baseType: "smg",
   },
   {
-    id: "cbe6bc4c-ea53-4ed7-a28b-334ddd4347e1",
+    id: "",
     name: "D&C 7",
     equipped: true,
     cost: 850,
@@ -120,7 +120,7 @@ export const weapons: Weapon[] = [
     baseType: "tranqPistol",
   },
   {
-    id: "b6f44416-34bf-4ba9-abf3-e5f66c1d7872",
+    id: "",
     name: "F20 “Arbiter”",
     equipped: true,
     cost: 2000,
@@ -136,7 +136,7 @@ export const weapons: Weapon[] = [
     baseType: "pulseRifle",
   },
   {
-    id: "61aa11ff-7c02-473c-8ec1-89bd57e322e5",
+    id: "",
     name: "FN Slug",
     equipped: true,
     cost: 750,
@@ -152,7 +152,7 @@ export const weapons: Weapon[] = [
     baseType: "revolver",
   },
   {
-    id: "a2e7c6f0-42e0-48c4-833f-e04aad946fde",
+    id: "",
     name: "",
     equipped: true,
     cost: 70,
@@ -168,7 +168,7 @@ export const weapons: Weapon[] = [
     baseType: "fragGrenade",
   },
   {
-    id: "af8bfb9a-4207-4eaa-a2dc-df67c0054b7c",
+    id: "",
     name: "KANO X9",
     equipped: true,
     cost: 1400,
@@ -187,7 +187,7 @@ export const weapons: Weapon[] = [
     baseType: "combatShotgun",
   },
   {
-    id: "3ffb8ddc-4d79-4953-a905-5d07f85acae2",
+    id: "",
     name: "Overmatch Arms SW-512",
     equipped: true,
     cost: 1800,
@@ -204,7 +204,7 @@ export const weapons: Weapon[] = [
     baseType: "heavyMachineGun",
   },
   {
-    id: "40b5d1c5-6155-4087-9b2c-d383045cde8c",
+    id: "",
     name: "Peabody",
     equipped: true,
     cost: 85,
@@ -220,7 +220,7 @@ export const weapons: Weapon[] = [
     baseType: "flareGun",
   },
   {
-    id: "1a79f24a-47cb-4139-983b-10ab1d8a5b10",
+    id: "",
     name: "SK 109 Seeker",
     equipped: true,
     cost: 12000,
@@ -236,7 +236,7 @@ export const weapons: Weapon[] = [
     baseType: "smartRifle",
   },
   {
-    id: "6a29732a-0fbd-4d2f-966e-ffee40518799",
+    id: "",
     name: "EVA MK II",
     equipped: true,
     cost: 250,
@@ -252,7 +252,7 @@ export const weapons: Weapon[] = [
     baseType: "handWelder",
   },
   {
-    id: "c85e0ee5-22b8-4c86-a583-5de6bf339242",
+    id: "",
     name: "HAN-290",
     equipped: true,
     cost: 350,
@@ -271,7 +271,7 @@ export const weapons: Weapon[] = [
     baseType: "riggingGun",
   },
   {
-    id: "b303958f-bd9c-4f8d-8886-f020619ecf86",
+    id: "",
     name: "Halls B Series",
     equipped: true,
     cost: 275,
@@ -288,7 +288,7 @@ export const weapons: Weapon[] = [
     baseType: "foamGun",
   },
   {
-    id: "9c3ae3e8-f570-4dff-b873-3ce7258332be",
+    id: "",
     name: "MNC Mode",
     equipped: true,
     cost: 1200,
@@ -305,7 +305,7 @@ export const weapons: Weapon[] = [
     baseType: "laserCutter",
   },
   {
-    id: "ab7d880c-5a00-490e-a528-23d77278c5db",
+    id: "",
     name: "Ramhorn",
     equipped: true,
     cost: 2000,
@@ -321,7 +321,7 @@ export const weapons: Weapon[] = [
     baseType: "flamethrower",
   },
   {
-    id: "f6b3afcc-9838-4ff7-aabf-4111cf478a1c",
+    id: "",
     name: "Rosco SS6",
     equipped: true,
     cost: 150,
@@ -337,7 +337,7 @@ export const weapons: Weapon[] = [
     baseType: "nailGun",
   },
   {
-    id: "6c9d6e1b-aac1-4cef-99a5-aa414a3b9bd5",
+    id: "",
     name: "",
     equipped: true,
     cost: 150,
@@ -353,7 +353,7 @@ export const weapons: Weapon[] = [
     baseType: "boardingAxe",
   },
   {
-    id: "f66cc43a-d7bc-4ba3-8dbc-3ab8be4815c3",
+    id: "",
     name: "",
     equipped: true,
     cost: 50,
@@ -369,7 +369,7 @@ export const weapons: Weapon[] = [
     baseType: "crowbar",
   },
   {
-    id: "083aca86-7c27-4859-94be-8a865558797b",
+    id: "",
     name: "",
     equipped: true,
     cost: 50,
@@ -385,7 +385,7 @@ export const weapons: Weapon[] = [
     baseType: "scalpel",
   },
   {
-    id: "4294c83d-8796-4f3c-acda-0e8a97a750af",
+    id: "",
     name: "",
     equipped: true,
     cost: 115,
@@ -401,7 +401,7 @@ export const weapons: Weapon[] = [
     baseType: "stunBaton",
   },
   {
-    id: "0f56f168-fae2-4834-8d4d-50728ccab5c5",
+    id: "",
     name: "",
     equipped: true,
     cost: 500,
@@ -418,7 +418,7 @@ export const weapons: Weapon[] = [
     baseType: "vibechete",
   },
   {
-    id: "0f56f168-fae2-4834-8d4d-50728ccab5c5",
+    id: "",
     name: "",
     equipped: true,
     cost: 150,
@@ -439,7 +439,7 @@ export const weapons: Weapon[] = [
 export const contractors: Contractor[] = [
   {
     type: "archaeologist",
-    id: "bc58ba77-f7ad-4391-aa50-51da3582e637",
+    id: "",
     occupation: "Archaeologist",
     name: "Vergie Mccandless",
     pronouns: "She / Her",
@@ -453,7 +453,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "bfe89e47-9519-497a-820d-2bca1f0d9a88",
+        id: "",
         name: "Pain Pills",
         description:
           "When ingested, immediately restores 1d10 health and lowers Stress by 1. There is a danger of addiction and/or overdose if used frequently.",
@@ -463,7 +463,7 @@ export const contractors: Contractor[] = [
         baseType: "painPills",
       },
       {
-        id: "34242b6c-6a70-48e8-be0d-28ddd1c7ab6d",
+        id: "",
         name: "Electronic Tool Set",
         description:
           "A full set of tools for doing detailed repair or construction work on electronics.",
@@ -476,7 +476,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "hazardSuit",
-        id: "b12ccfd6-2ede-4378-a1f2-eccd13d15dcb",
+        id: "",
         name: "Hazard Suit",
         equipped: true,
         armorPoints: 5,
@@ -489,7 +489,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "dac6fa11-9e10-41e7-becc-8e79a1bb59ec",
+        id: "",
         name: "Ramhorn",
         equipped: true,
         cost: 2000,
@@ -509,7 +509,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "asteroidMiner",
-    id: "d7d691ff-f009-4e94-8a0b-4ea66a51db73",
+    id: "",
     occupation: "Asteroid Miner",
     name: "Greene Jelinek",
     pronouns: "He / Him",
@@ -525,7 +525,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "standardCrewAttire",
-        id: "e0fbd361-dd77-4df9-84cb-8f56c9f5a0ee",
+        id: "",
         name: "Standard Crew Attire",
         equipped: true,
         armorPoints: 1,
@@ -537,7 +537,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "2aecfbf2-4dc9-4d0a-9b23-8cee43f6e9cb",
+        id: "",
         name: "Rosco SS6",
         equipped: true,
         cost: 150,
@@ -556,7 +556,7 @@ export const contractors: Contractor[] = [
     items: [
       {
         title: "Head Lamp",
-        id: "3c06fbf3-11d7-4c8d-9129-f6791eadfdfd",
+        id: "",
         subtitle: null,
         description: null,
         cost: 0,
@@ -564,7 +564,7 @@ export const contractors: Contractor[] = [
       },
       {
         title: "Satchel",
-        id: "56bb8194-79ae-4088-bfdc-cb2b1a86348d",
+        id: "",
         subtitle: null,
         description: null,
         cost: 0,
@@ -572,7 +572,7 @@ export const contractors: Contractor[] = [
       },
       {
         title: "Lunch Box",
-        id: "cf041b93-54a4-4d17-9d26-401e2cb2286f",
+        id: "",
         subtitle: null,
         description: null,
         cost: 0,
@@ -582,7 +582,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "android",
-    id: "ba72decc-e939-4829-9619-e94ba637eb9f",
+    id: "",
     occupation: "Android",
     name: "Tim Quisenberry",
     pronouns: "They / Them",
@@ -596,7 +596,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "c9b94407-f45f-4e19-8580-df052c5606f3",
+        id: "",
         name: "Paracord (50m)",
         description: "General purpose lightweight nylon rope.",
         equipped: true,
@@ -608,7 +608,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "standardBattleDress",
-        id: "7e7b3eef-aa35-4513-9004-4d1c323fe1b3",
+        id: "",
         name: "Standard Battle Dress",
         equipped: true,
         armorPoints: 7,
@@ -620,7 +620,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "27b159fd-ba8c-4b8b-be4a-2629810762fc",
+        id: "",
         name: "D&C 7",
         equipped: true,
         cost: 850,
@@ -641,7 +641,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "bodyguard",
-    id: "2bdc7f82-9440-40f1-8cba-cab633f07573",
+    id: "",
     occupation: "Bodyguard",
     name: "Graydon Trail",
     pronouns: "He / Him",
@@ -655,7 +655,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "31201999-0bff-4307-8f09-d358090d817d",
+        id: "",
         name: "Stimpak",
         description:
           "Cures cryosickness. Restores 1d10 Health and grants Advantage to Strength and Combat for 2d10 minutes. There is a danger of addiction and/or overdose if used frequently. ",
@@ -668,7 +668,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "standardCrewAttire",
-        id: "69111c53-9bdc-4912-ba4b-956d12422f6d",
+        id: "",
         name: "Tank Top and Camo Pants",
         equipped: true,
         armorPoints: 1,
@@ -680,7 +680,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "b449a402-bad9-4376-aac3-d1584be06501",
+        id: "",
         name: "Combat Knife",
         equipped: true,
         cost: 50,
@@ -700,7 +700,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "captain",
-    id: "674bac88-e59c-42a0-8d4c-4a233bd30410",
+    id: "",
     occupation: "Captain",
     name: "Thor Moir",
     pronouns: "They / Them",
@@ -714,7 +714,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "2986a88d-e2df-4ff5-a6a9-13ba2ecc5b66",
+        id: "",
         name: "Paracord (50m)",
         description: "General purpose lightweight nylon rope.",
         equipped: true,
@@ -723,7 +723,7 @@ export const contractors: Contractor[] = [
         baseType: "paracord",
       },
       {
-        id: "9e7881f8-5ecd-4877-a11f-73131e42fc0d",
+        id: "",
         name: "Drone (Recon)",
         description:
           "Remote controlled drone. Requires two hands to operate receiver. Can fly up to 450m high, to a distance of 3km from operator. Battery operated. Can run for 2 hours. Can record and transmit footage to receiver. If purchased separately, can be equipped with up to two of the following (at their regular cost): binoculars, radio jammer, Geiger counter, medscanner, personal locator, infrared goggles, emergency beacon, cybernetic diagnostic scanner, bioscanner.",
@@ -733,7 +733,7 @@ export const contractors: Contractor[] = [
         baseType: "droneRecon",
       },
       {
-        id: "2d8e1b7d-04f9-4757-b41a-107fc464cd7f",
+        id: "",
         name: "Drill",
         description:
           "Wrenches, spanners, screwdrivers, etc. Can be used as weapons (doing the same Damage as a Crowbar).",
@@ -746,7 +746,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "standardCrewAttire",
-        id: "2d661e23-ecbc-4183-95d4-7122eb6dd881",
+        id: "",
         name: "Heavy Duty Work Clothes",
         equipped: true,
         armorPoints: 2,
@@ -761,7 +761,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "chaplain",
-    id: "52bfa854-305c-434f-9514-a43343f757a9",
+    id: "",
     occupation: "Chaplain",
     name: "Olene Rahe",
     pronouns: "She / Her",
@@ -775,7 +775,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "ceca45f4-be67-486e-8151-c344f8c3b5a2",
+        id: "",
         name: "Paracord (50m)",
         description: "General purpose lightweight nylon rope.",
         equipped: true,
@@ -787,7 +787,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "standardBattleDress",
-        id: "fa883799-760a-45e4-a243-332608512d39",
+        id: "",
         name: "Standard Battle Dress",
         equipped: true,
         armorPoints: 7,
@@ -799,7 +799,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "805f2e5a-6121-46f5-ae66-0331165ea263",
+        id: "",
         name: "D&C 7",
         equipped: true,
         cost: 850,
@@ -820,7 +820,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "corporateFixer",
-    id: "103b36d2-9303-4e31-a000-c194d4e23aed",
+    id: "",
     occupation: "Corporate Fixer",
     name: "Darline Riche",
     pronouns: "They / Them",
@@ -836,7 +836,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "standardCrewAttire",
-        id: "4b6fe2e4-97f1-4bc2-97dc-746448ead150",
+        id: "",
         name: "Standard Crew Attire",
         equipped: true,
         armorPoints: 1,
@@ -848,7 +848,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "393845df-1efd-48b7-8ec7-112fd0ff5c13",
+        id: "",
         name: "KANO X9",
         equipped: true,
         cost: 1400,
@@ -870,7 +870,7 @@ export const contractors: Contractor[] = [
     items: [
       {
         title: "Cat",
-        id: "52b4c525-2eba-49da-b81b-05a7f1d2a30a",
+        id: "",
         subtitle: null,
         description: null,
         cost: 0,
@@ -878,7 +878,7 @@ export const contractors: Contractor[] = [
       },
       {
         title: "Extension Cord (20m)",
-        id: "0c515bd9-c170-418e-9a21-61f05b5dc209",
+        id: "",
         subtitle: null,
         description: null,
         cost: 0,
@@ -888,7 +888,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "doctor",
-    id: "0b79d458-f509-4338-a4d8-aaebb7f57dcc",
+    id: "",
     occupation: "Doctor",
     name: "Madge Heitz",
     pronouns: "He / Him",
@@ -902,7 +902,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "de6c9bfd-29a8-4a53-8e62-fe5839b9b0d8",
+        id: "",
         name: "Cybernetic Diagnostic Scanner",
         description:
           "Allows the user to scan androids and other cybernetic organisms in order to diagnose any physical or mental issues they may be having. Often distrusted by androids.",
@@ -912,7 +912,7 @@ export const contractors: Contractor[] = [
         baseType: "cyberneticDiagnostic",
       },
       {
-        id: "6043fd78-40e5-4136-aaf7-43a98448d1c7",
+        id: "",
         name: "Portable Computer Terminal",
         description:
           "Flat computer monitor, keyboard and interface which allows the user to hack into pre-existing computers and networks, as well as perform standard computer tasks.",
@@ -925,7 +925,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "standardCrewAttire",
-        id: "9cf57cca-71ba-4e36-8a03-8a3100ba3e15",
+        id: "",
         name: "Lab Coat",
         equipped: true,
         armorPoints: 1,
@@ -940,7 +940,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "engineer",
-    id: "e231b165-de04-4399-920e-851447662a8d",
+    id: "",
     occupation: "Engineer",
     name: "Essa Cooney",
     pronouns: "He / Him",
@@ -954,7 +954,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "544db096-89b9-45cb-bdac-b8285cf32484",
+        id: "",
         name: "Flashlight",
         description:
           "Handheld or shoulder mounted. Illuminates 10m ahead of the user.",
@@ -967,7 +967,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "vaccsuit",
-        id: "39db3eb3-56b1-45de-991f-5b7b8f2cc94a",
+        id: "",
         name: "Vaccsuit",
         equipped: true,
         armorPoints: 3,
@@ -980,7 +980,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "80d4aabc-f2b0-49da-8520-806cb587962c",
+        id: "",
         name: "FN Slug",
         equipped: true,
         cost: 750,
@@ -996,7 +996,7 @@ export const contractors: Contractor[] = [
         baseType: "revolver",
       },
       {
-        id: "ab52ac46-a83b-462a-aab4-f72c27ce3036",
+        id: "",
         name: "",
         equipped: true,
         cost: 50,
@@ -1016,7 +1016,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "gunner",
-    id: "ab88b534-f2fb-4ab4-a567-633b6a7d20bf",
+    id: "",
     occupation: "Gunner",
     name: "Andres Gadd",
     pronouns: "She / Her",
@@ -1030,7 +1030,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "ac3c084f-3b84-4857-b881-6889759e5f86",
+        id: "",
         name: "Binoculars",
         description:
           "20x magnification. Add thermal vision (+300cr) or night vision (+1kcr).",
@@ -1040,7 +1040,7 @@ export const contractors: Contractor[] = [
         baseType: "binoculars",
       },
       {
-        id: "b9bb79b6-d136-48b5-90a7-6735f0ecdf88",
+        id: "",
         name: "Personal Locator",
         description:
           "Allows crewmembers at a control center (or on the bridge of a ship) to track the location of the wearer.",
@@ -1053,7 +1053,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "standardBattleDress",
-        id: "b48ca873-35f4-40e0-860f-845f7b001c87",
+        id: "",
         name: "Standard Battle Dress",
         equipped: true,
         armorPoints: 7,
@@ -1065,7 +1065,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "28d58011-0345-4f84-8423-33b2b4366518",
+        id: "",
         name: "SK 109 Seeker",
         equipped: true,
         cost: 12000,
@@ -1086,7 +1086,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "marineGrunt",
-    id: "a4233b3f-3b0d-412d-aed4-16f98036b55b",
+    id: "",
     occupation: "Marine (Grunt)",
     name: "Maryanne Brass",
     pronouns: "They / Them",
@@ -1100,7 +1100,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "1f808fc5-580d-4a18-90e1-8275cf22a520",
+        id: "",
         name: "Stimpak",
         description:
           "Cures cryosickness. Restores 1d10 Health and grants Advantage to Strength and Combat for 2d10 minutes. There is a danger of addiction and/or overdose if used frequently. ",
@@ -1113,7 +1113,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "standardCrewAttire",
-        id: "304bac62-9264-4362-9969-7aeaf8bb196f",
+        id: "",
         name: "Tank Top and Camo Pants",
         equipped: true,
         armorPoints: 1,
@@ -1125,7 +1125,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "c3d93d01-d3dc-4dc9-8417-0a8a0625ecd6",
+        id: "",
         name: "Combat Knife",
         equipped: true,
         cost: 50,
@@ -1145,7 +1145,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "marineOfficer",
-    id: "b53f0382-755e-41f2-a231-03665581333a",
+    id: "",
     occupation: "Marine (Officer)",
     name: "Augustine Lipford",
     pronouns: "They / Them",
@@ -1159,7 +1159,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "6c48cb84-8d5d-4b7f-87ab-7b79a017f98a",
+        id: "",
         name: "Infrared Goggles",
         description:
           "Allows the wearer to see heat signatures, sometimes up to several hours old. Add night vision for (+1kcr).",
@@ -1172,7 +1172,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "standardBattleDress",
-        id: "a760255c-5a0f-4e9c-96ea-7bbccea6740d",
+        id: "",
         name: "Standard Battle Dress",
         equipped: true,
         armorPoints: 7,
@@ -1184,7 +1184,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "c62cee3b-24e2-4e09-9504-de9cd9656948",
+        id: "",
         name: "F20 “Arbiter”",
         equipped: true,
         cost: 2000,
@@ -1204,7 +1204,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "pilot",
-    id: "e7222825-1c56-49d4-b6c8-c19e0ac99464",
+    id: "",
     occupation: "Pilot",
     name: "Rudolph Sweeney",
     pronouns: "They / Them",
@@ -1218,7 +1218,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "5833bf8f-0588-4593-8f05-35c7c312ed5b",
+        id: "",
         name: "Patch Kit",
         description:
           "Repairs punctured and torn vaccsuits, restoring their space readiness. Patched vaccsuits have an AP of 1.",
@@ -1228,7 +1228,7 @@ export const contractors: Contractor[] = [
         baseType: "patchKit",
       },
       {
-        id: "86016036-741e-463b-817d-9b0e91daa02e",
+        id: "",
         name: "Assorted Tools",
         description:
           "Wrenches, spanners, screwdrivers, etc. Can be used as weapons (doing the same Damage as a Crowbar).",
@@ -1241,7 +1241,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "vaccsuit",
-        id: "9536bfba-88e2-4305-be73-6982b3d99737",
+        id: "",
         name: "Vaccsuit",
         equipped: true,
         armorPoints: 3,
@@ -1254,7 +1254,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "86a8c3b5-d459-4de8-b863-cb84828d4b03",
+        id: "",
         name: "MNC Mode",
         equipped: true,
         cost: 1200,
@@ -1275,7 +1275,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "pioneer",
-    id: "36c44ab5-c720-41ae-b0f3-f847955f70a7",
+    id: "",
     occupation: "Pioneer",
     name: "Pearlene Fogarty",
     pronouns: "They / Them",
@@ -1289,7 +1289,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "b7f539b5-8529-4d1c-8209-dc439cc8e342",
+        id: "",
         name: "Sample Collection Kit",
         description:
           "Used to research xenoflora and xenofauna in the field. Can take vital signs, DNA samples ,and collect other data on foreign material. Results may not be instaneous and may require a lab for complete analysis.",
@@ -1299,7 +1299,7 @@ export const contractors: Contractor[] = [
         baseType: "sampleKit",
       },
       {
-        id: "6ca3a755-11d4-47cb-b5e3-95e91efe1c91",
+        id: "",
         name: "Screwdriver",
         description:
           "Wrenches, spanners, screwdrivers, etc. Can be used as weapons (doing the same Damage as a Crowbar).",
@@ -1312,7 +1312,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "hazardSuit",
-        id: "173b208a-a68b-4589-a92f-63b2137a0126",
+        id: "",
         name: "Hazard Suit",
         equipped: true,
         armorPoints: 5,
@@ -1325,7 +1325,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "a40494b3-7908-496a-a54f-e60896fda0ff",
+        id: "",
         name: "Halls B Series",
         equipped: true,
         cost: 275,
@@ -1346,7 +1346,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "scientist",
-    id: "9d593d4f-f63a-4d02-a09f-20433b81715a",
+    id: "",
     occupation: "Scientist",
     name: "Deedee Bostick",
     pronouns: "They / Them",
@@ -1360,7 +1360,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "beedc60b-300e-4a98-aa71-d36653e5c000",
+        id: "",
         name: "Foldable Stretcher",
         description:
           "Portable stretcher that can fit within a rucksack. Allows the user to safely strap down the patient and carry them to a location where their wounds can be better treated. Unfolds to roughly 2m.",
@@ -1370,7 +1370,7 @@ export const contractors: Contractor[] = [
         baseType: "foldableStretcher",
       },
       {
-        id: "09abd73c-b7f3-4fe5-9ddc-08d2a1bb3822",
+        id: "",
         name: "First Aid Kit",
         description:
           "An assortment of bandages and treatments to help stop bleeding, bandage cuts, and treat other minor injuries.",
@@ -1380,7 +1380,7 @@ export const contractors: Contractor[] = [
         baseType: "firstAidKit",
       },
       {
-        id: "c34bb469-5cdb-4c76-96f7-a6f991c5f41f",
+        id: "",
         name: "Radiation Pills",
         description:
           "Reduces Radiation Damage (see pg. xx.x) by 2d10 for 2d10 minutes.",
@@ -1393,7 +1393,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "vaccsuit",
-        id: "de1f7c36-7c79-48a3-80fe-aa013e48b042",
+        id: "",
         name: "Vaccsuit",
         equipped: true,
         armorPoints: 3,
@@ -1406,7 +1406,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "962a9753-c040-4cd7-9db9-6c46b0f6ca38",
+        id: "",
         name: "Halls B Series",
         equipped: true,
         cost: 275,
@@ -1427,7 +1427,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "survivalGuide",
-    id: "56b2b7c6-0b80-48bb-8db9-1c26254bae77",
+    id: "",
     occupation: "Survival Guide",
     name: "Thalia Gillingham",
     pronouns: "He / Him",
@@ -1441,7 +1441,7 @@ export const contractors: Contractor[] = [
     motivation: "In huge debt to a powerful crime syndicate.",
     equipment: [
       {
-        id: "901862e9-c8eb-4514-b83f-b268ddcaca66",
+        id: "",
         name: "Cybernetic Diagnostic Scanner",
         description:
           "Allows the user to scan androids and other cybernetic organisms in order to diagnose any physical or mental issues they may be having. Often distrusted by androids.",
@@ -1454,7 +1454,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "standardCrewAttire",
-        id: "3912ebcd-144c-4df1-a2f9-a8a37fed34ca",
+        id: "",
         name: "Standard Crew Attire",
         equipped: true,
         armorPoints: 1,
@@ -1466,7 +1466,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "4bff3e93-92b7-42a8-8bb1-c412660be934",
+        id: "",
         name: "Utility Knife",
         equipped: true,
         cost: 50,
@@ -1485,7 +1485,7 @@ export const contractors: Contractor[] = [
     items: [
       {
         title: "Duct Tape",
-        id: "a1fddecb-c501-4cd4-8605-897d7b8434a5",
+        id: "",
         subtitle: null,
         description: null,
         cost: 0,
@@ -1495,7 +1495,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "surgeon",
-    id: "de46f3e7-58cb-4de6-9e0d-3e383e901fd4",
+    id: "",
     occupation: "Surgeon",
     name: "Chrissy Saucedo",
     pronouns: "He / Him",
@@ -1509,7 +1509,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "116555cc-077b-4ffb-9f21-9151cb9a6bf3",
+        id: "",
         name: "Sample Collection Kit",
         description:
           "Used to research xenoflora and xenofauna in the field. Can take vital signs, DNA samples ,and collect other data on foreign material. Results may not be instaneous and may require a lab for complete analysis.",
@@ -1519,7 +1519,7 @@ export const contractors: Contractor[] = [
         baseType: "sampleKit",
       },
       {
-        id: "4bae663a-2319-4e68-949d-4907defb97b9",
+        id: "",
         name: "Flashlight",
         description:
           "Handheld or shoulder mounted. Illuminates 10m ahead of the user.",
@@ -1532,7 +1532,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "vaccsuit",
-        id: "2242eefb-b5df-4974-a6e6-2c1ef0fd6df0",
+        id: "",
         name: "Vaccsuit",
         equipped: true,
         armorPoints: 3,
@@ -1545,7 +1545,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "8ff97137-970d-4d03-b5a8-ad7060985ed6",
+        id: "",
         name: "HAN-290",
         equipped: true,
         cost: 350,
@@ -1567,7 +1567,7 @@ export const contractors: Contractor[] = [
     items: [
       {
         title: "Lab Rat",
-        id: "0e26a287-b7e0-485e-9e33-5b0d050240fd",
+        id: "",
         subtitle: null,
         description: null,
         cost: 0,
@@ -1577,7 +1577,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "teamster",
-    id: "4dae77fc-2193-4606-a355-93459dd4950e",
+    id: "",
     occupation: "Teamster",
     name: "Emelia Lucky",
     pronouns: "He / Him",
@@ -1593,7 +1593,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "standardCrewAttire",
-        id: "65656308-1f84-42aa-8e78-3cd83681c1f7",
+        id: "",
         name: "Standard Crew Attire",
         equipped: true,
         armorPoints: 1,
@@ -1605,7 +1605,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "785798dc-e440-4cf2-bd91-b70f5152bb84",
+        id: "",
         name: "Rosco SS6",
         equipped: true,
         cost: 150,
@@ -1624,7 +1624,7 @@ export const contractors: Contractor[] = [
     items: [
       {
         title: "Head Lamp",
-        id: "a8c31ea2-1d3b-4473-9530-7c7cc66923aa",
+        id: "",
         subtitle: null,
         description: null,
         cost: 0,
@@ -1632,7 +1632,7 @@ export const contractors: Contractor[] = [
       },
       {
         title: "Satchel",
-        id: "57c74652-5f0c-4122-9462-f3d920a3aca3",
+        id: "",
         subtitle: null,
         description: null,
         cost: 0,
@@ -1640,7 +1640,7 @@ export const contractors: Contractor[] = [
       },
       {
         title: "Lunch Box",
-        id: "c69c814c-0535-4f52-8aae-d29e74b18429",
+        id: "",
         subtitle: null,
         description: null,
         cost: 0,
@@ -1650,7 +1650,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "therapist",
-    id: "40e68305-8732-4b14-8b4f-e025d19018ba",
+    id: "",
     occupation: "Therapist",
     name: "Mohamed Knoblauch",
     pronouns: "He / Him",
@@ -1664,7 +1664,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "acbb0af8-ab9c-41a5-8e6b-40889e8f78d2",
+        id: "",
         name: "Foldable Stretcher",
         description:
           "Portable stretcher that can fit within a rucksack. Allows the user to safely strap down the patient and carry them to a location where their wounds can be better treated. Unfolds to roughly 2m.",
@@ -1674,7 +1674,7 @@ export const contractors: Contractor[] = [
         baseType: "foldableStretcher",
       },
       {
-        id: "ebd2f9cd-2789-43a9-9e02-28128996a154",
+        id: "",
         name: "First Aid Kit",
         description:
           "An assortment of bandages and treatments to help stop bleeding, bandage cuts, and treat other minor injuries.",
@@ -1684,7 +1684,7 @@ export const contractors: Contractor[] = [
         baseType: "firstAidKit",
       },
       {
-        id: "448f0555-657c-4fff-85b7-1dee51f65962",
+        id: "",
         name: "Radiation Pills",
         description:
           "Reduces Radiation Damage (see pg. xx.x) by 2d10 for 2d10 minutes.",
@@ -1697,7 +1697,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "vaccsuit",
-        id: "3c28cc9a-a1e0-4193-a831-caf740abf1b1",
+        id: "",
         name: "Vaccsuit",
         equipped: true,
         armorPoints: 3,
@@ -1710,7 +1710,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "984afbbb-25d0-4cdb-b286-bda05332cbd1",
+        id: "",
         name: "Halls B Series",
         equipped: true,
         cost: 275,
@@ -1731,7 +1731,7 @@ export const contractors: Contractor[] = [
   },
   {
     type: "voidUrchin",
-    id: "7ed60887-5a7b-4046-b813-f3eca69a6dfa",
+    id: "",
     occupation: "Void Urchin",
     name: "Kael Gorsuch",
     pronouns: "They / Them",
@@ -1745,7 +1745,7 @@ export const contractors: Contractor[] = [
     motivation: "",
     equipment: [
       {
-        id: "2c19a38f-d317-4c8a-97bc-f7bf05f99efa",
+        id: "",
         name: "Bioscanner",
         description:
           "Allows the user to scan the immediate area for signs of life. Generally can scan for 100m in all directions, without being blocked by most known metals. Can tell the location of signs of life, but not what that life is.",
@@ -1758,7 +1758,7 @@ export const contractors: Contractor[] = [
     armor: [
       {
         armorType: "standardCrewAttire",
-        id: "69ed54fc-c231-490c-a7b6-1c250bb23a73",
+        id: "",
         name: "Standard Crew Attire",
         equipped: true,
         armorPoints: 1,
@@ -1770,7 +1770,7 @@ export const contractors: Contractor[] = [
     ],
     weapons: [
       {
-        id: "1b524917-7f3a-4e87-bdeb-ce9368761a83",
+        id: "",
         name: "",
         equipped: true,
         cost: 50,
@@ -1793,7 +1793,7 @@ export const contractors: Contractor[] = [
 export const armors: Armor[] = [
   {
     armorType: "standardCrewAttire",
-    id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+    id: "",
     name: "Standard Crew Attire",
     equipped: true,
     armorPoints: 1,
@@ -1804,7 +1804,7 @@ export const armors: Armor[] = [
   },
   {
     armorType: "advancedBattleDress",
-    id: "55d58171-d63d-4aa7-8afd-05b50c48c209",
+    id: "",
     name: "Advanced Battle Dress",
     equipped: true,
     armorPoints: 10,
@@ -1816,7 +1816,7 @@ export const armors: Armor[] = [
   },
   {
     armorType: "standardBattleDress",
-    id: "2008b970-e981-4d46-8bda-9e46aeeccaa9",
+    id: "",
     name: "Standard Battle Dress",
     equipped: true,
     armorPoints: 7,
@@ -1827,7 +1827,7 @@ export const armors: Armor[] = [
   },
   {
     armorType: "hazardSuit",
-    id: "76be828f-38e9-4b68-9ed2-8cec406225c9",
+    id: "",
     name: "Hazard Suit",
     equipped: true,
     armorPoints: 5,
@@ -1839,7 +1839,7 @@ export const armors: Armor[] = [
   },
   {
     armorType: "vaccsuit",
-    id: "4999a652-c93a-42c3-a6ce-c19acd965a25",
+    id: "",
     name: "Vaccsuit",
     equipped: true,
     armorPoints: 3,
@@ -2285,7 +2285,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          id: "",
           name: "Standard Crew Attire",
           equipped: true,
           armorPoints: 1,
@@ -2297,7 +2297,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "049414da-9cd0-4ac0-a7f0-49e65031b5c1",
+          id: "",
           name: "",
           equipped: true,
           cost: 50,
@@ -2315,7 +2315,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "a74517cd-3f6c-493e-b981-5558ba8075be",
+          id: "",
           name: "Stimpak",
           description:
             "Cures cryosickness. Restores 1d10 Health and grants Advantage to Strength and Combat for 2d10 minutes. There is a danger of addiction and/or overdose if used frequently. ",
@@ -2330,7 +2330,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "advancedBattleDress",
-          id: "55d58171-d63d-4aa7-8afd-05b50c48c209",
+          id: "",
           name: "Advanced Battle Dress",
           equipped: true,
           armorPoints: 10,
@@ -2343,7 +2343,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "ab7d880c-5a00-490e-a528-23d77278c5db",
+          id: "",
           name: "Ramhorn",
           equipped: true,
           cost: 2000,
@@ -2359,7 +2359,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "flamethrower",
         },
         {
-          id: "6c9d6e1b-aac1-4cef-99a5-aa414a3b9bd5",
+          id: "",
           name: "",
           equipped: true,
           cost: 150,
@@ -2381,7 +2381,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardBattleDress",
-          id: "2008b970-e981-4d46-8bda-9e46aeeccaa9",
+          id: "",
           name: "Standard Battle Dress",
           equipped: true,
           armorPoints: 7,
@@ -2393,7 +2393,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "af8bfb9a-4207-4eaa-a2dc-df67c0054b7c",
+          id: "",
           name: "KANO X9",
           equipped: true,
           cost: 1400,
@@ -2414,7 +2414,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "26684d34-dedb-427c-9e49-6bdcd9a6f72e",
+          id: "",
           name: "Rucksack",
           description: "Large, durable, waterproof backpack.",
           equipped: true,
@@ -2423,7 +2423,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "rucksack",
         },
         {
-          id: "26684d34-dedb-427c-9e49-6bdcd9a6f72e",
+          id: "",
           name: "Campign gear",
           description: "",
           equipped: true,
@@ -2437,7 +2437,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardBattleDress",
-          id: "2008b970-e981-4d46-8bda-9e46aeeccaa9",
+          id: "",
           name: "Standard Battle Dress",
           equipped: true,
           armorPoints: 7,
@@ -2449,7 +2449,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "b6f44416-34bf-4ba9-abf3-e5f66c1d7872",
+          id: "",
           name: "F20 “Arbiter”",
           equipped: true,
           cost: 2000,
@@ -2467,7 +2467,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "e7dbea4f-110d-4d6e-b195-0741fe1363a8",
+          id: "",
           name: "Infrared Goggles",
           description:
             "Allows the wearer to see heat signatures, sometimes up to several hours old. Add night vision for (+1kcr).",
@@ -2482,7 +2482,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardBattleDress",
-          id: "2008b970-e981-4d46-8bda-9e46aeeccaa9",
+          id: "",
           name: "Standard Battle Dress",
           equipped: true,
           armorPoints: 7,
@@ -2494,7 +2494,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "1a79f24a-47cb-4139-983b-10ab1d8a5b10",
+          id: "",
           name: "SK 109 Seeker",
           equipped: true,
           cost: 12000,
@@ -2513,7 +2513,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "397b61e3-bcff-4951-a553-5f0d09218374",
+          id: "",
           name: "Binoculars",
           description:
             "20x magnification. Add thermal vision (+300cr) or night vision (+1kcr).",
@@ -2523,7 +2523,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "binoculars",
         },
         {
-          id: "578f68bc-60f5-423b-baac-bc7ef2b63de7",
+          id: "",
           name: "Personal Locator",
           description:
             "Allows crewmembers at a control center (or on the bridge of a ship) to track the location of the wearer.",
@@ -2538,7 +2538,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardBattleDress",
-          id: "2008b970-e981-4d46-8bda-9e46aeeccaa9",
+          id: "",
           name: "Standard Battle Dress",
           equipped: true,
           armorPoints: 7,
@@ -2550,7 +2550,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "3574dc47-35c8-4e22-8752-73a1374bedd3",
+          id: "",
           name: "ARMA 29",
           equipped: true,
           cost: 1200,
@@ -2568,7 +2568,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "636712d1-2b0b-4436-bb19-c6b139d839ae",
+          id: "",
           name: "MRE",
           description:
             "“Meals, Ready-to-Eat.” Self-contained, individual field rations in lightweight packaging. Each one has sufficient sustenance for a single person for one day (does not include water).",
@@ -2583,7 +2583,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "fatigues",
-          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          id: "",
           name: "Fatigues",
           equipped: true,
           armorPoints: 2,
@@ -2595,7 +2595,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "393845df-1efd-48b7-8ec7-112fd0ff5c13",
+          id: "",
           name: "KANO X9",
           equipped: true,
           cost: 1400,
@@ -2616,7 +2616,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "a74517cd-3f6c-493e-b981-5558ba8075be",
+          id: "",
           name: "Dog",
           description: "",
           equipped: true,
@@ -2625,7 +2625,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "dog",
         },
         {
-          id: "a74517cd-3f6c-493e-b981-5558ba8075be",
+          id: "",
           name: "Leash",
           description: "",
           equipped: true,
@@ -2634,7 +2634,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "leash",
         },
         {
-          id: "a74517cd-3f6c-493e-b981-5558ba8075be",
+          id: "",
           name: "Tennis ball",
           description: "",
           equipped: true,
@@ -2648,7 +2648,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "fatigues",
-          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          id: "",
           name: "Fatigues",
           equipped: true,
           armorPoints: 2,
@@ -2660,7 +2660,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "61aa11ff-7c02-473c-8ec1-89bd57e322e5",
+          id: "",
           name: "FN Slug",
           equipped: true,
           cost: 750,
@@ -2676,7 +2676,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "revolver",
         },
         {
-          id: "a2e7c6f0-42e0-48c4-833f-e04aad946fde",
+          id: "",
           name: "",
           equipped: true,
           cost: 70,
@@ -2700,7 +2700,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          id: "",
           name: "Dress Uniform",
           equipped: true,
           armorPoints: 1,
@@ -2712,7 +2712,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "61aa11ff-7c02-473c-8ec1-89bd57e322e5",
+          id: "",
           name: "FN Slug",
           equipped: true,
           cost: 750,
@@ -2730,7 +2730,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "a74517cd-3f6c-493e-b981-5558ba8075be",
+          id: "",
           name: "Challenge Coin",
           description: "",
           equipped: true,
@@ -2744,7 +2744,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "advancedBattleDress",
-          id: "55d58171-d63d-4aa7-8afd-05b50c48c209",
+          id: "",
           name: "Advanced Battle Dress",
           equipped: true,
           armorPoints: 10,
@@ -2757,7 +2757,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "3ffb8ddc-4d79-4953-a905-5d07f85acae2",
+          id: "",
           name: "Overmatch Arms SW-512",
           equipped: true,
           cost: 1800,
@@ -2776,7 +2776,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "c5884110-e11e-42df-9858-584a464d1bbe",
+          id: "",
           name: "Heads-Up Display (HUD)",
           description:
             "Often worn by marines, the HUD allows the wearer to see through the body cams of others in their unit, and can connect to any smart-link upgaded weapon.",
@@ -2793,7 +2793,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "vaccsuit",
-          id: "4999a652-c93a-42c3-a6ce-c19acd965a25",
+          id: "",
           name: "Vaccsuit",
           equipped: true,
           armorPoints: 3,
@@ -2806,7 +2806,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "1a79f24a-47cb-4139-983b-10ab1d8a5b10",
+          id: "",
           name: "SK 109 Seeker",
           equipped: true,
           cost: 12000,
@@ -2825,7 +2825,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "e7dbea4f-110d-4d6e-b195-0741fe1363a8",
+          id: "",
           name: "Infrared Goggles",
           description:
             "Allows the wearer to see heat signatures, sometimes up to several hours old. Add night vision for (+1kcr).",
@@ -2835,7 +2835,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "infraredGoggles",
         },
         {
-          id: "8963d89f-6d8e-4f6e-bcb4-342495b0cf1c",
+          id: "",
           name: "Mylar Blanket",
           description:
             "Lightweight blanket made of heat-reflective material. Often used for thermal control of patients suffering from extreme cold or other trauma.",
@@ -2850,7 +2850,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "vaccsuit",
-          id: "4999a652-c93a-42c3-a6ce-c19acd965a25",
+          id: "",
           name: "Vaccsuit",
           equipped: true,
           armorPoints: 3,
@@ -2863,7 +2863,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "61aa11ff-7c02-473c-8ec1-89bd57e322e5",
+          id: "",
           name: "FN Slug",
           equipped: true,
           cost: 750,
@@ -2881,7 +2881,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "b2241949-dbc5-4e95-b9a9-654efa74c46d",
+          id: "",
           name: "Long-range comms",
           description:
             "Rucksack-sized communication device for use in surface-to-ship comunication.",
@@ -2891,7 +2891,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "longrangecomms",
         },
         {
-          id: "e7531adb-f7af-4f5b-9a57-9ae5c55f5148",
+          id: "",
           name: "Satchel",
           description: "",
           equipped: true,
@@ -2905,7 +2905,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "hazardSuit",
-          id: "76be828f-38e9-4b68-9ed2-8cec406225c9",
+          id: "",
           name: "Hazard Suit",
           equipped: true,
           armorPoints: 5,
@@ -2918,7 +2918,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "61aa11ff-7c02-473c-8ec1-89bd57e322e5",
+          id: "",
           name: "FN Slug",
           equipped: true,
           cost: 750,
@@ -2936,7 +2936,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "a1f3ad43-5634-490b-ac20-31f24563ab69",
+          id: "",
           name: "First Aid Kit",
           description:
             "An assortment of bandages and treatments to help stop bleeding, bandage cuts, and treat other minor injuries.",
@@ -2946,7 +2946,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "firstAidKit",
         },
         {
-          id: "e7531adb-f7af-4f5b-9a57-9ae5c55f5148",
+          id: "",
           name: "Flashlight",
           description:
             "Handheld or shoulder mounted. Illuminates 10m ahead of the user.",
@@ -2956,7 +2956,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "flashlight",
         },
         {
-          id: "e7531adb-f7af-4f5b-9a57-9ae5c55f5148",
+          id: "",
           name: "Defibrillator",
           description: "",
           equipped: true,
@@ -2970,7 +2970,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "hazardSuit",
-          id: "76be828f-38e9-4b68-9ed2-8cec406225c9",
+          id: "",
           name: "Hazard Suit",
           equipped: true,
           armorPoints: 5,
@@ -2983,7 +2983,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "b303958f-bd9c-4f8d-8886-f020619ecf86",
+          id: "",
           name: "Halls B Series",
           equipped: true,
           cost: 275,
@@ -3002,7 +3002,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "b7f539b5-8529-4d1c-8209-dc439cc8e342",
+          id: "",
           name: "Sample Collection Kit",
           description:
             "Used to research xenoflora and xenofauna in the field. Can take vital signs, DNA samples ,and collect other data on foreign material. Results may not be instaneous and may require a lab for complete analysis.",
@@ -3012,7 +3012,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "sampleKit",
         },
         {
-          id: "6ca3a755-11d4-47cb-b5e3-95e91efe1c91",
+          id: "",
           name: "Screwdriver",
           description:
             "Wrenches, spanners, screwdrivers, etc. Can be used as weapons (doing the same Damage as a Crowbar).",
@@ -3027,7 +3027,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardBattleDress",
-          id: "2008b970-e981-4d46-8bda-9e46aeeccaa9",
+          id: "",
           name: "Standard Battle Dress",
           equipped: true,
           armorPoints: 7,
@@ -3039,7 +3039,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "cbe6bc4c-ea53-4ed7-a28b-334ddd4347e1",
+          id: "",
           name: "D&C 7",
           equipped: true,
           cost: 850,
@@ -3058,7 +3058,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "6b49568c-74b7-42a3-928f-8fded50a81ea",
+          id: "",
           name: "Paracord (100m)",
           description: "General purpose lightweight nylon rope.",
           equipped: true,
@@ -3072,7 +3072,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          id: "",
           name: "Standard Crew Attire",
           equipped: true,
           armorPoints: 1,
@@ -3084,7 +3084,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "4294c83d-8796-4f3c-acda-0e8a97a750af",
+          id: "",
           name: "",
           equipped: true,
           cost: 115,
@@ -3102,7 +3102,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "116e0071-8c33-4cb8-97a3-7b11dc59a388",
+          id: "",
           name: "Pet (Synthetic)",
           description:
             "Small to medium-sized synthetic pet animal. Larger or rare pets cost 2d10x.",
@@ -3117,7 +3117,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          id: "",
           name: "Standard Crew Attire",
           equipped: true,
           armorPoints: 1,
@@ -3129,7 +3129,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "049414da-9cd0-4ac0-a7f0-49e65031b5c1",
+          id: "",
           name: "",
           equipped: true,
           cost: 50,
@@ -3147,7 +3147,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "2c19a38f-d317-4c8a-97bc-f7bf05f99efa",
+          id: "",
           name: "Bioscanner",
           description:
             "Allows the user to scan the immediate area for signs of life. Generally can scan for 100m in all directions, without being blocked by most known metals. Can tell the location of signs of life, but not what that life is.",
@@ -3162,7 +3162,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          id: "",
           name: "Standard Crew Attire",
           equipped: true,
           armorPoints: 1,
@@ -3174,7 +3174,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "a2e7c6f0-42e0-48c4-833f-e04aad946fde",
+          id: "",
           name: "",
           equipped: true,
           cost: 70,
@@ -3192,7 +3192,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "fragGrenade",
         },
         {
-          id: "049414da-9cd0-4ac0-a7f0-49e65031b5c1",
+          id: "",
           name: "",
           equipped: true,
           cost: 50,
@@ -3214,7 +3214,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          id: "",
           name: "Manufacturer Supplied Attire",
           equipped: true,
           armorPoints: 1,
@@ -3227,7 +3227,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       weapons: [],
       equipments: [
         {
-          id: "ea8a8b6b-d312-44ec-a022-6ce813f1222d",
+          id: "",
           name: "Jump-9 ticket (destination blank)",
           description: "Jump-9 ticket (destination blank)",
           equipped: true,
@@ -3241,7 +3241,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          id: "",
           name: "Corporate Attire",
           equipped: true,
           armorPoints: 1,
@@ -3254,7 +3254,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       weapons: [],
       equipments: [
         {
-          id: "ea8a8b6b-d312-44ec-a022-6ce813f1222d",
+          id: "",
           name: "VIP Corporate key card",
           description: "Jump-9 ticket (destination blank)",
           equipped: true,
@@ -3270,7 +3270,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "hazardSuit",
-          id: "76be828f-38e9-4b68-9ed2-8cec406225c9",
+          id: "",
           name: "Hazard Suit",
           equipped: true,
           armorPoints: 5,
@@ -3283,7 +3283,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "cbe6bc4c-ea53-4ed7-a28b-334ddd4347e1",
+          id: "",
           name: "D&C 7",
           equipped: true,
           cost: 850,
@@ -3302,7 +3302,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "2c19a38f-d317-4c8a-97bc-f7bf05f99efa",
+          id: "",
           name: "Bioscanner",
           description:
             "Allows the user to scan the immediate area for signs of life. Generally can scan for 100m in all directions, without being blocked by most known metals. Can tell the location of signs of life, but not what that life is.",
@@ -3312,7 +3312,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "bioscanner",
         },
         {
-          id: "b7f539b5-8529-4d1c-8209-dc439cc8e342",
+          id: "",
           name: "Sample Collection Kit",
           description:
             "Used to research xenoflora and xenofauna in the field. Can take vital signs, DNA samples ,and collect other data on foreign material. Results may not be instaneous and may require a lab for complete analysis.",
@@ -3327,7 +3327,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "hazardSuit",
-          id: "76be828f-38e9-4b68-9ed2-8cec406225c9",
+          id: "",
           name: "Hazard Suit",
           equipped: true,
           armorPoints: 5,
@@ -3340,7 +3340,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "ab7d880c-5a00-490e-a528-23d77278c5db",
+          id: "",
           name: "Ramhorn",
           equipped: true,
           cost: 2000,
@@ -3358,7 +3358,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "bfe89e47-9519-497a-820d-2bca1f0d9a88",
+          id: "",
           name: "Pain Pills",
           description:
             "When ingested, immediately restores 1d10 health and lowers Stress by 1. There is a danger of addiction and/or overdose if used frequently.",
@@ -3368,7 +3368,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "painPills",
         },
         {
-          id: "34242b6c-6a70-48e8-be0d-28ddd1c7ab6d",
+          id: "",
           name: "Electronic Tool Set",
           description:
             "A full set of tools for doing detailed repair or construction work on electronics.",
@@ -3383,7 +3383,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "vaccsuit",
-          id: "4999a652-c93a-42c3-a6ce-c19acd965a25",
+          id: "",
           name: "Vaccsuit",
           equipped: true,
           armorPoints: 3,
@@ -3396,7 +3396,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "8ff97137-970d-4d03-b5a8-ad7060985ed6",
+          id: "",
           name: "HAN-290",
           equipped: true,
           cost: 350,
@@ -3417,7 +3417,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "b7f539b5-8529-4d1c-8209-dc439cc8e342",
+          id: "",
           name: "Sample Collection Kit",
           description:
             "Used to research xenoflora and xenofauna in the field. Can take vital signs, DNA samples ,and collect other data on foreign material. Results may not be instaneous and may require a lab for complete analysis.",
@@ -3427,7 +3427,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "sampleKit",
         },
         {
-          id: "e7531adb-f7af-4f5b-9a57-9ae5c55f5148",
+          id: "",
           name: "Flashlight",
           description:
             "Handheld or shoulder mounted. Illuminates 10m ahead of the user.",
@@ -3437,7 +3437,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "flashlight",
         },
         {
-          id: "8d6ff2d3-6b5a-439d-8c31-503eba44a65d",
+          id: "",
           name: "Lab rat (small pet)",
           description:
             "Small to medium-sized organic pet animal. Larger or rare pets cost 2d10x.",
@@ -3452,7 +3452,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "vaccsuit",
-          id: "4999a652-c93a-42c3-a6ce-c19acd965a25",
+          id: "",
           name: "Vaccsuit",
           equipped: true,
           armorPoints: 3,
@@ -3465,7 +3465,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "b303958f-bd9c-4f8d-8886-f020619ecf86",
+          id: "",
           name: "Halls B Series",
           equipped: true,
           cost: 275,
@@ -3484,7 +3484,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "beedc60b-300e-4a98-aa71-d36653e5c000",
+          id: "",
           name: "Foldable Stretcher",
           description:
             "Portable stretcher that can fit within a rucksack. Allows the user to safely strap down the patient and carry them to a location where their wounds can be better treated. Unfolds to roughly 2m.",
@@ -3494,7 +3494,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "foldableStretcher",
         },
         {
-          id: "09abd73c-b7f3-4fe5-9ddc-08d2a1bb3822",
+          id: "",
           name: "First Aid Kit",
           description:
             "An assortment of bandages and treatments to help stop bleeding, bandage cuts, and treat other minor injuries.",
@@ -3504,7 +3504,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "firstAidKit",
         },
         {
-          id: "c34bb469-5cdb-4c76-96f7-a6f991c5f41f",
+          id: "",
           name: "Radiation Pills",
           description:
             "Reduces Radiation Damage (see pg. xx.x) by 2d10 for 2d10 minutes.",
@@ -3519,7 +3519,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "3912ebcd-144c-4df1-a2f9-a8a37fed34ca",
+          id: "",
           name: "Lab Coat",
           equipped: true,
           armorPoints: 1,
@@ -3532,7 +3532,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       weapons: [],
       equipments: [
         {
-          id: "6ca3a755-11d4-47cb-b5e3-95e91efe1c91",
+          id: "",
           name: "Screwdriver",
           description:
             "Wrenches, spanners, screwdrivers, etc. Can be used as weapons (doing the same Damage as a Crowbar).",
@@ -3542,7 +3542,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "assortedTools",
         },
         {
-          id: "6e15c923-2790-4a1f-b492-2e02ca3261f6",
+          id: "",
           name: "Medscanner",
           description:
             "Allows the user to scan a living or dead body to analyze it for disease or abnormalities, without having to do a biopsy (or autopsy). Results are often non-instantaneous and may require a lab for analysis.",
@@ -3552,7 +3552,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "medscanner",
         },
         {
-          id: "6e15c923-2790-4a1f-b492-2e02ca3261f6",
+          id: "",
           name: "Vaccine",
           description: "",
           equipped: true,
@@ -3566,7 +3566,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "3912ebcd-144c-4df1-a2f9-a8a37fed34ca",
+          id: "",
           name: "Lab Coat",
           equipped: true,
           armorPoints: 1,
@@ -3579,7 +3579,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       weapons: [],
       equipments: [
         {
-          id: "de6c9bfd-29a8-4a53-8e62-fe5839b9b0d8",
+          id: "",
           name: "Cybernetic Diagnostic Scanner",
           description:
             "Allows the user to scan androids and other cybernetic organisms in order to diagnose any physical or mental issues they may be having. Often distrusted by androids.",
@@ -3589,7 +3589,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "cyberneticDiagnostic",
         },
         {
-          id: "6043fd78-40e5-4136-aaf7-43a98448d1c7",
+          id: "",
           name: "Portable Computer Terminal",
           description:
             "Flat computer monitor, keyboard and interface which allows the user to hack into pre-existing computers and networks, as well as perform standard computer tasks.",
@@ -3604,7 +3604,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "3912ebcd-144c-4df1-a2f9-a8a37fed34ca",
+          id: "",
           name: "Scrubs",
           equipped: true,
           armorPoints: 1,
@@ -3616,7 +3616,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "c3d93d01-d3dc-4dc9-8417-0a8a0625ecd6",
+          id: "",
           name: "Scalpel",
           equipped: true,
           cost: 50,
@@ -3634,7 +3634,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "2b7e7469-4453-4759-8fed-ea134251288f",
+          id: "",
           name: "Automed",
           description:
             "Nanotech pills that assist your body in repairing Damage by granting Advantage to Body Saves meant to repel disease and poison, as well as attempts to heal from rest.",
@@ -3644,7 +3644,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "automed",
         },
         {
-          id: "ad441a9b-c710-4b7f-9162-3d3a11f75ae2",
+          id: "",
           name: "Oxygen Tank",
           description:
             "When attached to a vaccsuit provides up to 12 hours of oxygen under normal circumstances, 4 hours under stressful circumstances. Explosive.",
@@ -3654,7 +3654,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "oxygenTank",
         },
         {
-          id: "ad441a9b-c710-4b7f-9162-3d3a11f75ae2",
+          id: "",
           name: "Filter mask",
           description:
             "",
@@ -3669,7 +3669,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "3912ebcd-144c-4df1-a2f9-a8a37fed34ca",
+          id: "",
           name: "Scrubs",
           equipped: true,
           armorPoints: 1,
@@ -3682,7 +3682,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       weapons: [],
       equipments: [
         {
-          id: "ad441a9b-c710-4b7f-9162-3d3a11f75ae2",
+          id: "",
           name: "Vial of acid",
           description:
             "",
@@ -3692,7 +3692,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "vialOfAcid",
         },
         {
-          id: "8963d89f-6d8e-4f6e-bcb4-342495b0cf1c",
+          id: "",
           name: "Mylar Blanket",
           description:
             "Lightweight blanket made of heat-reflective material. Often used for thermal control of patients suffering from extreme cold or other trauma.",
@@ -3702,7 +3702,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "mylarBlanket",
         },
         {
-          id: "a1f3ad43-5634-490b-ac20-31f24563ab69",
+          id: "",
           name: "First Aid Kit",
           description:
             "An assortment of bandages and treatments to help stop bleeding, bandage cuts, and treat other minor injuries.",
@@ -3717,7 +3717,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          id: "",
           name: "Standard Crew Attire",
           equipped: true,
           armorPoints: 1,
@@ -3729,7 +3729,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "c3d93d01-d3dc-4dc9-8417-0a8a0625ecd6",
+          id: "",
           name: "Utility knife",
           equipped: true,
           cost: 50,
@@ -3747,7 +3747,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "de6c9bfd-29a8-4a53-8e62-fe5839b9b0d8",
+          id: "",
           name: "Cybernetic Diagnostic Scanner",
           description:
             "Allows the user to scan androids and other cybernetic organisms in order to diagnose any physical or mental issues they may be having. Often distrusted by androids.",
@@ -3757,7 +3757,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "cyberneticDiagnostic",
         },
         {
-          id: "de6c9bfd-29a8-4a53-8e62-fe5839b9b0d8",
+          id: "",
           name: "Duct Tape",
           description:
             "",
@@ -3772,7 +3772,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          id: "",
           name: "Civilian clothes",
           equipped: true,
           armorPoints: 1,
@@ -3785,7 +3785,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       weapons: [],
       equipments: [
         {
-          id: "de6c9bfd-29a8-4a53-8e62-fe5839b9b0d8",
+          id: "",
           name: "Briefcase",
           description:
             "",
@@ -3795,7 +3795,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "briefcase",
         },
         {
-          id: "de6c9bfd-29a8-4a53-8e62-fe5839b9b0d8",
+          id: "",
           name: "Prescription pad",
           description:
             "",
@@ -3805,7 +3805,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "prescriptionPad",
         },
         {
-          id: "de6c9bfd-29a8-4a53-8e62-fe5839b9b0d8",
+          id: "",
           name: "Fountain pen (Poison injector)",
           description:
             "",
@@ -3822,7 +3822,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "vaccsuit",
-          id: "4999a652-c93a-42c3-a6ce-c19acd965a25",
+          id: "",
           name: "Vaccsuit",
           equipped: true,
           armorPoints: 3,
@@ -3835,7 +3835,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "9c3ae3e8-f570-4dff-b873-3ce7258332be",
+          id: "",
           name: "MNC Mode",
           equipped: true,
           cost: 1200,
@@ -3854,7 +3854,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "5833bf8f-0588-4593-8f05-35c7c312ed5b",
+          id: "",
           name: "Patch Kit",
           description:
             "Repairs punctured and torn vaccsuits, restoring their space readiness. Patched vaccsuits have an AP of 1.",
@@ -3864,7 +3864,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "patchKit",
         },
         {
-          id: "86016036-741e-463b-817d-9b0e91daa02e",
+          id: "",
           name: "Toolbelt with assorted tools",
           description:
             "Wrenches, spanners, screwdrivers, etc. Can be used as weapons (doing the same Damage as a Crowbar).",
@@ -3879,7 +3879,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "vaccsuit",
-          id: "4999a652-c93a-42c3-a6ce-c19acd965a25",
+          id: "",
           name: "Vaccsuit",
           equipped: true,
           armorPoints: 3,
@@ -3892,7 +3892,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "61aa11ff-7c02-473c-8ec1-89bd57e322e5",
+          id: "",
           name: "FN Slug",
           equipped: true,
           cost: 750,
@@ -3908,7 +3908,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "revolver",
         },
         {
-          id: "f66cc43a-d7bc-4ba3-8dbc-3ab8be4815c3",
+          id: "",
           name: "",
           equipped: true,
           cost: 50,
@@ -3926,7 +3926,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "544db096-89b9-45cb-bdac-b8285cf32484",
+          id: "",
           name: "Flashlight",
           description:
             "Handheld or shoulder mounted. Illuminates 10m ahead of the user.",
@@ -3941,7 +3941,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "vaccsuit",
-          id: "4999a652-c93a-42c3-a6ce-c19acd965a25",
+          id: "",
           name: "Vaccsuit",
           equipped: true,
           armorPoints: 3,
@@ -3954,7 +3954,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "8ff97137-970d-4d03-b5a8-ad7060985ed6",
+          id: "",
           name: "HAN-290",
           equipped: true,
           cost: 350,
@@ -3975,7 +3975,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "544db096-89b9-45cb-bdac-b8285cf32484",
+          id: "",
           name: "Shovel",
           description:
             "",
@@ -3985,7 +3985,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "shovel",
         },
         {
-          id: "2a0fa003-306e-4482-956b-fe42dde145bd",
+          id: "",
           name: "Drone (Salvage)",
           description:
             "Remote controlled drone. Requires two hands to operate receiver. Can fly up to 10m high, to anywhere Long Range from the operator. Battery operated. Can run for 2 hours. Can record and transmit footage to receiver. Can be equipped with a laser cutter if purchased separately. Can carry up to 225kg.",
@@ -4000,7 +4000,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "hazardSuit",
-          id: "76be828f-38e9-4b68-9ed2-8cec406225c9",
+          id: "",
           name: "Hazard Suit",
           equipped: true,
           armorPoints: 5,
@@ -4013,7 +4013,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "0f56f168-fae2-4834-8d4d-50728ccab5c5",
+          id: "",
           name: "",
           equipped: true,
           cost: 500,
@@ -4032,7 +4032,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "544db096-89b9-45cb-bdac-b8285cf32484",
+          id: "",
           name: "Spanner",
           description:
             "",
@@ -4042,7 +4042,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "spanner",
         },
         {
-          id: "26684d34-dedb-427c-9e49-6bdcd9a6f72e",
+          id: "",
           name: "Campign gear",
           description: "",
           equipped: true,
@@ -4051,7 +4051,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "campingGear",
         },
         {
-          id: "09c4e92e-4812-43f2-8354-78bfcfee8791",
+          id: "",
           name: "Water Filtration Device",
           description:
             "Can pump 50 liters of filtered water per hour from even the most brackish swamps.",
@@ -4066,7 +4066,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "2d661e23-ecbc-4183-95d4-7122eb6dd881",
+          id: "",
           name: "Heavy Duty Work Clothes",
           equipped: true,
           armorPoints: 2,
@@ -4079,7 +4079,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       weapons: [],
       equipments: [
         {
-          id: "ea8a8b6b-d312-44ec-a022-6ce813f1222d",
+          id: "",
           name: "Explosives & Detonator",
           description:
             "Explosive charge powerful enough to blow open an airlock. All Close organisms must make a Body Save or take a Wound (Explosive). Detonator works at Long Range, but can be blocked by a radio jammer.",
@@ -4089,7 +4089,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "explosivesDetonator",
         },
         {
-          id: "26684d34-dedb-427c-9e49-6bdcd9a6f72e",
+          id: "",
           name: "Cigarettes",
           description: "",
           equipped: true,
@@ -4103,7 +4103,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "2d661e23-ecbc-4183-95d4-7122eb6dd881",
+          id: "",
           name: "Heavy Duty Work Clothes",
           equipped: true,
           armorPoints: 2,
@@ -4116,7 +4116,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       weapons: [],
       equipments: [
         {
-          id: "2d8e1b7d-04f9-4757-b41a-107fc464cd7f",
+          id: "",
           name: "Drill",
           description:
             "Wrenches, spanners, screwdrivers, etc. Can be used as weapons (doing the same Damage as a Crowbar).",
@@ -4126,7 +4126,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "assortedTools",
         },
         {
-          id: "ceca45f4-be67-486e-8151-c344f8c3b5a2",
+          id: "",
           name: "Paracord (100m)",
           description: "General purpose lightweight nylon rope.",
           equipped: true,
@@ -4135,7 +4135,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "paracord",
         },
         {
-          id: "79ddeda6-b02f-4264-9507-8687af65ee64",
+          id: "",
           name: "Drone (Recon)",
           description:
             "Remote controlled drone. Requires two hands to operate receiver. Can fly up to 450m high, to a distance of 3km from operator. Battery operated. Can run for 2 hours. Can record and transmit footage to receiver. If purchased separately, can be equipped with up to two of the following (at their regular cost): binoculars, radio jammer, Geiger counter, medscanner, personal locator, infrared goggles, emergency beacon, cybernetic diagnostic scanner, bioscanner.",
@@ -4150,7 +4150,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          id: "",
           name: "Standard Crew Attire",
           equipped: true,
           armorPoints: 1,
@@ -4162,7 +4162,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "af8bfb9a-4207-4eaa-a2dc-df67c0054b7c",
+          id: "",
           name: "KANO X9",
           equipped: true,
           cost: 1400,
@@ -4184,7 +4184,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       equipments: [
         {
           name: "Cat",
-          id: "52b4c525-2eba-49da-b81b-05a7f1d2a30a",
+          id: "",
           description: "",
           equipped: true,
           cost: 0,
@@ -4193,7 +4193,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
         },
         {
           name: "Extension Cord (20m)",
-          id: "0c515bd9-c170-418e-9a21-61f05b5dc209",
+          id: "",
           description: "",
           equipped: true,
           cost: 0,
@@ -4206,7 +4206,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          id: "",
           name: "Standard Crew Attire",
           equipped: true,
           armorPoints: 1,
@@ -4218,7 +4218,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "0f56f168-fae2-4834-8d4d-50728ccab5c5",
+          id: "",
           name: "",
           equipped: true,
           cost: 150,
@@ -4238,7 +4238,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       equipments: [
         {
           name: "Head Lamp",
-          id: "3c06fbf3-11d7-4c8d-9129-f6791eadfdfd",
+          id: "",
           description: "",
           equipped: true,
           cost: 0,
@@ -4246,7 +4246,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "headLamp"
         },
         {
-          id: "86016036-741e-463b-817d-9b0e91daa02e",
+          id: "",
           name: "Toolbelt with assorted tools",
           description:
             "Wrenches, spanners, screwdrivers, etc. Can be used as weapons (doing the same Damage as a Crowbar).",
@@ -4257,7 +4257,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
         },
         {
           name: "Lunch Box",
-          id: "cf041b93-54a4-4d17-9d26-401e2cb2286f",
+          id: "",
           description: "",
           equipped: true,
           cost: 0,
@@ -4270,7 +4270,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          id: "",
           name: "Standard Crew Attire",
           equipped: true,
           armorPoints: 1,
@@ -4282,7 +4282,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "40b5d1c5-6155-4087-9b2c-d383045cde8c",
+          id: "",
           name: "Peabody",
           equipped: true,
           cost: 85,
@@ -4300,7 +4300,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "09c4e92e-4812-43f2-8354-78bfcfee8791",
+          id: "",
           name: "Water Filtration Device",
           description:
             "Can pump 50 liters of filtered water per hour from even the most brackish swamps.",
@@ -4310,7 +4310,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "waterFiltrationDevice",
         },
         {
-          id: "578f68bc-60f5-423b-baac-bc7ef2b63de7",
+          id: "",
           name: "Personal Locator",
           description:
             "Allows crewmembers at a control center (or on the bridge of a ship) to track the location of the wearer.",
@@ -4320,7 +4320,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "personalLocator",
         },
         {
-          id: "578f68bc-60f5-423b-baac-bc7ef2b63de7",
+          id: "",
           name: "Subsurface scanner",
           description:
             "Allows crewmembers at a control center (or on the bridge of a ship) to track the location of the wearer.",
@@ -4335,7 +4335,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       armors: [
         {
           armorType: "standardCrewAttire",
-          id: "1f247c9b-2883-4c49-abce-46770e19dceb",
+          id: "",
           name: "Lounge Wear",
           equipped: true,
           armorPoints: 1,
@@ -4347,7 +4347,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       weapons: [
         {
-          id: "ab52ac46-a83b-462a-aab4-f72c27ce3036",
+          id: "",
           name: "",
           equipped: true,
           cost: 50,
@@ -4365,7 +4365,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
       ],
       equipments: [
         {
-          id: "bfe89e47-9519-497a-820d-2bca1f0d9a88",
+          id: "",
           name: "Pain Pills",
           description:
             "When ingested, immediately restores 1d10 health and lowers Stress by 1. There is a danger of addiction and/or overdose if used frequently.",
@@ -4375,7 +4375,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           baseType: "painPills",
         },
         {
-          id: "bfe89e47-9519-497a-820d-2bca1f0d9a88",
+          id: "",
           name: "Six pack of beer",
           description:
             "",
@@ -4391,7 +4391,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
 
 export const allEquipment: Equipment[] = [
   {
-    id: "9e9bd59c-9741-43a9-bfa0-3849e25ad12d",
+    id: "",
     name: "Bioscanner",
     description:
       "Allows the user to scan the immediate area for signs of life. Generally can scan for 100m in all directions, without being blocked by most known metals. Can tell the location of signs of life, but not what that life is.",
@@ -4401,7 +4401,7 @@ export const allEquipment: Equipment[] = [
     baseType: "bioscanner",
   },
   {
-    id: "71a79f33-7378-40bd-8ba4-e92feff13f83",
+    id: "",
     name: "Assorted Tools",
     description:
       "Wrenches, spanners, screwdrivers, etc. Can be used as weapons (doing the same Damage as a Crowbar).",
@@ -4411,7 +4411,7 @@ export const allEquipment: Equipment[] = [
     baseType: "assortedTools",
   },
   {
-    id: "2b7e7469-4453-4759-8fed-ea134251288f",
+    id: "",
     name: "Automed",
     description:
       "Nanotech pills that assist your body in repairing Damage by granting Advantage to Body Saves meant to repel disease and poison, as well as attempts to heal from rest.",
@@ -4421,7 +4421,7 @@ export const allEquipment: Equipment[] = [
     baseType: "automed",
   },
   {
-    id: "397b61e3-bcff-4951-a553-5f0d09218374",
+    id: "",
     name: "Binoculars",
     description:
       "20x magnification. Add thermal vision (+300cr) or night vision (+1kcr).",
@@ -4431,7 +4431,7 @@ export const allEquipment: Equipment[] = [
     baseType: "binoculars",
   },
   {
-    id: "614d7d96-df08-4632-ab53-603409223d81",
+    id: "",
     name: "Bioscanner",
     description:
       "Allows the user to scan the immediate area for signs of life. Generally can scan for 100m in all directions, without being blocked by most known metals. Can tell the location of signs of life, but not what that life is.",
@@ -4441,7 +4441,7 @@ export const allEquipment: Equipment[] = [
     baseType: "bioscanner",
   },
   {
-    id: "a11a54b2-51b4-41b3-800b-1ca20141e18f",
+    id: "",
     name: "Body Cam",
     description:
       "A camera worn on your clothing that can stream video back to a control center so your other crewmembers can see what you’re seeing. Add thermal vision (+300cr) or night vision (+1kcr).",
@@ -4451,7 +4451,7 @@ export const allEquipment: Equipment[] = [
     baseType: "bodyCam",
   },
   {
-    id: "e2c58873-c4bd-450a-9720-4e9764282b36",
+    id: "",
     name: "Chemlight",
     description:
       "Small disposable glowsticks capable of dim illumination in a 1m radius.",
@@ -4461,7 +4461,7 @@ export const allEquipment: Equipment[] = [
     baseType: "chemlight",
   },
   {
-    id: "d91e2c74-cbd5-481e-9094-6512d8b34d8d",
+    id: "",
     name: "Long-range Comms",
     description:
       "Rucksack-sized communication device for use in surface-to-ship comunication.",
@@ -4471,7 +4471,7 @@ export const allEquipment: Equipment[] = [
     baseType: "longrangeComms",
   },
   {
-    id: "b2241949-dbc5-4e95-b9a9-654efa74c46d",
+    id: "",
     name: "Short-range comms",
     description:
       "Allows communication from ship-to-ship within a reasonable distance, as well as surface-to-surface within a dozen kilometers. Blocked by radio jammer.",
@@ -4481,7 +4481,7 @@ export const allEquipment: Equipment[] = [
     baseType: "shortrangecomms",
   },
   {
-    id: "b2241949-dbc5-4e95-b9a9-654efa74c46d",
+    id: "",
     name: "Long-range comms",
     description:
       "Rucksack-sized communication device for use in surface-to-ship comunication.",
@@ -4491,7 +4491,7 @@ export const allEquipment: Equipment[] = [
     baseType: "longrangecomms",
   },
   {
-    id: "9f87a41f-26b9-4c43-ad0c-854d76fc0243",
+    id: "",
     name: "Cybernetic Diagnostic Scanner",
     description:
       "Allows the user to scan androids and other cybernetic organisms in order to diagnose any physical or mental issues they may be having. Often distrusted by androids.",
@@ -4501,7 +4501,7 @@ export const allEquipment: Equipment[] = [
     baseType: "cyberneticDiagnostic",
   },
   {
-    id: "79ddeda6-b02f-4264-9507-8687af65ee64",
+    id: "",
     name: "Drone (Recon)",
     description:
       "Remote controlled drone. Requires two hands to operate receiver. Can fly up to 450m high, to a distance of 3km from operator. Battery operated. Can run for 2 hours. Can record and transmit footage to receiver. If purchased separately, can be equipped with up to two of the following (at their regular cost): binoculars, radio jammer, Geiger counter, medscanner, personal locator, infrared goggles, emergency beacon, cybernetic diagnostic scanner, bioscanner.",
@@ -4511,7 +4511,7 @@ export const allEquipment: Equipment[] = [
     baseType: "droneRecon",
   },
   {
-    id: "2a0fa003-306e-4482-956b-fe42dde145bd",
+    id: "",
     name: "Drone (Salvage)",
     description:
       "Remote controlled drone. Requires two hands to operate receiver. Can fly up to 10m high, to anywhere Long Range from the operator. Battery operated. Can run for 2 hours. Can record and transmit footage to receiver. Can be equipped with a laser cutter if purchased separately. Can carry up to 225kg.",
@@ -4521,7 +4521,7 @@ export const allEquipment: Equipment[] = [
     baseType: "droneSalvage",
   },
   {
-    id: "ce6f905e-b132-4cf2-bb59-317169dd4ff5",
+    id: "",
     name: "Electronic Tool Set",
     description:
       "A full set of tools for doing detailed repair or construction work on electronics.",
@@ -4531,7 +4531,7 @@ export const allEquipment: Equipment[] = [
     baseType: "electronicToolSet",
   },
   {
-    id: "8bb41c35-3cbc-43d9-a43c-2adeab9c6afa",
+    id: "",
     name: "Emergency Beacon",
     description:
       "A small device that sends up a flare and then emits a loud beep every few seconds. Additionally, sends out a call on all radio channels to ships or vehicles in the area, but can be blocked by a radio jammer.",
@@ -4541,7 +4541,7 @@ export const allEquipment: Equipment[] = [
     baseType: "emergencyBeacon",
   },
   {
-    id: "9ced184e-2273-4a2e-92ca-55e9f8397b07",
+    id: "",
     name: "Exoloader",
     description:
       "Open-air mechanical exo-skeleton used for heavy lifting (up to 5000kg). Loader claws deal 1 Wound. User can only wear Standard Crew Attire or Standard Battle Dress while operating. Battery operated (48 hours of use).",
@@ -4551,7 +4551,7 @@ export const allEquipment: Equipment[] = [
     baseType: "exoloader",
   },
   {
-    id: "ea8a8b6b-d312-44ec-a022-6ce813f1222d",
+    id: "",
     name: "Explosives & Detonator",
     description:
       "Explosive charge powerful enough to blow open an airlock. All Close organisms must make a Body Save or take a Wound (Explosive). Detonator works at Long Range, but can be blocked by a radio jammer.",
@@ -4561,7 +4561,7 @@ export const allEquipment: Equipment[] = [
     baseType: "explosivesDetonator",
   },
   {
-    id: "a1f3ad43-5634-490b-ac20-31f24563ab69",
+    id: "",
     name: "First Aid Kit",
     description:
       "An assortment of bandages and treatments to help stop bleeding, bandage cuts, and treat other minor injuries.",
@@ -4571,7 +4571,7 @@ export const allEquipment: Equipment[] = [
     baseType: "firstAidKit",
   },
   {
-    id: "e7531adb-f7af-4f5b-9a57-9ae5c55f5148",
+    id: "",
     name: "Flashlight",
     description:
       "Handheld or shoulder mounted. Illuminates 10m ahead of the user.",
@@ -4581,7 +4581,7 @@ export const allEquipment: Equipment[] = [
     baseType: "flashlight",
   },
   {
-    id: "1d7e67e8-6a71-46da-a16b-dc28a90ce08d",
+    id: "",
     name: "Foldable Stretcher",
     description:
       "Portable stretcher that can fit within a rucksack. Allows the user to safely strap down the patient and carry them to a location where their wounds can be better treated. Unfolds to roughly 2m.",
@@ -4591,7 +4591,7 @@ export const allEquipment: Equipment[] = [
     baseType: "foldableStretcher",
   },
   {
-    id: "7afa3897-f77a-4d9e-91ed-865c7a15dbde",
+    id: "",
     name: "Geiger Counter",
     description: "Detects radiation and displays radiation levels.",
     equipped: true,
@@ -4600,7 +4600,7 @@ export const allEquipment: Equipment[] = [
     baseType: "geigerCounter",
   },
   {
-    id: "c5884110-e11e-42df-9858-584a464d1bbe",
+    id: "",
     name: "Heads-Up Display (HUD)",
     description:
       "Often worn by marines, the HUD allows the wearer to see through the body cams of others in their unit, and can connect to any smart-link upgaded weapon.",
@@ -4610,7 +4610,7 @@ export const allEquipment: Equipment[] = [
     baseType: "headsUpDisplayHUD",
   },
   {
-    id: "e7dbea4f-110d-4d6e-b195-0741fe1363a8",
+    id: "",
     name: "Infrared Goggles",
     description:
       "Allows the wearer to see heat signatures, sometimes up to several hours old. Add night vision for (+1kcr).",
@@ -4620,7 +4620,7 @@ export const allEquipment: Equipment[] = [
     baseType: "infraredGoggles",
   },
   {
-    id: "ab4f9c16-4a0c-473b-9d3d-413ad2fa078f",
+    id: "",
     name: "Jetpack",
     description:
       "Allows wearer to fly up to 100m high. Fuel-operated for 1 hour. Deals 1d100 DMG if destroyed.",
@@ -4630,7 +4630,7 @@ export const allEquipment: Equipment[] = [
     baseType: "jetpack",
   },
   {
-    id: "533e9bae-cadc-4ac8-8e67-a85fac0564fe",
+    id: "",
     name: "Lockpick Set",
     description:
       "A highly advanced set of tools meant for hacking basic airlock and electronic door systems.",
@@ -4640,7 +4640,7 @@ export const allEquipment: Equipment[] = [
     baseType: "lockpickSet",
   },
   {
-    id: "636712d1-2b0b-4436-bb19-c6b139d839ae",
+    id: "",
     name: "MRE",
     description:
       "“Meals, Ready-to-Eat.” Self-contained, individual field rations in lightweight packaging. Each one has sufficient sustenance for a single person for one day (does not include water).",
@@ -4650,7 +4650,7 @@ export const allEquipment: Equipment[] = [
     baseType: "mre",
   },
   {
-    id: "44244b64-2345-433f-a6bc-719d4f92cb34",
+    id: "",
     name: "Mag-boots",
     description:
       "Grants a magnetic grip to the wearer, allowing them to easily walk on the exterior of a ship (in space, while docked, or free-floating), metal based asteroids, or any other magnetic surface.",
@@ -4660,7 +4660,7 @@ export const allEquipment: Equipment[] = [
     baseType: "magboots",
   },
   {
-    id: "6e15c923-2790-4a1f-b492-2e02ca3261f6",
+    id: "",
     name: "Medscanner",
     description:
       "Allows the user to scan a living or dead body to analyze it for disease or abnormalities, without having to do a biopsy (or autopsy). Results are often non-instantaneous and may require a lab for analysis.",
@@ -4670,7 +4670,7 @@ export const allEquipment: Equipment[] = [
     baseType: "medscanner",
   },
   {
-    id: "0015660a-0c8a-48a6-9773-c06a1dead4fc",
+    id: "",
     name: "MoHab Unit",
     description: "Tent, canteen, stove, rucksack, compass, and sleeping bag.",
     equipped: true,
@@ -4679,7 +4679,7 @@ export const allEquipment: Equipment[] = [
     baseType: "moHabUnit",
   },
   {
-    id: "8963d89f-6d8e-4f6e-bcb4-342495b0cf1c",
+    id: "",
     name: "Mylar Blanket",
     description:
       "Lightweight blanket made of heat-reflective material. Often used for thermal control of patients suffering from extreme cold or other trauma.",
@@ -4689,7 +4689,7 @@ export const allEquipment: Equipment[] = [
     baseType: "mylarBlanket",
   },
   {
-    id: "ad441a9b-c710-4b7f-9162-3d3a11f75ae2",
+    id: "",
     name: "Oxygen Tank",
     description:
       "When attached to a vaccsuit provides up to 12 hours of oxygen under normal circumstances, 4 hours under stressful circumstances. Explosive.",
@@ -4699,7 +4699,7 @@ export const allEquipment: Equipment[] = [
     baseType: "oxygenTank",
   },
   {
-    id: "6b49568c-74b7-42a3-928f-8fded50a81ea",
+    id: "",
     name: "Paracord (50m)",
     description: "General purpose lightweight nylon rope.",
     equipped: true,
@@ -4708,7 +4708,7 @@ export const allEquipment: Equipment[] = [
     baseType: "paracord",
   },
   {
-    id: "f65f41ff-f8eb-4a17-9483-6277736d262b",
+    id: "",
     name: "Patch Kit",
     description:
       "Repairs punctured and torn vaccsuits, restoring their space readiness. Patched vaccsuits have an AP of 1.",
@@ -4718,7 +4718,7 @@ export const allEquipment: Equipment[] = [
     baseType: "patchKit",
   },
   {
-    id: "578f68bc-60f5-423b-baac-bc7ef2b63de7",
+    id: "",
     name: "Personal Locator",
     description:
       "Allows crewmembers at a control center (or on the bridge of a ship) to track the location of the wearer.",
@@ -4728,7 +4728,7 @@ export const allEquipment: Equipment[] = [
     baseType: "personalLocator",
   },
   {
-    id: "8d6ff2d3-6b5a-439d-8c31-503eba44a65d",
+    id: "",
     name: "Pet (Organic)",
     description:
       "Small to medium-sized organic pet animal. Larger or rare pets cost 2d10x.",
@@ -4738,7 +4738,7 @@ export const allEquipment: Equipment[] = [
     baseType: "petOrganic",
   },
   {
-    id: "116e0071-8c33-4cb8-97a3-7b11dc59a388",
+    id: "",
     name: "Pet (Synthetic)",
     description:
       "Small to medium-sized synthetic pet animal. Larger or rare pets cost 2d10x.",
@@ -4748,7 +4748,7 @@ export const allEquipment: Equipment[] = [
     baseType: "petSynthetic",
   },
   {
-    id: "e506c16b-151b-4991-9d61-240688a9624b",
+    id: "",
     name: "Pain Pills",
     description:
       "When ingested, immediately restores 1d10 health and lowers Stress by 1. There is a danger of addiction and/or overdose if used frequently.",
@@ -4758,7 +4758,7 @@ export const allEquipment: Equipment[] = [
     baseType: "painPills",
   },
   {
-    id: "35334853-396f-4c40-b14d-2ad82ae224da",
+    id: "",
     name: "Radiation Pills",
     description:
       "Reduces Radiation Damage (see pg. xx.x) by 2d10 for 2d10 minutes.",
@@ -4768,7 +4768,7 @@ export const allEquipment: Equipment[] = [
     baseType: "radiationPills",
   },
   {
-    id: "a9e6ce79-f85d-4cf8-8a0a-d6da2515a113",
+    id: "",
     name: "Portable Computer Terminal",
     description:
       "Flat computer monitor, keyboard and interface which allows the user to hack into pre-existing computers and networks, as well as perform standard computer tasks.",
@@ -4778,7 +4778,7 @@ export const allEquipment: Equipment[] = [
     baseType: "portableComputerTerminal",
   },
   {
-    id: "a4470254-db14-46b1-9d3d-f7cbb8aa0fbc",
+    id: "",
     name: "Radio Jammer",
     description:
       "Rucksack-sized device which, when activated, renders incomprehensible the radio signals of all within 100km.",
@@ -4788,7 +4788,7 @@ export const allEquipment: Equipment[] = [
     baseType: "radioJammer",
   },
   {
-    id: "6838bc5c-f01b-4fca-b224-19d9fbb4a3fe",
+    id: "",
     name: "Rebreather",
     description:
       "When worn, filters toxic air and/or allows for underwater breathing for up to twenty minutes at a time without resurfacing. Can be connected to an oxygen tank.",
@@ -4798,7 +4798,7 @@ export const allEquipment: Equipment[] = [
     baseType: "rebreather",
   },
   {
-    id: "26684d34-dedb-427c-9e49-6bdcd9a6f72e",
+    id: "",
     name: "Rucksack",
     description: "Large, durable, waterproof backpack.",
     equipped: true,
@@ -4807,7 +4807,7 @@ export const allEquipment: Equipment[] = [
     baseType: "rucksack",
   },
   {
-    id: "16199f8d-2c60-4378-ba4f-7167b8598f93",
+    id: "",
     name: "Sample Collection Kit",
     description:
       "Used to research xenoflora and xenofauna in the field. Can take vital signs, DNA samples ,and collect other data on foreign material. Results may not be instaneous and may require a lab for complete analysis.",
@@ -4817,7 +4817,7 @@ export const allEquipment: Equipment[] = [
     baseType: "sampleKit",
   },
   {
-    id: "ead3051e-cd0f-407f-8e8b-4d7bad11d7ad",
+    id: "",
     name: "Smart-link Add-On",
     description:
       "Grants remote viewing, recording, and operation of a ranged weapon as well as +5 DMG.",
@@ -4827,7 +4827,7 @@ export const allEquipment: Equipment[] = [
     baseType: "smartLinkAddOn",
   },
   {
-    id: "a74517cd-3f6c-493e-b981-5558ba8075be",
+    id: "",
     name: "Stimpak",
     description:
       "Cures cryosickness. Restores 1d10 Health and grants Advantage to Strength and Combat for 2d10 minutes. There is a danger of addiction and/or overdose if used frequently. ",
@@ -4837,7 +4837,7 @@ export const allEquipment: Equipment[] = [
     baseType: "stimpak",
   },
   {
-    id: "09c4e92e-4812-43f2-8354-78bfcfee8791",
+    id: "",
     name: "Water Filtration Device",
     description:
       "Can pump 50 liters of filtered water per hour from even the most brackish swamps.",

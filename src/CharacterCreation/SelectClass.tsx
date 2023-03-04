@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Block, Button, Button2, Title } from "../Atoms";
 import { allStats } from "../Data/data";
-import { Rating } from "../Molecules";
+import { Rating, SelectableBlockWithTitle } from "../Molecules";
 import { Character, CharacterClass, StatType } from "../types";
 import { Children } from "../UITypes";
 import { StepProps } from "./types";
@@ -66,7 +66,11 @@ function StatSelection({ onSelect }: StatSelectionProps) {
     <div className="flex justify-center gap-4">
       {allStats.map((s) => {
         return (
-          <Button key={s} dark={s === selectedStat} onClick={() => onStatSelection(s)}>
+          <Button
+            key={s}
+            dark={s === selectedStat}
+            onClick={() => onStatSelection(s)}
+          >
             {s}
           </Button>
         );
@@ -112,7 +116,7 @@ interface ClassOptionsProps {
 
 function ClassOptions({ onSelection, selectedClass }: ClassOptionsProps) {
   return (
-    <div className="flex flex-wrap justify-center gap-4">
+    <div className="flex flex-wrap justify-center items-stretch gap-4">
       <ClassSummary
         className="marine"
         onClick={onSelection}
@@ -230,21 +234,13 @@ function ClassSummary({
   children,
   onClick,
 }: ClassSummaryProps) {
-  const classes = selected == className ? "bg-mother-6" : "bg-mother-1";
   return (
-    <div
+    <SelectableBlockWithTitle
+      title={className}
+      selected={className === selected}
       onClick={() => onClick(className)}
-      className="w-48 rounded-xl bg-mother-4 text-mother-1 flex flex-col gap-2 pb-2 cursor-pointer"
     >
-      <div className="rounded-3xl bg-mother-6 text-center relative">
-        <div
-          className={`circle-small ${classes} absolute left-0.5 top-0.5 border-2 border-mother-1`}
-        />
-        {className}
-      </div>
-      <div className="px-4 text-base">
-        <div className="flex flex-col gap-1">{children}</div>
-      </div>
-    </div>
+      {children}
+    </SelectableBlockWithTitle>
   );
 }

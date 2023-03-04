@@ -6,7 +6,7 @@ import {
   allSkillsDict,
   classDefinitionsDict,
 } from "../Data/data";
-import { Skill } from "../Molecules";
+import { BlockWithTitle, Skill } from "../Molecules";
 import { toDict } from "../Services/services";
 import { Character, SkillDefinition, SkillLevel, SkillType } from "../types";
 import { StepProps } from "./types";
@@ -232,20 +232,11 @@ export function SelectSkills({ character, onConfirm }: StepProps) {
     <div className="flex flex-col">
       <Block variant="light">
         <Title>7. Note class skills and choose bonus skills</Title>
-        <div className="rounded-xl bg-mother-4 text-mother-1 flex flex-col gap-2 pb-2 cursor-pointer">
-          <div className="rounded-3xl bg-mother-6 text-center relative">
-            {characterClass}
-          </div>
-          <div className="px-4 text-base">
-            <div className="flex flex-col gap-1">
-              {classDefinitionsDict[characterClass].initialSkills.map(
-                (line) => (
-                  <div>{line}</div>
-                )
-              )}
-            </div>
-          </div>
-        </div>
+        <BlockWithTitle title={characterClass}>
+          {classDefinitionsDict[characterClass].initialSkills.map((line) => (
+            <div>{line}</div>
+          ))}
+        </BlockWithTitle>
         <div className="flex flex-wrap gap-2 mt-2">
           {newCharacter.skills.map((s) => (
             <Skill skill={allSkillsDict[s]} />
