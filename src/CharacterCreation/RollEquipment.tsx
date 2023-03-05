@@ -25,7 +25,11 @@ export function RollEquipment({ character, onConfirm }: StepProps) {
     setPatchRolled(true);
   }
 
-  function rollGearOption() {}
+  function rollGearOption() {
+    if (gearOption === "") {
+      
+    }
+  }
 
   return (
     <div className="flex flex-col">
