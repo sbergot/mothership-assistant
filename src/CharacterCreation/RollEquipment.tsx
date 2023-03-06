@@ -1,33 +1,45 @@
 import { useState } from "react";
-import { Block, Button2, Divider, Title } from "../Atoms";
-import { patches, trinkets } from "../Data/data";
+import { Block, Button2, Divider, DividerOr, Tag, Title } from "../Atoms";
+import { loadouts, patches, trinkets } from "../Data/data";
 import { BlockWithTitle, SelectableBlockWithTitle } from "../Molecules";
-import { pickRandom } from "../Services/diceServices";
+import { pickRandom, roll } from "../Services/diceServices";
 import { StepProps } from "./types";
 
 export function RollEquipment({ character, onConfirm }: StepProps) {
   const [newCharacter, setCharacter] = useState({ ...character });
-  const [trinketRolled, setTrinketRolled] = useState(false);
-  const [patchRolled, setPatchRolled] = useState(false);
-  const [gearOptionRolled, setGearOptionRolled] = useState(false);
   const [gearOption, setGearOption] = useState<"loadout" | "credits" | null>(
     null
   );
+  const trinketRolled = !!newCharacter.trinket;
+  const patchRolled = !!newCharacter.patch;
+  const gearOptionRolled = !!newCharacter.credits;
   const done = trinketRolled && patchRolled && gearOptionRolled;
 
   function rollTrinket() {
     setCharacter((c) => ({ ...c, trinket: pickRandom(trinkets) }));
-    setTrinketRolled(true);
   }
 
   function rollPatch() {
     setCharacter((c) => ({ ...c, patch: pickRandom(patches) }));
-    setPatchRolled(true);
   }
 
   function rollGearOption() {
-    if (gearOption === "") {
-      
+    if (gearOption === "loadout") {
+      const loadout = pickRandom(loadouts[newCharacter.characterClass]);
+      setCharacter((c) => ({
+        ...c,
+        weapons: loadout.weapons,
+        armor: loadout.armors,
+        equipment: loadout.equipments,
+        credits: roll(10, 2) * 10,
+      }));
+    }
+
+    if (gearOption === "credits") {
+      setCharacter((c) => ({
+        ...c,
+        credits: roll(10, 2) * 100,
+      }));
     }
   }
 
@@ -52,21 +64,42 @@ export function RollEquipment({ character, onConfirm }: StepProps) {
               Roll
             </Button2>
           </div>
-          <SelectableBlockWithTitle
-            selected={gearOption === "loadout"}
-            onClick={() => setGearOption("loadout")}
-            title="Random loadout"
-          >
-            <div className="mx-auto">-</div>
-          </SelectableBlockWithTitle>
-          <Divider />
-          <SelectableBlockWithTitle
-            selected={gearOption === "credits"}
-            onClick={() => setGearOption("credits")}
-            title="Starting credits"
-          >
-            <div className="mx-auto">-</div>
-          </SelectableBlockWithTitle>
+          {(!gearOptionRolled || gearOption === "loadout") && (
+            <SelectableBlockWithTitle
+              selected={gearOption === "loadout"}
+              onClick={() => setGearOption("loadout")}
+              title="Random loadout"
+            >
+              <div className="mx-auto">
+                {gearOptionRolled ? (
+                  <div className="flex flex-wrap gap-1">
+                    {newCharacter.armor.map(a => <Tag variant="dark">{a.name}</Tag>)}
+                    {newCharacter.weapons.map(a => <Tag variant="dark">{a.name}</Tag>)}
+                    {newCharacter.equipment.map(a => <Tag variant="dark">{a.name}</Tag>)}
+                    <Tag variant="dark">{newCharacter.credits}cr</Tag>
+                  </div>
+                ) : (
+                  "-"
+                )}
+              </div>
+            </SelectableBlockWithTitle>
+          )}
+          {!gearOptionRolled && <DividerOr />}
+          {(!gearOptionRolled || gearOption === "credits") && (
+            <SelectableBlockWithTitle
+              selected={gearOption === "credits"}
+              onClick={() => setGearOption("credits")}
+              title="Starting credits"
+            >
+              <div className="mx-auto">
+                {gearOptionRolled ? (
+                  <Tag variant="dark">{newCharacter.credits}cr</Tag>
+                ) : (
+                  "-"
+                )}
+              </div>
+            </SelectableBlockWithTitle>
+          )}
           <div className="self-center">
             <Button2 disabled={gearOptionRolled} onClick={rollGearOption}>
               Roll

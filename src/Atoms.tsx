@@ -37,6 +37,16 @@ export function Divider() {
   return <div className="bg-mother-4 w-1/2 h-0.5 mx-auto my-2" />;
 }
 
+export function DividerOr() {
+  return (
+    <div className="flex justify-center items-center mx-auto gap-4">
+      <div className="bg-mother-4 w-24 h-0.5 my-2" />
+      <div>or</div>
+      <div className="bg-mother-4 w-24 h-0.5 my-2" />
+    </div>
+  );
+}
+
 interface ButtonProps extends Children {
   onClick(): void;
   dark?: boolean;
