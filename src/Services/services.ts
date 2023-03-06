@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Entry, EntryRecord, Repository } from "BaseTypes";
+import useLocalStorage from "use-local-storage"
 
 export function uuidv4(): string {
   return (([1e7] as any) + -1e3 + -4e3 + -8e3 + -1e11).replace(
@@ -13,33 +13,22 @@ export function uuidv4(): string {
 }
 
 export function createRepository<T>(key: string) {
-  function loadRepo(): EntryRecord<T> {
-    const dataString = localStorage[key];
-    return dataString ? JSON.parse(dataString) : {};
-  }
 
   function useRepository(): Repository<T> {
-    const [stateRepo, setStateRepo] = useState<EntryRecord<T>>(loadRepo());
-
-    function setRepo(setter: (r: EntryRecord<T>) => EntryRecord<T>) {
-      const repo = loadRepo();
-      const newRepo = setter(repo);
-      setStateRepo(newRepo);
-      localStorage[key] = JSON.stringify(newRepo);
-    }
+    const [stateRepo, setStateRepo] = useLocalStorage<EntryRecord<T>>(key, {});
 
     function saveNew(newVal: T) {
       const newId = uuidv4();
-      setRepo((repo) => ({ ...repo, [newId]: { id: newId, value: newVal } }));
+      setStateRepo((repo) => ({ ...repo, [newId]: { id: newId, value: newVal } }));
     }
 
     function update(entry: Entry<T>) {
       const id = entry.id;
-      setRepo((repo) => ({ ...repo, [id]: entry }));
+      setStateRepo((repo) => ({ ...repo, [id]: entry }));
     }
 
     function deleteEntry(entry: Entry<T>) {
-      setRepo((repo) => {
+      setStateRepo((repo) => {
         const newRepo = { ...repo };
         delete newRepo[entry.id];
         return newRepo;
@@ -47,10 +36,14 @@ export function createRepository<T>(key: string) {
     }
 
     function getEntries() {
-      return loadRepo();
+      return Object.values(stateRepo);
     }
 
-    return { saveNew, update, deleteEntry, getEntries };
+    function getEntry(id: string) {
+      return stateRepo[id].value;
+    }
+
+    return { saveNew, update, deleteEntry, getEntries, getEntry };
   }
   return useRepository;
 }
