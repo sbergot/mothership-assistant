@@ -3,6 +3,7 @@ import { initCharacter } from "../Services/characterServices";
 import { Character } from "../types";
 import { GainStress } from "./GainStress";
 import { NoteTraumaResponse } from "./NoteTraumaResponse";
+import { PersonalDetails } from "./PersonalDetails";
 import { RollEquipment } from "./RollEquipment";
 import { RollHealth } from "./RollHealth";
 import { RollSaves } from "./RollSaves";
@@ -20,6 +21,7 @@ const Steps: ((props: StepProps) => JSX.Element)[] = [
   NoteTraumaResponse,
   SelectSkills,
   RollEquipment,
+  PersonalDetails
 ];
 
 export function CharacterCreation() {

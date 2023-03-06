@@ -27,9 +27,14 @@ export function Tag({ children, variant }: Props) {
   );
 }
 
-export function Title({ children }: Children) {
+interface TitleProps extends Children {
+  variant?: "dark" | "light" 
+}
+
+export function Title({ children, variant }: TitleProps) {
+  const color = (variant ?? "dark") === "dark" ? "text-mother-5" : "text-mother-1";
   return (
-    <div className="text-center text-xl text-mother-5 mb-2">{children}</div>
+    <div className={`text-center text-xl mb-2 ${color}`}>{children}</div>
   );
 }
 

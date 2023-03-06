@@ -227,6 +227,7 @@ export interface Contractor extends BaseCharacter {
 }
 
 export interface Character extends BaseCharacter {
+  personalNotes: string;
   characterClass: CharacterClass;
   strength: number;
   speed: number;
