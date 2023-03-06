@@ -1,5 +1,5 @@
 import { Entry, EntryRecord, Repository } from "BaseTypes";
-import useLocalStorage from "use-local-storage"
+import useLocalStorage from "use-local-storage";
 
 export function uuidv4(): string {
   return (([1e7] as any) + -1e3 + -4e3 + -8e3 + -1e11).replace(
@@ -13,18 +13,23 @@ export function uuidv4(): string {
 }
 
 export function createRepository<T>(key: string) {
-
   function useRepository(): Repository<T> {
     const [stateRepo, setStateRepo] = useLocalStorage<EntryRecord<T>>(key, {});
 
     function saveNew(newVal: T) {
       const newId = uuidv4();
-      setStateRepo((repo) => ({ ...repo, [newId]: { id: newId, value: newVal } }));
+      setStateRepo((repo) => ({
+        ...repo,
+        [newId]: { id: newId, value: newVal },
+      }));
     }
 
-    function update(entry: Entry<T>) {
-      const id = entry.id;
-      setStateRepo((repo) => ({ ...repo, [id]: entry }));
+    function update(id: string, setter: (c: T) => T) {
+      setStateRepo((repo) => {
+        repo = repo || {};
+        const newValue = setter(repo[id].value);
+        return { ...repo, [id]: { id, value: newValue } } as EntryRecord<T>;
+      });
     }
 
     function deleteEntry(entry: Entry<T>) {
@@ -48,9 +53,12 @@ export function createRepository<T>(key: string) {
   return useRepository;
 }
 
-export function toDict<T, K extends string>(arr: T[], keySelector: (elt: T) => K): Record<K, T> {
+export function toDict<T, K extends string>(
+  arr: T[],
+  keySelector: (elt: T) => K
+): Record<K, T> {
   const res = {} as Record<K, T>;
-  arr.forEach(elt => {
+  arr.forEach((elt) => {
     res[keySelector(elt)] = elt;
   });
   return res;

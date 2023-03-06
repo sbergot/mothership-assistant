@@ -13,7 +13,7 @@ export function Weapons({ character }: Props) {
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.weapons.map((w) => (
-          <Weapon weapon={{ ...w, shots: w.shots ? w.shots - 1 : null }} />
+          <Weapon key={w.id} weapon={{ ...w, shots: w.shots ? w.shots - 1 : null }} />
         ))}
         <Weapon weapon={weapons[0]} />
         <Weapon weapon={{ ...weapons[1], shots: 3 }} />

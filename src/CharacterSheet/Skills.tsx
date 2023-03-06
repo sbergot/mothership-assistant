@@ -14,7 +14,7 @@ export function Skills({ character }: Props) {
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.skills.map((s) => (
-          <Skill skill={allSkillsDict[s]} />
+          <Skill key={s} skill={allSkillsDict[s]} />
         ))}
         <Button onClick={() => {}}>Train skill</Button>
       </div>

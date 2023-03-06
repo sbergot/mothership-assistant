@@ -143,7 +143,7 @@ export interface Condition {
   conditionType: ConditionType;
 }
 
-interface WithId {
+export interface WithId {
   id: string;
 }
 

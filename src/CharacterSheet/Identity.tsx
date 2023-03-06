@@ -3,31 +3,27 @@ import { Character } from "Rules/types";
 
 interface Props {
   character: Character;
+  setCharacter(setter: (c: Character) => Character): void;
 }
 
-export function Identity({ character }: Props) {
+export function Identity({ character, setCharacter }: Props) {
   return (
     <Block variant="dark">
       <div>
         <label>Character Name</label>
-        <input className="input" id="characterClass" value={character.name} />
+        <Block variant="bright" small>{character.name}</Block>
       </div>
       <div>
         <label>Pronouns</label>
-        <input className="input" value={character.pronouns} />
+        <Block variant="bright" small>{character.pronouns}</Block>
       </div>
       <div>
         <label>Class</label>
-        <select className="input" value={character.characterClass}>
-          <option value="marine">Marine</option>
-          <option value="teamster">Teamster</option>
-          <option value="android">Android</option>
-          <option value="scientist">Scientist</option>
-        </select>
+        <Block variant="bright" small>{character.characterClass}</Block>
       </div>
       <div>
         <label>High score</label>
-        <input className="input" type="number" value={character.highScore} />
+        <input className="input" type="number" value={character.highScore} onChange={(e) => setCharacter((c: Character) => ({...c, highScore: parseInt(e.target.value)}))} />
       </div>
     </Block>
   );

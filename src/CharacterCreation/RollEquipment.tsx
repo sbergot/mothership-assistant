@@ -4,6 +4,12 @@ import { loadouts, patches, trinkets } from "Rules/data";
 import { BlockWithTitle, SelectableBlockWithTitle } from "UI/Molecules";
 import { pickRandom, roll } from "Services/diceServices";
 import { StepProps } from "./types";
+import { WithId } from "Rules/types";
+import { uuidv4 } from "Services/services";
+
+function clone<T extends WithId>(e: T): T {
+  return {...e, id: uuidv4()};
+}
 
 export function RollEquipment({ character, onConfirm }: StepProps) {
   const [newCharacter, setCharacter] = useState({ ...character });
@@ -28,9 +34,9 @@ export function RollEquipment({ character, onConfirm }: StepProps) {
       const loadout = pickRandom(loadouts[newCharacter.characterClass]);
       setCharacter((c) => ({
         ...c,
-        weapons: loadout.weapons,
-        armor: loadout.armors,
-        equipment: loadout.equipments,
+        weapons: loadout.weapons.map(clone),
+        armor: loadout.armors.map(clone),
+        equipment: loadout.equipments.map(clone),
         credits: roll(10, 2) * 10,
       }));
     }

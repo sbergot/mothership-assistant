@@ -12,7 +12,7 @@ export function Armor({ character }: Props) {
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.armor.map((a) => (
-          <Tag variant="dark">
+          <Tag key={a.id} variant="dark">
             {a.name} (AP {a.armorPoints})
           </Tag>
         ))}

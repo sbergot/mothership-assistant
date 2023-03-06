@@ -1,19 +1,22 @@
 import { Children } from "./types";
 
-type ColorVariant = "light" | "dark";
-
-interface Props extends Children {
-  variant: ColorVariant;
-}
+type ColorVariant = "light" | "dark" | "bright";
 
 const variantColors: Record<ColorVariant, string> = {
   dark: "bg-mother-5 border-mother-5 text-mother-1",
   light: "bg-mother-3 border-mother-3 text-mother-6",
+  bright: "bg-mother-1 border-mother-1 text-mother-6",
 };
 
-export function Block({ children, variant }: Props) {
+interface Props extends Children {
+  variant: ColorVariant;
+  small?: boolean;
+}
+
+export function Block({ children, variant, small }: Props) {
+  const size = small ? "p-1 rounded-lg" : "p-4 rounded-3xl";
   return (
-    <div className={`p-4 rounded-3xl border-2 my-4 ${variantColors[variant]}`}>
+    <div className={`${size} border-2 w-full ${variantColors[variant]}`}>
       {children}
     </div>
   );

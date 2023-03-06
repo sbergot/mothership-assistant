@@ -23,23 +23,30 @@ interface MainMenuMode {
 type Modes = ViewCharacterMode | CreateCharacterMode | MainMenuMode;
 
 export function MainMenu() {
-  const { saveNew, update, deleteEntry, getEntries, getEntry } = useCharacterRepo();
+  const { saveNew, update, deleteEntry, getEntries, getEntry } =
+    useCharacterRepo();
   const [mode, setMode] = useState<Modes>({ mode: "MainMenu" });
   const entries = getEntries();
 
   if (mode.mode === "MainMenu") {
     return (
-      <div>
-        {entries.map(c => (<Block variant="light">
-          <div>{c.value.name}</div>
-          <Button onClick={() => setMode({ mode: "ViewCharacter", id: c.id })}>open</Button>
-          <Button onClick={() => deleteEntry(c)}>remove</Button>
-        </Block>))}
-      <Block variant="light">
-        <Button onClick={() => setMode({ mode: "CreateCharacter" })}>
-          Create character
-        </Button>
-      </Block>
+      <div className="flex flex-col gap-2">
+        {entries.map((c) => (
+          <Block key={c.id} variant="light">
+            <div>{c.value.name}</div>
+            <Button
+              onClick={() => setMode({ mode: "ViewCharacter", id: c.id })}
+            >
+              open
+            </Button>
+            <Button onClick={() => deleteEntry(c)}>remove</Button>
+          </Block>
+        ))}
+        <Block variant="light">
+          <Button onClick={() => setMode({ mode: "CreateCharacter" })}>
+            Create character
+          </Button>
+        </Block>
       </div>
     );
   }
@@ -56,8 +63,13 @@ export function MainMenu() {
   }
 
   if (mode.mode === "ViewCharacter") {
-    return <CharacterSheet character={getEntry(mode.id)} />
+    return (
+      <CharacterSheet
+        character={getEntry(mode.id)}
+        setCharacter={(setter) => update(mode.id, setter)}
+      />
+    );
   }
-  
-  return <div>Error</div>
+
+  return <div>Error</div>;
 }

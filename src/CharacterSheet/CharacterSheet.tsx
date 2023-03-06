@@ -11,12 +11,13 @@ import { Weapons } from "./Weapons";
 
 interface Props {
   character: Character;
+  setCharacter(setter: (c: Character) => Character): void;
 }
 
-export function CharacterSheet({ character }: Props) {
+export function CharacterSheet({ character, setCharacter }: Props) {
   return (
-    <>
-      <Identity character={character} />
+    <div className="flex flex-col gap-4">
+      <Identity character={character} setCharacter={setCharacter} />
       <Status character={character} />
       <Stats character={character} />
       <Saves character={character} />
@@ -25,6 +26,6 @@ export function CharacterSheet({ character }: Props) {
       <Armor character={character} />
       <Equipment character={character} />
       <Contractors character={character} />
-    </>
+    </div>
   );
 }
