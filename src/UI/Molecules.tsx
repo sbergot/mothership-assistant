@@ -1,6 +1,6 @@
-import { skillBonuses } from "./Data/data";
-import { SkillDefinition } from "./types";
-import { Children } from "./UITypes";
+import { skillBonuses } from "../Rules/data";
+import { SkillDefinition } from "../Rules/types";
+import { Children } from "./types";
 
 interface RatingProps {
   title: string;

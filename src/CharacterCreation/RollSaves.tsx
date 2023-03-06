@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Block, Button2, Title } from "../Atoms";
-import { allSaves } from "../Data/data";
-import { Rating } from "../Molecules";
+import { Block, Button2, Title } from "../UI/Atoms";
+import { allSaves } from "../Rules/data";
+import { Rating } from "../UI/Molecules";
 import { roll } from "../Services/diceServices";
 import { StepProps } from "./types";
 

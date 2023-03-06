@@ -1,1 +1,6 @@
+- main menu
+- character sheet interactions
+- design review
+- data review
+- backend for sessions
 - integrate with portraits from ashen-victor.itch.io

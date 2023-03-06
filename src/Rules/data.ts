@@ -15,7 +15,7 @@ import {
   SkillType,
   StatType,
   Weapon,
-} from "../types";
+} from "./types";
 
 export const allStats: StatType[] = [
   "combat",

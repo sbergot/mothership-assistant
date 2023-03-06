@@ -1,4 +1,4 @@
-import { Children } from "./UITypes";
+import { Children } from "./types";
 
 type ColorVariant = "light" | "dark";
 

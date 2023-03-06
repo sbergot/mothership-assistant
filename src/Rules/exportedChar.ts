@@ -1,9 +1,10 @@
-import { Character } from "../types";
+import { Character } from "./types";
 
 export const data: Character = {
     id: "0ecc90a8-4473-4c19-bd59-55eee0651d3a",
     characterClass: "android",
     name: "SHALONDA WASKO",
+    personalNotes: "",
     pronouns: "HE / HIM",
     thumbnailPath: "images/characters/Mothership Chars 27.jpg",
     strength: 42,

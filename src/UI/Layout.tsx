@@ -1,4 +1,4 @@
-import { Children } from "./UITypes";
+import { Children } from "./types";
 
 export function Layout({ children }: Children) {
   return (

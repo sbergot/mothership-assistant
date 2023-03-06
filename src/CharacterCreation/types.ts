@@ -1,4 +1,4 @@
-import { Character, Updater } from "../types";
+import { Character, Updater } from "../Rules/types";
 
 export interface StepProps {
   character: Character;

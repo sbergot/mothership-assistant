@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { Block, Button, Button2, Title } from "../Atoms";
+import { Block, Button, Button2, Title } from "../UI/Atoms";
 import {
   allSkillLevels,
   allSkills,
   allSkillsDict,
   classDefinitionsDict,
-} from "../Data/data";
-import { BlockWithTitle, Skill } from "../Molecules";
+} from "../Rules/data";
+import { BlockWithTitle, Skill } from "../UI/Molecules";
 import { toDict } from "../Services/services";
-import { Character, SkillDefinition, SkillLevel, SkillType } from "../types";
+import { Character, SkillDefinition, SkillLevel, SkillType } from "../Rules/types";
 import { StepProps } from "./types";
 
 interface SelectSkillProps {

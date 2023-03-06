@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Block, Button, Button2, Title } from "../Atoms";
-import { allStats } from "../Data/data";
-import { Rating, SelectableBlockWithTitle } from "../Molecules";
-import { Character, CharacterClass, StatType } from "../types";
-import { Children } from "../UITypes";
+import { Block, Button, Button2, Title } from "../UI/Atoms";
+import { allStats } from "../Rules/data";
+import { Rating, SelectableBlockWithTitle } from "../UI/Molecules";
+import { Character, CharacterClass, StatType } from "../Rules/types";
+import { Children } from "../UI/types";
 import { StepProps } from "./types";
 
 const classBonuses: Record<CharacterClass, (c: Character) => Character> = {

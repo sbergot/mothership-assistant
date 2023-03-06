@@ -2,7 +2,7 @@ import { useState } from "react";
 import { CharacterCreation } from "./CharacterCreation/CharacterCreation"
 import { CharacterSheet } from "./CharacterSheet"
 import { initCharacter } from "./Services/characterServices";
-import { Character } from "./types";
+import { Character } from "./Rules/types";
 
 function App() {
   const [character, setCharacter] = useState<Character | null>(null);
