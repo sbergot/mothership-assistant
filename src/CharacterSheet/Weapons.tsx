@@ -1,6 +1,6 @@
-import { Block, Button, Divider, Progress, Tag, Title } from "../UI/Atoms";
-import { weapons } from "../Rules/data";
-import { Character, Weapon as WeaponType } from "../Rules/types";
+import { Block, Button, Divider, Progress, Tag, Title } from "UI/Atoms";
+import { weapons } from "Rules/data";
+import { Character, Weapon as WeaponType } from "Rules/types";
 
 interface Props {
   character: Character;

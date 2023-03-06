@@ -1,4 +1,4 @@
-import { Character } from "../Rules/types";
+import { Character } from "Rules/types";
 import { Armor } from "./Armor";
 import { Contractors } from "./Contractors";
 import { Equipment } from "./Equipment";

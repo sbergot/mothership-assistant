@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Block, Button2, Divider, DividerOr, Tag, Title } from "../UI/Atoms";
-import { loadouts, patches, trinkets } from "../Rules/data";
-import { BlockWithTitle, SelectableBlockWithTitle } from "../UI/Molecules";
-import { pickRandom, roll } from "../Services/diceServices";
+import { Block, Button2, Divider, DividerOr, Tag, Title } from "UI/Atoms";
+import { loadouts, patches, trinkets } from "Rules/data";
+import { BlockWithTitle, SelectableBlockWithTitle } from "UI/Molecules";
+import { pickRandom, roll } from "Services/diceServices";
 import { StepProps } from "./types";
 
 export function RollEquipment({ character, onConfirm }: StepProps) {

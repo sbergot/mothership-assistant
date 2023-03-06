@@ -1,5 +1,5 @@
 import { uuidv4 } from "./services";
-import { Character } from "../Rules/types";
+import { Character } from "Rules/types";
 
 export function initCharacter(): Character {
     return {

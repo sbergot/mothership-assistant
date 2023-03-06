@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Block, Button2, Title } from "../UI/Atoms";
-import { allStats } from "../Rules/data";
-import { Rating } from "../UI/Molecules";
-import { roll } from "../Services/diceServices";
+import { Block, Button2, Title } from "UI/Atoms";
+import { allStats } from "Rules/data";
+import { Rating } from "UI/Molecules";
+import { roll } from "Services/diceServices";
 import { StepProps } from "./types";
 
 export function RollStats({ character, onConfirm }: StepProps) {

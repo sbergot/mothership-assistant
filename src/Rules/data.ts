@@ -1,4 +1,4 @@
-import { toDict } from "../Services/services";
+import { toDict } from "Services/services";
 import {
   Armor,
   Character,

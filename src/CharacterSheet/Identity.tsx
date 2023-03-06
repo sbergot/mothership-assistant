@@ -1,5 +1,5 @@
-import { Block } from "../UI/Atoms";
-import { Character } from "../Rules/types";
+import { Block } from "UI/Atoms";
+import { Character } from "Rules/types";
 
 interface Props {
   character: Character;

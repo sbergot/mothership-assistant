@@ -1,6 +1,6 @@
-import { Block, Button, Divider, Tag, Title } from "../UI/Atoms";
-import { Gauge } from "../UI/Molecules";
-import { Character } from "../Rules/types";
+import { Block, Button, Divider, Tag, Title } from "UI/Atoms";
+import { Gauge } from "UI/Molecules";
+import { Character } from "Rules/types";
 
 interface Props {
   character: Character;

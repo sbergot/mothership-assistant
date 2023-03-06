@@ -1,5 +1,5 @@
-import { skillBonuses } from "../Rules/data";
-import { SkillDefinition } from "../Rules/types";
+import { skillBonuses } from "Rules/data";
+import { SkillDefinition } from "Rules/types";
 import { Children } from "./types";
 
 interface RatingProps {

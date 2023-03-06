@@ -1,7 +1,7 @@
-import { Block, Button, Divider, Title } from "../UI/Atoms";
-import { allSkillsDict } from "../Rules/data";
-import { Skill } from "../UI/Molecules";
-import { Character } from "../Rules/types";
+import { Block, Button, Divider, Title } from "UI/Atoms";
+import { allSkillsDict } from "Rules/data";
+import { Skill } from "UI/Molecules";
+import { Character } from "Rules/types";
 
 interface Props {
   character: Character;

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { initCharacter } from "../Services/characterServices";
-import { Character } from "../Rules/types";
+import { initCharacter } from "Services/characterServices";
+import { Character } from "Rules/types";
 import { GainStress } from "./GainStress";
 import { NoteTraumaResponse } from "./NoteTraumaResponse";
 import { PersonalDetails } from "./PersonalDetails";

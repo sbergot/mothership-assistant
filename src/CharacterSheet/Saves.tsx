@@ -1,6 +1,6 @@
-import { Block, Title } from "../UI/Atoms";
-import { Rating } from "../UI/Molecules";
-import { Character } from "../Rules/types";
+import { Block, Title } from "UI/Atoms";
+import { Rating } from "UI/Molecules";
+import { Character } from "Rules/types";
 
 interface Props {
   character: Character;

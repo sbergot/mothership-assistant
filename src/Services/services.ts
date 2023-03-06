@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Entry, EntryRecord, Repository } from "../BaseTypes";
+import { Entry, EntryRecord, Repository } from "BaseTypes";
 
 export function uuidv4(): string {
   return (([1e7] as any) + -1e3 + -4e3 + -8e3 + -1e11).replace(

@@ -1,6 +1,6 @@
-import { Block, Button2, Title } from "../UI/Atoms";
-import { classDefinitionsDict } from "../Rules/data";
-import { BlockWithTitle } from "../UI/Molecules";
+import { Block, Button2, Title } from "UI/Atoms";
+import { classDefinitionsDict } from "Rules/data";
+import { BlockWithTitle } from "UI/Molecules";
 import { StepProps } from "./types";
 
 export function NoteTraumaResponse({ character, onConfirm }: StepProps) {

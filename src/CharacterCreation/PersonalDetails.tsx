@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Block, Button2, Title } from "../UI/Atoms";
+import { Block, Button2, Title } from "UI/Atoms";
 import { StepProps } from "./types";
 
 export function PersonalDetails({ character, onConfirm }: StepProps) {

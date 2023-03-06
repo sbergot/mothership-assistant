@@ -1,5 +1,5 @@
-import { Block, Button2, Title } from "../UI/Atoms";
-import { Gauge } from "../UI/Molecules";
+import { Block, Button2, Title } from "UI/Atoms";
+import { Gauge } from "UI/Molecules";
 import { StepProps } from "./types";
 
 export function GainStress({ character, onConfirm }: StepProps) {
