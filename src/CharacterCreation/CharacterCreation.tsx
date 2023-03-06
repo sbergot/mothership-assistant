@@ -24,12 +24,21 @@ const Steps: ((props: StepProps) => JSX.Element)[] = [
   PersonalDetails
 ];
 
-export function CharacterCreation() {
+interface Props {
+  onComplete(character: Character): void;
+}
+
+export function CharacterCreation({ onComplete }: Props) {
   const [character, setCharacter] = useState(initCharacter());
   const [step, setStep] = useState(0);
   function next(character: Character) {
-    setCharacter(character);
-    setStep((i) => i + 1);
+    if (Steps[step + 1] === undefined) {
+      onComplete(character);
+    }
+    else {
+      setCharacter(character);
+      setStep((i) => i + 1);
+    }
   }
   const Step = Steps[step];
   if (Step === undefined) {
