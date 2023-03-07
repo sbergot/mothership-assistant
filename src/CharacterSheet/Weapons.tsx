@@ -1,12 +1,9 @@
 import { Block, Button, Divider, Progress, Tag, Title } from "UI/Atoms";
-import { weapons } from "Rules/data";
-import { Character, Weapon as WeaponType } from "Rules/types";
+import { allWeapons } from "Rules/data";
+import { Weapon as WeaponType } from "Rules/types";
+import { ReadCharacter } from "./types";
 
-interface Props {
-  character: Character;
-}
-
-export function Weapons({ character }: Props) {
+export function Weapons({ character }: ReadCharacter) {
   return (
     <Block variant="light">
       <Title>Weapons</Title>
@@ -15,8 +12,8 @@ export function Weapons({ character }: Props) {
         {character.weapons.map((w) => (
           <Weapon key={w.id} weapon={{ ...w, shots: w.shots ? w.shots - 1 : null }} />
         ))}
-        <Weapon weapon={weapons[0]} />
-        <Weapon weapon={{ ...weapons[1], shots: 3 }} />
+        <Weapon weapon={allWeapons[0]} />
+        <Weapon weapon={{ ...allWeapons[1], shots: 3 }} />
       </div>
       <div className="flex justify-center items-center gap-8 mt-4">
         <Button onClick={() => {}}>Add weapon</Button>

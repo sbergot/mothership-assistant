@@ -1,11 +1,7 @@
 import { Block, Button, Divider, Tag, Title } from "UI/Atoms";
-import { Character } from "Rules/types";
+import { ReadCharacter } from "./types";
 
-interface Props {
-  character: Character;
-}
-
-export function Equipment({ character }: Props) {
+export function Equipment({ character }: ReadCharacter) {
   return (
     <Block variant="light">
       <Title>Equipment</Title>

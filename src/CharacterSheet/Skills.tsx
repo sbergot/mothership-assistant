@@ -1,13 +1,9 @@
 import { Block, Button, Divider, Title } from "UI/Atoms";
 import { allSkillsDict } from "Rules/data";
 import { Skill } from "UI/Molecules";
-import { Character } from "Rules/types";
+import { ReadCharacter } from "./types";
 
-interface Props {
-  character: Character;
-}
-
-export function Skills({ character }: Props) {
+export function Skills({ character }: ReadCharacter) {
   return (
     <Block variant="light">
       <Title>Skills</Title>

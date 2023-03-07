@@ -4,6 +4,7 @@ import {
   CharacterClass,
   ClassDefinition,
   ConditionDefinition,
+  ConditionType,
   Contractor,
   Equipment,
   Loadout,
@@ -28,21 +29,88 @@ export const allSkillLevels: SkillLevel[] = ["Trained", "Expert", "Master"];
 export const allSaves: SaveType[] = ["sanity", "fear", "body"];
 
 export const allConditionDefinitions: ConditionDefinition[] = [
-  { conditionType: "phobia", name: "Phobia", description: "When encountering your Phobia make a Fear Save [-] or gain 1d5 Stress." },
-  { conditionType: "haunted", name: "Haunted", description: "Something starts visiting you at night. In your dreams. Out of the corner of your eye. And soon it will start making demands." },
-  { conditionType: "adrenalineRush", name: "Adrenaline Rush", description: ". [+] on all rolls for the next 2d10 minutes. Reduce your Stress by 1d5." },
-  { conditionType: "overwhelmed", name: "Overwhelmed", description: "All actions at [-] for 1d10 minutes." },
-  { conditionType: "coward", name: "Coward", description: "You must make a Fear Save to engage in violence or flee." },
-  { conditionType: "nightmares", name: "Nightmares", description: "Sleep is difficult, gain [-] on all Rest Saves." },
-  { conditionType: "lossOfConfidence", name: "Loss of Confidence", description: "Choose one of your Skills and lose that Skill’s bonus." },
-  { conditionType: "deflated", name: "Deflated", description: "Whenever a Close crewmember fails a Save, gain 1 Stress." },
-  { conditionType: "doomed", name: "Doomed", description: "You feel cursed and unlucky. All Critical Successes are instead Critical Failures." },
-  { conditionType: "paranoid", name: "Paranoid", description: "For the next week, whenever someone joins your group (even if they only left for a short period of time), make a Fear Save or gain 1 Stress." },
-  { conditionType: "deathWish", name: "Death Wish", description: "For the next 24 hours, whenever you encounter a stranger or known enemy, you must make a Sanity Save or immediately attack them." },
-  { conditionType: "catatonic", name: "Catatonic", description: "Become unresponsive and unmoving for 2d10 minutes." },
-  { conditionType: "spiraling", name: "Spiraling", description: "You make Panic Checks with Disadvantage." },
-  { conditionType: "heartAttack", name: "Heart Attack", description: "Gain [-] on all rolls for 1d10 hours." },
+  {
+    conditionType: "phobia",
+    name: "Phobia",
+    description:
+      "When encountering your Phobia make a Fear Save [-] or gain 1d5 Stress.",
+  },
+  {
+    conditionType: "haunted",
+    name: "Haunted",
+    description:
+      "Something starts visiting you at night. In your dreams. Out of the corner of your eye. And soon it will start making demands.",
+  },
+  {
+    conditionType: "adrenalineRush",
+    name: "Adrenaline Rush",
+    description:
+      ". [+] on all rolls for the next 2d10 minutes. Reduce your Stress by 1d5.",
+  },
+  {
+    conditionType: "overwhelmed",
+    name: "Overwhelmed",
+    description: "All actions at [-] for 1d10 minutes.",
+  },
+  {
+    conditionType: "coward",
+    name: "Coward",
+    description: "You must make a Fear Save to engage in violence or flee.",
+  },
+  {
+    conditionType: "nightmares",
+    name: "Nightmares",
+    description: "Sleep is difficult, gain [-] on all Rest Saves.",
+  },
+  {
+    conditionType: "lossOfConfidence",
+    name: "Loss of Confidence",
+    description: "Choose one of your Skills and lose that Skill’s bonus.",
+  },
+  {
+    conditionType: "deflated",
+    name: "Deflated",
+    description: "Whenever a Close crewmember fails a Save, gain 1 Stress.",
+  },
+  {
+    conditionType: "doomed",
+    name: "Doomed",
+    description:
+      "You feel cursed and unlucky. All Critical Successes are instead Critical Failures.",
+  },
+  {
+    conditionType: "paranoid",
+    name: "Paranoid",
+    description:
+      "For the next week, whenever someone joins your group (even if they only left for a short period of time), make a Fear Save or gain 1 Stress.",
+  },
+  {
+    conditionType: "deathWish",
+    name: "Death Wish",
+    description:
+      "For the next 24 hours, whenever you encounter a stranger or known enemy, you must make a Sanity Save or immediately attack them.",
+  },
+  {
+    conditionType: "catatonic",
+    name: "Catatonic",
+    description: "Become unresponsive and unmoving for 2d10 minutes.",
+  },
+  {
+    conditionType: "spiraling",
+    name: "Spiraling",
+    description: "You make Panic Checks with Disadvantage.",
+  },
+  {
+    conditionType: "heartAttack",
+    name: "Heart Attack",
+    description: "Gain [-] on all rolls for 1d10 hours.",
+  },
 ];
+
+export const allConditionDefinitionsDict: Record<
+  ConditionType,
+  ConditionDefinition
+> = toDict(allConditionDefinitions, (c) => c.conditionType);
 
 export const classDefinitions: ClassDefinition[] = [
   {
@@ -85,7 +153,7 @@ export const classDefinitions: ClassDefinition[] = [
 
 export const classDefinitionsDict = toDict(classDefinitions, (c) => c.name);
 
-export const weapons: Weapon[] = [
+export const allWeapons: Weapon[] = [
   {
     id: "",
     name: "",

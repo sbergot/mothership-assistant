@@ -1,12 +1,9 @@
+import { allConditionDefinitionsDict } from "Rules/data";
 import { Block, Button, Divider, Tag, Title } from "UI/Atoms";
 import { Gauge } from "UI/Molecules";
-import { Character } from "Rules/types";
+import { ReadCharacter, SetMode } from "./types";
 
-interface Props {
-  character: Character;
-}
-
-export function Status({ character }: Props) {
+export function Status({ character, setMode }: ReadCharacter & SetMode) {
   return (
     <Block variant="light">
       <Title>Status report</Title>
@@ -31,12 +28,16 @@ export function Status({ character }: Props) {
         />
       </div>
       <Divider />
-      <Title>Warning!</Title>
+      {character.conditions.length > 0 && <Title>Warning!</Title>}
       <div className="flex flex-wrap justify-center gap-2">
         {character.conditions.map((c) => (
-          <Tag variant="dark">{c.conditionType}</Tag>
+          <Tag variant="dark">
+            {allConditionDefinitionsDict[c.conditionType].name}
+          </Tag>
         ))}
-        <Button onClick={() => {}}>Add condition</Button>
+        <Button onClick={() => setMode({ mode: "AddCondition" })}>
+          Add condition
+        </Button>
       </div>
     </Block>
   );

@@ -1,12 +1,8 @@
 import { Block, Title } from "UI/Atoms";
 import { Rating } from "UI/Molecules";
-import { Character } from "Rules/types";
+import { ReadCharacter } from "./types";
 
-interface Props {
-  character: Character;
-}
-
-export function Stats({ character }: Props) {
+export function Stats({ character }: ReadCharacter) {
   return (
     <Block variant="light">
       <Title>Stats</Title>

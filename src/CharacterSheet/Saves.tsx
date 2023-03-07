@@ -1,12 +1,8 @@
 import { Block, Title } from "UI/Atoms";
 import { Rating } from "UI/Molecules";
-import { Character } from "Rules/types";
+import { ReadCharacter } from "./types";
 
-interface Props {
-  character: Character;
-}
-
-export function Saves({ character }: Props) {
+export function Saves({ character }: ReadCharacter) {
   return (
     <Block variant="light">
       <Title>Saves</Title>

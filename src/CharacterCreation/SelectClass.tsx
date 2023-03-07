@@ -235,6 +235,7 @@ function ClassSummary({
   onClick,
 }: ClassSummaryProps) {
   return (
+    <div className="w-48">
     <SelectableBlockWithTitle
       title={className}
       selected={className === selected}
@@ -242,5 +243,6 @@ function ClassSummary({
     >
       {children}
     </SelectableBlockWithTitle>
+    </div>
   );
 }

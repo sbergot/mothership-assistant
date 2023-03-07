@@ -1,13 +1,10 @@
-import { Block, Button, Divider, Tag, Title } from "UI/Atoms";
-import { contractors } from "Rules/data";
+import { Block, Button, Divider, Title } from "UI/Atoms";
 import { Rating, Gauge } from "UI/Molecules";
-import { Character, Contractor } from "Rules/types";
+import { Contractor } from "Rules/types";
+import { ReadCharacter } from "./types";
 
-interface Props {
-  character: Character;
-}
 
-export function Contractors({ character }: Props) {
+export function Contractors({ character }: ReadCharacter) {
   return (
     <Block variant="light">
       <Title>Contractors</Title>
