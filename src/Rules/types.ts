@@ -49,9 +49,16 @@ export type SkillType =
 
 export type SkillLevel = "Trained" | "Expert" | "Master";
 
+export interface SkillLevelDefinition {
+  level: SkillLevel;
+  trainingTimeYear: number;
+  trainingCost: number;
+}
+
 export interface SkillDefinition {
   key: SkillType;
   name: string;
+  description: string;
   level: SkillLevel;
   prerequisites: SkillType[];
 }

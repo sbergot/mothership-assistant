@@ -1,103 +1,20 @@
 import { useEffect, useState } from "react";
-import { Block, Button, Button2, Title } from "UI/Atoms";
+import { Block, Button2, Title } from "UI/Atoms";
 import {
   allSkillLevels,
-  allSkills,
   allSkillsDict,
   classDefinitionsDict,
 } from "Rules/data";
 import { BlockWithTitle, Skill } from "UI/Molecules";
-import { toDict } from "Services/services";
-import { Character, SkillDefinition, SkillLevel, SkillType } from "Rules/types";
+import { Character, SkillLevel, SkillType } from "Rules/types";
 import { StepProps } from "./types";
-
-interface SelectSkillProps {
-  onSelect(s: SkillType): void;
-  filter(s: SkillDefinition): boolean;
-}
-
-function SelectSkill({ onSelect, filter }: SelectSkillProps) {
-  const filteredSkills = allSkills.filter(filter);
-  const trainedSkills = filteredSkills.filter(isSkillLevel("Trained"));
-  const expertSkills = filteredSkills.filter(isSkillLevel("Expert"));
-  const masterSkills = filteredSkills.filter(isSkillLevel("Master"));
-  return (
-    <div className="flex flex-col gap-2">
-      {trainedSkills.length > 0 && (
-        <>
-          <Title>Trained skills</Title>
-          <div className="flex flex-wrap gap-2">
-            {trainedSkills.map((s) => (
-              <Button key={s.key} onClick={() => onSelect(s.key)}>
-                {s.name}
-              </Button>
-            ))}
-          </div>
-        </>
-      )}
-      {expertSkills.length > 0 && (
-        <>
-          <Title>Expert skills</Title>
-          <div className="flex flex-wrap gap-2">
-            {expertSkills.map((s) => (
-              <Button key={s.key} onClick={() => onSelect(s.key)}>
-                {s.name}
-              </Button>
-            ))}
-          </div>
-        </>
-      )}
-      {masterSkills.length > 0 && (
-        <>
-          <Title>Master skills</Title>
-          <div className="flex flex-wrap gap-2">
-            {masterSkills.map((s) => (
-              <Button key={s.key} onClick={() => onSelect(s.key)}>
-                {s.name}
-              </Button>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
-
-type SkillFilter = (s: SkillDefinition) => boolean;
-
-function isPrerequisiteOk(selectedSkills: SkillType[]): SkillFilter {
-  const selectedDict = toDict(selectedSkills, (s) => s);
-  return (s: SkillDefinition) => {
-    const { prerequisites } = allSkillsDict[s.key];
-    if (prerequisites.length === 0) {
-      return true;
-    }
-    return prerequisites.some((p) => !!selectedDict[p]);
-  };
-}
-
-function isNotSelected(selectedSkills: SkillType[]): SkillFilter {
-  const selectedDict = toDict(selectedSkills, (s) => s);
-  return (s: SkillDefinition) => {
-    return !selectedDict[s.key];
-  };
-}
-
-function isSkillLevel(level: SkillLevel): SkillFilter {
-  return (s: SkillDefinition) => s.level === level;
-}
-
-function and(cb1: SkillFilter, cb2: SkillFilter): SkillFilter {
-  return (s: SkillDefinition) => cb1(s) && cb2(s);
-}
-
-function or(cb1: SkillFilter, cb2: SkillFilter): SkillFilter {
-  return (s: SkillDefinition) => cb1(s) || cb2(s);
-}
-
-function never(s: SkillDefinition) {
-  return false;
-}
+import {
+  isSkillLevel,
+  SkillFilter,
+  never,
+  or,
+} from "Rules/skillFilters";
+import { SelectSkill } from "UI/Organisms/SelectSkills";
 
 interface SkillSelectionProps {
   character: Character;
@@ -186,13 +103,16 @@ function SkillSelection({
         isInBudget = or(isInBudget, isSkillLevel(s));
       }
     });
-    return and(
-      isNotSelected(character.skills),
-      and(isPrerequisiteOk(character.skills), isInBudget)
-    );
+    return isInBudget;
   }
 
-  return <SelectSkill onSelect={onSelect} filter={getFilter()} />;
+  return (
+    <SelectSkill
+      onSelect={onSelect}
+      filter={getFilter()}
+      character={character}
+    />
+  );
 }
 
 function computeRemaining(

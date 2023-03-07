@@ -1,4 +1,4 @@
-import { Character, ConditionType } from "Rules/types";
+import { Character, ConditionType, SkillType } from "Rules/types";
 
 export interface ReadCharacter {
   character: Character;
@@ -27,7 +27,16 @@ interface ViewConditionMode {
   condition: ConditionType;
 }
 
-export type Modes = CharacterSheetMode | AddConditionMode | ViewConditionMode;
+interface SelectSkillMode {
+  mode: "SelectSkill";
+}
+
+interface StartTrainingSkillMode {
+  mode: "StartTrainingSkill";
+  skill: SkillType;
+}
+
+export type Modes = CharacterSheetMode | AddConditionMode | ViewConditionMode | SelectSkillMode | StartTrainingSkillMode;
 
 export interface SetMode {
   setMode(mode: Modes): void;
