@@ -102,7 +102,7 @@ export type RollMode = "advantage" | null;
 export type ConditionType =
   | "phobia"
   | "haunted"
-  | "laserFocus"
+  | "adrenalineRush"
   | "overwhelmed"
   | "coward"
   | "nightmares"
@@ -141,6 +141,11 @@ export type ContractorType =
 
 export interface Condition {
   conditionType: ConditionType;
+}
+
+export interface ConditionDefinition extends Condition {
+  name: string;
+  description: string;
 }
 
 export interface WithId {
