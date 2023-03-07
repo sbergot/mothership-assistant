@@ -1,16 +1,15 @@
 import { allSkillLevelDefinitionDict, allSkillsDict } from "Rules/data";
-import { SkillType } from "Rules/types";
 import { Block, Button, Button2, Divider, Title } from "UI/Atoms";
+import { GaugeBase } from "UI/Molecules";
 import { ReadWriteCharacter, SetMode } from "./types";
 
-type Props = ReadWriteCharacter & SetMode & { skill: SkillType };
+type Props = ReadWriteCharacter & SetMode;
 
-export function StartTrainingSkill({
-  character,
-  setCharacter,
-  setMode,
-  skill,
-}: Props) {
+export function TrainSkill({ character, setCharacter, setMode }: Props) {
+  const skill = character.skillInProgress;
+  if (skill === null) {
+    return <div>Error</div>;
+  }
   const definition = allSkillsDict[skill];
   const levelDefinition = allSkillLevelDefinitionDict[definition.level];
 
@@ -20,39 +19,48 @@ export function StartTrainingSkill({
       <Divider />
       <div className="text-center">{definition.description}</div>
       <Divider />
-      <span>Training materials</span>
-      {levelDefinition.trainingCost}
-      <Divider />
-      <span>Your credits</span>
-      {character.credits}
+      <GaugeBase
+        title="Time remaining in training"
+        valueLeft={character.skillTrainingYearsRemaining}
+        titleLeft="Years"
+        valueRight={character.skillTrainingMonthsRemaining}
+        titleRight="Months"
+      />
       <Divider />
       <div className="flex justify-center gap-2">
         <Button2
           onClick={() => {
             setCharacter((character) => ({
               ...character,
-              skillInProgress: skill,
-              skillTrainingYearsRemaining: levelDefinition.trainingTimeYear,
+              skillInProgress: null,
+              skillTrainingYearsRemaining: 0,
               skillTrainingMonthsRemaining: 0,
-              credits: character.credits - levelDefinition.trainingCost
+              skills: [...character.skills, skill],
             }));
-            setMode({ mode: "TrainSkill" });
+            setMode({ mode: "CharacterSheet" });
           }}
         >
-          Pay for materials & start training
+          Complete training
         </Button2>
         <Button
           onClick={() => {
             setCharacter((character) => ({
               ...character,
-              skillInProgress: skill,
-              skillTrainingYearsRemaining: levelDefinition.trainingTimeYear,
+              skillInProgress: null,
+              skillTrainingYearsRemaining: 0,
               skillTrainingMonthsRemaining: 0,
             }));
-            setMode({ mode: "TrainSkill" });
+            setMode({ mode: "CharacterSheet" });
           }}
         >
-          Start training without paying
+          Cancel training
+        </Button>
+        <Button
+          onClick={() => {
+            setMode({ mode: "CharacterSheet" });
+          }}
+        >
+          Back
         </Button>
       </div>
     </Block>

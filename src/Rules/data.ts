@@ -32,16 +32,19 @@ export const allSkillLevelDefinitions: SkillLevelDefinition[] = [
     level: "Trained",
     trainingCost: 10000,
     trainingTimeYear: 2,
+    bonus: 10,
   },
   {
     level: "Expert",
     trainingCost: 50000,
     trainingTimeYear: 4,
+    bonus: 15,
   },
   {
     level: "Master",
     trainingCost: 200000,
     trainingTimeYear: 6,
+    bonus: 20,
   },
 ];
 
@@ -2286,12 +2289,6 @@ function buildSkillData(): Record<SkillType, SkillDefinitionExtended> {
 
 export const allSkillsDict: Record<SkillType, SkillDefinitionExtended> =
   buildSkillData();
-
-export const skillBonuses: Record<SkillLevel, number> = {
-  Trained: 10,
-  Expert: 15,
-  Master: 20,
-};
 
 export const trinkets: string[] = [
   "Manual:PANIC: Harbinger of Catastrophe",

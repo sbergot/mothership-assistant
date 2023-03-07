@@ -53,6 +53,7 @@ export interface SkillLevelDefinition {
   level: SkillLevel;
   trainingTimeYear: number;
   trainingCost: number;
+  bonus: number;
 }
 
 export interface SkillDefinition {

@@ -1,5 +1,6 @@
-import { skillBonuses } from "Rules/data";
-import { SkillDefinition } from "Rules/types";
+import { ReadCharacter } from "CharacterSheet/types";
+import { allSkillLevelDefinitionDict, allSkillsDict } from "Rules/data";
+import { Character, SkillDefinition } from "Rules/types";
 import { Children } from "./types";
 
 interface RatingProps {
@@ -27,16 +28,42 @@ interface GaugeProps {
 
 export function Gauge({ current, limit, title, limitName }: GaugeProps) {
   return (
+    <GaugeBase
+      title={title}
+      valueLeft={current}
+      titleLeft="Current"
+      valueRight={limit}
+      titleRight={limitName}
+    />
+  );
+}
+
+interface GaugeBaseProps {
+  title: string;
+  valueLeft: number;
+  titleLeft: string;
+  valueRight: number;
+  titleRight: string;
+}
+
+export function GaugeBase({
+  title,
+  valueLeft,
+  titleLeft,
+  valueRight,
+  titleRight,
+}: GaugeBaseProps) {
+  return (
     <div className="flex flex-col items-center">
       <div className="text-center">{title}</div>
       <div className="bg-mother-1 rounded-3xl text-3xl border-4 border-mother-6 flex items-center">
-        <div className="w-16 text-center">{current}</div>
+        <div className="w-16 text-center">{valueLeft}</div>
         <div className="h-10 w-1 bg-mother-6 mx-1 diagonalRising" />
-        <div className="w-16 text-center">{limit}</div>
+        <div className="w-16 text-center">{valueRight}</div>
       </div>
       <div className="flex text-mother-4 gap-2">
-        <div>current</div>
-        <div>{limitName}</div>
+        <div>{titleLeft}</div>
+        <div>{titleRight}</div>
       </div>
     </div>
   );
@@ -47,12 +74,30 @@ interface SkillProps {
 }
 
 export function Skill({ skill }: SkillProps) {
+  const levelDefinition = allSkillLevelDefinitionDict[skill.level];
   return (
     <span className="rounded-lg border-2 bg-mother-5 text-mother-1 border-mother-5 text-lg">
       <span className="inline-block px-1 rounded-md bg-mother-1 text-mother-5">
-        +{skillBonuses[skill.level]}
+        +{levelDefinition.bonus}
       </span>
       <span className="px-2">{skill.name}</span>
+    </span>
+  );
+}
+
+interface SkillProps {
+  skill: SkillDefinition;
+}
+
+export function SkillInTraining({ character }: ReadCharacter) {
+  const definition = allSkillsDict[character.skillInProgress!];
+  const levelDefinition = allSkillLevelDefinitionDict[definition.level];
+  return (
+    <span className="rounded-lg border-2 bg-mother-5 text-mother-1 border-mother-5 text-lg">
+      <span className="inline-block px-1 rounded-md bg-mother-1 text-mother-5">
+        +{levelDefinition.bonus}
+      </span>
+      <span className="px-2">{definition.name}</span>
     </span>
   );
 }

@@ -11,6 +11,7 @@ import { Skills } from "./Skills";
 import { StartTrainingSkill } from "./StartTrainingSkill";
 import { Stats } from "./Stats";
 import { Status } from "./Status";
+import { TrainSkill } from "./TrainSkill";
 import { Modes, ReadWriteCharacter } from "./types";
 import { ViewCondition } from "./ViewCondition";
 import { Weapons } from "./Weapons";
@@ -58,6 +59,16 @@ export function CharacterSheet({
         setCharacter={setCharacter}
         setMode={setMode}
         skill={mode.skill}
+      />
+    );
+  }
+
+  if (mode.mode === "TrainSkill") {
+    return (
+      <TrainSkill
+        character={character}
+        setCharacter={setCharacter}
+        setMode={setMode}
       />
     );
   }
