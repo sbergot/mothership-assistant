@@ -1,4 +1,4 @@
-import { Character } from "Rules/types";
+import { Character, ConditionType } from "Rules/types";
 
 export interface ReadCharacter {
   character: Character;
@@ -22,7 +22,12 @@ interface AddConditionMode {
   mode: "AddCondition";
 }
 
-export type Modes = CharacterSheetMode | AddConditionMode;
+interface ViewConditionMode {
+  mode: "ViewCondition";
+  condition: ConditionType;
+}
+
+export type Modes = CharacterSheetMode | AddConditionMode | ViewConditionMode;
 
 export interface SetMode {
   setMode(mode: Modes): void;

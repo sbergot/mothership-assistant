@@ -1,6 +1,5 @@
 - main menu
 - character sheet interactions
-  - add condition
   - train skill
   - add weapon
   - add armor

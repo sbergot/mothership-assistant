@@ -67,7 +67,7 @@ export function Button({ children, onClick, dark }: ButtonProps) {
   return (
     <span
       onClick={onClick}
-      className={`py-1 px-2 rounded-lg border-2 cursor-pointer transition-colors ${colors}`}
+      className={`px-2 py-1 border-2 rounded-lg cursor-pointer transition-colors ${colors}`}
     >
       {children}
     </span>
@@ -84,9 +84,9 @@ export function Button2({ children, onClick, disabled }: Button2Props) {
     ? "bg-mother-4 text-mother-1 cursor-not-allowed"
     : "cursor-pointer bg-mother-6 text-mother-1 hover:bg-mother-5 transition-colors";
   return (
-    <div onClick={onClick} className={`px-4 py-1 rounded-3xl ${classes}`}>
+    <span onClick={onClick} className={`px-4 py-1 border-2 rounded-3xl ${classes}`}>
       {children}
-    </div>
+    </span>
   );
 }
 

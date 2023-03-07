@@ -9,6 +9,7 @@ import { Skills } from "./Skills";
 import { Stats } from "./Stats";
 import { Status } from "./Status";
 import { Modes, ReadWriteCharacter } from "./types";
+import { ViewCondition } from "./ViewCondition";
 import { Weapons } from "./Weapons";
 
 export function CharacterSheet({
@@ -23,6 +24,17 @@ export function CharacterSheet({
         character={character}
         setCharacter={setCharacter}
         setMode={setMode}
+      />
+    );
+  }
+
+  if (mode.mode === "ViewCondition") {
+    return (
+      <ViewCondition
+        character={character}
+        setCharacter={setCharacter}
+        setMode={setMode}
+        condition={mode.condition}
       />
     );
   }

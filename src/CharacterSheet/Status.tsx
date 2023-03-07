@@ -1,5 +1,5 @@
 import { allConditionDefinitionsDict } from "Rules/data";
-import { Block, Button, Divider, Tag, Title } from "UI/Atoms";
+import { Block, Button, Button2, Divider, Tag, Title } from "UI/Atoms";
 import { Gauge } from "UI/Molecules";
 import { ReadCharacter, SetMode } from "./types";
 
@@ -31,9 +31,9 @@ export function Status({ character, setMode }: ReadCharacter & SetMode) {
       {character.conditions.length > 0 && <Title>Warning!</Title>}
       <div className="flex flex-wrap justify-center gap-2">
         {character.conditions.map((c) => (
-          <Tag variant="dark">
+          <Button dark onClick={() => setMode({ mode: "ViewCondition", condition: c.conditionType })}>
             {allConditionDefinitionsDict[c.conditionType].name}
-          </Tag>
+          </Button>
         ))}
         <Button onClick={() => setMode({ mode: "AddCondition" })}>
           Add condition
