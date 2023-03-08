@@ -1,6 +1,8 @@
 - main menu
 - character sheet interactions
   - train skill
+    - view & remove skill
+    - edit time remaining for training
   - add weapon
   - add armor
   - add equipment
