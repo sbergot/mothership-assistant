@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Block, Button2, Divider, DividerOr, Tag, Title } from "UI/Atoms";
+import { Block, Button, Divider, DividerOr, Tag, Title } from "UI/Atoms";
 import { loadouts, patches, trinkets } from "Rules/data";
 import { BlockWithTitle, SelectableBlockWithTitle } from "UI/Molecules";
 import { pickRandom, roll } from "Services/diceServices";
@@ -58,17 +58,17 @@ export function RollEquipment({ character, onConfirm }: StepProps) {
             <div className="mx-auto">{newCharacter.trinket || "-"}</div>
           </BlockWithTitle>
           <div className="self-center">
-            <Button2 disabled={trinketRolled} onClick={rollTrinket}>
+            <Button rounded dark disabled={trinketRolled} onClick={rollTrinket}>
               Roll
-            </Button2>
+            </Button>
           </div>
           <BlockWithTitle title="Patch">
             <div className="mx-auto">{newCharacter.patch || "-"}</div>
           </BlockWithTitle>
           <div className="self-center">
-            <Button2 disabled={patchRolled} onClick={rollPatch}>
+            <Button rounded dark disabled={patchRolled} onClick={rollPatch}>
               Roll
-            </Button2>
+            </Button>
           </div>
           {(!gearOptionRolled || gearOption === "loadout") && (
             <SelectableBlockWithTitle
@@ -107,16 +107,16 @@ export function RollEquipment({ character, onConfirm }: StepProps) {
             </SelectableBlockWithTitle>
           )}
           <div className="self-center">
-            <Button2 disabled={gearOptionRolled} onClick={rollGearOption}>
+            <Button rounded dark disabled={gearOptionRolled} onClick={rollGearOption}>
               Roll
-            </Button2>
+            </Button>
           </div>
         </div>
       </Block>
       <div className="self-center">
-        <Button2 disabled={!done} onClick={() => onConfirm(newCharacter)}>
+        <Button rounded dark disabled={!done} onClick={() => onConfirm(newCharacter)}>
           Confirm
-        </Button2>
+        </Button>
       </div>
     </div>
   );

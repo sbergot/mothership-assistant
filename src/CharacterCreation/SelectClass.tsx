@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Block, Button, Button2, Title } from "UI/Atoms";
+import { Block, Button, Title } from "UI/Atoms";
 import { allStats } from "Rules/data";
 import { Rating, SelectableBlockWithTitle } from "UI/Molecules";
 import { Character, CharacterClass, StatType } from "Rules/types";
@@ -214,9 +214,9 @@ export function SelectClass({ character, onConfirm }: StepProps) {
         </div>
       </Block>
       <div className="self-center">
-        <Button2 disabled={!done} onClick={() => onConfirm(newCharacter)}>
+        <Button rounded dark disabled={!done} onClick={() => onConfirm(newCharacter)}>
           Confirm
-        </Button2>
+        </Button>
       </div>
     </div>
   );

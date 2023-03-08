@@ -1,5 +1,5 @@
 import { allSkillLevelDefinitionDict, allSkillsDict } from "Rules/data";
-import { Block, Button, Button2, Divider, Title } from "UI/Atoms";
+import { Block, Button, Divider, Title } from "UI/Atoms";
 import { GaugeBase } from "UI/Molecules";
 import { ReadWriteCharacter, SetMode } from "./types";
 
@@ -28,7 +28,9 @@ export function TrainSkill({ character, setCharacter, setMode }: Props) {
       />
       <Divider />
       <div className="flex justify-center gap-2">
-        <Button2
+        <Button
+          rounded
+          dark
           onClick={() => {
             setCharacter((character) => ({
               ...character,
@@ -41,7 +43,7 @@ export function TrainSkill({ character, setCharacter, setMode }: Props) {
           }}
         >
           Complete training
-        </Button2>
+        </Button>
         <Button
           onClick={() => {
             setCharacter((character) => ({

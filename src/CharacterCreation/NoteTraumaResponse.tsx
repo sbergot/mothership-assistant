@@ -1,4 +1,4 @@
-import { Block, Button2, Title } from "UI/Atoms";
+import { Block, Button, Title } from "UI/Atoms";
 import { classDefinitionsDict } from "Rules/data";
 import { BlockWithTitle } from "UI/Molecules";
 import { StepProps } from "./types";
@@ -15,9 +15,9 @@ export function NoteTraumaResponse({ character, onConfirm }: StepProps) {
         </BlockWithTitle>
       </Block>
       <div className="self-center">
-        <Button2 disabled={!done} onClick={() => onConfirm(character)}>
+        <Button rounded dark disabled={!done} onClick={() => onConfirm(character)}>
           Confirm
-        </Button2>
+        </Button>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Block, Button2, Title } from "UI/Atoms";
+import { Block, Button, Title } from "UI/Atoms";
 import { allStats } from "Rules/data";
 import { Rating } from "UI/Molecules";
 import { roll } from "Services/diceServices";
@@ -29,14 +29,14 @@ export function RollStats({ character, onConfirm }: StepProps) {
         </div>
       </Block>
       <div className="self-center">
-        <Button2 disabled={done} onClick={rollStats}>
+        <Button rounded dark disabled={done} onClick={rollStats}>
           Roll
-        </Button2>
+        </Button>
       </div>
       <div className="self-center">
-        <Button2 disabled={!done} onClick={() => onConfirm(newCharacter)}>
+        <Button rounded dark disabled={!done} onClick={() => onConfirm(newCharacter)}>
           Confirm
-        </Button2>
+        </Button>
       </div>
     </div>
   );

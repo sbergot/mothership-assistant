@@ -1,5 +1,5 @@
 import { allConditionDefinitions } from "Rules/data";
-import { Block, Button, Button2, Divider, Title } from "UI/Atoms";
+import { Block, Button, Divider, Title } from "UI/Atoms";
 import { ReadWriteCharacter, SetMode } from "./types";
 
 type Props = ReadWriteCharacter & SetMode;
@@ -20,7 +20,7 @@ export function AddCondition({ setCharacter, character, setMode }: Props) {
             )
           )
           .map((c) => (
-            <Button2
+            <Button rounded dark
               onClick={() => {
                 setCharacter((character) => ({
                   ...character,
@@ -33,7 +33,7 @@ export function AddCondition({ setCharacter, character, setMode }: Props) {
               }}
             >
               {c.name}
-            </Button2>
+            </Button>
           ))}
       </div>
       <Divider />

@@ -1,4 +1,4 @@
-import { Block, Button2, Title } from "UI/Atoms";
+import { Block, Button, Title } from "UI/Atoms";
 import { Gauge } from "UI/Molecules";
 import { StepProps } from "./types";
 
@@ -19,9 +19,9 @@ export function GainStress({ character, onConfirm }: StepProps) {
         </div>
       </Block>
       <div className="self-center">
-        <Button2 disabled={!done} onClick={() => onConfirm(character)}>
+        <Button rounded dark disabled={!done} onClick={() => onConfirm(character)}>
           Confirm
-        </Button2>
+        </Button>
       </div>
     </div>
   );

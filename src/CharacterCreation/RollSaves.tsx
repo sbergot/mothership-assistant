@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Block, Button2, Title } from "UI/Atoms";
+import { Block, Button, Title } from "UI/Atoms";
 import { allSaves } from "Rules/data";
 import { Rating } from "UI/Molecules";
 import { roll } from "Services/diceServices";
@@ -28,14 +28,14 @@ export function RollSaves({ character, onConfirm }: StepProps) {
         </div>
       </Block>
       <div className="self-center">
-        <Button2 disabled={done} onClick={rollSaves}>
+        <Button rounded dark disabled={done} onClick={rollSaves}>
           Roll
-        </Button2>
+        </Button>
       </div>
       <div className="self-center">
-        <Button2 disabled={!done} onClick={() => onConfirm(newCharacter)}>
+        <Button rounded dark disabled={!done} onClick={() => onConfirm(newCharacter)}>
           Confirm
-        </Button2>
+        </Button>
       </div>
     </div>
   );

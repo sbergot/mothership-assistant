@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Block, Button2, Title } from "UI/Atoms";
+import { Block, Button, Title } from "UI/Atoms";
 import {
   allSkillLevels,
   allSkillsDict,
@@ -172,12 +172,12 @@ export function SelectSkills({ character, onConfirm }: StepProps) {
       </Block>
       <div className="self-center">
         <div className="flex items-center gap-4">
-          <Button2 onClick={() => setCharacter({ ...character })}>
+          <Button rounded dark onClick={() => setCharacter({ ...character })}>
             Reset
-          </Button2>
-          <Button2 disabled={!done} onClick={() => onConfirm(newCharacter)}>
+          </Button>
+          <Button rounded dark disabled={!done} onClick={() => onConfirm(newCharacter)}>
             Confirm
-          </Button2>
+          </Button>
         </div>
       </div>
     </div>

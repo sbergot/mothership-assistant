@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Block, Button2, Title } from "UI/Atoms";
+import { Block, Button, Title } from "UI/Atoms";
 import { Gauge } from "UI/Molecules";
 import { roll } from "Services/diceServices";
 import { Character } from "Rules/types";
@@ -35,14 +35,14 @@ export function RollHealth({ character, onConfirm }: StepProps) {
       </div>
       </Block>
       <div className="self-center">
-        <Button2 disabled={done} onClick={rollHealth}>
+        <Button rounded dark disabled={done} onClick={rollHealth}>
           Roll
-        </Button2>
+        </Button>
       </div>
       <div className="self-center">
-        <Button2 disabled={!done} onClick={() => onConfirm(newCharacter)}>
+        <Button rounded dark disabled={!done} onClick={() => onConfirm(newCharacter)}>
           Confirm
-        </Button2>
+        </Button>
       </div>
     </div>
   );

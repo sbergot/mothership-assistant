@@ -1,6 +1,6 @@
 import { allSkillLevelDefinitionDict, allSkillsDict } from "Rules/data";
 import { SkillType } from "Rules/types";
-import { Block, Button, Button2, Divider, Title } from "UI/Atoms";
+import { Block, Button, Divider, Title } from "UI/Atoms";
 import { ReadWriteCharacter, SetMode } from "./types";
 
 type Props = ReadWriteCharacter & SetMode & { skill: SkillType };
@@ -27,7 +27,9 @@ export function StartTrainingSkill({
       {character.credits}
       <Divider />
       <div className="flex justify-center gap-2">
-        <Button2
+        <Button
+          rounded
+          dark
           onClick={() => {
             setCharacter((character) => ({
               ...character,
@@ -40,7 +42,7 @@ export function StartTrainingSkill({
           }}
         >
           Pay for materials & start training
-        </Button2>
+        </Button>
         <Button
           onClick={() => {
             setCharacter((character) => ({

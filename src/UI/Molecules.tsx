@@ -58,10 +58,10 @@ export function GaugeBase({
       <div className="text-center">{title}</div>
       <div className="bg-mother-1 rounded-3xl text-3xl border-4 border-mother-6 flex items-center">
         <div className="w-16 text-center">{valueLeft}</div>
-        <div className="h-10 w-1 bg-mother-6 mx-1 diagonalRising" />
+        <div className="h-10 w-1 bg-mother-6 mx-3 diagonalRising" />
         <div className="w-16 text-center">{valueRight}</div>
       </div>
-      <div className="flex text-mother-4 gap-2">
+      <div className="flex text-mother-4 gap-8">
         <div>{titleLeft}</div>
         <div>{titleRight}</div>
       </div>
@@ -71,12 +71,17 @@ export function GaugeBase({
 
 interface SkillProps {
   skill: SkillDefinition;
+  onClick?(): void;
 }
 
-export function Skill({ skill }: SkillProps) {
+export function Skill({ skill, onClick }: SkillProps) {
   const levelDefinition = allSkillLevelDefinitionDict[skill.level];
+  const cursor = !!onClick ? "cursor-pointer" : "cursor-default";
   return (
-    <span className="rounded-lg border-2 bg-mother-5 text-mother-1 border-mother-5 text-lg">
+    <span
+      onClick={onClick ?? (() => {})}
+      className={`rounded-lg border-2 bg-mother-5 text-mother-1 border-mother-5 text-lg ${cursor}`}
+    >
       <span className="inline-block px-1 rounded-md bg-mother-1 text-mother-5">
         +{levelDefinition.bonus}
       </span>
@@ -85,17 +90,20 @@ export function Skill({ skill }: SkillProps) {
   );
 }
 
-interface SkillProps {
-  skill: SkillDefinition;
-}
-
-export function SkillInTraining({ character }: ReadCharacter) {
+export function SkillInTraining({
+  character,
+  onClick,
+}: ReadCharacter & { onClick?(): void }) {
   const definition = allSkillsDict[character.skillInProgress!];
-  const levelDefinition = allSkillLevelDefinitionDict[definition.level];
+  const cursor = !!onClick ? "cursor-pointer" : "cursor-default";
   return (
-    <span className="rounded-lg border-2 bg-mother-5 text-mother-1 border-mother-5 text-lg">
+    <span
+      onClick={onClick ?? (() => {})}
+      className={`rounded-lg border-2 bg-mother-5 text-mother-1 border-mother-5 text-lg ${cursor}`}
+    >
       <span className="inline-block px-1 rounded-md bg-mother-1 text-mother-5">
-        +{levelDefinition.bonus}
+        {character.skillTrainingYearsRemaining}Y:
+        {character.skillTrainingMonthsRemaining}M
       </span>
       <span className="px-2">{definition.name}</span>
     </span>

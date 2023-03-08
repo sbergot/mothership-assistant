@@ -1,5 +1,5 @@
 import { allConditionDefinitionsDict } from "Rules/data";
-import { Block, Button, Button2, Divider, Tag, Title } from "UI/Atoms";
+import { Block, Button, Divider, Tag, Title } from "UI/Atoms";
 import { Gauge } from "UI/Molecules";
 import { ReadCharacter, SetMode } from "./types";
 

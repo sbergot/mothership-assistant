@@ -1,6 +1,6 @@
 import { Block, Button, Divider, Title } from "UI/Atoms";
 import { allSkillsDict } from "Rules/data";
-import { Skill } from "UI/Molecules";
+import { Skill, SkillInTraining } from "UI/Molecules";
 import { ReadCharacter, SetMode } from "./types";
 
 export function Skills({ character, setMode }: ReadCharacter & SetMode) {
@@ -12,13 +12,18 @@ export function Skills({ character, setMode }: ReadCharacter & SetMode) {
         {character.skills.map((s) => (
           <Skill key={s} skill={allSkillsDict[s]} />
         ))}
-        <Button
-          onClick={() => {
-            setMode({ mode: "SelectSkill" });
-          }}
-        >
-          Train skill
-        </Button>
+        {character.skillInProgress === null && (
+          <Button
+            onClick={() => {
+              setMode({ mode: "SelectSkill" });
+            }}
+          >
+            Train skill
+          </Button>
+        )}
+        {character.skillInProgress !== null && (
+          <SkillInTraining character={character} onClick={() => setMode({ mode: "TrainSkill" })} />
+        )}
       </div>
     </Block>
   );
