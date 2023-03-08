@@ -1,7 +1,7 @@
+import { ReadWriteCharacter, SetMode } from "CharacterSheet/types";
 import { allSkillLevelDefinitionDict, allSkillsDict } from "Rules/data";
 import { SkillType } from "Rules/types";
 import { Block, Button, Divider, Title } from "UI/Atoms";
-import { ReadWriteCharacter, SetMode } from "./types";
 
 type Props = ReadWriteCharacter & SetMode & { skill: SkillType };
 

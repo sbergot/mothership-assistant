@@ -10,7 +10,11 @@ export function Skills({ character, setMode }: ReadCharacter & SetMode) {
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.skills.map((s) => (
-          <Skill key={s} skill={allSkillsDict[s]} />
+          <Skill
+            key={s}
+            skill={allSkillsDict[s]}
+            onClick={() => setMode({ mode: "ViewSkill", skill: s })}
+          />
         ))}
         {character.skillInProgress === null && (
           <Button
@@ -22,7 +26,10 @@ export function Skills({ character, setMode }: ReadCharacter & SetMode) {
           </Button>
         )}
         {character.skillInProgress !== null && (
-          <SkillInTraining character={character} onClick={() => setMode({ mode: "TrainSkill" })} />
+          <SkillInTraining
+            character={character}
+            onClick={() => setMode({ mode: "TrainSkill" })}
+          />
         )}
       </div>
     </Block>

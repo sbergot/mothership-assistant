@@ -40,7 +40,19 @@ interface TrainSkillMode {
   mode: "TrainSkill";
 }
 
-export type Modes = CharacterSheetMode | AddConditionMode | ViewConditionMode | SelectSkillMode | StartTrainingSkillMode | TrainSkillMode;
+interface ViewSkillMode {
+  mode: "ViewSkill";
+  skill: SkillType;
+}
+
+export type Modes =
+  | CharacterSheetMode
+  | AddConditionMode
+  | ViewConditionMode
+  | SelectSkillMode
+  | StartTrainingSkillMode
+  | TrainSkillMode
+  | ViewSkillMode;
 
 export interface SetMode {
   setMode(mode: Modes): void;

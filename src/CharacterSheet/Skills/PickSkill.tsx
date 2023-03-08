@@ -1,6 +1,6 @@
+import { ReadCharacter, SetMode } from "CharacterSheet/types";
 import { always } from "Rules/skillFilters";
 import { SelectSkill } from "UI/Organisms/SelectSkills";
-import { ReadCharacter, SetMode } from "./types";
 
 type Props = ReadCharacter & SetMode;
 

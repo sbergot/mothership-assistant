@@ -5,13 +5,14 @@ import { Armor } from "./Armor";
 import { Contractors } from "./Contractors";
 import { Equipment } from "./Equipment";
 import { Identity } from "./Identity";
-import { PickSkill } from "./PickSkill";
 import { Saves } from "./Saves";
 import { Skills } from "./Skills";
-import { StartTrainingSkill } from "./StartTrainingSkill";
+import { PickSkill } from "./Skills/PickSkill";
+import { StartTrainingSkill } from "./Skills/StartTrainingSkill";
+import { TrainSkill } from "./Skills/TrainSkill";
+import { ViewSkill } from "./Skills/ViewSkill";
 import { Stats } from "./Stats";
 import { Status } from "./Status";
-import { TrainSkill } from "./TrainSkill";
 import { Modes, ReadWriteCharacter } from "./types";
 import { ViewCondition } from "./ViewCondition";
 import { Weapons } from "./Weapons";
@@ -69,6 +70,16 @@ export function CharacterSheet({
         character={character}
         setCharacter={setCharacter}
         setMode={setMode}
+      />
+    );
+  }
+
+  if (mode.mode === "ViewSkill") {
+    return (
+      <ViewSkill
+        setCharacter={setCharacter}
+        setMode={setMode}
+        skill={mode.skill}
       />
     );
   }

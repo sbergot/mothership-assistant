@@ -1,7 +1,7 @@
-import { allSkillLevelDefinitionDict, allSkillsDict } from "Rules/data";
+import { ReadWriteCharacter, SetMode } from "CharacterSheet/types";
+import { allSkillsDict } from "Rules/data";
 import { Block, Button, Divider, Title } from "UI/Atoms";
 import { GaugeBase } from "UI/Molecules";
-import { ReadWriteCharacter, SetMode } from "./types";
 
 type Props = ReadWriteCharacter & SetMode;
 
@@ -11,7 +11,6 @@ export function TrainSkill({ character, setCharacter, setMode }: Props) {
     return <div>Error</div>;
   }
   const definition = allSkillsDict[skill];
-  const levelDefinition = allSkillLevelDefinitionDict[definition.level];
 
   return (
     <Block variant="light">
