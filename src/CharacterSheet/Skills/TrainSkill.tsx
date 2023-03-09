@@ -20,10 +20,12 @@ export function TrainSkill({ character, setCharacter, setMode }: Props) {
       <Divider />
       <GaugeBase
         title="Time remaining in training"
-        valueLeft={character.skillTrainingYearsRemaining}
+        valueLeft={character.skillTrainingYearsRemaining || 0}
         titleLeft="Years"
-        valueRight={character.skillTrainingMonthsRemaining}
+        onChangeLeft={(e) => setCharacter(char => ({...char, skillTrainingYearsRemaining: e}))}
+        valueRight={character.skillTrainingMonthsRemaining || 0}
         titleRight="Months"
+        onChangeRight={(e) => setCharacter(char => ({...char, skillTrainingMonthsRemaining: e}))}
       />
       <Divider />
       <div className="flex justify-center gap-2">

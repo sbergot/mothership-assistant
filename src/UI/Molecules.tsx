@@ -42,24 +42,38 @@ interface GaugeBaseProps {
   title: string;
   valueLeft: number;
   titleLeft: string;
+  onChangeLeft?(n: number): void;
   valueRight: number;
   titleRight: string;
+  onChangeRight?(n: number): void;
 }
 
 export function GaugeBase({
   title,
   valueLeft,
   titleLeft,
+  onChangeLeft,
   valueRight,
   titleRight,
+  onChangeRight,
 }: GaugeBaseProps) {
   return (
     <div className="flex flex-col items-center">
       <div className="text-center">{title}</div>
       <div className="bg-mother-1 rounded-3xl text-3xl border-4 border-mother-6 flex items-center">
-        <div className="w-16 text-center">{valueLeft}</div>
+        <input
+          type="number"
+          className="w-8 ml-5 mr-1 outline-none text-center"
+          value={valueLeft}
+          onChange={(e) => onChangeLeft?.(parseInt(e.target.value))}
+        />
         <div className="h-10 w-1 bg-mother-6 mx-3 diagonalRising" />
-        <div className="w-16 text-center">{valueRight}</div>
+        <input
+          type="number"
+          className="w-8 ml-2 mr-3 outline-none text-center"
+          value={valueRight}
+          onChange={(e) => onChangeRight?.(parseInt(e.target.value))}
+        />
       </div>
       <div className="flex text-mother-4 gap-8">
         <div>{titleLeft}</div>
