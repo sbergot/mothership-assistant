@@ -21,17 +21,19 @@ export function Rating({ value, title }: RatingProps) {
 
 interface GaugeProps {
   current: number;
+  onChange(n: number): void;
   limit: number;
   title: string;
   limitName: string;
 }
 
-export function Gauge({ current, limit, title, limitName }: GaugeProps) {
+export function Gauge({ current, onChange, limit, title, limitName }: GaugeProps) {
   return (
     <GaugeBase
       title={title}
       valueLeft={current}
       titleLeft="Current"
+      onChangeLeft={onChange}
       valueRight={limit}
       titleRight={limitName}
     />
@@ -63,6 +65,7 @@ export function GaugeBase({
       <div className="bg-mother-1 rounded-3xl text-3xl border-4 border-mother-6 flex items-center">
         <input
           type="number"
+          disabled={onChangeLeft === undefined}
           className="w-8 ml-5 mr-1 outline-none text-center"
           value={valueLeft}
           onChange={(e) => onChangeLeft?.(parseInt(e.target.value))}
@@ -70,6 +73,7 @@ export function GaugeBase({
         <div className="h-10 w-1 bg-mother-6 mx-3 diagonalRising" />
         <input
           type="number"
+          disabled={onChangeRight === undefined}
           className="w-8 ml-2 mr-3 outline-none text-center"
           value={valueRight}
           onChange={(e) => onChangeRight?.(parseInt(e.target.value))}

@@ -45,12 +45,7 @@ export function CharacterSheet({
   }
 
   if (mode.mode === "SelectSkill") {
-    return (
-      <PickSkill
-        character={character}
-        setMode={setMode}
-      />
-    );
+    return <PickSkill character={character} setMode={setMode} />;
   }
 
   if (mode.mode === "StartTrainingSkill") {
@@ -87,7 +82,11 @@ export function CharacterSheet({
   return (
     <div className="flex flex-col gap-4">
       <Identity character={character} setCharacter={setCharacter} />
-      <Status character={character} setMode={setMode} />
+      <Status
+        character={character}
+        setCharacter={setCharacter}
+        setMode={setMode}
+      />
       <Stats character={character} />
       <Saves character={character} />
       <Skills character={character} setMode={setMode} />

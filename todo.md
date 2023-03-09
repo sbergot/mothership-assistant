@@ -1,5 +1,6 @@
 - main menu
 - character sheet interactions
+  - edit health and wounds
   - add weapon
   - add armor
   - add equipment

@@ -1,15 +1,16 @@
 import { allConditionDefinitionsDict } from "Rules/data";
-import { Block, Button, Divider, Tag, Title } from "UI/Atoms";
+import { Block, Button, Divider, Title } from "UI/Atoms";
 import { Gauge } from "UI/Molecules";
-import { ReadCharacter, SetMode } from "./types";
+import { ReadWriteCharacter, SetMode } from "./types";
 
-export function Status({ character, setMode }: ReadCharacter & SetMode) {
+export function Status({ character, setCharacter, setMode }: ReadWriteCharacter & SetMode) {
   return (
     <Block variant="light">
       <Title>Status report</Title>
       <div className="flex justify-around">
         <Gauge
           title="Health"
+          onChange={n => setCharacter(char => ({...char, health: n}))}
           limitName="Maximum"
           current={character.health}
           limit={character.maxHealth}
@@ -18,12 +19,14 @@ export function Status({ character, setMode }: ReadCharacter & SetMode) {
           title="Wounds"
           limitName="Maximum"
           current={character.wounds}
+          onChange={n => setCharacter(char => ({...char, wounds: n}))}
           limit={character.maxWounds}
         />
         <Gauge
           title="Stress"
           limitName="Minimum"
           current={character.stress}
+          onChange={n => setCharacter(char => ({...char, stress: n}))}
           limit={character.minStress}
         />
       </div>
