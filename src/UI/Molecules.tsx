@@ -21,7 +21,7 @@ export function Rating({ value, title }: RatingProps) {
 
 interface GaugeProps {
   current: number;
-  onChange(n: number): void;
+  onChange?(n: number): void;
   limit: number;
   title: string;
   limitName: string;
@@ -66,7 +66,7 @@ export function GaugeBase({
         <input
           type="number"
           disabled={onChangeLeft === undefined}
-          className="w-8 ml-5 mr-1 outline-none text-center"
+          className="w-12 ml-5 mr-1 outline-none text-center"
           value={valueLeft}
           onChange={(e) => onChangeLeft?.(parseInt(e.target.value))}
         />
@@ -74,7 +74,7 @@ export function GaugeBase({
         <input
           type="number"
           disabled={onChangeRight === undefined}
-          className="w-8 ml-2 mr-3 outline-none text-center"
+          className="w-12 ml-2 mr-3 outline-none text-center"
           value={valueRight}
           onChange={(e) => onChangeRight?.(parseInt(e.target.value))}
         />
