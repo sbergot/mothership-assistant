@@ -1,9 +1,9 @@
 import { Block, Button, Divider, Progress, Tag, Title } from "UI/Atoms";
 import { allWeapons } from "Rules/data";
 import { Weapon as WeaponType } from "Rules/types";
-import { ReadCharacter } from "./types";
+import { ReadCharacter, SetMode } from "./types";
 
-export function Weapons({ character }: ReadCharacter) {
+export function Weapons({ character, setMode }: ReadCharacter & SetMode) {
   return (
     <Block variant="light">
       <Title>Weapons</Title>
@@ -16,7 +16,7 @@ export function Weapons({ character }: ReadCharacter) {
         <Weapon weapon={{ ...allWeapons[1], shots: 3 }} />
       </div>
       <div className="flex justify-center items-center gap-8 mt-4">
-        <Button onClick={() => {}}>Add weapon</Button>
+        <Button onClick={() => { setMode({ mode: "AddWeapon" }) }}>Add weapon</Button>
       </div>
     </Block>
   );

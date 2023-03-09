@@ -200,6 +200,12 @@ export interface Weapon extends WithId {
   baseType: string;
 }
 
+export type WeaponCategory = "Firearm" | "Industrial" | "Melee";
+
+export interface WeaponExt extends Weapon {
+  type: WeaponCategory;
+}
+
 export interface Equipment extends WithId {
   name: string;
   description: string;

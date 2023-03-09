@@ -16,6 +16,7 @@ import {
   SkillType,
   StatType,
   Weapon,
+  WeaponExt,
 } from "./types";
 
 export const allStats: StatType[] = [
@@ -180,23 +181,7 @@ export const classDefinitions: ClassDefinition[] = [
 
 export const classDefinitionsDict = toDict(classDefinitions, (c) => c.name);
 
-export const allWeapons: Weapon[] = [
-  {
-    id: "",
-    name: "",
-    equipped: true,
-    cost: 50,
-    weaponRange: "adjacent",
-    damageString: "1d5 DMG",
-    shots: null,
-    magazineSize: null,
-    critical: "Bleeding [+]",
-    special: "",
-    weaponType: "Scalpel",
-    magazines: null,
-    damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
-    baseType: "scalpel",
-  },
+export const allWeapons: WeaponExt[] = [
   {
     id: "",
     name: "ARMA 29",
@@ -212,6 +197,7 @@ export const allWeapons: Weapon[] = [
     magazines: 1,
     damage: [{ damageType: "xd10", amount: 2, rollMode: null }],
     baseType: "smg",
+    type: "Firearm"
   },
   {
     id: "",
@@ -229,6 +215,7 @@ export const allWeapons: Weapon[] = [
     magazines: 1,
     damage: [{ damageType: "fixedDamage", amount: 1, rollMode: null }],
     baseType: "tranqPistol",
+    type: "Firearm"
   },
   {
     id: "",
@@ -245,6 +232,7 @@ export const allWeapons: Weapon[] = [
     magazines: 1,
     damage: [{ damageType: "xd10", amount: 3, rollMode: null }],
     baseType: "pulseRifle",
+    type: "Firearm"
   },
   {
     id: "",
@@ -261,6 +249,7 @@ export const allWeapons: Weapon[] = [
     magazines: 1,
     damage: [{ damageType: "xd10", amount: 1, rollMode: "advantage" }],
     baseType: "revolver",
+    type: "Firearm"
   },
   {
     id: "",
@@ -277,6 +266,7 @@ export const allWeapons: Weapon[] = [
     magazines: 1,
     damage: [{ damageType: "d5MinusOneWounds", amount: 1, rollMode: null }],
     baseType: "fragGrenade",
+    type: "Firearm"
   },
   {
     id: "",
@@ -296,6 +286,7 @@ export const allWeapons: Weapon[] = [
       { damageType: "xd10", amount: 1, rollMode: null },
     ],
     baseType: "combatShotgun",
+    type: "Firearm"
   },
   {
     id: "",
@@ -313,6 +304,7 @@ export const allWeapons: Weapon[] = [
     magazines: 1,
     damage: [{ damageType: "xd10", amount: 4, rollMode: "advantage" }],
     baseType: "heavyMachineGun",
+    type: "Firearm"
   },
   {
     id: "",
@@ -329,6 +321,7 @@ export const allWeapons: Weapon[] = [
     magazines: 1,
     damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
     baseType: "flareGun",
+    type: "Firearm"
   },
   {
     id: "",
@@ -345,6 +338,7 @@ export const allWeapons: Weapon[] = [
     magazines: 1,
     damage: [{ damageType: "d10x10", amount: 1, rollMode: null }],
     baseType: "smartRifle",
+    type: "Firearm"
   },
   {
     id: "",
@@ -361,6 +355,7 @@ export const allWeapons: Weapon[] = [
     magazines: null,
     damage: [{ damageType: "xd10", amount: 1, rollMode: null }],
     baseType: "handWelder",
+    type: "Industrial"
   },
   {
     id: "",
@@ -380,6 +375,7 @@ export const allWeapons: Weapon[] = [
       { damageType: "xd10", amount: 2, rollMode: null },
     ],
     baseType: "riggingGun",
+    type: "Industrial"
   },
   {
     id: "",
@@ -397,6 +393,7 @@ export const allWeapons: Weapon[] = [
     magazines: 1,
     damage: [{ damageType: "fixedDamage", amount: 1, rollMode: null }],
     baseType: "foamGun",
+    type: "Industrial"
   },
   {
     id: "",
@@ -414,6 +411,7 @@ export const allWeapons: Weapon[] = [
     magazines: 1,
     damage: [{ damageType: "d100", amount: 1, rollMode: null }],
     baseType: "laserCutter",
+    type: "Industrial"
   },
   {
     id: "",
@@ -430,6 +428,7 @@ export const allWeapons: Weapon[] = [
     magazines: 1,
     damage: [{ damageType: "fixedWounds", amount: 1, rollMode: null }],
     baseType: "flamethrower",
+    type: "Industrial"
   },
   {
     id: "",
@@ -446,6 +445,7 @@ export const allWeapons: Weapon[] = [
     magazines: 1,
     damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
     baseType: "nailGun",
+    type: "Industrial"
   },
   {
     id: "",
@@ -462,6 +462,7 @@ export const allWeapons: Weapon[] = [
     magazines: null,
     damage: [{ damageType: "xd10", amount: 2, rollMode: "advantage" }],
     baseType: "boardingAxe",
+    type: "Melee"
   },
   {
     id: "",
@@ -478,6 +479,7 @@ export const allWeapons: Weapon[] = [
     magazines: null,
     damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
     baseType: "crowbar",
+    type: "Melee"
   },
   {
     id: "",
@@ -494,6 +496,7 @@ export const allWeapons: Weapon[] = [
     magazines: null,
     damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
     baseType: "scalpel",
+    type: "Melee"
   },
   {
     id: "",
@@ -510,6 +513,7 @@ export const allWeapons: Weapon[] = [
     magazines: null,
     damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
     baseType: "stunBaton",
+    type: "Melee"
   },
   {
     id: "",
@@ -527,22 +531,7 @@ export const allWeapons: Weapon[] = [
     magazines: null,
     damage: [{ damageType: "xd10", amount: 3, rollMode: null }],
     baseType: "vibechete",
-  },
-  {
-    id: "",
-    name: "",
-    equipped: true,
-    cost: 150,
-    weaponRange: "close",
-    damageString: "1d5 DMG",
-    shots: 32,
-    magazineSize: 32,
-    critical: "Bleeding",
-    special: "",
-    weaponType: "Nail Gun",
-    magazines: null,
-    damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
-    baseType: "nailGun",
+    type: "Melee"
   },
 ];
 
