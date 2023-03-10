@@ -27,7 +27,12 @@ export function AddWeapon({
     {
       name: "Item",
       cell({ elt }) {
-        return <div>{elt.weaponType}</div>;
+        return (
+          <div className="py-1">
+            <div className="leading-none">{elt.weaponType}</div>
+            <div className="text-sm leading-none">{elt.damageString}</div>
+          </div>
+        );
       },
     },
     {
@@ -83,7 +88,7 @@ export function AddWeapon({
   }
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 items-center">
       <Block variant="light">
         <Title>Firearms</Title>
         <Table columns={columns} rows={firearms} />
@@ -96,35 +101,52 @@ export function AddWeapon({
         <Title>Melee</Title>
         <Table columns={columns} rows={melee} />
       </Block>
-      <Block variant="dark">
-        <div>
-          <div>{formatCredits(totalCost)}</div>
-          <div>Current credits: {formatCredits(character.credits)}</div>
+      <div className="max-w-md">
+        <Block variant="dark">
+          <div className="flex flex-col items-center">
+            <div>{formatCredits(totalCost)}</div>
+            <div>Current credits: {formatCredits(character.credits)}</div>
+            <div className="flex gap-2">
+              <Button
+                light
+                rounded
+                onClick={() => {
+                  setCharacter((char) => ({
+                    ...char,
+                    weapons: [...char.weapons, ...getNewWeapons()],
+                    credits: char.credits - totalCost,
+                  }));
+                  setMode({ mode: "CharacterSheet" });
+                }}
+              >
+                Purchase
+              </Button>
+              <Button
+                dark
+                rounded
+                onClick={() => {
+                  setCharacter((char) => ({
+                    ...char,
+                    weapons: [...char.weapons, ...getNewWeapons()],
+                  }));
+                  setMode({ mode: "CharacterSheet" });
+                }}
+              >
+                Acquire
+              </Button>
+            </div>
+          </div>
+        </Block>
+        <div className="flex justify-center pt-2">
           <Button
             onClick={() => {
-              setCharacter((char) => ({
-                ...char,
-                weapons: [...char.weapons, ...getNewWeapons()],
-                credits: char.credits - totalCost,
-              }));
               setMode({ mode: "CharacterSheet" });
             }}
           >
-            Purchase
-          </Button>
-          <Button
-            onClick={() => {
-              setCharacter((char) => ({
-                ...char,
-                weapons: [...char.weapons, ...getNewWeapons()],
-              }));
-              setMode({ mode: "CharacterSheet" });
-            }}
-          >
-            Acquire
+            Back
           </Button>
         </div>
-      </Block>
+      </div>
     </div>
   );
 }

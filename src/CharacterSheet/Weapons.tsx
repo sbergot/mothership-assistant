@@ -1,5 +1,4 @@
-import { Block, Button, Divider, Progress, Tag, Title } from "UI/Atoms";
-import { allWeapons } from "Rules/data";
+import { Block, Button, Divider, Progress, Title } from "UI/Atoms";
 import { Weapon as WeaponType } from "Rules/types";
 import { ReadCharacter, SetMode } from "./types";
 
@@ -10,7 +9,7 @@ export function Weapons({ character, setMode }: ReadCharacter & SetMode) {
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.weapons.map((w) => (
-          <Weapon key={w.id} weapon={{ ...w, shots: w.shots ? w.shots : null }} />
+          <Weapon key={w.id} weapon={w} />
         ))}
       </div>
       <div className="flex justify-center items-center gap-8 mt-4">

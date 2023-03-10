@@ -31,14 +31,13 @@ export function Tag({ children, variant }: Props) {
 }
 
 interface TitleProps extends Children {
-  variant?: "dark" | "light" 
+  variant?: "dark" | "light";
 }
 
 export function Title({ children, variant }: TitleProps) {
-  const color = (variant ?? "dark") === "dark" ? "text-mother-5" : "text-mother-1";
-  return (
-    <div className={`text-center text-xl mb-2 ${color}`}>{children}</div>
-  );
+  const color =
+    (variant ?? "dark") === "dark" ? "text-mother-5" : "text-mother-1";
+  return <div className={`text-center text-xl mb-2 ${color}`}>{children}</div>;
 }
 
 export function Divider() {
@@ -60,23 +59,32 @@ interface ButtonProps extends Children {
   disabled?: boolean;
   rounded?: boolean;
   dark?: boolean;
+  light?: boolean;
 }
 
-export function Button({ children, onClick, dark, disabled, rounded }: ButtonProps) {
+export function Button({
+  children,
+  onClick,
+  dark,
+  light,
+  disabled,
+  rounded,
+}: ButtonProps) {
   let colors = dark
     ? "bg-mother-6 text-mother-1 hover:bg-mother-5"
-    : " bg-mother-3 border-mother-5 hover:bg-mother-5 hover:text-mother-1 hover:border-mother-1";
+    : "bg-mother-3 border-mother-5 hover:bg-mother-5 hover:text-mother-1 hover:border-mother-1";
 
-  colors = disabled
-    ? "bg-mother-4 text-mother-1"
+  colors = light
+    ? "bg-mother-1 text-mother-6 border-mother-6 hover:bg-mother-3"
     : colors;
+  colors = disabled ? "bg-mother-4 text-mother-1" : colors;
 
   const cursor = disabled ? "cursor-not-allowed" : "cursor-pointer";
 
   const corners = rounded ? "px-4 rounded-3xl" : "px-2 rounded-lg";
   return (
     <span
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
       className={`py-1 border-2 transition-colors ${colors} ${cursor} ${corners}`}
     >
       {children}
