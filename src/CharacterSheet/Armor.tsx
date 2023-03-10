@@ -1,7 +1,7 @@
 import { Block, Button, Divider, Tag, Title } from "UI/Atoms";
-import { ReadCharacter } from "./types";
+import { ReadCharacter, SetMode } from "./types";
 
-export function Armor({ character }: ReadCharacter) {
+export function Armor({ character, setMode }: ReadCharacter & SetMode) {
   return (
     <Block variant="light">
       <Title>Armor</Title>
@@ -12,7 +12,7 @@ export function Armor({ character }: ReadCharacter) {
             {a.name} (AP {a.armorPoints})
           </Tag>
         ))}
-        <Button onClick={() => {}}>Add armor</Button>
+        <Button onClick={() => {setMode({ mode: "AddArmor" })}}>Add armor</Button>
       </div>
     </Block>
   );

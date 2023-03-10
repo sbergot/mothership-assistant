@@ -1,5 +1,6 @@
 import { SelectSkills } from "CharacterCreation/SelectSkills";
 import { useState } from "react";
+import { AddArmor } from "./AddArmor";
 import { AddCondition } from "./AddCondition";
 import { AddWeapon } from "./AddWeapon";
 import { Armor } from "./Armor";
@@ -83,7 +84,17 @@ export function CharacterSheet({
   if (mode.mode === "AddWeapon") {
     return (
       <AddWeapon
-      character={character}
+        character={character}
+        setCharacter={setCharacter}
+        setMode={setMode}
+      />
+    );
+  }
+
+  if (mode.mode === "AddArmor") {
+    return (
+      <AddArmor
+        character={character}
         setCharacter={setCharacter}
         setMode={setMode}
       />
@@ -102,7 +113,7 @@ export function CharacterSheet({
       <Saves character={character} />
       <Skills character={character} setMode={setMode} />
       <Weapons character={character} setMode={setMode} />
-      <Armor character={character} />
+      <Armor character={character} setMode={setMode} />
       <Equipment character={character} />
       <Contractors character={character} />
     </div>

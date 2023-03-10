@@ -1,6 +1,7 @@
 import { toDict } from "Services/services";
 import {
   Armor,
+  ArmorType,
   CharacterClass,
   ClassDefinition,
   ConditionDefinition,
@@ -1892,7 +1893,7 @@ export const contractors: Contractor[] = [
   },
 ];
 
-export const armors: Armor[] = [
+export const allArmors: Armor[] = [
   {
     armorType: "standardCrewAttire",
     id: "",
@@ -1952,6 +1953,8 @@ export const armors: Armor[] = [
     armorSpeed: "disadvantage",
   },
 ];
+
+export const allArmorDict: Record<ArmorType, Armor> = toDict(allArmors, a => a.armorType);
 
 export const allSkills: SkillDefinition[] = [
   {

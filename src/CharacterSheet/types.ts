@@ -49,6 +49,10 @@ interface AddWeaponMode {
   mode: "AddWeapon";
 }
 
+interface AddArmorMode {
+  mode: "AddArmor";
+}
+
 export type Modes =
   | CharacterSheetMode
   | AddConditionMode
@@ -57,7 +61,8 @@ export type Modes =
   | StartTrainingSkillMode
   | TrainSkillMode
   | ViewSkillMode
-  | AddWeaponMode;
+  | AddWeaponMode
+  | AddArmorMode;
 
 export interface SetMode {
   setMode(mode: Modes): void;
