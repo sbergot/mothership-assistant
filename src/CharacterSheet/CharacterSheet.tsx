@@ -83,6 +83,7 @@ export function CharacterSheet({
   if (mode.mode === "AddWeapon") {
     return (
       <AddWeapon
+      character={character}
         setCharacter={setCharacter}
         setMode={setMode}
       />

@@ -10,10 +10,8 @@ export function Weapons({ character, setMode }: ReadCharacter & SetMode) {
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.weapons.map((w) => (
-          <Weapon key={w.id} weapon={{ ...w, shots: w.shots ? w.shots - 1 : null }} />
+          <Weapon key={w.id} weapon={{ ...w, shots: w.shots ? w.shots : null }} />
         ))}
-        <Weapon weapon={allWeapons[0]} />
-        <Weapon weapon={{ ...allWeapons[1], shots: 3 }} />
       </div>
       <div className="flex justify-center items-center gap-8 mt-4">
         <Button onClick={() => { setMode({ mode: "AddWeapon" }) }}>Add weapon</Button>

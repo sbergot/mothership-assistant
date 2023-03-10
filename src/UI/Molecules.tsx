@@ -1,7 +1,6 @@
 import { ReadCharacter } from "CharacterSheet/types";
 import { allSkillLevelDefinitionDict, allSkillsDict } from "Rules/data";
-import { Character, SkillDefinition } from "Rules/types";
-import { ButtonIcon, MinusIcon, NumberIcon, PlusIcon } from "./Icons";
+import { SkillDefinition } from "Rules/types";
 import { Children } from "./types";
 
 interface RatingProps {
@@ -178,71 +177,6 @@ export function SelectableBlockWithTitle({
       <div className="px-4 text-base">
         <div className="flex flex-col gap-1">{children}</div>
       </div>
-    </div>
-  );
-}
-
-export interface Column<T> {
-  name: string;
-  cell(props: { elt: T }): JSX.Element;
-}
-
-interface TableProps<T> {
-  columns: Column<T>[];
-  rows: T[];
-}
-
-export function Table<T>({ columns, rows }: TableProps<T>) {
-  return (
-    <table className="w-full border-2">
-      <thead className="text-mother-1 bg-mother-6 border-2 border-mother-6">
-        <tr>
-          {columns.map((col) => (
-            <th key={col.name}>{col.name}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((r, i) => (
-          <tr key={i}>
-            {columns.map((col) => {
-              const Cell = col.cell;
-              return (
-                <td className="border-2 border-mother-6 bg-mother-1 px-2">
-                  <Cell key={col.name} elt={r} />
-                </td>
-              );
-            })}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-}
-
-interface CounterProps {
-  amount: number;
-  onSelect(): void;
-  onDeselect(): void;
-}
-
-export function Counter({ amount, onDeselect, onSelect }: CounterProps) {
-  const empty = amount === 0;
-  return (
-    <div className="flex gap-1">
-      <ButtonIcon onClick={onDeselect} disabled={empty}>
-        <MinusIcon disabled={empty} />
-      </ButtonIcon>
-      {empty && (
-        <ButtonIcon onClick={onSelect}>
-          <PlusIcon />
-        </ButtonIcon>
-      )}
-      {!empty && (
-        <ButtonIcon onClick={onSelect}>
-          <NumberIcon n={amount} />
-        </ButtonIcon>
-      )}
     </div>
   );
 }

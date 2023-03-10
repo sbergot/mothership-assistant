@@ -17,6 +17,7 @@ import {
   StatType,
   Weapon,
   WeaponExt,
+  WeaponType,
 } from "./types";
 
 export const allStats: StatType[] = [
@@ -534,6 +535,8 @@ export const allWeapons: WeaponExt[] = [
     type: "Melee"
   },
 ];
+
+export const allWeaponDict: Record<WeaponType, WeaponExt> = toDict(allWeapons, w => w.weaponType);
 
 export const contractors: Contractor[] = [
   {

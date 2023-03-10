@@ -4,12 +4,7 @@ import { loadouts, patches, trinkets } from "Rules/data";
 import { BlockWithTitle, SelectableBlockWithTitle } from "UI/Molecules";
 import { pickRandom, roll } from "Services/diceServices";
 import { StepProps } from "./types";
-import { WithId } from "Rules/types";
-import { uuidv4 } from "Services/services";
-
-function clone<T extends WithId>(e: T): T {
-  return {...e, id: uuidv4()};
-}
+import { clone, formatCredits } from "helpers";
 
 export function RollEquipment({ character, onConfirm }: StepProps) {
   const [newCharacter, setCharacter] = useState({ ...character });
@@ -99,7 +94,7 @@ export function RollEquipment({ character, onConfirm }: StepProps) {
             >
               <div className="mx-auto">
                 {gearOptionRolled ? (
-                  <Tag variant="dark">{newCharacter.credits}cr</Tag>
+                  <Tag variant="dark">{formatCredits(newCharacter.credits)}cr</Tag>
                 ) : (
                   "-"
                 )}
