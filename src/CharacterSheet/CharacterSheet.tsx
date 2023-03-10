@@ -1,7 +1,7 @@
-import { SelectSkills } from "CharacterCreation/SelectSkills";
 import { useState } from "react";
 import { AddArmor } from "./AddArmor";
 import { AddCondition } from "./AddCondition";
+import { AddEquipment } from "./AddEquipment";
 import { AddWeapon } from "./AddWeapon";
 import { Armor } from "./Armor";
 import { Contractors } from "./Contractors";
@@ -101,6 +101,16 @@ export function CharacterSheet({
     );
   }
 
+  if (mode.mode === "AddEquipment") {
+    return (
+      <AddEquipment
+        character={character}
+        setCharacter={setCharacter}
+        setMode={setMode}
+      />
+    );
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <Identity character={character} setCharacter={setCharacter} />
@@ -114,7 +124,7 @@ export function CharacterSheet({
       <Skills character={character} setMode={setMode} />
       <Weapons character={character} setMode={setMode} />
       <Armor character={character} setMode={setMode} />
-      <Equipment character={character} />
+      <Equipment character={character} setMode={setMode} />
       <Contractors character={character} />
     </div>
   );
