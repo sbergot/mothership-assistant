@@ -53,8 +53,12 @@ interface AddArmorMode {
   mode: "AddArmor";
 }
 
-interface AddEquipment {
+interface AddEquipmentMode {
   mode: "AddEquipment"
+}
+
+interface AddCustomItemMode {
+  mode: "AddCustomItem"
 }
 
 export type Modes =
@@ -67,7 +71,8 @@ export type Modes =
   | ViewSkillMode
   | AddWeaponMode
   | AddArmorMode
-  | AddEquipment;
+  | AddEquipmentMode
+  | AddCustomItemMode;
 
 export interface SetMode {
   setMode(mode: Modes): void;

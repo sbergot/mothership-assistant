@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AddArmor } from "./AddArmor";
 import { AddCondition } from "./AddCondition";
+import { AddCustomItem } from "./AddCustomItem";
 import { AddEquipment } from "./AddEquipment";
 import { AddWeapon } from "./AddWeapon";
 import { Armor } from "./Armor";
@@ -105,6 +106,15 @@ export function CharacterSheet({
     return (
       <AddEquipment
         character={character}
+        setCharacter={setCharacter}
+        setMode={setMode}
+      />
+    );
+  }
+
+  if (mode.mode === "AddCustomItem") {
+    return (
+      <AddCustomItem
         setCharacter={setCharacter}
         setMode={setMode}
       />

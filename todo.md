@@ -1,6 +1,5 @@
 - main menu
 - character sheet interactions
-  - add equipment
   - custom item
   - add contractor
 - character details
