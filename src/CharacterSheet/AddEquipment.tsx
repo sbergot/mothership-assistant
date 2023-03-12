@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { allArmors, allArmorDict } from "Rules/data";
-import { Armor, ArmorType } from "Rules/types";
+import { allEquipment, allEquipmentDict } from "Rules/data";
+import { Equipment } from "Rules/types";
 import { Block, Button, Title } from "UI/Atoms";
 import { clone, formatCredits } from "helpers";
 import { Column, Counter, Table } from "UI/Organisms/Table";
 import { ReadWriteCharacter, SetMode } from "./types";
 
-function getDefaultSelection(): Record<ArmorType, number> {
-  const res = {} as Record<ArmorType, number>;
-  allArmors.forEach((a) => {
-    res[a.armorType] = 0;
+function getDefaultSelection(): Record<string, number> {
+  const res = {} as Record<string, number>;
+  allEquipment.forEach((a) => {
+    res[a.baseType] = 0;
   });
   return res;
 }
@@ -19,11 +19,11 @@ export function AddEquipment({
   setCharacter,
   setMode,
 }: ReadWriteCharacter & SetMode) {
-  const [selected, setSelected] = useState<Record<ArmorType, number>>(
+  const [selected, setSelected] = useState<Record<string, number>>(
     getDefaultSelection()
   );
 
-  const columns: Column<Armor>[] = [
+  const columns: Column<Equipment>[] = [
     {
       name: "Item",
       cell({ elt }) {
@@ -44,17 +44,17 @@ export function AddEquipment({
         return (
           <div className="mx-auto">
             <Counter
-              amount={selected[elt.armorType]}
+              amount={selected[elt.baseType]}
               onDeselect={() =>
                 setSelected((s) => ({
                   ...s,
-                  [elt.armorType]: s[elt.armorType] - 1,
+                  [elt.baseType]: s[elt.baseType] - 1,
                 }))
               }
               onSelect={() =>
                 setSelected((s) => ({
                   ...s,
-                  [elt.armorType]: s[elt.armorType] + 1,
+                  [elt.baseType]: s[elt.baseType] + 1,
                 }))
               }
             />
@@ -64,15 +64,15 @@ export function AddEquipment({
     },
   ];
 
-  const totalCost = allArmors
-    .map((w) => w.cost * selected[w.armorType])
+  const totalCost = allEquipment
+    .map((w) => w.cost * selected[w.baseType])
     .reduce((a, b) => a + b, 0);
 
-  function getNewArmors() {
-    const res: Armor[] = [];
+  function getNewEquipments() {
+    const res: Equipment[] = [];
     Object.entries(selected).forEach(([key, value]) => {
       for (let i = 0; i < value; i++) {
-        res.push(clone(allArmorDict[key as ArmorType]));
+        res.push(clone(allEquipmentDict[key]));
       }
     });
     return res;
@@ -82,7 +82,7 @@ export function AddEquipment({
     <div className="flex flex-col gap-2 items-center">
       <Block variant="light">
         <Title>Armor</Title>
-        <Table columns={columns} rows={allArmors} />
+        <Table columns={columns} rows={allEquipment} />
       </Block>
       <div className="max-w-md">
         <Block variant="dark">
@@ -96,7 +96,7 @@ export function AddEquipment({
                 onClick={() => {
                   setCharacter((char) => ({
                     ...char,
-                    armor: [...char.armor, ...getNewArmors()],
+                    equipment: [...char.equipment, ...getNewEquipments()],
                     credits: char.credits - totalCost,
                   }));
                   setMode({ mode: "CharacterSheet" });
@@ -110,7 +110,7 @@ export function AddEquipment({
                 onClick={() => {
                   setCharacter((char) => ({
                     ...char,
-                    armor: [...char.armor, ...getNewArmors()],
+                    equipment: [...char.equipment, ...getNewEquipments()],
                   }));
                   setMode({ mode: "CharacterSheet" });
                 }}

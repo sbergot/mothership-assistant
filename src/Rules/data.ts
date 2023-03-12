@@ -4595,16 +4595,6 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
 export const allEquipment: Equipment[] = [
   {
     id: "",
-    name: "Bioscanner",
-    description:
-      "Allows the user to scan the immediate area for signs of life. Generally can scan for 100m in all directions, without being blocked by most known metals. Can tell the location of signs of life, but not what that life is.",
-    equipped: true,
-    quantity: 1,
-    cost: 150,
-    baseType: "bioscanner",
-  },
-  {
-    id: "",
     name: "Assorted Tools",
     description:
       "Wrenches, spanners, screwdrivers, etc. Can be used as weapons (doing the same Damage as a Crowbar).",
@@ -4665,17 +4655,7 @@ export const allEquipment: Equipment[] = [
   },
   {
     id: "",
-    name: "Long-range Comms",
-    description:
-      "Rucksack-sized communication device for use in surface-to-ship comunication.",
-    equipped: true,
-    quantity: 1,
-    cost: 65,
-    baseType: "longrangeComms",
-  },
-  {
-    id: "",
-    name: "Short-range comms",
+    name: "Comms (Short-range)",
     description:
       "Allows communication from ship-to-ship within a reasonable distance, as well as surface-to-surface within a dozen kilometers. Blocked by radio jammer.",
     equipped: true,
@@ -4685,7 +4665,7 @@ export const allEquipment: Equipment[] = [
   },
   {
     id: "",
-    name: "Long-range comms",
+    name: "Comms (Long-range)",
     description:
       "Rucksack-sized communication device for use in surface-to-ship comunication.",
     equipped: true,
@@ -5050,3 +5030,5 @@ export const allEquipment: Equipment[] = [
     baseType: "waterFiltrationDevice",
   },
 ];
+
+export const allEquipmentDict: Record<string, Equipment> = toDict(allEquipment, e => e.baseType);
