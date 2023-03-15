@@ -7,6 +7,7 @@ import {
   ConditionDefinition,
   ConditionType,
   Contractor,
+  ContractorType,
   Equipment,
   Loadout,
   Motivation,
@@ -543,6 +544,29 @@ export const allWeaponDict: Record<WeaponType, WeaponExt> = toDict(
   (w) => w.weaponType
 );
 
+export const allContractorTypes: ContractorType[] = [
+  "archaeologist",
+  "asteroidMiner",
+  "android",
+  "bodyguard",
+  "captain",
+  "chaplain",
+  "corporateFixer",
+  "doctor",
+  "engineer",
+  "gunner",
+  "marineGrunt",
+  "marineOfficer",
+  "pilot",
+  "pioneer",
+  "scientist",
+  "survivalGuide",
+  "surgeon",
+  "teamster",
+  "therapist",
+  "voidUrchin",
+];
+
 export const allContractors: Contractor[] = [
   {
     type: "archaeologist",
@@ -945,6 +969,8 @@ export const allContractors: Contractor[] = [
     probability: { min: 99, max: 99 },
   },
 ];
+
+export const allContractorDict: Record<ContractorType, Contractor> = toDict(allContractors, c => c.type);
 
 export const allArmors: Armor[] = [
   {

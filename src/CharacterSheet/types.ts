@@ -61,6 +61,10 @@ interface AddCustomItemMode {
   mode: "AddCustomItem"
 }
 
+interface AddContractorMode {
+  mode: "AddContractor"
+}
+
 export type Modes =
   | CharacterSheetMode
   | AddConditionMode
@@ -72,7 +76,8 @@ export type Modes =
   | AddWeaponMode
   | AddArmorMode
   | AddEquipmentMode
-  | AddCustomItemMode;
+  | AddCustomItemMode
+  | AddContractorMode;
 
 export interface SetMode {
   setMode(mode: Modes): void;

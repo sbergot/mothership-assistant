@@ -1,10 +1,10 @@
 - main menu
 - character sheet interactions
-  - add contractor
 - character details
   - trauma
   - weapon
   - armor
+  - contractor
 - edit char (stats, saves, identity)
 - design review
 - data review

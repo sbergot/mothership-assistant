@@ -1,10 +1,10 @@
 import { Block, Button, Divider, Title } from "UI/Atoms";
 import { Rating, Gauge } from "UI/Molecules";
 import { Contractor } from "Rules/types";
-import { ReadCharacter } from "./types";
+import { ReadCharacter, SetMode } from "./types";
 
 
-export function Contractors({ character }: ReadCharacter) {
+export function Contractors({ character, setMode }: ReadCharacter & SetMode) {
   return (
     <Block variant="light">
       <Title>Contractors</Title>
@@ -15,7 +15,7 @@ export function Contractors({ character }: ReadCharacter) {
         ))}
       </div>
       <div className="flex justify-center items-center mt-2">
-        <Button onClick={() => {}}>Add contractor</Button>
+        <Button onClick={() => {setMode({ mode: "AddContractor" })}}>Add contractor</Button>
       </div>
     </Block>
   );

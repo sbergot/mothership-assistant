@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AddArmor } from "./AddArmor";
 import { AddCondition } from "./AddCondition";
+import { AddContractor } from "./AddContractor";
 import { AddCustomItem } from "./AddCustomItem";
 import { AddEquipment } from "./AddEquipment";
 import { AddWeapon } from "./AddWeapon";
@@ -113,8 +114,13 @@ export function CharacterSheet({
   }
 
   if (mode.mode === "AddCustomItem") {
+    return <AddCustomItem setCharacter={setCharacter} setMode={setMode} />;
+  }
+
+  if (mode.mode === "AddContractor") {
     return (
-      <AddCustomItem
+      <AddContractor
+        character={character}
         setCharacter={setCharacter}
         setMode={setMode}
       />
@@ -135,7 +141,7 @@ export function CharacterSheet({
       <Weapons character={character} setMode={setMode} />
       <Armor character={character} setMode={setMode} />
       <Equipment character={character} setMode={setMode} />
-      <Contractors character={character} />
+      <Contractors character={character} setMode={setMode} />
     </div>
   );
 }
