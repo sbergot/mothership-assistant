@@ -1,6 +1,20 @@
 import { useState } from "react";
+import { Equipment } from "Rules/types";
+import { uuidv4 } from "Services/services";
 import { Block, Button, Title } from "UI/Atoms";
 import { SetMode, WriteCharacter } from "./types";
+
+function newCustomItem(name: string, description: string): Equipment {
+  return {
+    baseType: uuidv4(),
+    cost: 0,
+    description,
+    equipped: true,
+    id: uuidv4(),
+    name,
+    quantity: 1,
+  };
+}
 
 export function AddCustomItem({
   setCharacter,
@@ -9,6 +23,14 @@ export function AddCustomItem({
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const done = name && description;
+
+  function addItem() {
+    setCharacter((char) => ({
+      ...char,
+      equipment: [...char.equipment, newCustomItem(name, description)],
+    }));
+    setMode({ mode: "CharacterSheet" });
+  }
   return (
     <Block variant="light">
       <Title>Custom item</Title>
@@ -29,10 +51,14 @@ export function AddCustomItem({
         />
       </div>
       <div className="flex flex-col items-center mt-4 gap-2">
-        <Button rounded dark disabled={!done} onClick={() => {}}>
+        <Button rounded dark disabled={!done} onClick={addItem}>
           Confirm
         </Button>
-        <Button rounded dark onClick={() => setMode({ mode: "CharacterSheet" })}>
+        <Button
+          rounded
+          dark
+          onClick={() => setMode({ mode: "CharacterSheet" })}
+        >
           Back
         </Button>
       </div>
