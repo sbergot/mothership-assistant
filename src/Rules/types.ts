@@ -147,6 +147,16 @@ export type ContractorType =
   | "therapist"
   | "voidUrchin";
 
+export interface Probability {
+  min: number;
+  max: number;
+}
+
+export interface Motivation {
+  motivation: string;
+  probability: Probability;
+}
+
 export interface Condition {
   conditionType: ConditionType;
 }
@@ -243,6 +253,7 @@ export interface Contractor extends BaseCharacter {
   instinct: number;
   loyalty: number;
   motivation: string;
+  probability: Probability;
 }
 
 export interface Character extends BaseCharacter {

@@ -9,6 +9,7 @@ import {
   Contractor,
   Equipment,
   Loadout,
+  Motivation,
   SaveType,
   SkillDefinition,
   SkillDefinitionExtended,
@@ -199,7 +200,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: 1,
     damage: [{ damageType: "xd10", amount: 2, rollMode: null }],
     baseType: "smg",
-    type: "Firearm"
+    type: "Firearm",
   },
   {
     id: "",
@@ -217,7 +218,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: 1,
     damage: [{ damageType: "fixedDamage", amount: 1, rollMode: null }],
     baseType: "tranqPistol",
-    type: "Firearm"
+    type: "Firearm",
   },
   {
     id: "",
@@ -234,7 +235,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: 1,
     damage: [{ damageType: "xd10", amount: 3, rollMode: null }],
     baseType: "pulseRifle",
-    type: "Firearm"
+    type: "Firearm",
   },
   {
     id: "",
@@ -251,7 +252,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: 1,
     damage: [{ damageType: "xd10", amount: 1, rollMode: "advantage" }],
     baseType: "revolver",
-    type: "Firearm"
+    type: "Firearm",
   },
   {
     id: "",
@@ -268,7 +269,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: 1,
     damage: [{ damageType: "d5MinusOneWounds", amount: 1, rollMode: null }],
     baseType: "fragGrenade",
-    type: "Firearm"
+    type: "Firearm",
   },
   {
     id: "",
@@ -288,7 +289,7 @@ export const allWeapons: WeaponExt[] = [
       { damageType: "xd10", amount: 1, rollMode: null },
     ],
     baseType: "combatShotgun",
-    type: "Firearm"
+    type: "Firearm",
   },
   {
     id: "",
@@ -306,7 +307,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: 1,
     damage: [{ damageType: "xd10", amount: 4, rollMode: "advantage" }],
     baseType: "heavyMachineGun",
-    type: "Firearm"
+    type: "Firearm",
   },
   {
     id: "",
@@ -323,7 +324,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: 1,
     damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
     baseType: "flareGun",
-    type: "Firearm"
+    type: "Firearm",
   },
   {
     id: "",
@@ -340,7 +341,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: 1,
     damage: [{ damageType: "d10x10", amount: 1, rollMode: null }],
     baseType: "smartRifle",
-    type: "Firearm"
+    type: "Firearm",
   },
   {
     id: "",
@@ -357,7 +358,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: null,
     damage: [{ damageType: "xd10", amount: 1, rollMode: null }],
     baseType: "handWelder",
-    type: "Industrial"
+    type: "Industrial",
   },
   {
     id: "",
@@ -377,7 +378,7 @@ export const allWeapons: WeaponExt[] = [
       { damageType: "xd10", amount: 2, rollMode: null },
     ],
     baseType: "riggingGun",
-    type: "Industrial"
+    type: "Industrial",
   },
   {
     id: "",
@@ -395,7 +396,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: 1,
     damage: [{ damageType: "fixedDamage", amount: 1, rollMode: null }],
     baseType: "foamGun",
-    type: "Industrial"
+    type: "Industrial",
   },
   {
     id: "",
@@ -413,7 +414,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: 1,
     damage: [{ damageType: "d100", amount: 1, rollMode: null }],
     baseType: "laserCutter",
-    type: "Industrial"
+    type: "Industrial",
   },
   {
     id: "",
@@ -430,7 +431,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: 1,
     damage: [{ damageType: "fixedWounds", amount: 1, rollMode: null }],
     baseType: "flamethrower",
-    type: "Industrial"
+    type: "Industrial",
   },
   {
     id: "",
@@ -447,7 +448,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: 1,
     damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
     baseType: "nailGun",
-    type: "Industrial"
+    type: "Industrial",
   },
   {
     id: "",
@@ -464,7 +465,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: null,
     damage: [{ damageType: "xd10", amount: 2, rollMode: "advantage" }],
     baseType: "boardingAxe",
-    type: "Melee"
+    type: "Melee",
   },
   {
     id: "",
@@ -481,7 +482,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: null,
     damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
     baseType: "crowbar",
-    type: "Melee"
+    type: "Melee",
   },
   {
     id: "",
@@ -498,7 +499,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: null,
     damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
     baseType: "scalpel",
-    type: "Melee"
+    type: "Melee",
   },
   {
     id: "",
@@ -515,7 +516,7 @@ export const allWeapons: WeaponExt[] = [
     magazines: null,
     damage: [{ damageType: "xd5", amount: 1, rollMode: null }],
     baseType: "stunBaton",
-    type: "Melee"
+    type: "Melee",
   },
   {
     id: "",
@@ -533,11 +534,14 @@ export const allWeapons: WeaponExt[] = [
     magazines: null,
     damage: [{ damageType: "xd10", amount: 3, rollMode: null }],
     baseType: "vibechete",
-    type: "Melee"
+    type: "Melee",
   },
 ];
 
-export const allWeaponDict: Record<WeaponType, WeaponExt> = toDict(allWeapons, w => w.weaponType);
+export const allWeaponDict: Record<WeaponType, WeaponExt> = toDict(
+  allWeapons,
+  (w) => w.weaponType
+);
 
 export const allContractors: Contractor[] = [
   {
@@ -558,6 +562,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 0, max: 0 },
   },
   {
     type: "asteroidMiner",
@@ -577,6 +582,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 1, max: 9 },
   },
   {
     type: "android",
@@ -596,6 +602,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 10, max: 19 },
   },
   {
     type: "bodyguard",
@@ -615,6 +622,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 20, max: 24 },
   },
   {
     type: "captain",
@@ -634,6 +642,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 25, max: 29 },
   },
   {
     type: "chaplain",
@@ -653,6 +662,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 30, max: 34 },
   },
   {
     type: "corporateFixer",
@@ -672,6 +682,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 35, max: 39 },
   },
   {
     type: "doctor",
@@ -691,6 +702,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 40, max: 44 },
   },
   {
     type: "engineer",
@@ -710,6 +722,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 45, max: 49 },
   },
   {
     type: "gunner",
@@ -729,6 +742,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 50, max: 54 },
   },
   {
     type: "marineGrunt",
@@ -748,6 +762,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 55, max: 59 },
   },
   {
     type: "marineOfficer",
@@ -767,6 +782,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 60, max: 64 },
   },
   {
     type: "pilot",
@@ -786,6 +802,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 65, max: 69 },
   },
   {
     type: "pioneer",
@@ -805,6 +822,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 70, max: 74 },
   },
   {
     type: "scientist",
@@ -824,6 +842,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 75, max: 79 },
   },
   {
     type: "survivalGuide",
@@ -843,6 +862,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 80, max: 84 },
   },
   {
     type: "surgeon",
@@ -862,6 +882,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 85, max: 89 },
   },
   {
     type: "teamster",
@@ -881,6 +902,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 90, max: 94 },
   },
   {
     type: "therapist",
@@ -900,6 +922,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 95, max: 98 },
   },
   {
     type: "voidUrchin",
@@ -919,6 +942,7 @@ export const allContractors: Contractor[] = [
     armor: [],
     weapons: [],
     items: [],
+    probability: { min: 99, max: 99 },
   },
 ];
 
@@ -983,7 +1007,90 @@ export const allArmors: Armor[] = [
   },
 ];
 
-export const allArmorDict: Record<ArmorType, Armor> = toDict(allArmors, a => a.armorType);
+export const allMotivations: Motivation[] = [
+  {
+    motivation: "Secretely investigating a Corporate cover-up.",
+    probability: { min: 0, max: 0 },
+  },
+  {
+    motivation: "Sending money back home to family.",
+    probability: { min: 1, max: 9 },
+  },
+  {
+    motivation: "Needs to pay off a loan shark badly.",
+    probability: { min: 10, max: 19 },
+  },
+  {
+    motivation: "Can’t stop in one place for too long, gets restless.",
+    probability: { min: 20, max: 24 },
+  },
+  {
+    motivation: "Hears a call from an entity they can’t explain.",
+    probability: { min: 25, max: 29 },
+  },
+  {
+    motivation: "Using you/your ship to smuggle contraband.",
+    probability: { min: 30, max: 34 },
+  },
+  { motivation: "Revenge.", probability: { min: 35, max: 39 } },
+  {
+    motivation: "Secretely a con artist with no other expertise.",
+    probability: { min: 40, max: 44 },
+  },
+  {
+    motivation: "Paying a loved one’s medical bills.",
+    probability: { min: 45, max: 49 },
+  },
+  {
+    motivation: "Secretely a spy for a rival corporation.",
+    probability: { min: 50, max: 54 },
+  },
+  {
+    motivation: "Need to pay off jumped bail or a court fine.",
+    probability: { min: 55, max: 59 },
+  },
+  {
+    motivation: "Undercover secret police investigating your crew.",
+    probability: { min: 60, max: 64 },
+  },
+  {
+    motivation: "In huge debt to a powerful crime syndicate.",
+    probability: { min: 65, max: 69 },
+  },
+  {
+    motivation: "Took the money and ran out on their last job.",
+    probability: { min: 70, max: 74 },
+  },
+  {
+    motivation: "Family member held hostage, needs ransom.",
+    probability: { min: 75, max: 79 },
+  },
+  {
+    motivation: "Secretly a bounty hunter looking for your crew.",
+    probability: { min: 80, max: 84 },
+  },
+  {
+    motivation: "Seeking an honorable and glorious death.",
+    probability: { min: 85, max: 89 },
+  },
+  {
+    motivation: "Unknowingly contagious with a deadly disease.",
+    probability: { min: 90, max: 94 },
+  },
+  {
+    motivation: "Escaped from a corporate research facility.",
+    probability: { min: 95, max: 98 },
+  },
+  {
+    motivation: "Secretely a wanted serial killer in hiding.",
+    probability: { min: 99, max: 99 },
+  },
+];
+
+export const allArmorDict: Record<ArmorType, Armor> = toDict(
+  allArmors,
+  (a) => a.armorType
+);
 
 export const allSkills: SkillDefinition[] = [
   {
@@ -4060,4 +4167,7 @@ export const allEquipment: Equipment[] = [
   },
 ];
 
-export const allEquipmentDict: Record<string, Equipment> = toDict(allEquipment, e => e.baseType);
+export const allEquipmentDict: Record<string, Equipment> = toDict(
+  allEquipment,
+  (e) => e.baseType
+);
