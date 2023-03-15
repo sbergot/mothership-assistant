@@ -1,12 +1,11 @@
-- main menu
-- character sheet interactions
 - character details
   - trauma
   - weapon
   - armor
   - contractor
-- edit char (stats, saves, identity)
+- edit char & contractor (stats, saves, identity)
 - design review
 - data review
-- backend for sessions
+- peer.js based session
+- main menu
 - integrate with portraits from ashen-victor.itch.io
