@@ -1,7 +1,4 @@
 - character details
-  - trauma
-  - weapon
-  - armor
   - contractor
 - edit char & contractor (stats, saves, identity)
 - buy ammo?

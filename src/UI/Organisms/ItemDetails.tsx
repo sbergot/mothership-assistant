@@ -4,6 +4,19 @@ export interface Field<T> extends Column<T> {
   hidden?(elt: T): boolean;
 }
 
+
+export function simpleField<T, K extends keyof T>(key: K, name: string): Field<T> {
+  return {
+    name,
+    hidden(elt) {
+      return !elt[key];
+    },
+    cell({ elt }) {
+      return <span>{elt[key] as string}</span>;
+    },
+  }
+}
+
 interface Props<T> {
   fields: Field<T>[];
   item: T;
@@ -17,7 +30,7 @@ export function ItemDetails<T>({ fields, item }: Props<T>) {
         if (f.hidden && f.hidden(item)) { return null }
         return (
           <div className="flex border-t border-mother-5">
-            <div className="w-48">{f.name}</div>
+            <div className="w-48 shrink-0">{f.name}</div>
             <div>
               <Comp elt={item} />
             </div>

@@ -1,4 +1,4 @@
-import { allConditionDefinitionsDict } from "Rules/data";
+import { allConditionDefinitionsDict, classDefinitionsDict } from "Rules/data";
 import { Block, Button, Divider, Title } from "UI/Atoms";
 import { Gauge } from "UI/Molecules";
 import { ReadWriteCharacter, SetMode } from "./types";
@@ -30,6 +30,8 @@ export function Status({ character, setCharacter, setMode }: ReadWriteCharacter 
           limit={character.minStress}
         />
       </div>
+      <Divider />
+      <div className="text-center">{classDefinitionsDict[character.characterClass].traumaResponse}</div>
       <Divider />
       {character.conditions.length > 0 && <Title>Warning!</Title>}
       <div className="flex flex-wrap justify-center gap-2">

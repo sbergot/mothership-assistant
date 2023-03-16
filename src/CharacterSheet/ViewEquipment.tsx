@@ -1,23 +1,14 @@
-import { Weapon } from "Rules/types";
-import { Block, Button, Title } from "UI/Atoms";
+import { Armor, Equipment } from "Rules/types";
+import { Block, Button, Divider, Title } from "UI/Atoms";
+import { Rating } from "UI/Molecules";
 import { Field, ItemDetails, simpleField } from "UI/Organisms/ItemDetails";
 import { WriteCharacter, SetMode } from "./types";
 
 interface Props extends WriteCharacter, SetMode {
-  weapon: Weapon;
+  equipment: Equipment;
 }
 
-const fields: Field<Weapon>[] = [
-  simpleField("weaponRange", "range"),
-  simpleField("shots", "shots"),
-  simpleField("critical", "critical"),
-  simpleField("damageString", "damage"),
-  simpleField("special", "special"),
-  simpleField("magazines", "magazines"),
-  simpleField("magazineSize", "magazine size"),
-];
-
-export function ViewWeapon({ setCharacter, setMode, weapon }: Props) {
+export function ViewEquipment({ setCharacter, setMode, equipment }: Props) {
   function back() {
     setMode({ mode: "CharacterSheet" });
   }
@@ -25,8 +16,14 @@ export function ViewWeapon({ setCharacter, setMode, weapon }: Props) {
   return (
     <div className="flex flex-col gap-2">
       <Block variant="light">
-        <Title>{weapon.weaponType}</Title>
-        <ItemDetails fields={fields} item={weapon} />
+        <Title>{equipment.name}</Title>
+        {equipment.description && (
+          <>
+            <div>{equipment.description}</div>
+            <Divider />
+          </>
+        )}
+        <Rating title="Quantity" value={equipment.quantity} />
       </Block>
       <div className="flex justify-center gap-2">
         <Button
@@ -35,7 +32,9 @@ export function ViewWeapon({ setCharacter, setMode, weapon }: Props) {
           onClick={() => {
             setCharacter((character) => ({
               ...character,
-              weapons: character.weapons.filter((c) => c.id !== weapon.id),
+              equipment: character.equipment.filter(
+                (c) => c.id !== equipment.id
+              ),
             }));
             back();
           }}

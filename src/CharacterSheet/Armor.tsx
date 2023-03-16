@@ -8,9 +8,9 @@ export function Armor({ character, setMode }: ReadCharacter & SetMode) {
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.armor.map((a) => (
-          <Tag key={a.id} variant="dark">
+          <Button key={a.id} onClick={() => setMode({ mode: "ViewArmor", armor: a })} dark>
             {a.name} (AP {a.armorPoints})
-          </Tag>
+          </Button>
         ))}
         <Button onClick={() => {setMode({ mode: "AddArmor" })}}>Add armor</Button>
       </div>

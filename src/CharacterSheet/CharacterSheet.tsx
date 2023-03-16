@@ -18,7 +18,9 @@ import { ViewSkill } from "./Skills/ViewSkill";
 import { Stats } from "./Stats";
 import { Status } from "./Status";
 import { Modes, ReadWriteCharacter } from "./types";
+import { ViewArmor } from "./ViewArmor";
 import { ViewCondition } from "./ViewCondition";
+import { ViewEquipment } from "./ViewEquipment";
 import { ViewWeapon } from "./ViewWeapon";
 import { Weapons } from "./Weapons";
 
@@ -138,6 +140,26 @@ export function CharacterSheet({
     );
   }
 
+  if (mode.mode === "ViewArmor") {
+    return (
+      <ViewArmor
+        setCharacter={setCharacter}
+        setMode={setMode}
+        armor={mode.armor}
+      />
+    );
+  }
+
+  if (mode.mode === "ViewEquipment") {
+    return (
+      <ViewEquipment
+        setCharacter={setCharacter}
+        setMode={setMode}
+        equipment={mode.equipment}
+      />
+    );
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <Identity character={character} setCharacter={setCharacter} />
@@ -147,7 +169,6 @@ export function CharacterSheet({
         setMode={setMode}
       />
       <Stats character={character} />
-      <Saves character={character} />
       <Skills character={character} setMode={setMode} />
       <Weapons character={character} setMode={setMode} />
       <Armor character={character} setMode={setMode} />

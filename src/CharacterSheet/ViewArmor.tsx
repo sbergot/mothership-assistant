@@ -1,23 +1,20 @@
-import { Weapon } from "Rules/types";
+import { Armor } from "Rules/types";
 import { Block, Button, Title } from "UI/Atoms";
 import { Field, ItemDetails, simpleField } from "UI/Organisms/ItemDetails";
 import { WriteCharacter, SetMode } from "./types";
 
 interface Props extends WriteCharacter, SetMode {
-  weapon: Weapon;
+  armor: Armor;
 }
 
-const fields: Field<Weapon>[] = [
-  simpleField("weaponRange", "range"),
-  simpleField("shots", "shots"),
-  simpleField("critical", "critical"),
-  simpleField("damageString", "damage"),
-  simpleField("special", "special"),
-  simpleField("magazines", "magazines"),
-  simpleField("magazineSize", "magazine size"),
+const fields: Field<Armor>[] = [
+  simpleField("armorPoints", "AP"),
+  simpleField("oxygenSupply", "O2 supply"),
+  simpleField("armorSpeed", "speed"),
+  simpleField("notes", "special"),
 ];
 
-export function ViewWeapon({ setCharacter, setMode, weapon }: Props) {
+export function ViewArmor({ setCharacter, setMode, armor }: Props) {
   function back() {
     setMode({ mode: "CharacterSheet" });
   }
@@ -25,8 +22,8 @@ export function ViewWeapon({ setCharacter, setMode, weapon }: Props) {
   return (
     <div className="flex flex-col gap-2">
       <Block variant="light">
-        <Title>{weapon.weaponType}</Title>
-        <ItemDetails fields={fields} item={weapon} />
+        <Title>{armor.armorType}</Title>
+        <ItemDetails fields={fields} item={armor} />
       </Block>
       <div className="flex justify-center gap-2">
         <Button
@@ -35,7 +32,7 @@ export function ViewWeapon({ setCharacter, setMode, weapon }: Props) {
           onClick={() => {
             setCharacter((character) => ({
               ...character,
-              weapons: character.weapons.filter((c) => c.id !== weapon.id),
+              armor: character.armor.filter((c) => c.id !== armor.id),
             }));
             back();
           }}
