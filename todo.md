@@ -4,6 +4,15 @@
   - armor
   - contractor
 - edit char & contractor (stats, saves, identity)
+- buy ammo?
+- rolls
+  - attack
+  - save ((dis)advantage, skill)
+  - panic
+  - damage
+  - wound
+  - rest
+  - death
 - design review
 - data review
 - peer.js based session

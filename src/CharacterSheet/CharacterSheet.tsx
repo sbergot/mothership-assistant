@@ -19,6 +19,7 @@ import { Stats } from "./Stats";
 import { Status } from "./Status";
 import { Modes, ReadWriteCharacter } from "./types";
 import { ViewCondition } from "./ViewCondition";
+import { ViewWeapon } from "./ViewWeapon";
 import { Weapons } from "./Weapons";
 
 export function CharacterSheet({
@@ -123,6 +124,16 @@ export function CharacterSheet({
         character={character}
         setCharacter={setCharacter}
         setMode={setMode}
+      />
+    );
+  }
+
+  if (mode.mode === "ViewWeapon") {
+    return (
+      <ViewWeapon
+        setCharacter={setCharacter}
+        setMode={setMode}
+        weapon={mode.weapon}
       />
     );
   }

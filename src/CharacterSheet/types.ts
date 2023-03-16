@@ -1,4 +1,4 @@
-import { Character, ConditionType, SkillType } from "Rules/types";
+import { Character, ConditionType, SkillType, Weapon } from "Rules/types";
 
 export interface ReadCharacter {
   character: Character;
@@ -65,6 +65,11 @@ interface AddContractorMode {
   mode: "AddContractor"
 }
 
+interface ViewWeaponMode {
+  mode: "ViewWeapon"
+  weapon: Weapon
+}
+
 export type Modes =
   | CharacterSheetMode
   | AddConditionMode
@@ -77,7 +82,8 @@ export type Modes =
   | AddArmorMode
   | AddEquipmentMode
   | AddCustomItemMode
-  | AddContractorMode;
+  | AddContractorMode
+  | ViewWeaponMode;
 
 export interface SetMode {
   setMode(mode: Modes): void;
