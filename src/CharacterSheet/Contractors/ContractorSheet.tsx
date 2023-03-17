@@ -61,6 +61,7 @@ export function ContractorSheet({
         setCharacter={setContractor}
         setMode={setMode}
         weapon={contractor.weapons.find((c) => c.id === mode.weaponId)!}
+        wallet={wallet}
       />
     );
   }

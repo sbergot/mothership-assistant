@@ -155,6 +155,7 @@ export function CharacterSheet({
         setCharacter={setCharacter}
         setMode={setMode}
         weapon={character.weapons.find((c) => c.id === mode.weaponId)!}
+        wallet={wallet}
       />
     );
   }

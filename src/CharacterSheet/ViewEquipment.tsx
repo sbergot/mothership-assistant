@@ -23,15 +23,23 @@ export function ViewEquipment({ setCharacter, setMode, equipment }: Props) {
             <Divider />
           </>
         )}
-        <Rating title="Quantity" value={equipment.quantity} onUpdate={(newVal) => setCharacter(char => {
-          return {
-            ...char,
-            equipment: char.equipment.map(e => {
-              if (e.id !== equipment.id) { return e }
-              return { ...e, quantity: newVal }
+        <Rating
+          title="Quantity"
+          value={equipment.quantity}
+          onUpdate={(newVal) =>
+            setCharacter((char) => {
+              return {
+                ...char,
+                equipment: char.equipment.map((e) => {
+                  if (e.id !== equipment.id) {
+                    return e;
+                  }
+                  return { ...e, quantity: newVal };
+                }),
+              };
             })
           }
-        })} />
+        />
       </Block>
       <div className="flex justify-center gap-2">
         <Button

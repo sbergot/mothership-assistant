@@ -1,10 +1,14 @@
+import { formatCredits } from "helpers";
+import { useState } from "react";
 import { Weapon } from "Rules/types";
 import { Block, Button, Title } from "UI/Atoms";
+import { Rating } from "UI/Molecules";
 import { Field, ItemDetails, simpleField } from "UI/Organisms/ItemDetails";
-import { WriteCharacter, SetMode, WriteBaseChar } from "./types";
+import { SetMode, Wallet, WriteBaseChar } from "./types";
 
 interface Props extends WriteBaseChar, SetMode {
   weapon: Weapon;
+  wallet: Wallet;
 }
 
 const fields: Field<Weapon>[] = [
@@ -17,9 +21,25 @@ const fields: Field<Weapon>[] = [
   simpleField("magazineSize", "magazine size"),
 ];
 
-export function ViewWeapon({ setCharacter, setMode, weapon }: Props) {
+export function ViewWeapon({ setCharacter, setMode, weapon, wallet }: Props) {
+  const [magazines, setMagazines] = useState(weapon.magazines || 0);
+  const totalCost = (magazines - (weapon.magazines || 0)) * 50;
   function back() {
     setMode({ mode: "CharacterSheet" });
+  }
+
+  function updateMagazines() {
+    setCharacter((char) => {
+      return {
+        ...char,
+        weapons: char.weapons.map((w) => {
+          if (w.id !== weapon.id) {
+            return w;
+          }
+          return { ...w, magazines };
+        }),
+      };
+    });
   }
 
   return (
@@ -27,6 +47,9 @@ export function ViewWeapon({ setCharacter, setMode, weapon }: Props) {
       <Block variant="light">
         <Title>{weapon.weaponType}</Title>
         <ItemDetails fields={fields} item={weapon} />
+        {weapon.magazines && (
+          <Rating title="Magazines" value={magazines} onUpdate={setMagazines} />
+        )}
       </Block>
       <div className="flex justify-center gap-2">
         <Button
@@ -44,6 +67,27 @@ export function ViewWeapon({ setCharacter, setMode, weapon }: Props) {
         </Button>
         <Button onClick={back}>Back</Button>
       </div>
+      {weapon.magazines && weapon.magazines !== magazines && (
+        <div className="flex justify-center gap-2">
+          <Button
+            onClick={() => {
+              updateMagazines();
+              wallet.pay(totalCost);
+              back();
+            }}
+          >
+            Purchase ({formatCredits(totalCost)})
+          </Button>
+          <Button
+            onClick={() => {
+              updateMagazines();
+              back();
+            }}
+          >
+            Aquire
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

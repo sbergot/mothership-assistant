@@ -1,4 +1,3 @@
-- edit char & contractor (stats, saves, identity)
 - buy ammo?
 - rolls
   - roll result history UI

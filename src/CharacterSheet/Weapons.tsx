@@ -35,7 +35,7 @@ interface WeaponProps {
 }
 
 function Weapon({ weapon, onTitleClick }: WeaponProps) {
-  const hasAmmo = weapon.magazineSize != null;
+  const hasAmmo = weapon.magazineSize !== null;
   const justify = hasAmmo ? "justify-between" : "justify-center";
   return (
     <div className="p-4 rounded-xl bg-mother-2 flex flex-col gap-1">
