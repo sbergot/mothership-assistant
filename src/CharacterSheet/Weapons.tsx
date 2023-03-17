@@ -1,8 +1,13 @@
 import { Block, Button, Divider, Progress, Title } from "UI/Atoms";
 import { Weapon as WeaponType } from "Rules/types";
 import { ReadBaseChar, SetMode } from "./types";
+import { Log } from "Session/types";
 
-export function Weapons({ character, setMode }: ReadBaseChar & SetMode) {
+export function Weapons({
+  character,
+  setMode,
+  log,
+}: ReadBaseChar & SetMode & Log) {
   return (
     <Block variant="light">
       <Title>Weapons</Title>
@@ -13,6 +18,7 @@ export function Weapons({ character, setMode }: ReadBaseChar & SetMode) {
             key={w.id}
             weapon={w}
             onTitleClick={() => setMode({ mode: "ViewWeapon", weaponId: w.id })}
+            log={log}
           />
         ))}
       </div>
@@ -29,12 +35,12 @@ export function Weapons({ character, setMode }: ReadBaseChar & SetMode) {
   );
 }
 
-interface WeaponProps {
+interface WeaponProps extends Log {
   weapon: WeaponType;
   onTitleClick(): void;
 }
 
-function Weapon({ weapon, onTitleClick }: WeaponProps) {
+function Weapon({ weapon, onTitleClick, log }: WeaponProps) {
   const hasAmmo = weapon.magazineSize !== null;
   const justify = hasAmmo ? "justify-between" : "justify-center";
   return (
@@ -60,7 +66,10 @@ function Weapon({ weapon, onTitleClick }: WeaponProps) {
             max={weapon.magazineSize || 1}
           />
         )}
-        <div className="px-4 py-1 rounded-3xl bg-mother-6 text-mother-1">
+        <div
+          onClick={() => log({ content: () => <span>attack!</span> })}
+          className="px-4 py-1 rounded-3xl bg-mother-6 text-mother-1"
+        >
           Attack
         </div>
       </div>

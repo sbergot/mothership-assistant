@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Log } from "Session/types";
 import { AddArmor } from "./AddArmor";
 import { AddCondition } from "./AddCondition";
 import { AddContractor } from "./AddContractor";
@@ -28,7 +29,8 @@ import { Weapons } from "./Weapons";
 export function CharacterSheet({
   character,
   setCharacter,
-}: ReadWriteCharacter) {
+  log
+}: ReadWriteCharacter & Log) {
   const [mode, setMode] = useState<Modes>({ mode: "CharacterSheet" });
   function back() {
     setMode({ mode: "CharacterSheet" });
@@ -200,7 +202,7 @@ export function CharacterSheet({
       />
       <Stats character={character} setMode={setMode} />
       <Skills character={character} setMode={setMode} />
-      <Weapons character={character} setMode={setMode} />
+      <Weapons character={character} setMode={setMode} log={log} />
       <Armor character={character} setMode={setMode} />
       <Equipment character={character} setMode={setMode} />
       <Contractors character={character} setMode={setMode} />

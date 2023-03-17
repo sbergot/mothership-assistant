@@ -9,14 +9,13 @@ function Field({
   field,
 }: ReadWriteCharacter & { field: StringProperties<Character> }) {
   return (
-    <Block variant="bright" small>
-      <input
-        value={character[field]}
-        onChange={(e) =>
-          setCharacter((char) => ({ ...char, [field]: e.target.value }))
-        }
-      />
-    </Block>
+    <input
+      className="input"
+      value={character[field]}
+      onChange={(e) =>
+        setCharacter((char) => ({ ...char, [field]: e.target.value }))
+      }
+    />
   );
 }
 

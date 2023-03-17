@@ -3,13 +3,14 @@ import { CharacterSheet } from "CharacterSheet";
 import { useState } from "react";
 import { Character } from "Rules/types";
 import { createRepository } from "Services/services";
+import { Session } from "Session/Session";
 import { Block, Button } from "UI/Atoms";
 
 const useCharacterRepo = createRepository<Character>("characters");
 
 interface ViewCharacterMode {
   mode: "ViewCharacter";
-  id: string;
+  characterId: string;
 }
 
 interface CreateCharacterMode {
@@ -35,7 +36,7 @@ export function MainMenu() {
           <Block key={c.id} variant="light">
             <div>{c.value.name}</div>
             <Button
-              onClick={() => setMode({ mode: "ViewCharacter", id: c.id })}
+              onClick={() => setMode({ mode: "ViewCharacter", characterId: c.id })}
             >
               open
             </Button>
@@ -64,9 +65,9 @@ export function MainMenu() {
 
   if (mode.mode === "ViewCharacter") {
     return (
-      <CharacterSheet
-        character={getEntry(mode.id)}
-        setCharacter={(setter) => update(mode.id, setter)}
+      <Session
+        character={getEntry(mode.characterId)}
+        setCharacter={(setter) => update(mode.characterId, setter)}
       />
     );
   }

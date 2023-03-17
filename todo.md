@@ -1,4 +1,3 @@
-- buy ammo?
 - rolls
   - roll result history UI
   - attack
