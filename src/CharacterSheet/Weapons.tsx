@@ -1,8 +1,8 @@
 import { Block, Button, Divider, Progress, Title } from "UI/Atoms";
 import { Weapon as WeaponType } from "Rules/types";
-import { ReadCharacter, SetMode } from "./types";
+import { ReadBaseChar, ReadCharacter, SetMode } from "./types";
 
-export function Weapons({ character, setMode }: ReadCharacter & SetMode) {
+export function Weapons({ character, setMode }: ReadBaseChar & SetMode) {
   return (
     <Block variant="light">
       <Title>Weapons</Title>

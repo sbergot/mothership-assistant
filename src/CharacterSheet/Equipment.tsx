@@ -1,7 +1,7 @@
 import { Block, Button, Divider, Tag, Title } from "UI/Atoms";
-import { ReadCharacter, SetMode } from "./types";
+import { ReadBaseChar, ReadCharacter, SetMode } from "./types";
 
-export function Equipment({ character, setMode }: ReadCharacter & SetMode) {
+export function Equipment({ character, setMode }: ReadBaseChar & SetMode) {
   return (
     <Block variant="light">
       <Title>Equipment</Title>

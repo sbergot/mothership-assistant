@@ -105,16 +105,19 @@ export function ContractorSheet({
 
   return (
     <div className="flex flex-col gap-4">
-      <ContractorIdentity character={character} setCharacter={setCharacter} />
+      <ContractorIdentity
+        contractor={contractor}
+        setContractor={setContractor}
+      />
       <ContractorStatus
-        character={character}
-        setCharacter={setCharacter}
+        contractor={contractor}
+        setContractor={setContractor}
         setMode={setMode}
       />
-      <ContractorStats character={character} />
-      <Weapons character={character} setMode={setMode} />
-      <Armor character={character} setMode={setMode} />
-      <Equipment character={character} setMode={setMode} />
+      <ContractorStats contractor={contractor} />
+      <Weapons character={contractor} setMode={setMode} />
+      <Armor character={contractor} setMode={setMode} />
+      <Equipment character={contractor} setMode={setMode} />
     </div>
   );
 }
