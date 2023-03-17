@@ -110,10 +110,7 @@ export function ContractorSheet({
 
   return (
     <div className="flex flex-col gap-4">
-      <ContractorIdentity
-        contractor={contractor}
-        setContractor={setContractor}
-      />
+      <ContractorIdentity contractor={contractor} />
       <ContractorStatus
         contractor={contractor}
         setContractor={setContractor}
@@ -123,8 +120,24 @@ export function ContractorSheet({
       <Weapons character={contractor} setMode={setMode} />
       <Armor character={contractor} setMode={setMode} />
       <Equipment character={contractor} setMode={setMode} />
-      <div className="mx-auto">
-        <Button onClick={back} dark>Back</Button>
+      <div className="flex justify-center gap-2">
+        <Button onClick={back} dark>
+          Back
+        </Button>
+        <Button
+          onClick={() => {
+            setCharacter((char) => ({
+              ...char,
+              contractors: char.contractors.filter(
+                (c) => c.id !== contractor.id
+              ),
+            }));
+            back();
+          }}
+          light
+        >
+          Remove contractor
+        </Button>
       </div>
     </div>
   );
