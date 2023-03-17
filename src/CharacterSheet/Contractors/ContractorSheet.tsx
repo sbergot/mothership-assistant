@@ -121,7 +121,10 @@ export function ContractorSheet({
 
   return (
     <div className="flex flex-col gap-4">
-      <ContractorIdentity contractor={contractor} />
+      <ContractorIdentity
+        contractor={contractor}
+        setContractor={setContractor}
+      />
       <ContractorStatus
         contractor={contractor}
         setContractor={setContractor}

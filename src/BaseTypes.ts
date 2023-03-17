@@ -12,3 +12,9 @@ export interface Repository<T> {
   getEntries(): Entry<T>[];
   getEntry(id: string): T;
 }
+
+export type StringProperties<T> = keyof {
+  [Property in keyof T as T[Property] extends string
+    ? Property
+    : never]: T[Property];
+};
