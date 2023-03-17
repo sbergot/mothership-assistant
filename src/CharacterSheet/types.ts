@@ -82,22 +82,22 @@ interface AddContractorMode {
 
 interface ViewWeaponMode {
   mode: "ViewWeapon"
-  weapon: Weapon
+  weaponId: string
 }
 
 interface ViewArmorMode {
   mode: "ViewArmor"
-  armor: Armor
+  armorId: string
 }
 
 interface ViewEquipmentMode {
   mode: "ViewEquipment"
-  equipment: Equipment
+  equipmentId: string
 }
 
 interface ViewContractorMode {
   mode: "ViewContractor"
-  contractor: Contractor
+  contractorId: string
 }
 
 export type Modes =

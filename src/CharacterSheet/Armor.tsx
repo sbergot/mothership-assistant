@@ -1,5 +1,5 @@
-import { Block, Button, Divider, Tag, Title } from "UI/Atoms";
-import { ReadBaseChar, ReadCharacter, SetMode } from "./types";
+import { Block, Button, Divider, Title } from "UI/Atoms";
+import { ReadBaseChar, SetMode } from "./types";
 
 export function Armor({ character, setMode }: ReadBaseChar & SetMode) {
   return (
@@ -8,7 +8,7 @@ export function Armor({ character, setMode }: ReadBaseChar & SetMode) {
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.armor.map((a) => (
-          <Button key={a.id} onClick={() => setMode({ mode: "ViewArmor", armor: a })} dark>
+          <Button key={a.id} onClick={() => setMode({ mode: "ViewArmor", armorId: a.id })} dark>
             {a.name} (AP {a.armorPoints})
           </Button>
         ))}

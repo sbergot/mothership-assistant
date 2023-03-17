@@ -10,7 +10,6 @@ import { Contractors } from "./Contractors";
 import { ContractorSheet } from "./Contractors/ContractorSheet";
 import { Equipment } from "./Equipment";
 import { Identity } from "./Identity";
-import { Saves } from "./Saves";
 import { Skills } from "./Skills";
 import { PickSkill } from "./Skills/PickSkill";
 import { StartTrainingSkill } from "./Skills/StartTrainingSkill";
@@ -131,7 +130,7 @@ export function CharacterSheet({
         setCharacter={setCharacter}
         back={() => setMode({ mode: "CharacterSheet" })}
         wallet={wallet}
-        contractor={mode.contractor}
+        contractor={character.contractors.find(c => c.id === mode.contractorId)!}
       />
     );
   }
@@ -155,7 +154,7 @@ export function CharacterSheet({
       <ViewWeapon
         setCharacter={setCharacter}
         setMode={setMode}
-        weapon={mode.weapon}
+        weapon={character.weapons.find(c => c.id === mode.weaponId)!}
       />
     );
   }
@@ -165,7 +164,7 @@ export function CharacterSheet({
       <ViewArmor
         setCharacter={setCharacter}
         setMode={setMode}
-        armor={mode.armor}
+        armor={character.armor.find(c => c.id === mode.armorId)!}
       />
     );
   }
@@ -175,7 +174,7 @@ export function CharacterSheet({
       <ViewEquipment
         setCharacter={setCharacter}
         setMode={setMode}
-        equipment={mode.equipment}
+        equipment={character.equipment.find(c => c.id === mode.equipmentId)!}
       />
     );
   }

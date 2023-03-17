@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { allArmors, allContractorTypes, allContractors, allContractorDict } from "Rules/data";
+import { allContractorTypes, allContractors, allContractorDict } from "Rules/data";
 import { Contractor, ContractorType } from "Rules/types";
 import { Block, Button, Title } from "UI/Atoms";
-import { clone, formatCredits } from "helpers";
+import { formatCredits } from "helpers";
 import { Column, Counter, Table } from "UI/Organisms/Table";
 import { ReadWriteCharacter, SetMode } from "./types";
 import { roll } from "Services/diceServices";

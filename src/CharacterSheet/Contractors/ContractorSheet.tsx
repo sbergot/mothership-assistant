@@ -4,13 +4,13 @@ import { AddEquipment } from "CharacterSheet/AddEquipment";
 import { AddWeapon } from "CharacterSheet/AddWeapon";
 import { Armor } from "CharacterSheet/Armor";
 import { Equipment } from "CharacterSheet/Equipment";
-import { Modes, SetMode, Wallet, WriteCharacter } from "CharacterSheet/types";
+import { Modes, Wallet, WriteCharacter } from "CharacterSheet/types";
 import { ViewArmor } from "CharacterSheet/ViewArmor";
 import { ViewEquipment } from "CharacterSheet/ViewEquipment";
 import { ViewWeapon } from "CharacterSheet/ViewWeapon";
 import { Weapons } from "CharacterSheet/Weapons";
 import { useState } from "react";
-import { BaseCharacter, Contractor } from "Rules/types";
+import { Contractor } from "Rules/types";
 import { Button } from "UI/Atoms";
 import { ContractorIdentity } from "./ContractorIdentity";
 import { ContractorStats } from "./ContractorStats";
@@ -59,7 +59,7 @@ export function ContractorSheet({
       <ViewWeapon
         setCharacter={setContractor}
         setMode={setMode}
-        weapon={mode.weapon}
+        weapon={contractor.weapons.find(c => c.id === mode.weaponId)!}
       />
     );
   }
@@ -79,7 +79,7 @@ export function ContractorSheet({
       <ViewArmor
         setCharacter={setContractor}
         setMode={setMode}
-        armor={mode.armor}
+        armor={contractor.armor.find(c => c.id === mode.armorId)!}
       />
     );
   }
@@ -103,7 +103,7 @@ export function ContractorSheet({
       <ViewEquipment
         setCharacter={setCharacter}
         setMode={setMode}
-        equipment={mode.equipment}
+        equipment={contractor.equipment.find(c => c.id === mode.equipmentId)!}
       />
     );
   }

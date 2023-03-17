@@ -13,7 +13,7 @@ export function Contractors({ character, setMode }: ReadCharacter & SetMode) {
           <ContractorShort
             contractor={c}
             onTitleClick={() =>
-              setMode({ mode: "ViewContractor", contractor: c })
+              setMode({ mode: "ViewContractor", contractorId: c.id })
             }
           />
         ))}

@@ -1,5 +1,5 @@
-import { Block, Button, Divider, Tag, Title } from "UI/Atoms";
-import { ReadBaseChar, ReadCharacter, SetMode } from "./types";
+import { Block, Button, Divider, Title } from "UI/Atoms";
+import { ReadBaseChar, SetMode } from "./types";
 
 export function Equipment({ character, setMode }: ReadBaseChar & SetMode) {
   return (
@@ -11,7 +11,7 @@ export function Equipment({ character, setMode }: ReadBaseChar & SetMode) {
           <Button
             key={e.id}
             dark
-            onClick={() => setMode({ mode: "ViewEquipment", equipment: e })}
+            onClick={() => setMode({ mode: "ViewEquipment", equipmentId: e.id })}
           >
             {e.name}
           </Button>
