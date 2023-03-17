@@ -1,5 +1,8 @@
 - rolls
   - roll result history UI
+    - content
+    - time
+    - author
   - attack
   - save ((dis)advantage, skill)
   - panic
