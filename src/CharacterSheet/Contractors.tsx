@@ -3,7 +3,6 @@ import { Rating, Gauge } from "UI/Molecules";
 import { Contractor } from "Rules/types";
 import { ReadCharacter, SetMode } from "./types";
 
-
 export function Contractors({ character, setMode }: ReadCharacter & SetMode) {
   return (
     <Block variant="light">
@@ -11,11 +10,22 @@ export function Contractors({ character, setMode }: ReadCharacter & SetMode) {
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-8">
         {character.contractors.map((c) => (
-          <ContractorShort contractor={c} />
+          <ContractorShort
+            contractor={c}
+            onTitleClick={() =>
+              setMode({ mode: "ViewContractor", contractor: c })
+            }
+          />
         ))}
       </div>
       <div className="flex justify-center items-center mt-2">
-        <Button onClick={() => {setMode({ mode: "AddContractor" })}}>Add contractor</Button>
+        <Button
+          onClick={() => {
+            setMode({ mode: "AddContractor" });
+          }}
+        >
+          Add contractor
+        </Button>
       </div>
     </Block>
   );
@@ -23,12 +33,16 @@ export function Contractors({ character, setMode }: ReadCharacter & SetMode) {
 
 interface ContractorProps {
   contractor: Contractor;
+  onTitleClick(): void;
 }
 
-export function ContractorShort({ contractor }: ContractorProps) {
+export function ContractorShort({ contractor, onTitleClick }: ContractorProps) {
   return (
     <div className="rounded-xl bg-mother-2 flex flex-col gap-4">
-      <div className="rounded-3xl bg-mother-6 text-mother-1 text-center">
+      <div
+        className="rounded-3xl bg-mother-6 text-mother-1 text-center cursor-pointer hover:bg-mother-5"
+        onClick={onTitleClick}
+      >
         {contractor.name}
       </div>
       <div className="p-4">

@@ -4,27 +4,32 @@ import { AddEquipment } from "CharacterSheet/AddEquipment";
 import { AddWeapon } from "CharacterSheet/AddWeapon";
 import { Armor } from "CharacterSheet/Armor";
 import { Equipment } from "CharacterSheet/Equipment";
-import { SetMode, Wallet, WriteCharacter } from "CharacterSheet/types";
+import { Modes, SetMode, Wallet, WriteCharacter } from "CharacterSheet/types";
 import { ViewArmor } from "CharacterSheet/ViewArmor";
 import { ViewEquipment } from "CharacterSheet/ViewEquipment";
 import { ViewWeapon } from "CharacterSheet/ViewWeapon";
 import { Weapons } from "CharacterSheet/Weapons";
+import { useState } from "react";
 import { BaseCharacter, Contractor } from "Rules/types";
+import { Button } from "UI/Atoms";
 import { ContractorIdentity } from "./ContractorIdentity";
 import { ContractorStats } from "./ContractorStats";
 import { ContractorStatus } from "./ContractorStatus";
 
-interface Props extends WriteCharacter, SetMode {
+interface Props extends WriteCharacter {
   contractor: Contractor;
   wallet: Wallet;
+  back(): void;
 }
 
 export function ContractorSheet({
   contractor,
   setCharacter,
-  setMode,
+  back,
   wallet,
 }: Props) {
+  const [mode, setMode] = useState<Modes>({ mode: "CharacterSheet" });
+
   function setContractor(setter: (c: Contractor) => Contractor) {
     setCharacter((char) => {
       return {
@@ -118,6 +123,7 @@ export function ContractorSheet({
       <Weapons character={contractor} setMode={setMode} />
       <Armor character={contractor} setMode={setMode} />
       <Equipment character={contractor} setMode={setMode} />
+      <Button onClick={back}>Back</Button>
     </div>
   );
 }

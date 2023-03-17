@@ -1,6 +1,4 @@
 import { Block } from "UI/Atoms";
-import { Character } from "Rules/types";
-import { ReadWriteBaseChar, ReadWriteCharacter } from "CharacterSheet/types";
 import { ReadWriteContractor } from "./types";
 
 export function ContractorIdentity({ contractor, setContractor }: ReadWriteContractor) {

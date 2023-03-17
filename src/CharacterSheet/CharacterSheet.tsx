@@ -7,6 +7,7 @@ import { AddEquipment } from "./AddEquipment";
 import { AddWeapon } from "./AddWeapon";
 import { Armor } from "./Armor";
 import { Contractors } from "./Contractors";
+import { ContractorSheet } from "./Contractors/ContractorSheet";
 import { Equipment } from "./Equipment";
 import { Identity } from "./Identity";
 import { Saves } from "./Saves";
@@ -119,6 +120,18 @@ export function CharacterSheet({
         setCharacter={setCharacter}
         setMode={setMode}
         wallet={wallet}
+      />
+    );
+  }
+
+
+  if (mode.mode === "ViewContractor") {
+    return (
+      <ContractorSheet
+        setCharacter={setCharacter}
+        back={() => setMode({ mode: "CharacterSheet" })}
+        wallet={wallet}
+        contractor={mode.contractor}
       />
     );
   }
