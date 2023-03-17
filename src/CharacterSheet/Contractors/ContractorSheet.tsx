@@ -59,7 +59,7 @@ export function ContractorSheet({
       <ViewWeapon
         setCharacter={setContractor}
         setMode={setMode}
-        weapon={contractor.weapons.find(c => c.id === mode.weaponId)!}
+        weapon={contractor.weapons.find((c) => c.id === mode.weaponId)!}
       />
     );
   }
@@ -79,7 +79,7 @@ export function ContractorSheet({
       <ViewArmor
         setCharacter={setContractor}
         setMode={setMode}
-        armor={contractor.armor.find(c => c.id === mode.armorId)!}
+        armor={contractor.armor.find((c) => c.id === mode.armorId)!}
       />
     );
   }
@@ -103,7 +103,7 @@ export function ContractorSheet({
       <ViewEquipment
         setCharacter={setCharacter}
         setMode={setMode}
-        equipment={contractor.equipment.find(c => c.id === mode.equipmentId)!}
+        equipment={contractor.equipment.find((c) => c.id === mode.equipmentId)!}
       />
     );
   }
@@ -123,7 +123,9 @@ export function ContractorSheet({
       <Weapons character={contractor} setMode={setMode} />
       <Armor character={contractor} setMode={setMode} />
       <Equipment character={contractor} setMode={setMode} />
-      <Button onClick={back}>Back</Button>
+      <div className="mx-auto">
+        <Button onClick={back} dark>Back</Button>
+      </div>
     </div>
   );
 }
