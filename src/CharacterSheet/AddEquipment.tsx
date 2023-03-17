@@ -4,7 +4,7 @@ import { Equipment } from "Rules/types";
 import { Block, Button, Title } from "UI/Atoms";
 import { clone, formatCredits } from "helpers";
 import { Column, Counter, Table } from "UI/Organisms/Table";
-import { ReadWriteCharacter, SetMode } from "./types";
+import { SetMode, Wallet, WriteBaseChar } from "./types";
 
 function getDefaultSelection(): Record<string, number> {
   const res = {} as Record<string, number>;
@@ -15,10 +15,10 @@ function getDefaultSelection(): Record<string, number> {
 }
 
 export function AddEquipment({
-  character,
   setCharacter,
   setMode,
-}: ReadWriteCharacter & SetMode) {
+  wallet
+}: WriteBaseChar & SetMode & { wallet: Wallet }) {
   const [selected, setSelected] = useState<Record<string, number>>(
     getDefaultSelection()
   );
@@ -88,7 +88,7 @@ export function AddEquipment({
         <Block variant="dark">
           <div className="flex flex-col items-center">
             <div>{formatCredits(totalCost)}</div>
-            <div>Current credits: {formatCredits(character.credits)}</div>
+            <div>Current credits: {formatCredits(wallet.credits)}</div>
             <div className="flex gap-2">
               <Button
                 light
@@ -97,8 +97,8 @@ export function AddEquipment({
                   setCharacter((char) => ({
                     ...char,
                     equipment: [...char.equipment, ...getNewEquipments()],
-                    credits: char.credits - totalCost,
                   }));
+                  wallet.pay(totalCost);
                   setMode({ mode: "CharacterSheet" });
                 }}
               >

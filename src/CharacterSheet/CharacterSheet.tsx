@@ -17,7 +17,7 @@ import { TrainSkill } from "./Skills/TrainSkill";
 import { ViewSkill } from "./Skills/ViewSkill";
 import { Stats } from "./Stats";
 import { Status } from "./Status";
-import { Modes, ReadWriteCharacter } from "./types";
+import { Modes, ReadWriteCharacter, Wallet } from "./types";
 import { ViewArmor } from "./ViewArmor";
 import { ViewCondition } from "./ViewCondition";
 import { ViewEquipment } from "./ViewEquipment";
@@ -29,6 +29,13 @@ export function CharacterSheet({
   setCharacter,
 }: ReadWriteCharacter) {
   const [mode, setMode] = useState<Modes>({ mode: "CharacterSheet" });
+
+  const wallet: Wallet = {
+    credits: character.credits,
+    pay(amout) {
+      setCharacter(char => ({...char, credits: char.credits - amout }));
+    }
+  }
 
   if (mode.mode === "AddCondition") {
     return (
@@ -89,9 +96,9 @@ export function CharacterSheet({
   if (mode.mode === "AddWeapon") {
     return (
       <AddWeapon
-        character={character}
         setCharacter={setCharacter}
         setMode={setMode}
+        wallet={wallet}
       />
     );
   }
@@ -99,9 +106,9 @@ export function CharacterSheet({
   if (mode.mode === "AddArmor") {
     return (
       <AddArmor
-        character={character}
         setCharacter={setCharacter}
         setMode={setMode}
+        wallet={wallet}
       />
     );
   }
@@ -109,9 +116,9 @@ export function CharacterSheet({
   if (mode.mode === "AddEquipment") {
     return (
       <AddEquipment
-        character={character}
         setCharacter={setCharacter}
         setMode={setMode}
+        wallet={wallet}
       />
     );
   }

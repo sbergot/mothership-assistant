@@ -1,4 +1,4 @@
-import { Armor, Character, ConditionType, Equipment, SkillType, Weapon } from "Rules/types";
+import { Armor, BaseCharacter, Character, ConditionType, Equipment, SkillType, Weapon } from "Rules/types";
 
 export interface ReadCharacter {
   character: Character;
@@ -9,6 +9,21 @@ export interface WriteCharacter {
 }
 
 export type ReadWriteCharacter = ReadCharacter & WriteCharacter;
+
+export interface ReadBaseChar {
+  character: BaseCharacter;
+}
+
+export interface WriteBaseChar {
+  setCharacter(setter: (c: BaseCharacter) => BaseCharacter): void;
+}
+
+export type ReadWriteBaseChar = ReadBaseChar & WriteBaseChar;
+
+export interface Wallet {
+  credits: number;
+  pay(amount: number): void;
+}
 
 export interface Cancel {
   onCancel(): void;

@@ -1,9 +1,9 @@
 import { Weapon } from "Rules/types";
 import { Block, Button, Title } from "UI/Atoms";
 import { Field, ItemDetails, simpleField } from "UI/Organisms/ItemDetails";
-import { WriteCharacter, SetMode } from "./types";
+import { WriteCharacter, SetMode, WriteBaseChar } from "./types";
 
-interface Props extends WriteCharacter, SetMode {
+interface Props extends WriteBaseChar, SetMode {
   weapon: Weapon;
 }
 

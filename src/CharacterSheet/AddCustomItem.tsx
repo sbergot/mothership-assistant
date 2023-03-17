@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Equipment } from "Rules/types";
 import { uuidv4 } from "Services/services";
 import { Block, Button, Title } from "UI/Atoms";
-import { SetMode, WriteCharacter } from "./types";
+import { SetMode, WriteBaseChar, WriteCharacter } from "./types";
 
 function newCustomItem(name: string, description: string): Equipment {
   return {
@@ -19,7 +19,7 @@ function newCustomItem(name: string, description: string): Equipment {
 export function AddCustomItem({
   setCharacter,
   setMode,
-}: WriteCharacter & SetMode) {
+}: WriteBaseChar & SetMode) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const done = name && description;
