@@ -6,13 +6,22 @@ import { Children } from "./types";
 interface RatingProps {
   title: string;
   value: number;
+  onUpdate?(value: number): void;
 }
 
-export function Rating({ value, title }: RatingProps) {
+export function Rating({ value, title, onUpdate }: RatingProps) {
   return (
     <div className="flex flex-col items-center">
       <div className="bg-mother-1 circle text-3xl border-4 border-mother-6 flex items-center justify-center">
-        <div className="text-center">{value}</div>
+        <input
+          type="number"
+          className="text-center outline-none w-9"
+          value={value}
+          disabled={!onUpdate}
+          onChange={
+            onUpdate ? (e) => onUpdate(parseInt(e.target.value)) : undefined
+          }
+        />
       </div>
       <div>{title}</div>
     </div>

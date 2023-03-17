@@ -100,6 +100,10 @@ interface ViewContractorMode {
   contractorId: string
 }
 
+interface EditStatsMode {
+  mode: "EditStats"
+}
+
 export type Modes =
   | CharacterSheetMode
   | AddConditionMode
@@ -116,7 +120,8 @@ export type Modes =
   | ViewWeaponMode
   | ViewArmorMode
   | ViewEquipmentMode
-  | ViewContractorMode;
+  | ViewContractorMode
+  | EditStatsMode;
 
 export interface SetMode {
   setMode(mode: Modes): void;

@@ -15,6 +15,7 @@ import { Button } from "UI/Atoms";
 import { ContractorIdentity } from "./ContractorIdentity";
 import { ContractorStats } from "./ContractorStats";
 import { ContractorStatus } from "./ContractorStatus";
+import { EditContractorStats } from "./EditContractorStats";
 
 interface Props extends WriteCharacter {
   contractor: Contractor;
@@ -101,9 +102,19 @@ export function ContractorSheet({
   if (mode.mode === "ViewEquipment") {
     return (
       <ViewEquipment
-        setCharacter={setCharacter}
+        setCharacter={setContractor}
         setMode={setMode}
         equipment={contractor.equipment.find((c) => c.id === mode.equipmentId)!}
+      />
+    );
+  }
+
+  if (mode.mode === "EditStats") {
+    return (
+      <EditContractorStats
+        contractor={contractor}
+        setContractor={setContractor}
+        back={() => setMode({ mode: "CharacterSheet" })}
       />
     );
   }
@@ -116,7 +127,7 @@ export function ContractorSheet({
         setContractor={setContractor}
         setMode={setMode}
       />
-      <ContractorStats contractor={contractor} />
+      <ContractorStats contractor={contractor} setMode={setMode} />
       <Weapons character={contractor} setMode={setMode} />
       <Armor character={contractor} setMode={setMode} />
       <Equipment character={contractor} setMode={setMode} />

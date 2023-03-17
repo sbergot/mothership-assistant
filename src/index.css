@@ -9,6 +9,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
 @layer components {
   .link {
     @apply text-orange-700 underline;
@@ -25,9 +33,9 @@
 }
 
 .circle {
-  width: 3.6rem;
-  height: 3.6rem;
-  border-radius: 1.8rem;
+  width: 3.8rem;
+  height: 3.8rem;
+  border-radius: 1.9rem;
 }
 
 .circle-small {

@@ -8,6 +8,7 @@ import { AddWeapon } from "./AddWeapon";
 import { Armor } from "./Armor";
 import { Contractors } from "./Contractors";
 import { ContractorSheet } from "./Contractors/ContractorSheet";
+import { EditStats } from "./EditStats";
 import { Equipment } from "./Equipment";
 import { Identity } from "./Identity";
 import { Skills } from "./Skills";
@@ -29,13 +30,15 @@ export function CharacterSheet({
   setCharacter,
 }: ReadWriteCharacter) {
   const [mode, setMode] = useState<Modes>({ mode: "CharacterSheet" });
-
+  function back() {
+    setMode({ mode: "CharacterSheet" });
+  }
   const wallet: Wallet = {
     credits: character.credits,
     pay(amout) {
-      setCharacter(char => ({...char, credits: char.credits - amout }));
-    }
-  }
+      setCharacter((char) => ({ ...char, credits: char.credits - amout }));
+    },
+  };
 
   if (mode.mode === "AddCondition") {
     return (
@@ -105,11 +108,7 @@ export function CharacterSheet({
 
   if (mode.mode === "AddArmor") {
     return (
-      <AddArmor
-        setCharacter={setCharacter}
-        setMode={setMode}
-        wallet={wallet}
-      />
+      <AddArmor setCharacter={setCharacter} setMode={setMode} wallet={wallet} />
     );
   }
 
@@ -123,14 +122,15 @@ export function CharacterSheet({
     );
   }
 
-
   if (mode.mode === "ViewContractor") {
     return (
       <ContractorSheet
         setCharacter={setCharacter}
-        back={() => setMode({ mode: "CharacterSheet" })}
+        back={back}
         wallet={wallet}
-        contractor={character.contractors.find(c => c.id === mode.contractorId)!}
+        contractor={
+          character.contractors.find((c) => c.id === mode.contractorId)!
+        }
       />
     );
   }
@@ -154,7 +154,7 @@ export function CharacterSheet({
       <ViewWeapon
         setCharacter={setCharacter}
         setMode={setMode}
-        weapon={character.weapons.find(c => c.id === mode.weaponId)!}
+        weapon={character.weapons.find((c) => c.id === mode.weaponId)!}
       />
     );
   }
@@ -164,7 +164,7 @@ export function CharacterSheet({
       <ViewArmor
         setCharacter={setCharacter}
         setMode={setMode}
-        armor={character.armor.find(c => c.id === mode.armorId)!}
+        armor={character.armor.find((c) => c.id === mode.armorId)!}
       />
     );
   }
@@ -174,7 +174,17 @@ export function CharacterSheet({
       <ViewEquipment
         setCharacter={setCharacter}
         setMode={setMode}
-        equipment={character.equipment.find(c => c.id === mode.equipmentId)!}
+        equipment={character.equipment.find((c) => c.id === mode.equipmentId)!}
+      />
+    );
+  }
+
+  if (mode.mode === "EditStats") {
+    return (
+      <EditStats
+        character={character}
+        setCharacter={setCharacter}
+        back={back}
       />
     );
   }
@@ -187,7 +197,7 @@ export function CharacterSheet({
         setCharacter={setCharacter}
         setMode={setMode}
       />
-      <Stats character={character} />
+      <Stats character={character} setMode={setMode} />
       <Skills character={character} setMode={setMode} />
       <Weapons character={character} setMode={setMode} />
       <Armor character={character} setMode={setMode} />

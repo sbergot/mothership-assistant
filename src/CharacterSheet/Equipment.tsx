@@ -13,7 +13,7 @@ export function Equipment({ character, setMode }: ReadBaseChar & SetMode) {
             dark
             onClick={() => setMode({ mode: "ViewEquipment", equipmentId: e.id })}
           >
-            {e.name}
+            {e.name}{e.quantity > 1 ? ` x${e.quantity}` : ""}
           </Button>
         ))}
         <Button

@@ -2,9 +2,9 @@ import { Armor, Equipment } from "Rules/types";
 import { Block, Button, Divider, Title } from "UI/Atoms";
 import { Rating } from "UI/Molecules";
 import { Field, ItemDetails, simpleField } from "UI/Organisms/ItemDetails";
-import { WriteCharacter, SetMode } from "./types";
+import { WriteCharacter, SetMode, WriteBaseChar } from "./types";
 
-interface Props extends WriteCharacter, SetMode {
+interface Props extends WriteBaseChar, SetMode {
   equipment: Equipment;
 }
 
@@ -23,7 +23,15 @@ export function ViewEquipment({ setCharacter, setMode, equipment }: Props) {
             <Divider />
           </>
         )}
-        <Rating title="Quantity" value={equipment.quantity} />
+        <Rating title="Quantity" value={equipment.quantity} onUpdate={(newVal) => setCharacter(char => {
+          return {
+            ...char,
+            equipment: char.equipment.map(e => {
+              if (e.id !== equipment.id) { return e }
+              return { ...e, quantity: newVal }
+            })
+          }
+        })} />
       </Block>
       <div className="flex justify-center gap-2">
         <Button
@@ -39,7 +47,7 @@ export function ViewEquipment({ setCharacter, setMode, equipment }: Props) {
             back();
           }}
         >
-          Remove weapon
+          Remove equipment
         </Button>
         <Button onClick={back}>Back</Button>
       </div>
