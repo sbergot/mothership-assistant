@@ -60,6 +60,7 @@ interface ButtonProps extends Children {
   rounded?: boolean;
   dark?: boolean;
   light?: boolean;
+  noBorder?: boolean;
 }
 
 export function Button({
@@ -69,6 +70,7 @@ export function Button({
   light,
   disabled,
   rounded,
+  noBorder
 }: ButtonProps) {
   let colors = dark
     ? "bg-mother-6 text-mother-1 hover:bg-mother-5"
@@ -80,12 +82,12 @@ export function Button({
   colors = disabled ? "bg-mother-4 text-mother-1" : colors;
 
   const cursor = disabled ? "cursor-not-allowed" : "cursor-pointer";
-
   const corners = rounded ? "px-4 rounded-3xl" : "px-2 rounded-lg";
+  const border = noBorder ? "" : "border-2";
   return (
     <span
       onClick={disabled ? undefined : onClick}
-      className={`py-1 border-2 transition-colors ${colors} ${cursor} ${corners}`}
+      className={`py-1 transition-colors ${border} ${colors} ${cursor} ${corners}`}
     >
       {children}
     </span>

@@ -104,6 +104,10 @@ interface EditStatsMode {
   mode: "EditStats"
 }
 
+interface RollStatMode {
+  mode: "RollStat"
+}
+
 export type Modes =
   | CharacterSheetMode
   | AddConditionMode
@@ -121,7 +125,8 @@ export type Modes =
   | ViewArmorMode
   | ViewEquipmentMode
   | ViewContractorMode
-  | EditStatsMode;
+  | EditStatsMode
+  | RollStatMode;
 
 export interface SetMode {
   setMode(mode: Modes): void;

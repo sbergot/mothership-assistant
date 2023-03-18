@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Log } from "Session/types";
+import { Log, Message } from "Session/types";
 import { AddArmor } from "./AddArmor";
 import { AddCondition } from "./AddCondition";
 import { AddContractor } from "./AddContractor";
@@ -12,6 +12,7 @@ import { ContractorSheet } from "./Contractors/ContractorSheet";
 import { EditStats } from "./EditStats";
 import { Equipment } from "./Equipment";
 import { Identity } from "./Identity";
+import { RollStat } from "./RollStat";
 import { Skills } from "./Skills";
 import { PickSkill } from "./Skills/PickSkill";
 import { StartTrainingSkill } from "./Skills/StartTrainingSkill";
@@ -29,7 +30,7 @@ import { Weapons } from "./Weapons";
 export function CharacterSheet({
   character,
   setCharacter,
-  log
+  log,
 }: ReadWriteCharacter & Log) {
   const [mode, setMode] = useState<Modes>({ mode: "CharacterSheet" });
   function back() {
@@ -133,6 +134,7 @@ export function CharacterSheet({
         contractor={
           character.contractors.find((c) => c.id === mode.contractorId)!
         }
+        log={log}
       />
     );
   }
@@ -188,6 +190,17 @@ export function CharacterSheet({
         character={character}
         setCharacter={setCharacter}
         back={back}
+      />
+    );
+  }
+
+  if (mode.mode === "RollStat") {
+    return (
+      <RollStat
+        character={character}
+        setCharacter={setCharacter}
+        log={log}
+        setMode={setMode}
       />
     );
   }

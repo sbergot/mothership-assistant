@@ -76,7 +76,7 @@ export type ArmorType =
   | "vaccsuit"
   | "fatigues";
 
-export type ArmorSpeedType = "normal" | "disadvantage";
+export type ArmorSpeedType = RollMode;
 
 export type WeaponRangeType = "adjacent" | "close" | "long";
 
@@ -105,7 +105,7 @@ export type DamageType =
   | "d10x10"
   | "d100";
 
-export type RollMode = "advantage" | null;
+export type RollMode = "advantage" | "normal" | "disadvantage";
 
 export type ConditionType =
   | "phobia"

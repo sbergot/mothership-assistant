@@ -17,8 +17,7 @@ export function Session({ character, setCharacter }: Props) {
       <div className="max-w-2xl">
         <CharacterSheet character={character} setCharacter={setCharacter} log={log} />
       </div>
-      <div className="max-w-xl w-full max-h-screen sticky top-0 py-2">
-        <div className="border-2 rounded-3xl p-4 border-mother-5 h-full">
+        <div className="max-w-xl w-full h-screen sticky top-2 border-2 rounded-3xl p-4 mb-2 border-mother-5">
           {messages.map((m) => {
             const Comp = m.content;
             return (
@@ -28,7 +27,6 @@ export function Session({ character, setCharacter }: Props) {
             );
           })}
         </div>
-      </div>
     </div>
   );
 }

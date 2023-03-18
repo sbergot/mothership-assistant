@@ -11,13 +11,14 @@ import { ViewWeapon } from "CharacterSheet/ViewWeapon";
 import { Weapons } from "CharacterSheet/Weapons";
 import { useState } from "react";
 import { Contractor } from "Rules/types";
+import { Log } from "Session/types";
 import { Button } from "UI/Atoms";
 import { ContractorIdentity } from "./ContractorIdentity";
 import { ContractorStats } from "./ContractorStats";
 import { ContractorStatus } from "./ContractorStatus";
 import { EditContractorStats } from "./EditContractorStats";
 
-interface Props extends WriteCharacter {
+interface Props extends WriteCharacter, Log {
   contractor: Contractor;
   wallet: Wallet;
   back(): void;
@@ -28,6 +29,7 @@ export function ContractorSheet({
   setCharacter,
   back,
   wallet,
+  log,
 }: Props) {
   const [mode, setMode] = useState<Modes>({ mode: "CharacterSheet" });
 
@@ -132,7 +134,7 @@ export function ContractorSheet({
         setMode={setMode}
       />
       <ContractorStats contractor={contractor} setMode={setMode} />
-      <Weapons character={contractor} setMode={setMode} />
+      <Weapons character={contractor} setMode={setMode} log={log} />
       <Armor character={contractor} setMode={setMode} />
       <Equipment character={contractor} setMode={setMode} />
       <div className="flex justify-center gap-2">
