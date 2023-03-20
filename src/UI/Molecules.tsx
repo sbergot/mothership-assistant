@@ -28,6 +28,32 @@ export function Rating({ value, title, onUpdate }: RatingProps) {
   );
 }
 
+interface SelectableRatingProps {
+  title: string;
+  value: number;
+  selected: boolean;
+  onClick(): void;
+}
+
+export function SelectableRating({
+  value,
+  title,
+  selected,
+  onClick,
+}: SelectableRatingProps) {
+  const color = selected ? "bg-mother-2" : "bg-mother-1";
+  return (
+    <div className="flex flex-col items-center" onClick={onClick}>
+      <div
+        className={`${color} hover:bg-mother-2 circle text-3xl border-4 border-mother-6 flex items-center justify-center cursor-pointer`}
+      >
+        {value}
+      </div>
+      <div>{title}</div>
+    </div>
+  );
+}
+
 interface GaugeProps {
   current: number;
   onChange?(n: number): void;
