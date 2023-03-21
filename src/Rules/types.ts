@@ -299,3 +299,23 @@ export interface Loadout {
   weapons: Weapon[];
   equipments: Equipment[];
 }
+
+export interface StatRoll {
+  stat: { name: StatType; value: number };
+  skill: SkillType | null;
+  rollMode: RollMode;
+}
+
+export interface StatRollResult extends StatRoll {
+  result: number[];
+}
+
+export interface StatRollAnalysis extends StatRollResult {
+  skillDefinition: SkillDefinition | null;
+  skillLevel: SkillLevelDefinition | null;
+  target: number;
+  rollValue: number;
+  isSuccess: boolean;
+  isCritical: boolean;
+  rollDescritpion: string;
+}

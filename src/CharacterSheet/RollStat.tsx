@@ -1,16 +1,21 @@
 import { useState } from "react";
 import { allSkillsDict } from "Rules/data";
-import { RollMode, SkillType } from "Rules/types";
+import {
+  RollMode,
+  SkillType,
+  StatRoll,
+  StatRollResult,
+  StatType,
+} from "Rules/types";
+import { simpleRoll } from "Services/diceServices";
 import { Log } from "Session/types";
 import { Block, Button, Divider } from "UI/Atoms";
-import { Rating, SelectableRating, Skill } from "UI/Molecules";
+import { SelectableRating, Skill } from "UI/Molecules";
 import { ReadWriteCharacter, SetMode } from "./types";
 
 interface Props extends ReadWriteCharacter, Log, SetMode {}
 
-type Stat = "strength" | "speed" | "intellect" | "combat";
-
-const allStats: { stat: Stat; title: string }[] = [
+const allStats: { stat: StatType; title: string }[] = [
   {
     stat: "strength",
     title: "Strength",
@@ -29,10 +34,18 @@ const allStats: { stat: Stat; title: string }[] = [
   },
 ];
 
-export function RollStat({ character }: Props) {
-  const [stat, setStat] = useState<Stat>("combat");
+function rollStat(roll: StatRoll): StatRollResult {
+  const result =
+    roll.rollMode === "normal"
+      ? [simpleRoll(100)]
+      : [simpleRoll(100), simpleRoll(100)];
+  return { ...roll, result };
+}
+
+export function RollStat({ character, log, setMode }: Props) {
+  const [stat, setStat] = useState<StatType>("combat");
   const [skill, setSkill] = useState<SkillType | null>(null);
-  const [mode, setMode] = useState<RollMode>("normal");
+  const [rollMode, setRollMode] = useState<RollMode>("normal");
 
   return (
     <Block variant="light">
@@ -62,19 +75,21 @@ export function RollStat({ character }: Props) {
       <Divider />
       <div className="flex justify-center gap-2">
         <Button
-          light={mode !== "advantage"}
+          light={rollMode !== "advantage"}
           rounded
           onClick={() => {
-            setMode((m) => (m === "advantage" ? "normal" : "advantage"));
+            setRollMode((m) => (m === "advantage" ? "normal" : "advantage"));
           }}
         >
           advantage
         </Button>
         <Button
-          light={mode !== "disadvantage"}
+          light={rollMode !== "disadvantage"}
           rounded
           onClick={() => {
-            setMode((m) => (m === "disadvantage" ? "normal" : "disadvantage"));
+            setRollMode((m) =>
+              m === "disadvantage" ? "normal" : "disadvantage"
+            );
           }}
         >
           disadvantage
@@ -82,10 +97,29 @@ export function RollStat({ character }: Props) {
       </div>
       <Divider />
       <div className="flex justify-center gap-2">
-        <Button dark rounded onClick={() => {}}>
+        <Button
+          dark
+          rounded
+          onClick={() => {
+            log({
+              type: "StatRollMessage",
+              props: rollStat({
+                stat: { value: character[stat], name: stat },
+                skill,
+                rollMode,
+              }),
+            });
+            setMode({ mode: "CharacterSheet" });
+          }}
+        >
           roll
         </Button>
-        <Button rounded onClick={() => {}}>
+        <Button
+          rounded
+          onClick={() => {
+            setMode({ mode: "CharacterSheet" });
+          }}
+        >
           back
         </Button>
       </div>

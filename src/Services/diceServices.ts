@@ -1,4 +1,4 @@
-function simpleRoll(sides: number): number {
+export function simpleRoll(sides: number): number {
     return Math.floor(Math.random() * sides);
 }
 

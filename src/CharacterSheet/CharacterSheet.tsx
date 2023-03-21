@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Log, Message } from "Session/types";
+import { Log, AnyMessage } from "Session/types";
 import { AddArmor } from "./AddArmor";
 import { AddCondition } from "./AddCondition";
 import { AddContractor } from "./AddContractor";
