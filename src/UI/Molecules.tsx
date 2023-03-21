@@ -41,11 +41,11 @@ export function SelectableRating({
   selected,
   onClick,
 }: SelectableRatingProps) {
-  const color = selected ? "bg-mother-2" : "bg-mother-1";
+  const color = selected ? "bg-mother-3" : "bg-mother-1";
   return (
     <div className="flex flex-col items-center" onClick={onClick}>
       <div
-        className={`${color} hover:bg-mother-2 circle text-3xl border-4 border-mother-6 flex items-center justify-center cursor-pointer`}
+        className={`${color} hover:bg-mother-3 circle text-3xl border-4 border-mother-6 flex items-center justify-center cursor-pointer`}
       >
         {value}
       </div>
@@ -130,19 +130,21 @@ export function GaugeBase({
 
 interface SkillProps {
   skill: SkillDefinition;
+  selected?: boolean;
   onClick?(): void;
 }
 
-export function Skill({ skill, onClick }: SkillProps) {
+export function Skill({ skill, selected, onClick }: SkillProps) {
   const levelDefinition = allSkillLevelDefinitionDict[skill.level];
   const cursor = !!onClick ? "cursor-pointer" : "cursor-default";
+  const leftPart = selected ? "✓" : `+${levelDefinition.bonus}`
   return (
     <span
       onClick={onClick ?? (() => {})}
       className={`rounded-lg border-2 bg-mother-5 text-mother-1 border-mother-5 text-lg ${cursor}`}
     >
-      <span className="inline-block px-1 rounded-md bg-mother-1 text-mother-5">
-        +{levelDefinition.bonus}
+      <span className="inline-block px-1 rounded-md bg-mother-1 text-mother-5 w-10 text-center">
+        {leftPart}
       </span>
       <span className="px-2">{skill.name}</span>
     </span>

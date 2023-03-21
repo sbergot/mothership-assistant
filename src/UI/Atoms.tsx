@@ -74,7 +74,7 @@ export function Button({
 }: ButtonProps) {
   let colors = dark
     ? "bg-mother-6 text-mother-1 hover:bg-mother-5"
-    : "bg-mother-3 border-mother-5 hover:bg-mother-5 hover:text-mother-1 hover:border-mother-1";
+    : "bg-mother-3 border-mother-5 hover:bg-mother-4";
 
   colors = light
     ? "bg-mother-1 text-mother-6 border-mother-6 hover:bg-mother-3"

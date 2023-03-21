@@ -49,15 +49,34 @@ export function RollStat({ character }: Props) {
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.skills.map((s) => (
-          <Skill key={s} skill={allSkillsDict[s]} onClick={() => {}} />
+          <Skill
+            key={s}
+            skill={allSkillsDict[s]}
+            onClick={() => {
+              setSkill((ss) => (ss === s ? null : s));
+            }}
+            selected={s === skill}
+          />
         ))}
       </div>
       <Divider />
       <div className="flex justify-center gap-2">
-        <Button light rounded onClick={() => {}}>
+        <Button
+          light={mode !== "advantage"}
+          rounded
+          onClick={() => {
+            setMode((m) => (m === "advantage" ? "normal" : "advantage"));
+          }}
+        >
           advantage
         </Button>
-        <Button light rounded onClick={() => {}}>
+        <Button
+          light={mode !== "disadvantage"}
+          rounded
+          onClick={() => {
+            setMode((m) => (m === "disadvantage" ? "normal" : "disadvantage"));
+          }}
+        >
           disadvantage
         </Button>
       </div>
