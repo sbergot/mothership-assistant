@@ -1,7 +1,7 @@
-import { MainMenu } from "MainMenu/MainMenu"
+import { Root } from "Root/Root"
 
 function App() {
-  return <MainMenu />
+  return <Root />
 }
 
 export default App

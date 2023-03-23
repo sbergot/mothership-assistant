@@ -3,6 +3,10 @@
   - create/join session
   - manage games
 
+- games
+  - crud for games
+  - crud for NPCs
+
 - shared sessions
   - create/join
   - share messages with peer.js

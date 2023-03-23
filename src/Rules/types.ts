@@ -319,3 +319,22 @@ export interface StatRollAnalysis extends StatRollResult {
   isCritical: boolean;
   rollDescritpion: string;
 }
+
+export interface Npc {
+  name: string;
+  combat: number;
+  instinct: number;
+  wounds: number;
+  maxWounds: number;
+}
+
+export interface Monster extends Npc {
+  health: number;
+  maxHealth: number;
+}
+
+export interface Game {
+  title: string;
+  npcs: Npc[];
+  monsters: Monster[];
+}
