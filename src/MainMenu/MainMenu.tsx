@@ -20,52 +20,82 @@ export function MainMenu({
   setMode,
 }: Props) {
   const [sessionCode, setSessionCode] = useState<string>();
+  const [selectedCharId, setSelectedCharId] = useState<string | null>(null);
+  const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
   return (
     <div className="flex gap-2">
       <div className="flex flex-col gap-2 max-w-lg w-full">
         <Title>Characters</Title>
         {characterEntries.map((c) => (
-          <Block key={c.id} variant="light">
-            <div>{c.value.name}</div>
-            <Button
-              onClick={() =>
-                setMode({ mode: "Play", characterId: c.id, sessionCode: "" })
-              }
-            >
-              open
-            </Button>
-            <Button onClick={() => deleteCharacterEntry(c)}>remove</Button>
-          </Block>
+          <Button
+            key={c.id}
+            onClick={() => setSelectedCharId(c.id)}
+            light={selectedCharId !== c.id}
+          >
+            {c.value.name}
+          </Button>
         ))}
         <Block variant="light">
-          <Button onClick={() => setMode({ mode: "CreateCharacter" })}>
-            Create character
-          </Button>
+          <div className="flex flex-wrap gap-2">
+            <div className="shrink-0">
+              <Button
+                disabled={selectedCharId === null}
+                onClick={() =>
+                  deleteCharacterEntry(
+                    characterEntries.find((c) => c.id === selectedCharId)!
+                  )
+                }
+              >
+                Remove character
+              </Button>
+            </div>
+            <div className="shrink-0">
+              <Button
+                disabled={selectedCharId === null}
+                onClick={() =>
+                  setMode({
+                    mode: "Play",
+                    characterId: selectedCharId!,
+                    sessionCode: "",
+                  })
+                }
+              >
+                Solo session
+              </Button>
+            </div>
+            <div className="shrink-0">
+              <Button onClick={() => setMode({ mode: "CreateCharacter" })}>
+                Create character
+              </Button>
+            </div>
+          </div>
         </Block>
       </div>
-      <div className="max-w-lg w-full">
+      <div className="flex flex-col gap-2 max-w-lg w-full">
         <Title>Games</Title>
-        <Button dark onClick={() => {}}>
-          Join session
-        </Button>
-        <input
-          value={sessionCode}
-          onChange={(e) => setSessionCode(e.target.value)}
-        />
+        <div className="flex items-center gap-2">
+          <input
+            className="input border-2 border-mother-5"
+            placeholder="Session code"
+            value={sessionCode}
+            onChange={(e) => setSessionCode(e.target.value)}
+          />
+          <div className="shrink-0">
+          <Button dark onClick={() => {}} disabled={selectedCharId === null}>
+            Join session
+          </Button>
+          </div>
+        </div>
         <DividerOr />
         <Title>Start a session from a game</Title>
         {gameEntries.map((c) => (
-          <Block key={c.id} variant="light">
-            <div>{c.value.title}</div>
-            <Button
-              onClick={() =>
-                setMode({ mode: "Play", characterId: c.id, sessionCode: "" })
-              }
-            >
-              open
-            </Button>
-            <Button onClick={() => deleteGameEntry(c)}>remove</Button>
-          </Block>
+          <Button
+            key={c.id}
+            onClick={() => setSelectedCharId(c.id)}
+            light={selectedCharId !== c.id}
+          >
+            {c.value.title}
+          </Button>
         ))}
         <Block variant="light">
           <Button onClick={() => setMode({ mode: "CreateCharacter" })}>
