@@ -9,13 +9,13 @@ function getNow(): string {
   return nowLocal.toISOString().split(".")[0];
 }
 
-export function useLog(character: Character) {
+export function useLog(author: string) {
   const [messages, setMessages] = useState<StampedMessage[]>([]);
 
   function stamp(m: AnyMessage): StampedMessage {
     return {
       ...m,
-      author: character.name,
+      author: author,
       time: getNow(),
     };
   }
