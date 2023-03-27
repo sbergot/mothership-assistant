@@ -320,7 +320,7 @@ export interface StatRollAnalysis extends StatRollResult {
   rollDescritpion: string;
 }
 
-export interface Npc {
+export interface Npc extends WithId {
   name: string;
   combat: number;
   instinct: number;
