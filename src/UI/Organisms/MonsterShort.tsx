@@ -1,37 +1,53 @@
-import { Contractor, Monster, Npc } from "Rules/types";
+import { Monster } from "Rules/types";
+import { ButtonIcon, TrashIcon } from "UI/Icons";
 import { Rating, Gauge } from "UI/Molecules";
 
 interface Props {
   monster: Monster;
-  onTitleClick(): void;
+  setMonster(setter: (m: Monster) => Monster): void;
+  deleteMonster(): void;
 }
 
-export function MonsterShort({ monster, onTitleClick }: Props) {
+export function MonsterShort({ monster, setMonster, deleteMonster }: Props) {
   return (
     <div className="rounded-xl bg-mother-2 flex flex-col gap-4">
-      <div
-        className="rounded-3xl bg-mother-6 text-mother-1 text-center cursor-pointer hover:bg-mother-5"
-        onClick={onTitleClick}
-      >
-        {monster.name}
+      <div className="rounded-3xl bg-mother-6 text-mother-1 text-center flex justify-center">
+        <div className="flex-grow">{monster.name}</div>
+        <div className="mr-2">
+          <ButtonIcon light onClick={deleteMonster}>
+            <TrashIcon />
+          </ButtonIcon>
+        </div>
       </div>
       <div className="p-4">
         <div className="flex justify-center gap-4">
-          <Rating title="Combat" value={monster.combat} />
-          <Rating title="Instinct" value={monster.instinct} />
+          <Rating
+            title="Combat"
+            value={monster.combat}
+            onUpdate={(v) => setMonster((m) => ({ ...m, combat: v }))}
+          />
+          <Rating
+            title="Instinct"
+            value={monster.instinct}
+            onUpdate={(v) => setMonster((m) => ({ ...m, instinct: v }))}
+          />
         </div>
         <div className="flex justify-center gap-4">
           <Gauge
             title="Health"
             limitName="Maximum"
+            onChange={(n) => setMonster((m) => ({ ...m, health: n }))}
             current={monster.health}
             limit={monster.maxHealth}
+            onChangeLimit={(n) => setMonster((m) => ({ ...m, maxHealth: n }))}
           />
           <Gauge
             title="Wounds"
             limitName="Maximum"
+            onChange={(n) => setMonster((m) => ({ ...m, wounds: n }))}
             current={monster.wounds}
             limit={monster.maxWounds}
+            onChangeLimit={(n) => setMonster((m) => ({ ...m, maxWounds: n }))}
           />
         </div>
       </div>

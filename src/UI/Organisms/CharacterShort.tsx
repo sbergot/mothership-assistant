@@ -1,5 +1,6 @@
 import { allSaves, allStats } from "Rules/data";
 import { Character, Contractor } from "Rules/types";
+import { TrashIcon } from "UI/Icons";
 import { Rating, Gauge } from "UI/Molecules";
 
 interface Props {

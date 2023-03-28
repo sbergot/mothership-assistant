@@ -60,6 +60,7 @@ interface GaugeProps {
   limit: number;
   title: string;
   limitName: string;
+  onChangeLimit?(n: number): void;
 }
 
 export function Gauge({
@@ -68,6 +69,7 @@ export function Gauge({
   limit,
   title,
   limitName,
+  onChangeLimit
 }: GaugeProps) {
   return (
     <GaugeBase
@@ -77,6 +79,7 @@ export function Gauge({
       onChangeLeft={onChange}
       valueRight={limit}
       titleRight={limitName}
+      onChangeRight={onChangeLimit}
     />
   );
 }
