@@ -16,7 +16,7 @@ export function NpcShort({ npc, onTitleClick }: Props) {
         {npc.name}
       </div>
       <div className="p-4">
-        <div className="flex gap-4">
+        <div className="flex justify-center gap-4">
           <Rating title="Combat" value={npc.combat} />
           <Rating title="Instinct" value={npc.instinct} />
         </div>

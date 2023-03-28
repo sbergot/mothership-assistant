@@ -9,7 +9,7 @@ export function Session({ character, setCharacter }: Props) {
   const { messages, log } = useLog(character.name);
   return (
     <div className="flex gap-2">
-      <div className="max-w-2xl">
+      <div className="max-w-3xl w-full">
         <CharacterSheet
           character={character}
           setCharacter={setCharacter}

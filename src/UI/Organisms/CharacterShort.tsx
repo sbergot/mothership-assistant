@@ -16,23 +16,37 @@ export function CharacterShort({ character, onTitleClick }: Props) {
       >
         {character.name}
       </div>
-      <div className="p-4">
-        <div className="flex gap-4">
+      <div className="flex flex-col gap-2 p-4">
+        <div className="flex justify-center gap-8">
           {allStats.map((s) => (
-            <Rating title={s} value={character[s]} />
+            <Rating key={s} title={s} value={character[s]} />
           ))}
         </div>
-        <div className="flex gap-4">
+        <div className="flex justify-center gap-8">
           {allSaves.map((s) => (
-            <Rating title={s} value={character[s]} />
+            <Rating key={s} title={s} value={character[s]} />
           ))}
         </div>
-        <Gauge
-          title="Wounds"
-          limitName="Maximum"
-          current={character.wounds}
-          limit={character.maxWounds}
-        />
+        <div className="flex justify-center gap-4">
+          <Gauge
+            title="Health"
+            limitName="Maximum"
+            current={character.health}
+            limit={character.maxHealth}
+          />
+          <Gauge
+            title="Wounds"
+            limitName="Maximum"
+            current={character.wounds}
+            limit={character.maxWounds}
+          />
+          <Gauge
+            title="Stress"
+            limitName="Minimum"
+            current={character.stress}
+            limit={character.minStress}
+          />
+        </div>
       </div>
     </div>
   );

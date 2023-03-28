@@ -8,7 +8,7 @@ interface Props {
 
 export function MessagePanel({ messages }: Props) {
   return (
-    <div className="max-w-xl w-full h-screen sticky top-2 border-2 rounded-3xl p-4 mb-2 border-mother-5 flex flex-col gap-2">
+    <div className="max-w-lg w-full h-screen sticky top-2 border-2 rounded-3xl p-4 mb-2 border-mother-5 flex flex-col gap-2">
       {messages.map((m) => {
         return (
           <Block variant="light">

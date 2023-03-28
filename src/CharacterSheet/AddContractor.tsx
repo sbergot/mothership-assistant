@@ -6,6 +6,7 @@ import { formatCredits } from "helpers";
 import { Column, Counter, Table } from "UI/Organisms/Table";
 import { ReadWriteCharacter, SetMode } from "./types";
 import { roll } from "Services/diceServices";
+import { uuidv4 } from "Services/services";
 
 function getDefaultSelection(): Record<ContractorType, number> {
   const res = {} as Record<ContractorType, number>;
@@ -18,6 +19,7 @@ function getDefaultSelection(): Record<ContractorType, number> {
 function rollContractor(base: Contractor): Contractor {
   return {
     ...base,
+    id: uuidv4(),
     loyalty: roll(2, 10) + 10,
   };
 }

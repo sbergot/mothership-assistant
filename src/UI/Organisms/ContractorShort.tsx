@@ -16,7 +16,7 @@ export function ContractorShort({ contractor, onTitleClick }: Props) {
         {contractor.name}
       </div>
       <div className="p-4">
-        <div className="flex gap-4">
+        <div className="flex justify-center gap-8">
           <Rating title="Combat" value={contractor.combat} />
           <Rating title="Instinct" value={contractor.instinct} />
           <Rating title="Loyalty" value={contractor.loyalty} />

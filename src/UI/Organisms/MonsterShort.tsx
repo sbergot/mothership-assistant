@@ -16,16 +16,24 @@ export function MonsterShort({ monster, onTitleClick }: Props) {
         {monster.name}
       </div>
       <div className="p-4">
-        <div className="flex gap-4">
+        <div className="flex justify-center gap-4">
           <Rating title="Combat" value={monster.combat} />
           <Rating title="Instinct" value={monster.instinct} />
         </div>
-        <Gauge
-          title="Wounds"
-          limitName="Maximum"
-          current={monster.wounds}
-          limit={monster.maxWounds}
-        />
+        <div className="flex justify-center gap-4">
+          <Gauge
+            title="Health"
+            limitName="Maximum"
+            current={monster.health}
+            limit={monster.maxHealth}
+          />
+          <Gauge
+            title="Wounds"
+            limitName="Maximum"
+            current={monster.wounds}
+            limit={monster.maxWounds}
+          />
+        </div>
       </div>
     </div>
   );

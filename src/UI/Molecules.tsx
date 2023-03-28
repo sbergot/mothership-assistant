@@ -15,7 +15,7 @@ export function Rating({ value, title, onUpdate }: RatingProps) {
       <div className="bg-mother-1 circle text-3xl border-4 border-mother-6 flex items-center justify-center">
         <input
           type="number"
-          className="text-center outline-none w-9"
+          className="text-center outline-none w-9 bg-mother-1"
           value={value}
           disabled={!onUpdate}
           onChange={
@@ -107,7 +107,7 @@ export function GaugeBase({
         <input
           type="number"
           disabled={onChangeLeft === undefined}
-          className="w-12 ml-5 mr-1 outline-none text-center"
+          className="w-12 ml-5 mr-1 outline-none text-center bg-mother-1"
           value={valueLeft}
           onChange={(e) => onChangeLeft?.(parseInt(e.target.value))}
         />
@@ -115,7 +115,7 @@ export function GaugeBase({
         <input
           type="number"
           disabled={onChangeRight === undefined}
-          className="w-12 ml-2 mr-3 outline-none text-center"
+          className="w-12 ml-2 mr-3 outline-none text-center bg-mother-1"
           value={valueRight}
           onChange={(e) => onChangeRight?.(parseInt(e.target.value))}
         />
