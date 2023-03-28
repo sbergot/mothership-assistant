@@ -9,6 +9,7 @@ interface Props {
   deleteCharacterEntry(c: Entry<Character>): void;
   gameEntries: Entry<Game>[];
   deleteGameEntry(c: Entry<Game>): void;
+  saveNewGame(game: Game): string;
   setMode(mode: RootModes): void;
 }
 
@@ -17,6 +18,7 @@ export function MainMenu({
   deleteCharacterEntry,
   gameEntries,
   deleteGameEntry,
+  saveNewGame,
   setMode,
 }: Props) {
   const [sessionCode, setSessionCode] = useState<string>();
@@ -54,7 +56,7 @@ export function MainMenu({
                 disabled={selectedCharId === null}
                 onClick={() =>
                   setMode({
-                    mode: "Play",
+                    mode: "PlayerSession",
                     characterId: selectedCharId!,
                     sessionCode: "",
                   })
@@ -81,9 +83,9 @@ export function MainMenu({
             onChange={(e) => setSessionCode(e.target.value)}
           />
           <div className="shrink-0">
-          <Button dark onClick={() => {}} disabled={selectedCharId === null}>
-            Join session
-          </Button>
+            <Button dark onClick={() => {}} disabled={selectedCharId === null}>
+              Join session
+            </Button>
           </div>
         </div>
         <DividerOr />
@@ -91,15 +93,40 @@ export function MainMenu({
         {gameEntries.map((c) => (
           <Button
             key={c.id}
-            onClick={() => setSelectedCharId(c.id)}
+            onClick={() => setSelectedGameId(c.id)}
             light={selectedCharId !== c.id}
           >
             {c.value.title}
           </Button>
         ))}
         <Block variant="light">
-          <Button onClick={() => setMode({ mode: "CreateCharacter" })}>
+          <Button
+            onClick={() => {
+              const newId = saveNewGame({
+                monsters: [],
+                npcs: [],
+                title: "game title",
+              });
+              setMode({ mode: "DmSession", gameId: newId });
+            }}
+          >
             New game
+          </Button>
+          <Button
+            disabled={selectedGameId === null}
+            onClick={() =>
+              setMode({ mode: "DmSession", gameId: selectedGameId! })
+            }
+          >
+            Resume game
+          </Button>
+          <Button
+            disabled={selectedGameId === null}
+            onClick={() =>
+              deleteGameEntry(gameEntries.find(g => g.id === selectedGameId)!)
+            }
+          >
+            Delete game
           </Button>
         </Block>
       </div>

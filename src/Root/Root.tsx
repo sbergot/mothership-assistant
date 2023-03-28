@@ -1,4 +1,5 @@
 import { CharacterCreation } from "CharacterCreation/CharacterCreation";
+import { DmSession } from "DmSession/DmSession";
 import { MainMenu } from "MainMenu/MainMenu";
 import { useState } from "react";
 import { Character, Game } from "Rules/types";
@@ -22,6 +23,7 @@ export function Root() {
         deleteCharacterEntry={characterRepo.deleteEntry}
         gameEntries={gamesRepo.getEntries()}
         deleteGameEntry={gamesRepo.deleteEntry}
+        saveNewGame={gamesRepo.saveNew}
         setMode={setMode}
       />
     );
@@ -38,13 +40,22 @@ export function Root() {
     );
   }
 
-  if (mode.mode === "Play") {
+  if (mode.mode === "PlayerSession") {
     return (
       <Session
         character={characterRepo.getEntry(mode.characterId)}
         setCharacter={(setter) =>
           characterRepo.update(mode.characterId, setter)
         }
+      />
+    );
+  }
+
+  if (mode.mode === "DmSession") {
+    return (
+      <DmSession
+        game={gamesRepo.getEntry(mode.gameId)}
+        characters={characterRepo.getEntries().map((e) => e.value)}
       />
     );
   }

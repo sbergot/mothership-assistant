@@ -22,6 +22,7 @@ export function createRepository<T>(key: string) {
         ...repo,
         [newId]: { id: newId, value: newVal },
       }));
+      return newId;
     }
 
     function update(id: string, setter: (c: T) => T) {

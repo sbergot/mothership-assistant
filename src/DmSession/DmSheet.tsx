@@ -16,9 +16,11 @@ export function DmSheet({ game, characters }: Props) {
   return (
     <div>
       <Title>Characters</Title>
-      {characters.map((c) => (
-        <CharacterShort character={c} onTitleClick={() => {}} />
-      ))}
+      <div className="flex flex-col gap-2">
+        {characters.map((c) => (
+          <CharacterShort character={c} onTitleClick={() => {}} />
+        ))}
+      </div>
       <Title>Contractors</Title>
       {contractors.map((c) => (
         <ContractorShort contractor={c} onTitleClick={() => {}} />

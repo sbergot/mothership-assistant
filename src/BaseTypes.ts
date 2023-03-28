@@ -6,7 +6,7 @@ export interface Entry<T> {
 export type EntryRecord<T> = Record<string, Entry<T>>;
 
 export interface Repository<T> {
-  saveNew(newVal: T): void;
+  saveNew(newVal: T): string;
   update(id: string, setter: (c: T) => T): void;
   deleteEntry(entry: Entry<T>): void;
   getEntries(): Entry<T>[];
