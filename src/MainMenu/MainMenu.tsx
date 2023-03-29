@@ -21,7 +21,7 @@ export function MainMenu({
   saveNewGame,
   setMode,
 }: Props) {
-  const [sessionCode, setSessionCode] = useState<string>();
+  const [sessionCode, setSessionCode] = useState<string>("");
   const [selectedCharId, setSelectedCharId] = useState<string | null>(null);
   const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
   return (
@@ -83,7 +83,7 @@ export function MainMenu({
             onChange={(e) => setSessionCode(e.target.value)}
           />
           <div className="shrink-0">
-            <Button dark onClick={() => {}} disabled={selectedCharId === null}>
+            <Button dark onClick={() => { setMode({ mode: "PlayerSession", sessionCode, characterId: selectedCharId! }) }} disabled={selectedCharId === null && !!sessionCode}>
               Join session
             </Button>
           </div>

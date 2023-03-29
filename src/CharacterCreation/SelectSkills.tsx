@@ -153,8 +153,8 @@ export function SelectSkills({ character, onConfirm }: StepProps) {
       <Block variant="light">
         <Title>7. Note class skills and choose bonus skills</Title>
         <BlockWithTitle title={characterClass}>
-          {classDefinitionsDict[characterClass].initialSkills.map((line) => (
-            <div>{line}</div>
+          {classDefinitionsDict[characterClass].initialSkills.map((line, i) => (
+            <div key={i}>{line}</div>
           ))}
         </BlockWithTitle>
         <div className="flex flex-wrap gap-2 mt-2">

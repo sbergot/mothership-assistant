@@ -18,16 +18,25 @@ export function DmSession({ game, setGame, characters }: Props) {
 
   useEffect(() => {
     const peer = new Peer();
-    setSessionCode(peer.id);
+    peer.on("open", (id) => {
+      console.log("peer opened. Id=" + id);
+      setSessionCode(id);
+    })
     peer.on("connection", (conn) => {
       conn.on("data", (data) => {
-        // Will print 'hi!'
         console.log(data);
       });
       conn.on("open", () => {
+        console.log("new connection")
         conn.send("hello!");
       });
+      conn.on("close", () => {
+        console.log("connection closed")
+      })
     });
+    peer.on("close", () => {
+      console.log("peer closed")
+    })
   }, []);
 
   return (

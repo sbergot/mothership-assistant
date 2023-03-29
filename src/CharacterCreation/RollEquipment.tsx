@@ -74,9 +74,9 @@ export function RollEquipment({ character, onConfirm }: StepProps) {
               <div className="mx-auto">
                 {gearOptionRolled ? (
                   <div className="flex flex-wrap gap-1">
-                    {newCharacter.armor.map(a => <Tag variant="dark">{a.name}</Tag>)}
-                    {newCharacter.weapons.map(a => <Tag variant="dark">{a.name}</Tag>)}
-                    {newCharacter.equipment.map(a => <Tag variant="dark">{a.name}</Tag>)}
+                    {newCharacter.armor.map(a => <Tag key={a.id} variant="dark">{a.name}</Tag>)}
+                    {newCharacter.weapons.map(a => <Tag key={a.id} variant="dark">{a.name}</Tag>)}
+                    {newCharacter.equipment.map(a => <Tag key={a.id} variant="dark">{a.name}</Tag>)}
                     <Tag variant="dark">{newCharacter.credits}cr</Tag>
                   </div>
                 ) : (

@@ -10,6 +10,7 @@ export function Contractors({ character, setMode }: ReadCharacter & SetMode) {
       <div className="flex flex-wrap justify-center items-center gap-8">
         {character.contractors.map((c) => (
           <ContractorShort
+            key={c.id}
             contractor={c}
             onTitleClick={() =>
               setMode({ mode: "ViewContractor", contractorId: c.id })

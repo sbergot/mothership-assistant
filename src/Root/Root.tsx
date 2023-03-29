@@ -1,10 +1,10 @@
 import { CharacterCreation } from "CharacterCreation/CharacterCreation";
 import { DmSession } from "DmSession/DmSession";
 import { MainMenu } from "MainMenu/MainMenu";
+import { PlayerSession } from "PlayerSession/PlayerSession";
 import { useState } from "react";
 import { Character, Game } from "Rules/types";
 import { createRepository } from "Services/services";
-import { Session } from "Session/Session";
 import { RootModes } from "./types";
 
 const useCharacterRepo = createRepository<Character>("characters");
@@ -42,11 +42,12 @@ export function Root() {
 
   if (mode.mode === "PlayerSession") {
     return (
-      <Session
+      <PlayerSession
         character={characterRepo.getEntry(mode.characterId)}
         setCharacter={(setter) =>
           characterRepo.update(mode.characterId, setter)
         }
+        sessionCode={mode.sessionCode}
       />
     );
   }
