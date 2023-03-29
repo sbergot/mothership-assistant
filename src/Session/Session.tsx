@@ -3,9 +3,11 @@ import { ReadWriteCharacter } from "CharacterSheet/types";
 import { MessagePanel } from "Messages/MessagePanel";
 import { useLog } from "Services/messageServices";
 
-interface Props extends ReadWriteCharacter {}
+interface Props extends ReadWriteCharacter {
+  sessionCode: string;
+}
 
-export function Session({ character, setCharacter }: Props) {
+export function Session({ character, setCharacter, sessionCode }: Props) {
   const { messages, log } = useLog(character.name);
   return (
     <div className="flex gap-2">
