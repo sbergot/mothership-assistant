@@ -18,16 +18,15 @@ import {
   SkillLevelDefinition,
   SkillType,
   StatType,
-  Weapon,
   WeaponExt,
   WeaponType,
 } from "./types";
 
 export const allStats: StatType[] = [
-  "combat",
-  "intellect",
-  "speed",
   "strength",
+  "speed",
+  "intellect",
+  "combat",
 ];
 
 export const allSkillLevels: SkillLevel[] = ["Trained", "Expert", "Master"];

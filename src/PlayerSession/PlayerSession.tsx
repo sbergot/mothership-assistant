@@ -127,6 +127,10 @@ function usePlayerConnection(sessionCode: string, character: Character) {
     setTimeout(() => join(sessionCode), 1000);
   }, []);
 
+  useEffect(() => {
+    syncLog({ type: "UpdateChar", props: { character } });
+  }, [character]);
+
   return { log, messages };
 }
 
@@ -135,7 +139,10 @@ interface Props extends ReadWriteCharacter {
 }
 
 export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
-  const { log, messages } = usePlayerConnection(sessionCode, character);
+  const { log, messages } = usePlayerConnection(
+    sessionCode,
+    character
+  );
   return (
     <div className="flex gap-2">
       <div className="max-w-3xl w-full">
