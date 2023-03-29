@@ -1,3 +1,4 @@
+import { Log } from "Messages/types";
 import { useState } from "react";
 import { allSkillsDict } from "Rules/data";
 import {
@@ -8,7 +9,6 @@ import {
   StatType,
 } from "Rules/types";
 import { simpleRoll } from "Services/diceServices";
-import { Log } from "Session/types";
 import { Block, Button, Divider } from "UI/Atoms";
 import { SelectableRating, Skill } from "UI/Molecules";
 import { ReadWriteCharacter, SetMode } from "./types";
@@ -52,6 +52,7 @@ export function RollStat({ character, log, setMode }: Props) {
       <div className="flex justify-center gap-8">
         {allStats.map(({ stat: s, title }) => (
           <SelectableRating
+          key={s}
             title={title}
             value={character[s]}
             onClick={() => setStat(s)}

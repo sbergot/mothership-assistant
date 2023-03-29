@@ -7,8 +7,8 @@ export function ShowStatRoll(rollResult: StatRollResult) {
   return (
     <div>
       <div>Stat roll: {rollDescritpion}</div>
-      {result.map((r) => (
-        <span className={`mx-1 ${r === rollValue ? "" : "text-mother-4"}`}>
+      {result.map((r, i) => (
+        <span key={i} className={`mx-1 ${r === rollValue ? "" : "text-mother-4"}`}>
           {r}
         </span>
       ))}

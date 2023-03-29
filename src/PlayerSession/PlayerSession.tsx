@@ -1,18 +1,20 @@
 import { CharacterSheet } from "CharacterSheet";
 import { ReadWriteCharacter } from "CharacterSheet/types";
 import { MessagePanel } from "Messages/MessagePanel";
+import { GameMessage, StampedMessage } from "Messages/types";
 import Peer, { DataConnection } from "peerjs";
 import { useEffect, useState } from "react";
 import { useLog } from "Services/messageServices";
 
-function useConnection() {
-  let peerRef: Peer | null = null;
-  let connRef: DataConnection | null = null;
+let peerRef: Peer | null = null;
+let connRef: DataConnection | null = null;
+
+function usePlayerConnection(sessionCode: string, author: string) {
+  const [messages, setMessages] = useState<StampedMessage[]>([])
+
   function initialize() {
     // Create own peer object with connection to shared PeerJS server
-    let peer = new Peer(null!, {
-      debug: 2,
-    });
+    let peer = new Peer();
 
     peerRef = peer;
 
@@ -33,12 +35,11 @@ function useConnection() {
       peer.reconnect();
     });
     peer.on("close", function () {
-      connRef = null;
-      console.log("Connection destroyed. Please refresh");
+      peerRef = null;
+      console.log("Peer destroyed. Please refresh");
     });
     peer.on("error", function (err) {
       console.log(err);
-      alert("" + err);
     });
   }
 
@@ -58,18 +59,49 @@ function useConnection() {
     conn.on("open", function () {
       console.log("Connected to: " + conn.peer);
 
-      conn.send("hi!");
+      log({
+        type: "SimpleMessage",
+        props: { content: `${author} joined the session` },
+      });
     });
     // Handle incoming data (messages only since this is the signal sender)
     conn.on("data", function (data) {
-      console.log("data received: " + data);
+      console.log("data received", data);
+      setMessages(m => ([...m, data as StampedMessage]))
     });
     conn.on("close", function () {
       console.log("Connection closed");
+      connRef = null;
     });
   }
 
-  return { initialize, join };
+  function getNow(): string {
+    const now = new Date();
+    const offset = now.getTimezoneOffset();
+    const nowLocal = new Date(now.getTime() - offset * 60 * 1000);
+    return nowLocal.toISOString().split(".")[0];
+  }
+
+  function stamp(m: GameMessage): StampedMessage {
+    return {
+      ...m,
+      author: author,
+      time: getNow(),
+    };
+  }
+
+  function log(m: GameMessage) {
+    if (connRef) {
+      connRef.send(stamp(m));
+    }
+  }
+
+  useEffect(() => {
+    initialize();
+    setTimeout(() => join(sessionCode), 1000);
+  }, []);
+
+  return { log, messages };
 }
 
 interface Props extends ReadWriteCharacter {
@@ -77,15 +109,7 @@ interface Props extends ReadWriteCharacter {
 }
 
 export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
-  const { messages, log } = useLog(character.name);
-  const [peerId, setPeerId] = useState("");
-
-  useEffect(() => {
-    const { initialize, join } = useConnection();
-    initialize();
-    setTimeout(() => join(sessionCode), 1000);
-  }, []);
-
+  const { log, messages } = usePlayerConnection(sessionCode, character.name);
   return (
     <div className="flex gap-2">
       <div className="max-w-3xl w-full">

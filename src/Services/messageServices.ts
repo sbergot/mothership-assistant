@@ -1,6 +1,5 @@
+import { GameMessage, StampedMessage } from "Messages/types";
 import { useState } from "react";
-import { Character } from "Rules/types";
-import { AnyMessage, StampedMessage } from "Session/types";
 
 function getNow(): string {
   const now = new Date();
@@ -12,7 +11,7 @@ function getNow(): string {
 export function useLog(author: string) {
   const [messages, setMessages] = useState<StampedMessage[]>([]);
 
-  function stamp(m: AnyMessage): StampedMessage {
+  function stamp(m: GameMessage): StampedMessage {
     return {
       ...m,
       author: author,
@@ -20,7 +19,7 @@ export function useLog(author: string) {
     };
   }
 
-  function log(m: AnyMessage) {
+  function log(m: GameMessage) {
     setMessages((ms) => [...ms, stamp(m)]);
   }
 

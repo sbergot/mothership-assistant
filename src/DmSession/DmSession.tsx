@@ -2,9 +2,10 @@ import { MessagePanel } from "Messages/MessagePanel";
 import { Character, Game } from "Rules/types";
 import { useLog } from "Services/messageServices";
 import { DmSheet } from "./DmSheet";
-import { Peer } from "peerjs";
+import { DataConnection, Peer } from "peerjs";
 import { useEffect, useState } from "react";
 import { Title } from "UI/Atoms";
+import { StampedMessage } from "Messages/types";
 
 interface Props {
   game: Game;
@@ -12,37 +13,69 @@ interface Props {
   characters: Character[];
 }
 
-export function DmSession({ game, setGame, characters }: Props) {
-  const { messages, log } = useLog("Warden");
+let connections: DataConnection[] = [];
+
+function useDmConnection() {
   const [sessionCode, setSessionCode] = useState("");
+  const [messages, setMessages] = useState<StampedMessage[]>([])
+
+  function initialize() {
+    // Create own peer object with connection to shared PeerJS server
+    const peer = new Peer();
+
+    peer.on("open", function (id) {
+      console.log("peer connected with id: " + peer.id);
+      connections = [];
+      setSessionCode(id);
+    });
+
+    peer.on("connection", function (c) {
+      console.log("Peer connected");
+      ready(c);
+    });
+    peer.on("disconnected", function () {
+      console.log("Connection lost. Please reconnect");
+    });
+    peer.on("close", function () {
+      console.log("Peer destroyed");
+      connections = [];
+    });
+    peer.on("error", function (err) {
+      console.log(err);
+    });
+    function ready(conn: DataConnection) {
+      conn.on("data", function (data) {
+        console.log("Data recieved", data);
+        setMessages(m => ([...m, data as StampedMessage]))
+        connections.forEach((c) => {
+          c.send(data);
+        })
+      });
+      conn.on("close", function () {
+        console.log("Connection destroyed");
+      });
+      connections.push(conn);
+    }
+  }
 
   useEffect(() => {
-    const peer = new Peer();
-    peer.on("open", (id) => {
-      console.log("peer opened. Id=" + id);
-      setSessionCode(id);
-    })
-    peer.on("connection", (conn) => {
-      conn.on("data", (data) => {
-        console.log(data);
-      });
-      conn.on("open", () => {
-        console.log("new connection")
-        conn.send("hello!");
-      });
-      conn.on("close", () => {
-        console.log("connection closed")
-      })
-    });
-    peer.on("close", () => {
-      console.log("peer closed")
-    })
+    initialize();
   }, []);
+
+  return { sessionCode, messages };
+}
+
+export function DmSession({ game, setGame, characters }: Props) {
+  const { log } = useLog("Warden");
+
+  const { sessionCode, messages } = useDmConnection();
 
   return (
     <div className="flex gap-2">
       <div className="max-w-2xl w-full">
-        <Title>{sessionCode}</Title>
+        <Title>
+          <span className="normal-case">{sessionCode}</span>
+        </Title>
         <DmSheet game={game} setGame={setGame} characters={characters} />
       </div>
       <MessagePanel messages={messages} />

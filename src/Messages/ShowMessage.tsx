@@ -1,8 +1,9 @@
-import { AnyMessage } from "Session/types";
+import { GameMessage } from "Messages/types";
+import { ShowSimpleMessage } from "./ShowSimpleMessage";
 import { ShowStatRoll } from "./ShowStatRoll";
 
 interface Props {
-  message: AnyMessage
+  message: GameMessage
 }
 
 export function ShowMessage({ message }: Props) {
@@ -10,5 +11,9 @@ export function ShowMessage({ message }: Props) {
     return <ShowStatRoll {...message.props} />
   }
 
-  return <div>unknown message type: {message.type}</div>
+  if (message.type === "SimpleMessage") {
+    return <ShowSimpleMessage {...message.props} />
+  }
+
+  return <div>unknown message type: {message}</div>
 }
