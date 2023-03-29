@@ -1,4 +1,5 @@
-import { StatRollResult } from "Rules/types";
+import { ReadCharacter } from "CharacterSheet/types";
+import { Character, StatRollResult } from "Rules/types";
 
 export interface Message<T extends string, P> {
   type: T;
@@ -9,11 +10,22 @@ export interface SimpleMessage {
   content: string;
 }
 
+export interface MessageHistory {
+  messages: StampedMessage[];
+}
+
+export type SyncMessage =
+  | Message<"UpdateChar", ReadCharacter>
+  | Message<"MessageHistoryRequest", {}>
+  | Message<"MessageHistoryResponse", MessageHistory>;
+
 export type GameMessage =
   | Message<"StatRollMessage", StatRollResult>
   | Message<"SimpleMessage", SimpleMessage>;
 
 export type StampedMessage = GameMessage & { author?: string; time: string };
+
+export type AnyMessage = StampedMessage | SyncMessage;
 
 export interface Log {
   log(m: GameMessage): void;

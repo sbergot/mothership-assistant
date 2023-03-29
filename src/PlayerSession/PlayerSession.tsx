@@ -1,16 +1,22 @@
 import { CharacterSheet } from "CharacterSheet";
 import { ReadWriteCharacter } from "CharacterSheet/types";
 import { MessagePanel } from "Messages/MessagePanel";
-import { GameMessage, StampedMessage } from "Messages/types";
+import {
+  AnyMessage,
+  GameMessage,
+  StampedMessage,
+  SyncMessage,
+} from "Messages/types";
 import Peer, { DataConnection } from "peerjs";
 import { useEffect, useState } from "react";
+import { Character } from "Rules/types";
 import { useLog } from "Services/messageServices";
 
 let peerRef: Peer | null = null;
 let connRef: DataConnection | null = null;
 
-function usePlayerConnection(sessionCode: string, author: string) {
-  const [messages, setMessages] = useState<StampedMessage[]>([])
+function usePlayerConnection(sessionCode: string, character: Character) {
+  const [messages, setMessages] = useState<StampedMessage[]>([]);
 
   function initialize() {
     // Create own peer object with connection to shared PeerJS server
@@ -61,13 +67,27 @@ function usePlayerConnection(sessionCode: string, author: string) {
 
       log({
         type: "SimpleMessage",
-        props: { content: `${author} joined the session` },
+        props: { content: `${character.name} joined the session` },
       });
+
+      syncLog({ type: "UpdateChar", props: { character } });
+      syncLog({ type: "MessageHistoryRequest", props: {} });
     });
     // Handle incoming data (messages only since this is the signal sender)
     conn.on("data", function (data) {
       console.log("data received", data);
-      setMessages(m => ([...m, data as StampedMessage]))
+      const typeData = data as AnyMessage;
+      if (typeData.type === "UpdateChar") {
+        return;
+      }
+      if (typeData.type === "MessageHistoryRequest") {
+        return;
+      }
+      if (typeData.type === "MessageHistoryResponse") {
+        setMessages(typeData.props.messages);
+        return;
+      }
+      setMessages((m) => [...m, typeData]);
     });
     conn.on("close", function () {
       console.log("Connection closed");
@@ -85,7 +105,7 @@ function usePlayerConnection(sessionCode: string, author: string) {
   function stamp(m: GameMessage): StampedMessage {
     return {
       ...m,
-      author: author,
+      author: character.name,
       time: getNow(),
     };
   }
@@ -93,6 +113,12 @@ function usePlayerConnection(sessionCode: string, author: string) {
   function log(m: GameMessage) {
     if (connRef) {
       connRef.send(stamp(m));
+    }
+  }
+
+  function syncLog(m: SyncMessage) {
+    if (connRef) {
+      connRef.send(m);
     }
   }
 
@@ -109,7 +135,7 @@ interface Props extends ReadWriteCharacter {
 }
 
 export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
-  const { log, messages } = usePlayerConnection(sessionCode, character.name);
+  const { log, messages } = usePlayerConnection(sessionCode, character);
   return (
     <div className="flex gap-2">
       <div className="max-w-3xl w-full">

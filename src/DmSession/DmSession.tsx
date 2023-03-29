@@ -1,31 +1,31 @@
 import { MessagePanel } from "Messages/MessagePanel";
 import { Character, Game } from "Rules/types";
-import { useLog } from "Services/messageServices";
 import { DmSheet } from "./DmSheet";
 import { DataConnection, Peer } from "peerjs";
 import { useEffect, useState } from "react";
 import { Title } from "UI/Atoms";
-import { StampedMessage } from "Messages/types";
+import { AnyMessage, StampedMessage, SyncMessage } from "Messages/types";
 
 interface Props {
   game: Game;
   setGame(setter: (c: Game) => Game): void;
-  characters: Character[];
 }
 
 let connections: DataConnection[] = [];
+let messagesRef: StampedMessage[] = [];
 
 function useDmConnection() {
   const [sessionCode, setSessionCode] = useState("");
-  const [messages, setMessages] = useState<StampedMessage[]>([])
+  const [messages, setMessages] = useState<StampedMessage[]>([]);
+  const [characters, setCharacters] = useState<Record<string, Character>>({});
+  messagesRef = messages;
 
   function initialize() {
-    // Create own peer object with connection to shared PeerJS server
     const peer = new Peer();
+    connections = [];
 
     peer.on("open", function (id) {
       console.log("peer connected with id: " + peer.id);
-      connections = [];
       setSessionCode(id);
     });
 
@@ -46,10 +46,27 @@ function useDmConnection() {
     function ready(conn: DataConnection) {
       conn.on("data", function (data) {
         console.log("Data recieved", data);
-        setMessages(m => ([...m, data as StampedMessage]))
+        const typeData = data as AnyMessage;
+        if (typeData.type === "UpdateChar") {
+          const newChar = typeData.props.character;
+          setCharacters((cs) => ({ ...cs, [newChar.id]: newChar }));
+          return;
+        }
+        if (typeData.type === "MessageHistoryRequest") {
+          const response: SyncMessage = {
+            type: "MessageHistoryResponse",
+            props: { messages: messagesRef },
+          };
+          conn.send(response);
+          return;
+        }
+        if (typeData.type === "MessageHistoryResponse") {
+          return;
+        }
+        setMessages((m) => [...m, typeData]);
         connections.forEach((c) => {
-          c.send(data);
-        })
+          c.send(typeData);
+        });
       });
       conn.on("close", function () {
         console.log("Connection destroyed");
@@ -62,13 +79,11 @@ function useDmConnection() {
     initialize();
   }, []);
 
-  return { sessionCode, messages };
+  return { sessionCode, messages, characters };
 }
 
-export function DmSession({ game, setGame, characters }: Props) {
-  const { log } = useLog("Warden");
-
-  const { sessionCode, messages } = useDmConnection();
+export function DmSession({ game, setGame }: Props) {
+  const { sessionCode, messages, characters } = useDmConnection();
 
   return (
     <div className="flex gap-2">
@@ -76,7 +91,11 @@ export function DmSession({ game, setGame, characters }: Props) {
         <Title>
           <span className="normal-case">{sessionCode}</span>
         </Title>
-        <DmSheet game={game} setGame={setGame} characters={characters} />
+        <DmSheet
+          game={game}
+          setGame={setGame}
+          characters={Object.values(characters)}
+        />
       </div>
       <MessagePanel messages={messages} />
     </div>
