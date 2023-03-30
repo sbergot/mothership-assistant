@@ -1,5 +1,5 @@
 import { ReadCharacter } from "CharacterSheet/types";
-import { Character, StatRollResult } from "Rules/types";
+import { Character, SaveRollResult, StatRollResult } from "Rules/types";
 
 export interface Message<T extends string, P> {
   type: T;
@@ -21,6 +21,7 @@ export type SyncMessage =
 
 export type GameMessage =
   | Message<"StatRollMessage", StatRollResult>
+  | Message<"SaveRollMessage", SaveRollResult>
   | Message<"SimpleMessage", SimpleMessage>;
 
 export type StampedMessage = GameMessage & { author?: string; time: string };

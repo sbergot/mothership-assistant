@@ -109,6 +109,10 @@ interface RollStatMode {
   onRoll?(): void;
 }
 
+interface RollSaveMode {
+  mode: "RollSave"
+}
+
 export type Modes =
   | CharacterSheetMode
   | AddConditionMode
@@ -127,6 +131,7 @@ export type Modes =
   | ViewEquipmentMode
   | ViewContractorMode
   | EditStatsMode
+  | RollSaveMode
   | RollStatMode;
 
 export interface SetMode {

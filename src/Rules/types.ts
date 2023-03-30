@@ -322,6 +322,23 @@ export interface StatRollAnalysis extends StatRollResult {
   rollDescritpion: string;
 }
 
+export interface SaveRoll {
+  save: { name: SaveType; value: number };
+  rollMode: RollMode;
+}
+
+export interface SaveRollResult extends SaveRoll {
+  result: number[];
+}
+
+export interface SaveRollAnalysis extends SaveRollResult {
+  target: number;
+  rollValue: number;
+  isSuccess: boolean;
+  isCritical: boolean;
+  rollDescritpion: string;
+}
+
 export interface Npc extends WithId {
   name: string;
   combat: number;

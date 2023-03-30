@@ -2,6 +2,8 @@ import { useMemo } from "react";
 import { allSkillsDict, allSkillLevelDefinitionDict } from "Rules/data";
 import {
   RollMode,
+  SaveRollAnalysis,
+  SaveRollResult,
   StatRollAnalysis,
   StatRollResult,
   WithId,
@@ -50,6 +52,29 @@ export function analyseStatRoll(rollResult: StatRollResult): StatRollAnalysis {
     ...rollResult,
     skillDefinition,
     skillLevel,
+    target,
+    rollValue,
+    isSuccess,
+    isCritical,
+    rollDescritpion,
+  };
+}
+
+export function analyseSaveRoll(rollResult: SaveRollResult): SaveRollAnalysis {
+  const { save, rollMode, result } = rollResult;
+  let rollValue = result[0];
+  if (rollMode === "advantage") {
+    rollValue = Math.min(...result);
+  }
+  if (rollMode === "disadvantage") {
+    rollValue = Math.max(...result);
+  }
+  const target = save.value;
+  const isSuccess = rollValue < target;
+  const isCritical = rollValue % 11 === 0;
+  const rollDescritpion = `${save.name}${rollModeDescr[rollMode]}`;
+  return {
+    ...rollResult,
     target,
     rollValue,
     isSuccess,

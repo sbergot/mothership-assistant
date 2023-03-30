@@ -1,4 +1,5 @@
 import { GameMessage } from "Messages/types";
+import { ShowSaveRoll } from "./ShowSaveRoll";
 import { ShowSimpleMessage } from "./ShowSimpleMessage";
 import { ShowStatRoll } from "./ShowStatRoll";
 
@@ -11,9 +12,13 @@ export function ShowMessage({ message }: Props) {
     return <ShowStatRoll {...message.props} />
   }
 
+  if (message.type === "SaveRollMessage") {
+    return <ShowSaveRoll {...message.props} />
+  }
+
   if (message.type === "SimpleMessage") {
     return <ShowSimpleMessage {...message.props} />
   }
 
-  return <div>unknown message type: {message}</div>
+  return <div>unknown message type</div>
 }

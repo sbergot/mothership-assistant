@@ -12,6 +12,7 @@ import { ContractorSheet } from "./Contractors/ContractorSheet";
 import { EditStats } from "./EditStats";
 import { Equipment } from "./Equipment";
 import { Identity } from "./Identity";
+import { RollSave } from "./RollSave";
 import { RollStat } from "./RollStat";
 import { Skills } from "./Skills";
 import { PickSkill } from "./Skills/PickSkill";
@@ -202,6 +203,17 @@ export function CharacterSheet({
         log={log}
         setMode={setMode}
         onRoll={mode.onRoll}
+      />
+    );
+  }
+
+  if (mode.mode === "RollSave") {
+    return (
+      <RollSave
+        character={character}
+        setCharacter={setCharacter}
+        log={log}
+        setMode={setMode}
       />
     );
   }
