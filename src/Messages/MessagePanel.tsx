@@ -12,7 +12,11 @@ export function MessagePanel({ messages }: Props) {
 
   useEffect(() => {
     if (messagesEnd.current) {
-      messagesEnd.current.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+      messagesEnd.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "nearest",
+      });
     }
   }, [messages]);
 
@@ -20,12 +24,15 @@ export function MessagePanel({ messages }: Props) {
     <div className="max-w-lg w-full h-screen sticky top-2 border-2 rounded-3xl p-4 mb-2 border-mother-5">
       <div className="overflow-auto flex flex-col gap-2 h-full pr-1">
         {messages.map((m, i) => {
-          return (
+          const stamp = m.author ? `${m.author} - ${m.time}` : m.time;
+          return m.type === "SimpleMessage" ? (
+            <div key={i} className="text-sm">
+              <span className="text-mother-4">{stamp}</span> - {m.props.content}
+            </div>
+          ) : (
             <Block key={i} variant="light">
               <div>
-                <div className="text-sm text-mother-4">
-                  {m.author ? `${m.author} - ${m.time}` : m.time}
-                </div>
+                <div className="text-sm text-mother-4">{stamp}</div>
                 <ShowMessage message={m} />
               </div>
             </Block>

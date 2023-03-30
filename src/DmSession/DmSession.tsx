@@ -10,6 +10,7 @@ import {
   StampedMessage,
   SyncMessage,
 } from "Messages/types";
+import { ButtonIcon, CopyIcon } from "UI/Icons";
 
 interface Props {
   game: Game;
@@ -34,10 +35,13 @@ function useDmConnection(
   >({});
   const messagesRef = useRef(messages);
   messagesRef.current = messages;
+  const debounceRef = useRef(false);
 
   const connectionsRef = useRef<Record<string, DataConnection>>({});
 
   function initialize() {
+    if (debounceRef.current) { return }
+    debounceRef.current = true;
     const peer = new Peer();
     connectionsRef.current = {};
     setConnectionsState({});
@@ -159,7 +163,8 @@ export function DmSession({ game, setGame }: Props) {
     <div className="flex gap-2">
       <div className="max-w-2xl w-full">
         <Title>
-          <span className="normal-case">{sessionCode}</span>
+          <span className="normal-case">Session code: {sessionCode}</span>
+          <ButtonIcon onClick={() => { navigator.clipboard.writeText(sessionCode) }}><CopyIcon /></ButtonIcon>
         </Title>
         {connections.map(({ id, character, state }) => (
           <div key={id}>

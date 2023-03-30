@@ -9,21 +9,21 @@ import {
   SyncMessage,
 } from "Messages/types";
 import Peer, { DataConnection } from "peerjs";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Character } from "Rules/types";
-
-let peerRef: Peer | null = null;
-let connRef: DataConnection | null = null;
 
 function usePlayerConnection(sessionCode: string, character: Character) {
   const browserId = useBrowserId();
   const [messages, setMessages] = useState<StampedMessage[]>([]);
+  const debounceRef = useRef(false);
+  const peerRef = useRef<Peer | null>(null);
+  const connRef = useRef<DataConnection | null>(null);
 
   function initialize() {
     // Create own peer object with connection to shared PeerJS server
     let peer = new Peer();
 
-    peerRef = peer;
+    peerRef.current = peer;
 
     peer.on("open", function (id) {
       console.log("peer connected with id: " + id);
@@ -42,7 +42,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
       peer.reconnect();
     });
     peer.on("close", function () {
-      peerRef = null;
+      peerRef.current = null;
       console.log("Peer destroyed. Please refresh");
     });
     peer.on("error", function (err) {
@@ -52,17 +52,17 @@ function usePlayerConnection(sessionCode: string, character: Character) {
 
   function join(serverId: string) {
     // Close old connection
-    if (connRef) {
+    if (connRef.current) {
       console.log("closing previous connection");
-      connRef.close();
+      connRef.current.close();
     }
 
     // Create connection to destination peer specified in the input field
-    let conn = peerRef!.connect(serverId, {
+    let conn = peerRef.current!.connect(serverId, {
       reliable: true,
       metadata: { browserId }
     });
-    connRef = conn;
+    connRef.current = conn;
 
     conn.on("open", function () {
       console.log("Connected to: " + conn.peer);
@@ -93,7 +93,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
     });
     conn.on("close", function () {
       console.log("Connection closed");
-      connRef = null;
+      connRef.current = null;
     });
     conn.on("error", (e) => {
       console.error("connexion error", e);
@@ -116,18 +116,20 @@ function usePlayerConnection(sessionCode: string, character: Character) {
   }
 
   function log(m: GameMessage) {
-    if (connRef) {
-      connRef.send(stamp(m));
+    if (connRef.current) {
+      connRef.current.send(stamp(m));
     }
   }
 
   function syncLog(m: SyncMessage) {
-    if (connRef) {
-      connRef.send(m);
+    if (connRef.current) {
+      connRef.current.send(m);
     }
   }
 
   useEffect(() => {
+    if (debounceRef.current) { return }
+    debounceRef.current = true;
     initialize();
     setTimeout(() => join(sessionCode), 1000);
   }, []);
