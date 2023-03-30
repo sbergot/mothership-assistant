@@ -1,18 +1,29 @@
 import { Block, Button, Divider, Progress, Title } from "UI/Atoms";
 import { Weapon as WeaponType } from "Rules/types";
-import { ReadBaseChar, SetMode } from "./types";
+import { ReadWriteBaseChar, SetMode } from "./types";
+import { updateInList } from "helpers";
 
 export function Weapons({
   character,
+  setCharacter,
   setMode,
-}: ReadBaseChar & SetMode) {
+}: ReadWriteBaseChar & SetMode) {
+  function spendAmmo(weaponId: string) {
+    setCharacter((c) => ({
+      ...c,
+      weapons: updateInList(c.weapons, weaponId, (w) => ({
+        ...w,
+        shots: w.shots ? w.shots - 1 : null,
+      })),
+    }));
+  }
   return (
     <Block variant="light">
       <Title>Weapons</Title>
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.weapons.map((w) => (
-          <Weapon key={w.id} weapon={w} setMode={setMode} />
+          <Weapon key={w.id} weapon={w} setMode={setMode} spendAmmo={() => spendAmmo(w.id)} />
         ))}
       </div>
       <div className="flex justify-center items-center gap-8 mt-4">
@@ -30,9 +41,10 @@ export function Weapons({
 
 interface WeaponProps extends SetMode {
   weapon: WeaponType;
+  spendAmmo(): void;
 }
 
-function Weapon({ weapon, setMode }: WeaponProps) {
+function Weapon({ weapon, setMode, spendAmmo }: WeaponProps) {
   const hasAmmo = weapon.magazineSize !== null;
   const justify = hasAmmo ? "justify-between" : "justify-center";
   return (
@@ -58,7 +70,13 @@ function Weapon({ weapon, setMode }: WeaponProps) {
             max={weapon.magazineSize || 1}
           />
         )}
-        <Button onClick={() => setMode({ mode: "RollStat" })} dark rounded noBorder>
+        <Button
+          onClick={() => setMode({ mode: "RollStat", onRoll: spendAmmo })}
+          disabled={hasAmmo && weapon.shots === 0}
+          dark
+          rounded
+          noBorder
+        >
           Attack
         </Button>
       </div>

@@ -11,6 +11,7 @@ import {
 import Peer, { DataConnection } from "peerjs";
 import { useEffect, useRef, useState } from "react";
 import { Character } from "Rules/types";
+import { useLog } from "Services/messageServices";
 
 function usePlayerConnection(sessionCode: string, character: Character) {
   const browserId = useBrowserId();
@@ -18,6 +19,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
   const debounceRef = useRef(false);
   const peerRef = useRef<Peer | null>(null);
   const connRef = useRef<DataConnection | null>(null);
+  const stub = useLog(character.name);
 
   function initialize() {
     // Create own peer object with connection to shared PeerJS server
@@ -128,6 +130,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
   }
 
   useEffect(() => {
+    if (!sessionCode) { return }
     if (debounceRef.current) { return }
     debounceRef.current = true;
     initialize();
@@ -138,7 +141,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
     syncLog({ type: "UpdateChar", props: { character } });
   }, [character]);
 
-  return { log, messages };
+  return !!sessionCode ?  { log, messages } : { log: stub.log, messages: stub.messages };
 }
 
 interface Props extends ReadWriteCharacter {

@@ -1,12 +1,12 @@
+- connection
+  - debounce frequent character updates
 
 - rolls
-  - attack
-    - initiate stat roll
-    - deplete ammo
-    - failure cause stress
-  - save ((dis)advantage, skill)
+  - trigger stat rolls
+  - trigger save ((dis)advantage, skill)
   - panic
   - damage
+    - DM can assign damage
   - wound
   - rest
   - death

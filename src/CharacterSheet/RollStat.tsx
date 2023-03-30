@@ -1,6 +1,7 @@
+import { analyseStatRoll } from "helpers";
 import { Log } from "Messages/types";
 import { useState } from "react";
-import { allSkillsDict } from "Rules/data";
+import { allSkillsDict, allStats } from "Rules/data";
 import {
   RollMode,
   SkillType,
@@ -13,26 +14,9 @@ import { Block, Button, Divider } from "UI/Atoms";
 import { SelectableRating, Skill } from "UI/Molecules";
 import { ReadWriteCharacter, SetMode } from "./types";
 
-interface Props extends ReadWriteCharacter, Log, SetMode {}
-
-const allStats: { stat: StatType; title: string }[] = [
-  {
-    stat: "strength",
-    title: "Strength",
-  },
-  {
-    stat: "speed",
-    title: "Speed",
-  },
-  {
-    stat: "intellect",
-    title: "Intellect",
-  },
-  {
-    stat: "combat",
-    title: "Combat",
-  },
-];
+interface Props extends ReadWriteCharacter, Log, SetMode {
+  onRoll?(): void;
+}
 
 function rollStat(roll: StatRoll): StatRollResult {
   const result =
@@ -42,7 +26,13 @@ function rollStat(roll: StatRoll): StatRollResult {
   return { ...roll, result };
 }
 
-export function RollStat({ character, log, setMode }: Props) {
+export function RollStat({
+  character,
+  setCharacter,
+  log,
+  setMode,
+  onRoll,
+}: Props) {
   const [stat, setStat] = useState<StatType>("combat");
   const [skill, setSkill] = useState<SkillType | null>(null);
   const [rollMode, setRollMode] = useState<RollMode>("normal");
@@ -50,10 +40,10 @@ export function RollStat({ character, log, setMode }: Props) {
   return (
     <Block variant="light">
       <div className="flex justify-center gap-8">
-        {allStats.map(({ stat: s, title }) => (
+        {allStats.map((s) => (
           <SelectableRating
-          key={s}
-            title={title}
+            key={s}
+            title={s}
             value={character[s]}
             onClick={() => setStat(s)}
             selected={s === stat}
@@ -102,14 +92,22 @@ export function RollStat({ character, log, setMode }: Props) {
           dark
           rounded
           onClick={() => {
+            const results = rollStat({
+              stat: { value: character[stat], name: stat },
+              skill,
+              rollMode,
+            });
             log({
               type: "StatRollMessage",
-              props: rollStat({
-                stat: { value: character[stat], name: stat },
-                skill,
-                rollMode,
-              }),
+              props: results,
             });
+            const analysis = analyseStatRoll(results);
+            if (!analysis.isSuccess) {
+              setCharacter(c => ({...c, stress: c.stress + 1}))
+            }
+            if (onRoll) {
+              onRoll();
+            }
             setMode({ mode: "CharacterSheet" });
           }}
         >

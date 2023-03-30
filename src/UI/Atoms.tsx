@@ -81,7 +81,7 @@ export function Button({
     : colors;
   colors = disabled ? "bg-mother-4 text-mother-1" : colors;
 
-  const cursor = disabled ? "cursor-not-allowed" : "cursor-pointer";
+  const cursor = disabled ? "cursor-not-allowed" : "cursor-pointer active:scale-90";
   const corners = rounded ? "px-4 rounded-3xl" : "px-2 rounded-lg";
   const border = noBorder ? "" : "border-2";
   return (

@@ -106,6 +106,7 @@ interface EditStatsMode {
 
 interface RollStatMode {
   mode: "RollStat"
+  onRoll?(): void;
 }
 
 export type Modes =
