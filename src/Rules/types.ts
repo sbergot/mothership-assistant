@@ -1,3 +1,5 @@
+import { GameMessage } from "Messages/types";
+
 export type CharacterClass = "marine" | "teamster" | "android" | "scientist";
 
 export type StatType = "strength" | "speed" | "intellect" | "combat";
@@ -337,4 +339,5 @@ export interface Game {
   title: string;
   npcs: Npc[];
   monsters: Monster[];
+  messages: GameMessage[];
 }

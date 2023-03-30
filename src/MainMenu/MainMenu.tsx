@@ -105,6 +105,7 @@ export function MainMenu({
               const newId = saveNewGame({
                 monsters: [],
                 npcs: [],
+                messages: [],
                 title: "game title",
               });
               setMode({ mode: "DmSession", gameId: newId });

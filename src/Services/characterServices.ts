@@ -7,6 +7,7 @@ export function initCharacter(): Character {
         characterClass: "android",
         name: "",
         pronouns: "",
+        personalNotes: "",
         thumbnailPath: "",
         strength: 0,
         speed: 0,

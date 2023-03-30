@@ -1,6 +1,6 @@
 import { Character } from "./types";
 
-export const data: Character = {
+export const data: any = {
     id: "0ecc90a8-4473-4c19-bd59-55eee0651d3a",
     characterClass: "android",
     name: "SHALONDA WASKO",

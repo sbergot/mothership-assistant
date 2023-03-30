@@ -9,9 +9,9 @@ import { ViewArmor } from "CharacterSheet/ViewArmor";
 import { ViewEquipment } from "CharacterSheet/ViewEquipment";
 import { ViewWeapon } from "CharacterSheet/ViewWeapon";
 import { Weapons } from "CharacterSheet/Weapons";
+import { Log } from "Messages/types";
 import { useState } from "react";
 import { Contractor } from "Rules/types";
-import { Log } from "Session/types";
 import { Button } from "UI/Atoms";
 import { ContractorIdentity } from "./ContractorIdentity";
 import { ContractorStats } from "./ContractorStats";
@@ -134,7 +134,7 @@ export function ContractorSheet({
         setMode={setMode}
       />
       <ContractorStats contractor={contractor} setMode={setMode} />
-      <Weapons character={contractor} setMode={setMode} log={log} />
+      <Weapons character={contractor} setMode={setMode} />
       <Armor character={contractor} setMode={setMode} />
       <Equipment character={contractor} setMode={setMode} />
       <div className="flex justify-center gap-2">

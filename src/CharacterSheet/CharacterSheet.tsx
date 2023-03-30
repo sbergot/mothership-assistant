@@ -1,5 +1,5 @@
+import { Log } from "Messages/types";
 import { useState } from "react";
-import { Log, AnyMessage } from "Session/types";
 import { AddArmor } from "./AddArmor";
 import { AddCondition } from "./AddCondition";
 import { AddContractor } from "./AddContractor";
@@ -215,7 +215,7 @@ export function CharacterSheet({
       />
       <Stats character={character} setMode={setMode} />
       <Skills character={character} setMode={setMode} />
-      <Weapons character={character} setMode={setMode} log={log} />
+      <Weapons character={character} setMode={setMode} />
       <Armor character={character} setMode={setMode} />
       <Equipment character={character} setMode={setMode} />
       <Contractors character={character} setMode={setMode} />

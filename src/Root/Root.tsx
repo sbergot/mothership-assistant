@@ -56,7 +56,6 @@ export function Root() {
     return (
       <DmSession
         game={gamesRepo.getEntry(mode.gameId)}
-        characters={characterRepo.getEntries().map((e) => e.value)}
         setGame={(setter) =>
           gamesRepo.update(mode.gameId, setter)
         }
