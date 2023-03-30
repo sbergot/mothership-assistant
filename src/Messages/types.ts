@@ -30,3 +30,7 @@ export type AnyMessage = StampedMessage | SyncMessage;
 export interface Log {
   log(m: GameMessage): void;
 }
+
+export interface ConnectionMetadata {
+  browserId: string;
+}

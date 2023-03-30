@@ -1,4 +1,4 @@
-import { GameMessage } from "Messages/types";
+import { GameMessage, StampedMessage } from "Messages/types";
 
 export type CharacterClass = "marine" | "teamster" | "android" | "scientist";
 
@@ -339,5 +339,5 @@ export interface Game {
   title: string;
   npcs: Npc[];
   monsters: Monster[];
-  messages: GameMessage[];
+  messages: StampedMessage[];
 }

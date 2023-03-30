@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { allSkillsDict, allSkillLevelDefinitionDict } from "Rules/data";
 import {
   RollMode,
@@ -75,4 +76,17 @@ export function deleteInList<T extends WithId>(list: T[], id: string): T[] {
   return list.filter((e) => {
     return e.id !== id;
   });
+}
+
+export function useBrowserId(): string {
+  return useMemo(() => {
+    const key = "browser_id";
+    const cached = localStorage.getItem(key);
+    if (cached) {
+      return cached;
+    }
+    const newId = uuidv4();
+    localStorage.setItem(key, newId);
+    return newId;
+  }, [])
 }

@@ -1,5 +1,6 @@
 import { CharacterSheet } from "CharacterSheet";
 import { ReadWriteCharacter } from "CharacterSheet/types";
+import { useBrowserId } from "helpers";
 import { MessagePanel } from "Messages/MessagePanel";
 import {
   AnyMessage,
@@ -10,12 +11,12 @@ import {
 import Peer, { DataConnection } from "peerjs";
 import { useEffect, useState } from "react";
 import { Character } from "Rules/types";
-import { useLog } from "Services/messageServices";
 
 let peerRef: Peer | null = null;
 let connRef: DataConnection | null = null;
 
 function usePlayerConnection(sessionCode: string, character: Character) {
+  const browserId = useBrowserId();
   const [messages, setMessages] = useState<StampedMessage[]>([]);
 
   function initialize() {
@@ -25,7 +26,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
     peerRef = peer;
 
     peer.on("open", function (id) {
-      console.log("ID: " + peer.id);
+      console.log("peer connected with id: " + id);
     });
     peer.on("connection", function (c) {
       // Disallow incoming connections
@@ -59,6 +60,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
     // Create connection to destination peer specified in the input field
     let conn = peerRef!.connect(serverId, {
       reliable: true,
+      metadata: { browserId }
     });
     connRef = conn;
 
@@ -93,6 +95,9 @@ function usePlayerConnection(sessionCode: string, character: Character) {
       console.log("Connection closed");
       connRef = null;
     });
+    conn.on("error", (e) => {
+      console.error("connexion error", e);
+    })
   }
 
   function getNow(): string {
