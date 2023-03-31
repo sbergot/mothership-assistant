@@ -113,6 +113,10 @@ interface RollSaveMode {
   mode: "RollSave"
 }
 
+interface PanicCheckMode {
+  mode: "PanicCheck"
+}
+
 export type Modes =
   | CharacterSheetMode
   | AddConditionMode

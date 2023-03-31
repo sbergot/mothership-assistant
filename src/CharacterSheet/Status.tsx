@@ -43,6 +43,9 @@ export function Status({ character, setCharacter, setMode }: ReadWriteCharacter 
         <Button onClick={() => setMode({ mode: "AddCondition" })}>
           Add condition
         </Button>
+        <Button onClick={() => setMode({ mode: "AddCondition" })}>
+          Panic check
+        </Button>
       </div>
     </Block>
   );

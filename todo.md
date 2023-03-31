@@ -2,8 +2,6 @@
   - debounce frequent character updates
 
 - rolls
-  - trigger stat rolls
-  - trigger save ((dis)advantage, skill)
   - panic
   - damage
     - DM can assign damage
