@@ -18,6 +18,7 @@ import {
   SkillLevelDefinition,
   SkillType,
   StatType,
+  StressEffect,
   WeaponExt,
   WeaponType,
 } from "./types";
@@ -58,6 +59,142 @@ export const allSkillLevelDefinitionDict: Record<
 > = toDict(allSkillLevelDefinitions, (sld) => sld.level);
 
 export const allSaves: SaveType[] = ["sanity", "fear", "body"];
+
+export const stressTable: StressEffect[] = [
+  {
+    name: "adrenaline rush",
+    description: "[+] on all rolls for the next 2d10 minutes. Reduce your Stress by 1d5."
+  },
+  {
+    name: "anxious",
+    description: "gain 1 stress"
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+  {
+    name: "",
+    description: ""
+  },
+/*   1 ADRENALINE RUSH. [+] on all rolls for the next 2d10
+  minutes. Reduce your Stress by 1d5.
+  2 ANXIOUS. Gain 1 Stress.
+  3 JUMPY. Gain 1 Stress. All Close crewmembers
+  gain 2 Stress.
+  4 OVERWHELMED. All actions at [-] for 1d10 minutes.
+  Permanently raise your Minimum Stress by 1.
+  5 COWARD. Gain a new Condition: You must make a Fear
+  Save to engage in violence or flee.
+  6
+  FRIGHTENED. Gain a new Condition: Phobia: When
+  encountering your Phobia make a Fear Save [-] or gain 1d5
+  Stress.
+  7 NIGHTMARES. Gain a new Condition: Sleep is difficult,
+  gain [-] on all Rest Saves.
+  8 LOSS OF CONFIDENCE. Gain a new Condition: Choose
+  one of your Skills and lose that Skill’s bonus.
+  9 DEFLATED. Gain a new Condition: Whenever a Close
+  crewmember fails a Save, gain 1 Stress.
+  10 DOOMED. Gain a new Condition: You feel cursed and
+  unlucky. All Critical Successes are instead Critical Failures.
+  11
+  PARANOID. For the next week, whenever someone joins
+  your group (even if they only left for a short period of time),
+  make a Fear Save or gain 1 Stress.
+  12
+  HAUNTED. Gain a new Condition: Something starts visiting
+  you at night. In your dreams. Out of the corner of your eye.
+  And soon it will start making demands.
+  13
+  DEATH WISH. For the next 24 hours, whenever you
+  encounter a stranger or known enemy, you must make a
+  Sanity Save or immediately attack them.
+  14
+  PROPHETIC VISION. You immediately experience an
+  intense hallucination or vision of an impending terror or
+  horrific event. Gain 1 Stress.
+  15 CATATONIC. Become unresponsive and unmoving for 2d10
+  minutes. Reduce Stress by 1d10.
+  16
+  RAGE. Immediately attack the closest crewmember until you
+  inflict at least 2d10 DMG. If there is no crewmember Close,
+  you attack your surrounding environment.
+  17 SPIRALING. Gain a new Condition: You make Panic Checks
+  with Disadvantage.
+  18 COMPOUNDING PROBLEMS. Roll twice on this table.
+  Permanently raise your Minimum Stress by 1.
+  19
+  HEART ATTACK / SHORT CIRCUIT (ANDROIDS).
+  Permanently lose 1 Wound. Gain [-] on all rolls for 1d10
+  hours. Permanently raise your Minimum Stress by 1.
+  20 COLLAPSE. You no longer control this character. Hand your
+  sheet to the Warden and roll up a new character to play.
+ */]
 
 export const allConditionDefinitions: ConditionDefinition[] = [
   {

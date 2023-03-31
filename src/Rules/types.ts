@@ -168,6 +168,11 @@ export interface ConditionDefinition extends Condition {
   description: string;
 }
 
+export interface StressEffect {
+  name: string;
+  description: string;
+}
+
 export interface WithId {
   id: string;
 }
