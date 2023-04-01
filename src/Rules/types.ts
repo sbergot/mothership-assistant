@@ -344,6 +344,22 @@ export interface SaveRollAnalysis extends SaveRollResult {
   rollDescritpion: string;
 }
 
+export interface PanicRoll {
+  stress: number;
+  rollMode: RollMode;
+}
+
+export interface PanicRollResult extends PanicRoll {
+  result: number[];
+}
+
+export interface PanicRollAnalysis extends PanicRollResult {
+  target: number;
+  rollValue: number;
+  isSuccess: boolean;
+  rollDescritpion: string;
+}
+
 export interface Npc extends WithId {
   name: string;
   combat: number;

@@ -136,7 +136,8 @@ export type Modes =
   | ViewContractorMode
   | EditStatsMode
   | RollSaveMode
-  | RollStatMode;
+  | RollStatMode
+  | PanicCheckMode;
 
 export interface SetMode {
   setMode(mode: Modes): void;
