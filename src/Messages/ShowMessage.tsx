@@ -16,6 +16,14 @@ export function ShowMessage({ message }: Props) {
     return <ShowSaveRoll {...message.props} />
   }
 
+  if (message.type === "PanicRollMessage") {
+    return <ShowSaveRoll {...message.props} />
+  }
+
+  if (message.type === "PanicEffectMessage") {
+    return <ShowSaveRoll {...message.props} />
+  }
+
   if (message.type === "SimpleMessage") {
     return <ShowSimpleMessage {...message.props} />
   }

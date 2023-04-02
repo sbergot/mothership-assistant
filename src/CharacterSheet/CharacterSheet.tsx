@@ -27,6 +27,7 @@ import { ViewCondition } from "./ViewCondition";
 import { ViewEquipment } from "./ViewEquipment";
 import { ViewWeapon } from "./ViewWeapon";
 import { Weapons } from "./Weapons";
+import { RollPanic } from "./RollPanic";
 
 export function CharacterSheet({
   character,
@@ -210,6 +211,17 @@ export function CharacterSheet({
   if (mode.mode === "RollSave") {
     return (
       <RollSave
+        character={character}
+        setCharacter={setCharacter}
+        log={log}
+        setMode={setMode}
+      />
+    );
+  }
+
+  if (mode.mode === "PanicCheck") {
+    return (
+      <RollPanic
         character={character}
         setCharacter={setCharacter}
         log={log}
