@@ -1,11 +1,9 @@
-import { analyseSaveRoll } from "helpers";
+import { analysePanicRoll, applyPanic } from "helpers";
 import { Log } from "Messages/types";
 import { useState } from "react";
-import { allSaves } from "Rules/data";
-import { PanicRoll, PanicRollResult, RollMode, SaveRoll, SaveRollResult, SaveType } from "Rules/types";
+import { PanicRoll, PanicRollResult, RollMode } from "Rules/types";
 import { simpleRoll } from "Services/diceServices";
 import { Block, Button, Divider } from "UI/Atoms";
-import { SelectableRating } from "UI/Molecules";
 import { ReadWriteCharacter, SetMode } from "./types";
 
 interface Props extends ReadWriteCharacter, Log, SetMode {}
@@ -52,16 +50,16 @@ export function RollPanic({ character, setCharacter, log, setMode }: Props) {
           rounded
           onClick={() => {
             const results = rollPanic({
-              save: { value: character[save], name: save },
+              stress: character.stress,
               rollMode,
             });
             log({
-              type: "SaveRollMessage",
+              type: "PanicRollMessage",
               props: results,
             });
-            const analysis = analyseSaveRoll(results);
+            const analysis = analysePanicRoll(results);
             if (!analysis.isSuccess) {
-              setCharacter((c) => ({ ...c, stress: c.stress + 1 }));
+              setCharacter(c => applyPanic(c, log, analysis.rollValue));
             }
             setMode({ mode: "CharacterSheet" });
           }}

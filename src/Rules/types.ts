@@ -171,6 +171,7 @@ export interface ConditionDefinition extends Condition {
 export interface StressEffect {
   name: string;
   description: string;
+  effect(c: Character, log: (m: GameMessage) => void ): Character;
 }
 
 export interface WithId {
@@ -358,6 +359,10 @@ export interface PanicRollAnalysis extends PanicRollResult {
   rollValue: number;
   isSuccess: boolean;
   rollDescritpion: string;
+}
+
+export interface PanicEffect {
+  result: number;
 }
 
 export interface Npc extends WithId {

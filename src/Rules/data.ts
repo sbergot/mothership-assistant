@@ -4,6 +4,7 @@ import {
   ArmorType,
   CharacterClass,
   ClassDefinition,
+  Condition,
   ConditionDefinition,
   ConditionType,
   Contractor,
@@ -22,6 +23,8 @@ import {
   WeaponExt,
   WeaponType,
 } from "./types";
+import { roll } from "Services/diceServices";
+import { applyPanic } from "helpers";
 
 export const allStats: StatType[] = [
   "strength",
@@ -60,88 +63,245 @@ export const allSkillLevelDefinitionDict: Record<
 
 export const allSaves: SaveType[] = ["sanity", "fear", "body"];
 
+function addCondition(conditions: Condition[], cond: Condition): Condition[] {
+  return [
+    ...conditions.filter((c) => c.conditionType !== cond.conditionType),
+    cond,
+  ];
+}
+
 export const stressTable: StressEffect[] = [
   {
     name: "adrenaline rush",
-    description: "[+] on all rolls for the next 2d10 minutes. Reduce your Stress by 1d5."
+    description:
+      "[+] on all rolls for the next 2d10 minutes. Reduce your Stress by 1d5.",
+    effect(c, log) {
+      const stressLoss = roll(1, 5) + 1;
+      log({ type: "SimpleMessage", props: { content: `stress reduced by ${stressLoss}` } })
+      return {
+        ...c,
+        stress: c.stress - stressLoss,
+        conditions: addCondition(c.conditions, {
+          conditionType: "adrenalineRush",
+        }),
+      };
+    },
   },
   {
     name: "anxious",
-    description: "gain 1 stress"
+    description: "gain 1 stress",
+    effect(c) {
+      return { ...c, stress: c.stress + 1 };
+    },
   },
   {
     name: "jumpy",
-    description: "Gain 1 Stress. All Close crewmembers gain 2 Stress."
+    description: "Gain 1 Stress. All Close crewmembers gain 2 Stress.",
+    effect(c) {
+      return { ...c, stress: c.stress + 1 };
+    },
   },
   {
     name: "overwhelmed",
-    description: "All actions at [-] for 1d10 minutes. Permanently raise your Minimum Stress by 1."
+    description:
+      "All actions at [-] for 1d10 minutes. Permanently raise your Minimum Stress by 1.",
+    effect(c, log) {
+      log({ type: "SimpleMessage", props: { content: `overwhelmed for ${roll(1, 10)} minutes` } })
+      return {
+        ...c,
+        minStress: c.minStress + 1,
+        conditions: addCondition(c.conditions, {
+          conditionType: "overwhelmed",
+        }),
+      };
+    },
   },
   {
     name: "coward",
-    description: "Gain a new Condition: You must make a Fear Save to engage in violence or flee."
-  },
+    description:
+      "Gain a new Condition: You must make a Fear Save to engage in violence or flee.",
+      effect(c) {
+        return {
+          ...c,
+          conditions: addCondition(c.conditions, {
+            conditionType: "coward",
+          }),
+        };
+      },
+    },
   {
     name: "frightened",
-    description: "Gain a new Condition: Phobia: When encountering your Phobia make a Fear Save [-] or gain 1d5 Stress."
+    description:
+      "Gain a new Condition: Phobia: When encountering your Phobia make a Fear Save [-] or gain 1d5 Stress.",
+      effect(c) {
+        return {
+          ...c,
+          conditions: addCondition(c.conditions, {
+            conditionType: "phobia",
+          }),
+        };
+      },
   },
   {
     name: "nightmares",
-    description: "Gain a new Condition: Sleep is difficult, gain [-] on all Rest Saves."
+    description:
+      "Gain a new Condition: Sleep is difficult, gain [-] on all Rest Saves.",
+      effect(c) {
+        return {
+          ...c,
+          conditions: addCondition(c.conditions, {
+            conditionType: "nightmares",
+          }),
+        };
+      },
   },
   {
     name: "loss of confidence",
-    description: "Gain a new Condition: Choose one of your Skills and lose that Skill’s bonus."
+    description:
+      "Gain a new Condition: Choose one of your Skills and lose that Skill’s bonus.",
+      effect(c) {
+        return {
+          ...c,
+          conditions: addCondition(c.conditions, {
+            conditionType: "lossOfConfidence",
+          }),
+        };
+      },
   },
   {
     name: "deflated",
-    description: "Gain a new Condition: Whenever a Close crewmember fails a Save, gain 1 Stress."
+    description:
+      "Gain a new Condition: Whenever a Close crewmember fails a Save, gain 1 Stress.",
+      effect(c) {
+        return {
+          ...c,
+          conditions: addCondition(c.conditions, {
+            conditionType: "deflated",
+          }),
+        };
+      },
   },
   {
     name: "doomed",
-    description: "Gain a new Condition: You feel cursed and unlucky. All Critical Successes are instead Critical Failures."
+    description:
+      "Gain a new Condition: You feel cursed and unlucky. All Critical Successes are instead Critical Failures.",
+      effect(c) {
+        return {
+          ...c,
+          conditions: addCondition(c.conditions, {
+            conditionType: "doomed",
+          }),
+        };
+      },
   },
   {
     name: "paranoid",
-    description: "For the next week, whenever someone joins your group (even if they only left for a short period of time), make a Fear Save or gain 1 Stress."
+    description:
+      "For the next week, whenever someone joins your group (even if they only left for a short period of time), make a Fear Save or gain 1 Stress.",
+      effect(c) {
+        return {
+          ...c,
+          conditions: addCondition(c.conditions, {
+            conditionType: "paranoid",
+          }),
+        };
+      },
   },
   {
     name: "haunted",
-    description: "Gain a new Condition: Something starts visiting you at night. In your dreams. Out of the corner of your eye. And soon it will start making demands."
+    description:
+      "Gain a new Condition: Something starts visiting you at night. In your dreams. Out of the corner of your eye. And soon it will start making demands.",
+      effect(c) {
+        return {
+          ...c,
+          conditions: addCondition(c.conditions, {
+            conditionType: "haunted",
+          }),
+        };
+      },
   },
   {
     name: "death wish",
-    description: "For the next 24 hours, whenever you encounter a stranger or known enemy, you must make a Sanity Save or immediately attack them."
+    description:
+      "For the next 24 hours, whenever you encounter a stranger or known enemy, you must make a Sanity Save or immediately attack them.",
+      effect(c) {
+        return {
+          ...c,
+          conditions: addCondition(c.conditions, {
+            conditionType: "deathWish",
+          }),
+        };
+      },
   },
   {
     name: "prophetic vision",
-    description: "You immediately experience an intense hallucination or vision of an impending terror or horrific event. Gain 1 Stress."
-  },
+    description:
+      "You immediately experience an intense hallucination or vision of an impending terror or horrific event. Gain 1 Stress.",
+      effect(c) {
+        return { ...c, stress: c.stress + 1 };
+      },
+    },
   {
     name: "catatonic",
-    description: "Become unresponsive and unmoving for 2d10 minutes. Reduce Stress by 1d10."
-  },
+    description:
+      "Become unresponsive and unmoving for 2d10 minutes. Reduce Stress by 1d10.",
+      effect(c, log) {
+        const stressLoss = roll(1, 10);
+        log({ type: "SimpleMessage", props: { content: `catatonic for ${roll(2, 10)} minutes. Stress reduced by ${stressLoss}` } })
+        return { ...c, stress: c.stress - stressLoss, conditions: addCondition(c.conditions, { conditionType: "catatonic" }) };
+      },
+    },
   {
     name: "rage",
-    description: "Immediately attack the closest crewmember until you inflict at least 2d10 DMG. If there is no crewmember Close, you attack your surrounding environment."
+    description:
+      "Immediately attack the closest crewmember until you inflict at least 2d10 DMG. If there is no crewmember Close, you attack your surrounding environment.",
+      effect(c, log) {
+        log({ type: "SimpleMessage", props: { content: `minimum damage: ${roll(2, 10)}` } })
+        return { ...c };
+      },
   },
   {
     name: "spiraling",
-    description: "Gain a new Condition: You make Panic Checks with Disadvantage."
+    description:
+      "Gain a new Condition: You make Panic Checks with Disadvantage.",
+      effect(c) {
+        return {
+          ...c,
+          conditions: addCondition(c.conditions, {
+            conditionType: "spiraling",
+          }),
+        };
+      },
   },
   {
     name: "compounding problems",
-    description: "Roll twice on this table. Permanently raise your Minimum Stress by 1."
+    description:
+      "Roll twice on this table. Permanently raise your Minimum Stress by 1.",
+      effect(c, log) {
+        let newChar = c;
+        newChar = applyPanic(newChar, log, roll(1, 20));
+        newChar = applyPanic(newChar, log, roll(1, 20));
+        return { ...newChar, minStress: c.minStress + 1 };
+      },
   },
   {
     name: "heart attack / short circuit (androids)",
-    description: "Permanently lose 1 Wound. Gain [-] on all rolls for 1d10 hours. Permanently raise your Minimum Stress by 1."
+    description:
+      "Permanently lose 1 Wound. Gain [-] on all rolls for 1d10 hours. Permanently raise your Minimum Stress by 1.",
+      effect(c, log) {
+        log({ type: "SimpleMessage", props: { content: `Gain [-] for ${roll(1, 10)} hours` } })
+        return { ...c, maxWounds: c.maxWounds - 1, conditions: addCondition(c.conditions, { conditionType: "heartAttack" }) };
+      },
   },
   {
     name: "collapse",
-    description: "You no longer control this character. Hand your sheet to the Warden and roll up a new character to play."
+    description:
+      "You no longer control this character. Hand your sheet to the Warden and roll up a new character to play.",
+      effect(c) {
+        return { ...c };
+      },
   },
-]
+];
 
 export const allConditionDefinitions: ConditionDefinition[] = [
   {
@@ -159,8 +319,7 @@ export const allConditionDefinitions: ConditionDefinition[] = [
   {
     conditionType: "adrenalineRush",
     name: "Adrenaline Rush",
-    description:
-      ". [+] on all rolls for the next 2d10 minutes. Reduce your Stress by 1d5.",
+    description: "[+] on all rolls for the next 2d10 minutes",
   },
   {
     conditionType: "overwhelmed",

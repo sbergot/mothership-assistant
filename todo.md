@@ -3,6 +3,7 @@
 
 - rolls
   - panic
+    - compounding problems?
   - damage
     - DM can assign damage
   - wound

@@ -1,6 +1,10 @@
+import { GameMessage } from "Messages/types";
 import { useMemo } from "react";
-import { allSkillsDict, allSkillLevelDefinitionDict } from "Rules/data";
+import { allSkillsDict, allSkillLevelDefinitionDict, stressTable } from "Rules/data";
 import {
+  Character,
+  PanicRollAnalysis,
+  PanicRollResult,
   RollMode,
   SaveRollAnalysis,
   SaveRollResult,
@@ -83,6 +87,31 @@ export function analyseSaveRoll(rollResult: SaveRollResult): SaveRollAnalysis {
   };
 }
 
+export function analysePanicRoll(
+  rollResult: PanicRollResult
+): PanicRollAnalysis {
+  const { stress, rollMode, result } = rollResult;
+  let rollValue = result[0];
+  const maxVal = Math.max(...result);
+  const minVal = Math.min(...result);
+  if (rollMode === "advantage") {
+    rollValue = maxVal > stress ? maxVal : minVal;
+  }
+  if (rollMode === "disadvantage") {
+    rollValue = maxVal <= stress ? maxVal : minVal;
+  }
+  const target = stress;
+  const isSuccess = rollValue > target;
+  const rollDescritpion = `panic${rollModeDescr[rollMode]}`;
+  return {
+    ...rollResult,
+    target,
+    rollValue,
+    isSuccess,
+    rollDescritpion,
+  };
+}
+
 export function updateInList<T extends WithId>(
   list: T[],
   id: string,
@@ -113,5 +142,15 @@ export function useBrowserId(): string {
     const newId = uuidv4();
     localStorage.setItem(key, newId);
     return newId;
-  }, [])
+  }, []);
+}
+
+export function applyPanic(
+  character: Character,
+  log: (m: GameMessage) => void,
+  result: number
+) : Character {
+  log({ type: "PanicEffectMessage", props: { result } });
+  const entry = stressTable[result];
+  return entry.effect(character, log);
 }
