@@ -2,6 +2,8 @@ import { GameMessage } from "Messages/types";
 import { ShowSaveRoll } from "./ShowSaveRoll";
 import { ShowSimpleMessage } from "./ShowSimpleMessage";
 import { ShowStatRoll } from "./ShowStatRoll";
+import { ShowPanicRoll } from "./ShowPanicRoll";
+import { ShowPanicEffect } from "./ShowPanicEffect";
 
 interface Props {
   message: GameMessage
@@ -17,11 +19,11 @@ export function ShowMessage({ message }: Props) {
   }
 
   if (message.type === "PanicRollMessage") {
-    return <ShowSaveRoll {...message.props} />
+    return <ShowPanicRoll {...message.props} />
   }
 
   if (message.type === "PanicEffectMessage") {
-    return <ShowSaveRoll {...message.props} />
+    return <ShowPanicEffect {...message.props} />
   }
 
   if (message.type === "SimpleMessage") {
