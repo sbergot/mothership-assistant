@@ -1,4 +1,9 @@
-import { WoundTable, WoundType } from "Rules/types";
+import { Character, WoundTable, WoundType } from "Rules/types";
+import { roll } from "Services/diceServices";
+
+function addBleeding(value: number): (c: Character) => Character {
+    return c => ({...c, bleeding: c.bleeding + 1})
+}
 
 export const allWoundTablesDict: Record<WoundType, WoundTable> = {
   bleeding: {
@@ -25,33 +30,23 @@ export const allWoundTablesDict: Record<WoundType, WoundTable> = {
         },
         {
             description: "Laceration. Bleeding +1.",
-            effect(c) {
-                return c
-            },
+            effect: addBleeding(1),
         },
         {
             description: "Major cut. Bleeding +2.",
-            effect(c) {
-                return c
-            },
+            effect: addBleeding(2),
         },
         {
             description: "Finger/toes severed. Bleeding +3.",
-            effect(c) {
-                return c
-            },
+            effect: addBleeding(3),
         },
         {
             description: "Hand/foot severed. Bleeding +4",
-            effect(c) {
-                return c
-            },
+            effect: addBleeding(4),
         },
         {
             description: "Limb severed. Bleeding +5.",
-            effect(c) {
-                return c
-            },
+            effect: addBleeding(5),
         },
         {
             description: "Major artery cut.",
@@ -146,7 +141,7 @@ export const allWoundTablesDict: Record<WoundType, WoundTable> = {
         {
             description: "Awesome scar. +1 Minimum Stress.",
             effect(c) {
-                return c
+                return {...c, minStress: c.minStress + 1}
             },
         },
         {
@@ -170,13 +165,13 @@ export const allWoundTablesDict: Record<WoundType, WoundTable> = {
         {
             description: "Major Burn. Body Save -2d10.",
             effect(c) {
-                return c
+                return {...c, body: c.body - roll(2, 10)}
             },
         },
         {
             description: "Skin grafts reauired. Body Save -2d10.",
             effect(c) {
-                return c
+                return {...c, body: c.body - roll(2, 10)}
             },
         },
         {
@@ -212,7 +207,7 @@ export const allWoundTablesDict: Record<WoundType, WoundTable> = {
         {
             description: "Awesome scar. +1 Minimum Stress.",
             effect(c) {
-                return c
+                return {...c, minStress: c.minStress + 1}
             },
         },
         {
@@ -230,7 +225,7 @@ export const allWoundTablesDict: Record<WoundType, WoundTable> = {
         {
             description: "Ripped off flesh. -1d10 Strength.",
             effect(c) {
-                return c
+                return {...c, body: c.body - roll(2, 10)}
             },
         },
         {
@@ -241,15 +236,11 @@ export const allWoundTablesDict: Record<WoundType, WoundTable> = {
         },
         {
             description: "Limb severed. Bleeding +5.",
-            effect(c) {
-                return c
-            },
+            effect: addBleeding(5),
         },
         {
             description: "Impaled. Bleeding +6.",
-            effect(c) {
-                return c
-            },
+            effect: addBleeding(6),
         },
         {
             description: "Guts spooled on floor.",
@@ -277,9 +268,7 @@ export const allWoundTablesDict: Record<WoundType, WoundTable> = {
         },
         {
             description: "Bleeding +1.",
-            effect(c) {
-                return c
-            },
+            effect: addBleeding(1),
         },
         {
             description: "Broken rib.",
@@ -295,9 +284,7 @@ export const allWoundTablesDict: Record<WoundType, WoundTable> = {
         },
         {
             description: "Internal bleeding. Bleeding +2.",
-            effect(c) {
-                return c
-            },
+            effect: addBleeding(2),
         },
         {
             description: "Lodged bullet. Surgery required.",
@@ -313,9 +300,7 @@ export const allWoundTablesDict: Record<WoundType, WoundTable> = {
         },
         {
             description: "Major blood loss. Bleeding +4.",
-            effect(c) {
-                return c
-            },
+            effect: addBleeding(4),
         },
         {
             description: "Sucking chest wound.",

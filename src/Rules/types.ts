@@ -169,7 +169,7 @@ export interface ConditionDefinition extends Condition {
 export interface StressEffect {
   name: string;
   description: string;
-  effect(c: Character, log: (m: GameMessage) => void ): Character;
+  effect(c: Character, log: (m: GameMessage) => void): Character;
 }
 
 export type WoundType = "blunt" | "bleeding" | "gunshot" | "fire" | "gore";
@@ -182,7 +182,7 @@ export interface WoundTable {
 
 export interface WoundEffect {
   description: string;
-  effect(c: Character): Character;
+  effect(c: Character, log: (m: GameMessage) => void): Character;
 }
 
 export interface WithId {
@@ -198,8 +198,6 @@ export interface Damage {
 export interface Wound {
   description: string;
   woundType: WoundType;
-  bleed: number;
-  label: string | null;
 }
 
 export interface Armor extends WithId {
@@ -302,6 +300,7 @@ export interface Character extends BaseCharacter {
   conditions: Condition[];
   creationComplete: boolean;
   woundEffects: Wound[];
+  bleeding: number;
   contractors: Contractor[];
 }
 
