@@ -117,6 +117,10 @@ interface PanicCheckMode {
   mode: "PanicCheck"
 }
 
+interface TakeDamageMode {
+  mode: "TakeDamage"
+}
+
 export type Modes =
   | CharacterSheetMode
   | AddConditionMode
@@ -137,7 +141,8 @@ export type Modes =
   | EditStatsMode
   | RollSaveMode
   | RollStatMode
-  | PanicCheckMode;
+  | PanicCheckMode
+  | TakeDamageMode;
 
 export interface SetMode {
   setMode(mode: Modes): void;

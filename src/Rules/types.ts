@@ -195,6 +195,14 @@ export interface Damage {
   rollMode: RollMode;
 }
 
+export type InflictedDamageType = "health" | "wounds"
+
+export interface InflictedDamage {
+  amount: number;
+  type: WoundType;
+  inflicted: InflictedDamageType;
+}
+
 export interface Wound {
   description: string;
   woundType: WoundType;

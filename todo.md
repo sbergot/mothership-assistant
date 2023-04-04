@@ -3,7 +3,7 @@
 
 - rolls
   - panic
-    - compounding problems?
+    - loss of confidence on skill?
   - damage
     - DM can assign damage
   - wound

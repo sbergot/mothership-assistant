@@ -1,12 +1,13 @@
 import { Character, WoundTable, WoundType } from "Rules/types";
 import { roll } from "Services/diceServices";
+import { toDict } from "Services/services";
 
 function addBleeding(value: number): (c: Character) => Character {
-    return c => ({...c, bleeding: c.bleeding + 1})
+    return c => ({...c, bleeding: c.bleeding + value})
 }
 
-export const allWoundTablesDict: Record<WoundType, WoundTable> = {
-  bleeding: {
+export const allWoundTables: WoundTable[] = [
+  {
     name: "bleeding",
     woundType: "bleeding",
     effects: [
@@ -62,7 +63,7 @@ export const allWoundTablesDict: Record<WoundType, WoundTable> = {
         },
     ],
   },
-  blunt: {
+  {
     name: "blunt force",
     woundType: "blunt",
     effects: [
@@ -128,7 +129,7 @@ export const allWoundTablesDict: Record<WoundType, WoundTable> = {
         },
     ],
   },
-  fire: {
+  {
     name: "fire & explosives",
     woundType: "fire",
     effects: [
@@ -194,7 +195,7 @@ export const allWoundTablesDict: Record<WoundType, WoundTable> = {
         },
     ],
   },
-  gore: {
+  {
     name: "gore & massive",
     woundType: "gore",
     effects: [
@@ -256,7 +257,7 @@ export const allWoundTablesDict: Record<WoundType, WoundTable> = {
         },
     ],
   },
-  gunshot: {
+  {
     name: "gunshot",
     woundType: "gunshot",
     effects: [
@@ -316,4 +317,6 @@ export const allWoundTablesDict: Record<WoundType, WoundTable> = {
         },
     ],
   },
-};
+];
+
+export const allWoundTablesDict: Record<WoundType, WoundTable> = toDict(allWoundTables, wt => wt.woundType);
