@@ -125,8 +125,6 @@ export type ConditionType =
   | "spiraling"
   | "heartAttack";
 
-export type WoundType = "bleeding";
-
 export type ContractorType =
   | "archaeologist"
   | "asteroidMiner"
@@ -172,6 +170,19 @@ export interface StressEffect {
   name: string;
   description: string;
   effect(c: Character, log: (m: GameMessage) => void ): Character;
+}
+
+export type WoundType = "blunt" | "bleeding" | "gunshot" | "fire" | "gore";
+
+export interface WoundTable {
+  woundType: WoundType;
+  name: string;
+  effects: WoundEffect[];
+}
+
+export interface WoundEffect {
+  description: string;
+  effect(c: Character): Character;
 }
 
 export interface WithId {
