@@ -346,6 +346,11 @@ export interface StatRollAnalysis extends StatRollResult {
   rollDescritpion: string;
 }
 
+export interface AttackRollResult {
+  roll: StatRollResult;
+  weaponId: string;
+}
+
 export interface SaveRoll {
   save: { name: SaveType; value: number };
   rollMode: RollMode;

@@ -29,6 +29,7 @@ import { ViewWeapon } from "./ViewWeapon";
 import { Weapons } from "./Weapons";
 import { RollPanic } from "./RollPanic";
 import { TakeDamage } from "./TakeDamage";
+import { updateInList } from "helpers";
 
 export function CharacterSheet({
   character,
@@ -204,7 +205,20 @@ export function CharacterSheet({
         setCharacter={setCharacter}
         log={log}
         setMode={setMode}
-        onRoll={mode.onRoll}
+      />
+    );
+  }
+
+  if (mode.mode === "RollAttack") {
+    const { weaponId } = mode;
+
+    return (
+      <RollStat
+        character={character}
+        setCharacter={setCharacter}
+        log={log}
+        setMode={setMode}
+        weaponId={weaponId}
       />
     );
   }

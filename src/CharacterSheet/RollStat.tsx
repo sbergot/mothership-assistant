@@ -1,4 +1,4 @@
-import { analyseStatRoll } from "helpers";
+import { analyseStatRoll, updateInList } from "helpers";
 import { Log } from "Messages/types";
 import { useState } from "react";
 import { allSkillsDict, allStats } from "Rules/data";
@@ -15,7 +15,7 @@ import { SelectableRating, Skill } from "UI/Molecules";
 import { ReadWriteCharacter, SetMode } from "./types";
 
 interface Props extends ReadWriteCharacter, Log, SetMode {
-  onRoll?(): void;
+  weaponId?: string;
 }
 
 function rollStat(roll: StatRoll): StatRollResult {
@@ -31,11 +31,24 @@ export function RollStat({
   setCharacter,
   log,
   setMode,
-  onRoll,
+  weaponId,
 }: Props) {
   const [stat, setStat] = useState<StatType>("combat");
   const [skill, setSkill] = useState<SkillType | null>(null);
   const [rollMode, setRollMode] = useState<RollMode>("normal");
+
+  function spendAmmo() {
+    if (weaponId === undefined) {
+      return;
+    }
+    setCharacter((c) => ({
+      ...c,
+      weapons: updateInList(c.weapons, weaponId, (w) => ({
+        ...w,
+        shots: w.shots ? w.shots - 1 : null,
+      })),
+    }));
+  }
 
   return (
     <Block variant="light">
@@ -97,17 +110,22 @@ export function RollStat({
               skill,
               rollMode,
             });
-            log({
-              type: "StatRollMessage",
-              props: results,
-            });
+            log(
+              weaponId === undefined
+                ? {
+                    type: "StatRollMessage",
+                    props: results,
+                  }
+                : {
+                    type: "AttackRollMessage",
+                    props: { weaponId, roll: results },
+                  }
+            );
             const analysis = analyseStatRoll(results);
             if (!analysis.isSuccess) {
-              setCharacter(c => ({...c, stress: c.stress + 1}))
+              setCharacter((c) => ({ ...c, stress: c.stress + 1 }));
             }
-            if (onRoll) {
-              onRoll();
-            }
+            spendAmmo();
             setMode({ mode: "CharacterSheet" });
           }}
         >

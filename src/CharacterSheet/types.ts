@@ -106,7 +106,11 @@ interface EditStatsMode {
 
 interface RollStatMode {
   mode: "RollStat"
-  onRoll?(): void;
+}
+
+interface RollAttackMode {
+  mode: "RollAttack"
+  weaponId: string
 }
 
 interface RollSaveMode {
@@ -141,6 +145,7 @@ export type Modes =
   | EditStatsMode
   | RollSaveMode
   | RollStatMode
+  | RollAttackMode
   | PanicCheckMode
   | TakeDamageMode;
 

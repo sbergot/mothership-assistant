@@ -5,6 +5,7 @@ import { ShowStatRoll } from "./ShowStatRoll";
 import { ShowPanicRoll } from "./ShowPanicRoll";
 import { ShowPanicEffect } from "./ShowPanicEffect";
 import { ShowWoundEffect } from "./ShowWoundEffect";
+import { ShowAttackRoll } from "./ShowAttackRoll";
 
 interface Props {
   message: GameMessage
@@ -13,6 +14,10 @@ interface Props {
 export function ShowMessage({ message }: Props) {
   if (message.type === "StatRollMessage") {
     return <ShowStatRoll {...message.props} />
+  }
+
+  if (message.type === "AttackRollMessage") {
+    return <ShowAttackRoll {...message.props} />
   }
 
   if (message.type === "SaveRollMessage") {

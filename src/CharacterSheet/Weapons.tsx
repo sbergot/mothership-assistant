@@ -8,22 +8,13 @@ export function Weapons({
   setCharacter,
   setMode,
 }: ReadWriteBaseChar & SetMode) {
-  function spendAmmo(weaponId: string) {
-    setCharacter((c) => ({
-      ...c,
-      weapons: updateInList(c.weapons, weaponId, (w) => ({
-        ...w,
-        shots: w.shots ? w.shots - 1 : null,
-      })),
-    }));
-  }
   return (
     <Block variant="light">
       <Title>Weapons</Title>
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.weapons.map((w) => (
-          <Weapon key={w.id} weapon={w} setMode={setMode} spendAmmo={() => spendAmmo(w.id)} />
+          <Weapon key={w.id} weapon={w} setMode={setMode} />
         ))}
       </div>
       <div className="flex justify-center items-center gap-8 mt-4">
@@ -41,10 +32,9 @@ export function Weapons({
 
 interface WeaponProps extends SetMode {
   weapon: WeaponType;
-  spendAmmo(): void;
 }
 
-function Weapon({ weapon, setMode, spendAmmo }: WeaponProps) {
+function Weapon({ weapon, setMode }: WeaponProps) {
   const hasAmmo = weapon.magazineSize !== null;
   const justify = hasAmmo ? "justify-between" : "justify-center";
   return (
@@ -71,7 +61,7 @@ function Weapon({ weapon, setMode, spendAmmo }: WeaponProps) {
           />
         )}
         <Button
-          onClick={() => setMode({ mode: "RollStat", onRoll: spendAmmo })}
+          onClick={() => setMode({ mode: "RollAttack", weaponId: weapon.id })}
           disabled={hasAmmo && weapon.shots === 0}
           dark
           rounded

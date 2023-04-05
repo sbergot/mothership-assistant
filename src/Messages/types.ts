@@ -1,5 +1,6 @@
 import { ReadCharacter } from "CharacterSheet/types";
 import {
+  AttackRollResult,
   PanicEffect,
   PanicRollResult,
   SaveRollResult,
@@ -27,6 +28,7 @@ export type SyncMessage =
 
 export type GameMessage =
   | Message<"StatRollMessage", StatRollResult>
+  | Message<"AttackRollMessage", AttackRollResult>
   | Message<"SaveRollMessage", SaveRollResult>
   | Message<"PanicRollMessage", PanicRollResult>
   | Message<"PanicEffectMessage", PanicEffect>
