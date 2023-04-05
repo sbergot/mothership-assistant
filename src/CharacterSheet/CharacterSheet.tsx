@@ -28,6 +28,7 @@ import { ViewEquipment } from "./ViewEquipment";
 import { ViewWeapon } from "./ViewWeapon";
 import { Weapons } from "./Weapons";
 import { RollPanic } from "./RollPanic";
+import { TakeDamage } from "./TakeDamage";
 
 export function CharacterSheet({
   character,
@@ -223,6 +224,16 @@ export function CharacterSheet({
     return (
       <RollPanic
         character={character}
+        setCharacter={setCharacter}
+        log={log}
+        setMode={setMode}
+      />
+    );
+  }
+
+  if (mode.mode === "TakeDamage") {
+    return (
+      <TakeDamage
         setCharacter={setCharacter}
         log={log}
         setMode={setMode}

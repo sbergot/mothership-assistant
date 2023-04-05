@@ -1,8 +1,15 @@
 import { GameMessage } from "Messages/types";
 import { useMemo } from "react";
-import { allSkillsDict, allSkillLevelDefinitionDict, stressTable } from "Rules/data";
+import {
+  allSkillsDict,
+  allSkillLevelDefinitionDict,
+  stressTable,
+} from "Rules/data";
+import { allWoundTablesDict } from "Rules/Data/wounds";
 import {
   Character,
+  Damage,
+  InflictedDamage,
   PanicRollAnalysis,
   PanicRollResult,
   RollMode,
@@ -12,6 +19,7 @@ import {
   StatRollResult,
   WithId,
 } from "Rules/types";
+import { roll } from "Services/diceServices";
 import { uuidv4 } from "Services/services";
 
 export function formatCredits(c: number): string {
@@ -149,8 +157,39 @@ export function applyPanic(
   character: Character,
   log: (m: GameMessage) => void,
   result: number
-) : Character {
+): Character {
   log({ type: "PanicEffectMessage", props: { result } });
   const entry = stressTable[result];
   return entry.effect(character, log);
+}
+
+export function applyDamage(
+  character: Character,
+  damage: InflictedDamage
+): Character {
+  const newChar = { ...character };
+  let woundsNbr = 0;
+  if (damage.inflicted === "health") {
+    let damageLeft = damage.amount;
+    while (damageLeft >= newChar.health) {
+      damageLeft -= newChar.health;
+      newChar.health = newChar.maxHealth;
+      newChar.wounds += 1;
+      woundsNbr += 1;
+    }
+    newChar.health -= damageLeft;
+  }
+
+  if (damage.inflicted === "wounds") {
+    woundsNbr = damage.amount;
+    newChar.wounds += damage.amount;
+  }
+
+  const woundTable = allWoundTablesDict[damage.type];
+
+  for (let i = 0; i < woundsNbr; i++) {
+    const woundEffect = woundTable.effects[roll(1, 10)];
+    
+  }
+  return newChar;
 }
