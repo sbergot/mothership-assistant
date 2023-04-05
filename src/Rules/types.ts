@@ -383,6 +383,11 @@ export interface PanicEffect {
   result: number;
 }
 
+export interface WoundEffectEntry {
+  woundRoll: number;
+  type: WoundType;
+}
+
 export interface Npc extends WithId {
   name: string;
   combat: number;

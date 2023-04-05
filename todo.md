@@ -5,7 +5,8 @@
   - panic
     - loss of confidence on skill?
   - damage
-    - DM can assign damage
+    - DM can assign damage to NPC/monster
+  - weapon damage
   - wound
   - rest
   - death

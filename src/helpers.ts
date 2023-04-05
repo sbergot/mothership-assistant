@@ -189,7 +189,9 @@ export function applyDamage(
   const woundTable = allWoundTablesDict[damage.type];
 
   for (let i = 0; i < woundsNbr; i++) {
-    const woundEffect = woundTable.effects[roll(1, 10)];
+    const woundRoll = roll(1, 10);
+    const woundEffect = woundTable.effects[woundRoll - 1];
+    log({ type: "WoundEffectMessage", props: { type: damage.type, woundRoll } })
     newChar = woundEffect.effect(newChar, log);
   }
 

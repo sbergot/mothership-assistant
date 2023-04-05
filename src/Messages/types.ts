@@ -1,5 +1,11 @@
 import { ReadCharacter } from "CharacterSheet/types";
-import { Character, PanicEffect, PanicRollResult, SaveRollResult, StatRollResult } from "Rules/types";
+import {
+  PanicEffect,
+  PanicRollResult,
+  SaveRollResult,
+  StatRollResult,
+  WoundEffectEntry,
+} from "Rules/types";
 
 export interface Message<T extends string, P> {
   type: T;
@@ -24,6 +30,7 @@ export type GameMessage =
   | Message<"SaveRollMessage", SaveRollResult>
   | Message<"PanicRollMessage", PanicRollResult>
   | Message<"PanicEffectMessage", PanicEffect>
+  | Message<"WoundEffectMessage", WoundEffectEntry>
   | Message<"SimpleMessage", SimpleMessage>;
 
 export type StampedMessage = GameMessage & { author?: string; time: string };
