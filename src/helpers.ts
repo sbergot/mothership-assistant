@@ -165,9 +165,10 @@ export function applyPanic(
 
 export function applyDamage(
   character: Character,
+  log: (m: GameMessage) => void,
   damage: InflictedDamage
 ): Character {
-  const newChar = { ...character };
+  let newChar = { ...character };
   let woundsNbr = 0;
   if (damage.inflicted === "health") {
     let damageLeft = damage.amount;
@@ -189,7 +190,8 @@ export function applyDamage(
 
   for (let i = 0; i < woundsNbr; i++) {
     const woundEffect = woundTable.effects[roll(1, 10)];
-    
+    newChar = woundEffect.effect(newChar, log);
   }
+
   return newChar;
 }
