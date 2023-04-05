@@ -71,7 +71,7 @@ export function TakeDamage({
             dark
             rounded
             onClick={() => {
-              setCharacter(c => applyDamage(c, damage));
+              setCharacter(c => applyDamage(c, log, damage));
               setMode({ mode: "CharacterSheet" });
             }}
           >
