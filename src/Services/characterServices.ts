@@ -22,6 +22,7 @@ export function initCharacter(): Character {
     wounds: 0,
     maxHealth: 0,
     health: 0,
+    bleeding: 0,
     credits: 0,
     trinket: "",
     patch: "",

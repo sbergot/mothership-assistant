@@ -265,7 +265,7 @@ export function CharacterSheet({
       />
       <Stats character={character} setMode={setMode} />
       <Skills character={character} setMode={setMode} />
-      <Weapons character={character} setMode={setMode} setCharacter={setCharacter} />
+      <Weapons character={character} setMode={setMode} />
       <Armor character={character} setMode={setMode} />
       <Equipment character={character} setMode={setMode} />
       <Contractors character={character} setMode={setMode} />

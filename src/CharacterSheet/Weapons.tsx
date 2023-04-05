@@ -1,13 +1,11 @@
 import { Block, Button, Divider, Progress, Title } from "UI/Atoms";
 import { Weapon as WeaponType } from "Rules/types";
-import { ReadWriteBaseChar, SetMode } from "./types";
-import { updateInList } from "helpers";
+import { ReadBaseChar, SetMode } from "./types";
 
 export function Weapons({
   character,
-  setCharacter,
   setMode,
-}: ReadWriteBaseChar & SetMode) {
+}: ReadBaseChar & SetMode) {
   return (
     <Block variant="light">
       <Title>Weapons</Title>
