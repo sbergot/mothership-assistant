@@ -7,6 +7,7 @@
   - damage
     - DM can assign damage to NPC/monster
   - weapon damage
+    - Character can roll damage from a button on the attack roll message (only if they rolled)
   - wound
   - rest
   - death

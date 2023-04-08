@@ -197,3 +197,10 @@ export function applyDamage(
 
   return newChar;
 }
+
+export function rollDamages(damages: Damage): InflictedDamage {
+  let amount = 0;
+  if (damages.damageType === "d100") {
+    
+  }
+}

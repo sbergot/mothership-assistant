@@ -173,7 +173,7 @@ export function DmSession({ game, setGame }: Props) {
         ))}
         <DmSheet game={game} setGame={setGame} characters={characters} />
       </div>
-      <MessagePanel messages={messages} />
+      <MessagePanel messages={messages} authorId={"warden"} contextType="warden"/>
     </div>
   );
 }

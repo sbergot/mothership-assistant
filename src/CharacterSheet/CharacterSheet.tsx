@@ -21,7 +21,7 @@ import { TrainSkill } from "./Skills/TrainSkill";
 import { ViewSkill } from "./Skills/ViewSkill";
 import { Stats } from "./Stats";
 import { Status } from "./Status";
-import { Modes, ReadWriteCharacter, Wallet } from "./types";
+import { Modes, ReadWriteCharacter, SetMode, Wallet } from "./types";
 import { ViewArmor } from "./ViewArmor";
 import { ViewCondition } from "./ViewCondition";
 import { ViewEquipment } from "./ViewEquipment";
@@ -35,8 +35,9 @@ export function CharacterSheet({
   character,
   setCharacter,
   log,
-}: ReadWriteCharacter & Log) {
-  const [mode, setMode] = useState<Modes>({ mode: "CharacterSheet" });
+  mode,
+  setMode
+}: ReadWriteCharacter & Log & SetMode & { mode: Modes }) {
   function back() {
     setMode({ mode: "CharacterSheet" });
   }

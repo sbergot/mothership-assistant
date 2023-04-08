@@ -1,4 +1,4 @@
-import { GameMessage } from "Messages/types";
+import { GameMessage, MessageContext } from "Messages/types";
 import { ShowSaveRoll } from "./ShowSaveRoll";
 import { ShowSimpleMessage } from "./ShowSimpleMessage";
 import { ShowStatRoll } from "./ShowStatRoll";
@@ -8,37 +8,38 @@ import { ShowWoundEffect } from "./ShowWoundEffect";
 import { ShowAttackRoll } from "./ShowAttackRoll";
 
 interface Props {
-  message: GameMessage
+  message: GameMessage;
+  context: MessageContext;
 }
 
-export function ShowMessage({ message }: Props) {
+export function ShowMessage({ message, context }: Props) {
   if (message.type === "StatRollMessage") {
-    return <ShowStatRoll {...message.props} />
+    return <ShowStatRoll {...message.props} />;
   }
 
   if (message.type === "AttackRollMessage") {
-    return <ShowAttackRoll {...message.props} />
+    return <ShowAttackRoll {...message.props} {...context} />;
   }
 
   if (message.type === "SaveRollMessage") {
-    return <ShowSaveRoll {...message.props} />
+    return <ShowSaveRoll {...message.props} />;
   }
 
   if (message.type === "PanicRollMessage") {
-    return <ShowPanicRoll {...message.props} />
+    return <ShowPanicRoll {...message.props} />;
   }
 
   if (message.type === "PanicEffectMessage") {
-    return <ShowPanicEffect {...message.props} />
+    return <ShowPanicEffect {...message.props} />;
   }
 
   if (message.type === "WoundEffectMessage") {
-    return <ShowWoundEffect {...message.props} />
+    return <ShowWoundEffect {...message.props} />;
   }
 
   if (message.type === "SimpleMessage") {
-    return <ShowSimpleMessage {...message.props} />
+    return <ShowSimpleMessage {...message.props} />;
   }
 
-  return <div>unknown message type</div>
+  return <div>unknown message type</div>;
 }

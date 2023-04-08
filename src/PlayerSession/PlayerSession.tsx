@@ -1,5 +1,5 @@
 import { CharacterSheet } from "CharacterSheet";
-import { ReadWriteCharacter } from "CharacterSheet/types";
+import { Modes, ReadWriteCharacter, SetMode } from "CharacterSheet/types";
 import { useBrowserId } from "helpers";
 import { MessagePanel } from "Messages/MessagePanel";
 import {
@@ -19,7 +19,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
   const debounceRef = useRef(false);
   const peerRef = useRef<Peer | null>(null);
   const connRef = useRef<DataConnection | null>(null);
-  const stub = useLog(character.name);
+  const stub = useLog(character.name, character.id);
 
   function initialize() {
     // Create own peer object with connection to shared PeerJS server
@@ -62,7 +62,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
     // Create connection to destination peer specified in the input field
     let conn = peerRef.current!.connect(serverId, {
       reliable: true,
-      metadata: { browserId }
+      metadata: { browserId },
     });
     connRef.current = conn;
 
@@ -99,7 +99,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
     });
     conn.on("error", (e) => {
       console.error("connexion error", e);
-    })
+    });
   }
 
   function getNow(): string {
@@ -113,6 +113,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
     return {
       ...m,
       author: character.name,
+      authorId: character.id,
       time: getNow(),
     };
   }
@@ -130,8 +131,12 @@ function usePlayerConnection(sessionCode: string, character: Character) {
   }
 
   useEffect(() => {
-    if (!sessionCode) { return }
-    if (debounceRef.current) { return }
+    if (!sessionCode) {
+      return;
+    }
+    if (debounceRef.current) {
+      return;
+    }
     debounceRef.current = true;
     initialize();
     setTimeout(() => join(sessionCode), 1000);
@@ -141,7 +146,9 @@ function usePlayerConnection(sessionCode: string, character: Character) {
     syncLog({ type: "UpdateChar", props: { character } });
   }, [character]);
 
-  return !!sessionCode ?  { log, messages } : { log: stub.log, messages: stub.messages };
+  return !!sessionCode
+    ? { log, messages }
+    : { log: stub.log, messages: stub.messages };
 }
 
 interface Props extends ReadWriteCharacter {
@@ -149,10 +156,14 @@ interface Props extends ReadWriteCharacter {
 }
 
 export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
-  const { log, messages } = usePlayerConnection(
-    sessionCode,
-    character
-  );
+  const { log, messages } = usePlayerConnection(sessionCode, character);
+  const [mode, setMode] = useState<Modes>({ mode: "CharacterSheet" });
+  const playerContext: ReadWriteCharacter & SetMode = {
+    character,
+    setCharacter,
+    setMode,
+  };
+
   return (
     <div className="flex gap-2">
       <div className="max-w-3xl w-full">
@@ -160,9 +171,16 @@ export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
           character={character}
           setCharacter={setCharacter}
           log={log}
+          mode={mode}
+          setMode={setMode}
         />
       </div>
-      <MessagePanel messages={messages} />
+      <MessagePanel
+        messages={messages}
+        authorId={character.id}
+        contextType="player"
+        playerContext={playerContext}
+      />
     </div>
   );
 }

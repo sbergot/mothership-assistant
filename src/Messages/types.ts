@@ -1,4 +1,8 @@
-import { ReadCharacter } from "CharacterSheet/types";
+import {
+  ReadCharacter,
+  ReadWriteCharacter,
+  SetMode,
+} from "CharacterSheet/types";
 import {
   AttackRollResult,
   PanicEffect,
@@ -7,6 +11,8 @@ import {
   StatRollResult,
   WoundEffectEntry,
 } from "Rules/types";
+
+export type ContextType = "player" | "warden";
 
 export interface Message<T extends string, P> {
   type: T;
@@ -35,7 +41,23 @@ export type GameMessage =
   | Message<"WoundEffectMessage", WoundEffectEntry>
   | Message<"SimpleMessage", SimpleMessage>;
 
-export type StampedMessage = GameMessage & { author?: string; time: string };
+export interface PlayerMessageContext extends ReadWriteCharacter, SetMode {
+  type: "player";
+  isOwnMessage: boolean;
+}
+
+export interface WardenMessageContext {
+  type: "warden";
+  isOwnMessage: boolean;
+}
+
+export type MessageContext = PlayerMessageContext | WardenMessageContext;
+
+export type StampedMessage = GameMessage & {
+  authorId: string;
+  author: string;
+  time: string;
+};
 
 export type AnyMessage = StampedMessage | SyncMessage;
 

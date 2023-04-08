@@ -1,7 +1,9 @@
 import { analyseStatRoll } from "helpers";
 import { AttackRollResult, StatRollResult } from "Rules/types";
+import { MessageContext } from "./types";
+import { Button } from "UI/Atoms";
 
-export function ShowAttackRoll({ roll, weaponId }: AttackRollResult) {
+export function ShowAttackRoll({ roll, weaponId, isOwnMessage }: AttackRollResult & MessageContext) {
   const { rollDescritpion, rollValue, target, isSuccess, result } =
     analyseStatRoll(roll);
   return (
@@ -12,7 +14,8 @@ export function ShowAttackRoll({ roll, weaponId }: AttackRollResult) {
           {r}
         </span>
       ))}
-      vs {target} - <span>{isSuccess ? "Success" : "Failure"}!</span>
+      <span>vs {target} - {isSuccess ? "Success" : "Failure"}!</span>
+      {isSuccess && isOwnMessage && <Button onClick={() => {}}>Deal damage</Button>}
     </div>
   );
 }

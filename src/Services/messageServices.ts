@@ -8,13 +8,14 @@ function getNow(): string {
   return nowLocal.toISOString().split(".")[0];
 }
 
-export function useLog(author: string) {
+export function useLog(author: string, authorId: string) {
   const [messages, setMessages] = useState<StampedMessage[]>([]);
 
   function stamp(m: GameMessage): StampedMessage {
     return {
       ...m,
-      author: author,
+      author,
+      authorId,
       time: getNow(),
     };
   }
