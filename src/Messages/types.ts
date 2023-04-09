@@ -5,6 +5,7 @@ import {
 } from "CharacterSheet/types";
 import {
   AttackRollResult,
+  InflictedDamage,
   PanicEffect,
   PanicRollResult,
   SaveRollResult,
@@ -38,17 +39,23 @@ export type GameMessage =
   | Message<"SaveRollMessage", SaveRollResult>
   | Message<"PanicRollMessage", PanicRollResult>
   | Message<"PanicEffectMessage", PanicEffect>
+  | Message<"DamageMessage", InflictedDamage>
   | Message<"WoundEffectMessage", WoundEffectEntry>
   | Message<"SimpleMessage", SimpleMessage>;
 
-export interface PlayerMessageContext extends ReadWriteCharacter, SetMode {
-  type: "player";
+export interface BaseMessageContext extends Log {
   isOwnMessage: boolean;
 }
 
-export interface WardenMessageContext {
+export interface PlayerMessageContext
+  extends BaseMessageContext,
+    ReadWriteCharacter,
+    SetMode {
+  type: "player";
+}
+
+export interface WardenMessageContext extends BaseMessageContext {
   type: "warden";
-  isOwnMessage: boolean;
 }
 
 export type MessageContext = PlayerMessageContext | WardenMessageContext;

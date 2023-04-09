@@ -3,6 +3,7 @@ import { Block } from "UI/Atoms";
 import { ShowMessage } from "./ShowMessage";
 import {
   ContextType,
+  Log,
   MessageContext,
   PlayerMessageContext,
   StampedMessage,
@@ -14,10 +15,17 @@ interface Props {
   messages: StampedMessage[];
   authorId: string;
   contextType: ContextType;
-  playerContext?: ReadWriteCharacter & SetMode
+  commonContext: Log;
+  playerContext?: ReadWriteCharacter & SetMode;
 }
 
-export function MessagePanel({ messages, authorId, contextType, playerContext }: Props) {
+export function MessagePanel({
+  messages,
+  authorId,
+  contextType,
+  commonContext,
+  playerContext,
+}: Props) {
   const messagesEnd = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -38,8 +46,17 @@ export function MessagePanel({ messages, authorId, contextType, playerContext }:
           const isOwnMessage = m.authorId === authorId;
           const context: MessageContext =
             contextType === "player"
-              ? ({ type: "player", isOwnMessage, ...playerContext! } satisfies PlayerMessageContext)
-              : ({ type: "warden", isOwnMessage } satisfies WardenMessageContext);
+              ? ({
+                  type: "player",
+                  isOwnMessage,
+                  ...commonContext,
+                  ...playerContext!,
+                } satisfies PlayerMessageContext)
+              : ({
+                  type: "warden",
+                  isOwnMessage,
+                  ...commonContext,
+                } satisfies WardenMessageContext);
           return m.type === "SimpleMessage" ? (
             <div key={i} className="text-sm">
               <span className="text-mother-4">{stamp}</span> - {m.props.content}

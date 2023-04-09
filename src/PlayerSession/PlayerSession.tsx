@@ -1,10 +1,11 @@
 import { CharacterSheet } from "CharacterSheet";
 import { Modes, ReadWriteCharacter, SetMode } from "CharacterSheet/types";
-import { useBrowserId } from "helpers";
+import { stamp, useBrowserId } from "helpers";
 import { MessagePanel } from "Messages/MessagePanel";
 import {
   AnyMessage,
   GameMessage,
+  Log,
   StampedMessage,
   SyncMessage,
 } from "Messages/types";
@@ -102,25 +103,9 @@ function usePlayerConnection(sessionCode: string, character: Character) {
     });
   }
 
-  function getNow(): string {
-    const now = new Date();
-    const offset = now.getTimezoneOffset();
-    const nowLocal = new Date(now.getTime() - offset * 60 * 1000);
-    return nowLocal.toISOString().split(".")[0];
-  }
-
-  function stamp(m: GameMessage): StampedMessage {
-    return {
-      ...m,
-      author: character.name,
-      authorId: character.id,
-      time: getNow(),
-    };
-  }
-
   function log(m: GameMessage) {
     if (connRef.current) {
-      connRef.current.send(stamp(m));
+      connRef.current.send(stamp(character, m));
     }
   }
 
@@ -164,6 +149,8 @@ export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
     setMode,
   };
 
+  const commonContext: Log = { log };
+
   return (
     <div className="flex gap-2">
       <div className="max-w-3xl w-full">
@@ -179,6 +166,7 @@ export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
         messages={messages}
         authorId={character.id}
         contextType="player"
+        commonContext={commonContext}
         playerContext={playerContext}
       />
     </div>

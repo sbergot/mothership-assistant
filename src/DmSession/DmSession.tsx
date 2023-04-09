@@ -7,10 +7,13 @@ import { Title } from "UI/Atoms";
 import {
   AnyMessage,
   ConnectionMetadata,
+  GameMessage,
+  Log,
   StampedMessage,
   SyncMessage,
 } from "Messages/types";
 import { ButtonIcon, CopyIcon } from "UI/Icons";
+import { stamp } from "helpers";
 
 interface Props {
   game: Game;
@@ -36,14 +39,17 @@ function useDmConnection(
   const messagesRef = useRef(messages);
   messagesRef.current = messages;
   const debounceRef = useRef(false);
+  const connRef = useRef<DataConnection | null>(null);
 
-  const connectionsRef = useRef<Record<string, DataConnection>>({});
+  const playerConnectionsRef = useRef<Record<string, DataConnection>>({});
 
   function initialize() {
-    if (debounceRef.current) { return }
+    if (debounceRef.current) {
+      return;
+    }
     debounceRef.current = true;
     const peer = new Peer();
-    connectionsRef.current = {};
+    playerConnectionsRef.current = {};
     setConnectionsState({});
 
     peer.on("open", function (id) {
@@ -60,7 +66,7 @@ function useDmConnection(
     });
     peer.on("close", function () {
       console.log("Peer destroyed");
-      connectionsRef.current = {};
+      playerConnectionsRef.current = {};
       setConnectionsState({});
     });
     peer.on("error", function (err) {
@@ -68,7 +74,7 @@ function useDmConnection(
     });
     function ready(conn: DataConnection) {
       const metadata: ConnectionMetadata = conn.metadata;
-      connectionsRef.current[metadata.browserId] = conn;
+      playerConnectionsRef.current[metadata.browserId] = conn;
       setConnectionsState((cs) => ({
         ...cs,
         [metadata.browserId]: {
@@ -105,14 +111,14 @@ function useDmConnection(
           return;
         }
         storeMessage(typeData);
-        Object.values(connectionsRef.current).forEach((c) => {
+        Object.values(playerConnectionsRef.current).forEach((c) => {
           c.send(typeData);
         });
       });
 
       conn.on("close", function () {
         console.log("Connection destroyed");
-        delete connectionsRef.current[metadata.browserId];
+        delete playerConnectionsRef.current[metadata.browserId];
         setConnectionsState((cs) => ({
           ...cs,
           [metadata.browserId]: {
@@ -136,6 +142,12 @@ function useDmConnection(
     }
   }
 
+  function log(m: GameMessage) {
+    if (connRef.current) {
+      connRef.current.send(stamp({ id: "warden", name: "warden" }, m));
+    }
+  }
+
   useEffect(() => {
     initialize();
   }, []);
@@ -144,11 +156,12 @@ function useDmConnection(
     sessionCode,
     messages,
     connections: Object.values(connectionsState),
+    log,
   };
 }
 
 export function DmSession({ game, setGame }: Props) {
-  const { sessionCode, messages, connections } = useDmConnection(
+  const { sessionCode, messages, connections, log } = useDmConnection(
     game.messages,
     (m) => {
       setGame((g) => ({ ...g, messages: [...g.messages, m] }));
@@ -159,21 +172,34 @@ export function DmSession({ game, setGame }: Props) {
     .map((c) => c.character)
     .filter((x): x is Character => x !== null);
 
+  const commonContext: Log = { log };
+
   return (
     <div className="flex gap-2">
       <div className="max-w-2xl w-full">
         <Title>
           <span className="normal-case">Session code: {sessionCode}</span>
-          <ButtonIcon onClick={() => { navigator.clipboard.writeText(sessionCode) }}><CopyIcon /></ButtonIcon>
+          <ButtonIcon
+            onClick={() => {
+              navigator.clipboard.writeText(sessionCode);
+            }}
+          >
+            <CopyIcon />
+          </ButtonIcon>
         </Title>
         {connections.map(({ id, character, state }) => (
           <div key={id}>
-            {id} - { character?.name ?? "???" } - {state}
+            {id} - {character?.name ?? "???"} - {state}
           </div>
         ))}
         <DmSheet game={game} setGame={setGame} characters={characters} />
       </div>
-      <MessagePanel messages={messages} authorId={"warden"} contextType="warden"/>
+      <MessagePanel
+        messages={messages}
+        authorId={"warden"}
+        contextType="warden"
+        commonContext={commonContext}
+      />
     </div>
   );
 }

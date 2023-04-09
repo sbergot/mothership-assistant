@@ -18,7 +18,7 @@ export function ShowMessage({ message, context }: Props) {
   }
 
   if (message.type === "AttackRollMessage") {
-    return <ShowAttackRoll {...message.props} {...context} />;
+    return <ShowAttackRoll {...message.props} context={context} />;
   }
 
   if (message.type === "SaveRollMessage") {
