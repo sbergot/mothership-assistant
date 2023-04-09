@@ -84,7 +84,7 @@ export type WeaponRangeType = "adjacent" | "close" | "long";
 
 export type CriticalType =
   | "Gunshot"
-  | "Gunshot[+]"
+  | "Gunshot [+]"
   | "Bleeding [+]"
   | "Blunt Force"
   | "Blunt Force [+]"
@@ -95,6 +95,11 @@ export type CriticalType =
   | "Bleeding [+] or Gore [+]"
   | "Gore [+]"
   | "Bleeding + Gore";
+
+export interface NormalizedCriticalType {
+  woundType: WoundType;
+  rollMode: RollMode;
+}
 
 export type WeaponType = string;
 
@@ -198,8 +203,8 @@ export interface Damage {
 export type InflictedDamageType = "health" | "wounds"
 
 export interface InflictedDamage {
-  amount: number;
-  type: WoundType;
+  amount: RollWithMode;
+  criticalType: CriticalType;
   inflicted: InflictedDamageType;
 }
 
@@ -351,6 +356,11 @@ export interface AttackRollResult {
   weaponId: string;
 }
 
+export interface RollWithMode {
+  rolls: number[];
+  result: number;
+}
+
 export interface SaveRoll {
   save: { name: SaveType; value: number };
   rollMode: RollMode;
@@ -389,7 +399,7 @@ export interface PanicEffect {
 }
 
 export interface WoundEffectEntry {
-  woundRoll: number;
+  woundRoll: RollWithMode;
   type: WoundType;
 }
 

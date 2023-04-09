@@ -543,7 +543,7 @@ export const allWeapons: WeaponExt[] = [
     damageString: "4d10[+] DMG",
     shots: 5,
     magazineSize: 5,
-    critical: "Gunshot[+]",
+    critical: "Gunshot [+]",
     special:
       "Two-handed. Heavy. Barrel can be maneuvered to fire around corners.",
     weaponType: "Heavy Machine Gun",
@@ -578,7 +578,7 @@ export const allWeapons: WeaponExt[] = [
     damageString: "1d10x10 DMG",
     shots: 3,
     magazineSize: 3,
-    critical: "Gunshot[+]",
+    critical: "Gunshot [+]",
     special: "If not braced/prone when firing, Body Save or be knocked down.",
     weaponType: "Smart Rifle",
     magazines: 1,
@@ -2123,7 +2123,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           damageString: "1d10x10 DMG",
           shots: 3,
           magazineSize: 3,
-          critical: "Gunshot[+]",
+          critical: "Gunshot [+]",
           special:
             "If not braced/prone when firing, Body Save or be knocked down.",
           weaponType: "Smart Rifle",
@@ -2386,7 +2386,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           damageString: "4d10[+] DMG",
           shots: 5,
           magazineSize: 5,
-          critical: "Gunshot[+]",
+          critical: "Gunshot [+]",
           special:
             "Two-handed. Heavy. Barrel can be maneuvered to fire around corners.",
           weaponType: "Heavy Machine Gun",
@@ -2435,7 +2435,7 @@ export const loadouts: Record<CharacterClass, Loadout[]> = {
           damageString: "1d10x10 DMG",
           shots: 3,
           magazineSize: 3,
-          critical: "Gunshot[+]",
+          critical: "Gunshot [+]",
           special:
             "If not braced/prone when firing, Body Save or be knocked down.",
           weaponType: "Smart Rifle",

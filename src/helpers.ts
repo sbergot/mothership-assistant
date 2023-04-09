@@ -8,11 +8,14 @@ import {
 import { allWoundTablesDict } from "Rules/Data/wounds";
 import {
   Character,
+  CriticalType,
   Damage,
   InflictedDamage,
+  NormalizedCriticalType,
   PanicRollAnalysis,
   PanicRollResult,
   RollMode,
+  RollWithMode,
   SaveRollAnalysis,
   SaveRollResult,
   StatRollAnalysis,
@@ -163,6 +166,66 @@ export function applyPanic(
   return entry.effect(character, log);
 }
 
+function normalizeCriticalType(criticalType: CriticalType): NormalizedCriticalType[] {
+  if (criticalType === "Bleeding") {
+    return [{ woundType: "bleeding", rollMode: "normal" }];
+  }
+  if (criticalType === "Bleeding [+]") {
+    return [{ woundType: "bleeding", rollMode: "advantage" }];
+  }
+  if (criticalType === "Blunt Force") {
+    return [{ woundType: "blunt", rollMode: "normal" }];
+  }
+  if (criticalType === "Blunt Force [+]") {
+    return [{ woundType: "blunt", rollMode: "advantage" }];
+  }
+  if (criticalType === "Fire/Explosives") {
+    return [{ woundType: "fire", rollMode: "normal" }];
+  }
+  if (criticalType === "Fire/Explosives [+]") {
+    return [{ woundType: "fire", rollMode: "advantage" }];
+  }
+  if (criticalType === "Fire/Explosives [-]") {
+    return [{ woundType: "fire", rollMode: "disadvantage" }];
+  }
+  if (criticalType === "Gore [+]") {
+    return [{ woundType: "gore", rollMode: "advantage" }];
+  }
+  if (criticalType === "Gunshot") {
+    return [{ woundType: "gunshot", rollMode: "normal" }];
+  }
+  if (criticalType === "Gunshot [+]") {
+    return [{ woundType: "gunshot", rollMode: "advantage" }];
+  }
+  if (criticalType === "Bleeding + Gore") {
+    return [{ woundType: "bleeding", rollMode: "normal" }, { woundType: "gore", rollMode: "normal" }];
+  }
+  if (criticalType === "Bleeding [+] or Gore [+]") {
+    return [{ woundType: "gore", rollMode: "advantage" }];
+  }
+
+  throw new Error("unknown critical type");
+}
+
+function rollWound(  character: Character,
+  log: (m: GameMessage) => void,
+  criticalType: CriticalType
+): Character {
+  const woundRolls = normalizeCriticalType(criticalType);
+  let newChar = {...character};
+  woundRolls.forEach(wr => {
+    const woundTable = allWoundTablesDict[wr.woundType];
+    const woundRoll = applyRollMode(wr.rollMode, () => roll(1, 10));
+    const woundEffect = woundTable.effects[woundRoll.result - 1];
+    log({
+      type: "WoundEffectMessage",
+      props: { type: wr.woundType, woundRoll },
+    });
+    newChar = woundEffect.effect(newChar, log);
+  });
+  return newChar;
+}
+
 export function applyDamage(
   character: Character,
   log: (m: GameMessage) => void,
@@ -171,7 +234,7 @@ export function applyDamage(
   let newChar = { ...character };
   let woundsNbr = 0;
   if (damage.inflicted === "health") {
-    let damageLeft = damage.amount;
+    let damageLeft = damage.amount.result;
     while (damageLeft >= newChar.health) {
       damageLeft -= newChar.health;
       newChar.health = newChar.maxHealth;
@@ -182,25 +245,84 @@ export function applyDamage(
   }
 
   if (damage.inflicted === "wounds") {
-    woundsNbr = damage.amount;
-    newChar.wounds += damage.amount;
+    woundsNbr = damage.amount.result;
+    newChar.wounds += damage.amount.result;
   }
 
-  const woundTable = allWoundTablesDict[damage.type];
-
   for (let i = 0; i < woundsNbr; i++) {
-    const woundRoll = roll(1, 10);
-    const woundEffect = woundTable.effects[woundRoll - 1];
-    log({ type: "WoundEffectMessage", props: { type: damage.type, woundRoll } })
-    newChar = woundEffect.effect(newChar, log);
+    newChar = rollWound(newChar, log, damage.criticalType);
   }
 
   return newChar;
 }
 
-export function rollDamages(damages: Damage): InflictedDamage {
-  let amount = 0;
-  if (damages.damageType === "d100") {
-    
+function applyRollMode(rollMode: RollMode, roll: () => number): RollWithMode {
+  if (rollMode === "normal") {
+    const result = roll();
+    return { result, rolls: [result] };
   }
+  if (rollMode === "advantage") {
+    const rolls = [roll(), roll()];
+    return { rolls, result: Math.max(...rolls) };
+  }
+  if (rollMode === "disadvantage") {
+    const rolls = [roll(), roll()];
+    return { rolls, result: Math.min(...rolls) };
+  }
+
+  throw new Error("unknwon roll mode");
+}
+
+export function rollDamages(damages: Damage, criticalType: CriticalType): InflictedDamage {
+  if (damages.damageType === "d100") {
+    return {
+      amount: applyRollMode(damages.rollMode, () => roll(1, 100)),
+      inflicted: "health",
+      criticalType,
+    };
+  }
+  if (damages.damageType === "d10x10") {
+    return {
+      amount: applyRollMode(damages.rollMode, () => roll(1, 10) * 10),
+      inflicted: "health",
+      criticalType,
+    };
+  }
+  if (damages.damageType === "d5MinusOneWounds") {
+    return {
+      amount: applyRollMode(damages.rollMode, () => roll(1, 5) - 1),
+      inflicted: "wounds",
+      criticalType,
+    };
+  }
+  if (damages.damageType === "fixedDamage") {
+    return {
+      amount: { result: damages.amount, rolls: [damages.amount] },
+      inflicted: "health",
+      criticalType,
+    };
+  }
+  if (damages.damageType === "fixedWounds") {
+    return {
+      amount: { result: damages.amount, rolls: [damages.amount] },
+      inflicted: "wounds",
+      criticalType,
+    };
+  }
+  if (damages.damageType === "xd10") {
+    return {
+      amount: applyRollMode(damages.rollMode, () => roll(damages.amount, 10)),
+      inflicted: "health",
+      criticalType,
+    };
+  }
+  if (damages.damageType === "xd5") {
+    return {
+      amount: applyRollMode(damages.rollMode, () => roll(damages.amount, 5)),
+      inflicted: "health",
+      criticalType,
+    };
+  }
+
+  throw new Error("unknown damage type");
 }

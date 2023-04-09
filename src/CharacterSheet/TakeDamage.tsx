@@ -14,7 +14,7 @@ export function TakeDamage({
   const [damage, setDamage] = useState<InflictedDamage>({
     amount: 0,
     inflicted: "health",
-    type: "bleeding",
+    woundType: "bleeding",
   });
   return (
     <Block variant="light">
@@ -33,10 +33,10 @@ export function TakeDamage({
           {allWoundTables.map((wt) => (
             <div className="shrink-0">
               <Button
-                light={damage.type != wt.woundType}
+                light={damage.woundType != wt.woundType}
                 rounded
                 onClick={() => {
-                  setDamage((d) => ({ ...d, type: wt.woundType }));
+                  setDamage((d) => ({ ...d, woundType: wt.woundType }));
                 }}
               >
                 {wt.name}
