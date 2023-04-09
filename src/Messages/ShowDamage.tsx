@@ -1,5 +1,7 @@
 import { InflictedDamage } from "Rules/types";
 import { MessageContext } from "./types";
+import { Button } from "UI/Atoms";
+import { applyDamage } from "Services/damageServices";
 
 export function ShowDamage({
   amount,
@@ -19,6 +21,21 @@ export function ShowDamage({
       <span>
         - {criticalType} - {inflicted}
       </span>
+      <div>
+        <Button
+          onClick={() => {
+            if (context.type === "player") {
+              context.setCharacter(c => applyDamage(c, context.log, {
+                amount,
+                criticalType,
+                inflicted,
+              }));
+            }
+          }}
+        >
+          Take damage
+        </Button>
+      </div>
     </div>
   );
 }
