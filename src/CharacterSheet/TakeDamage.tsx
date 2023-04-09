@@ -4,7 +4,11 @@ import { useState } from "react";
 import { Block, Button, Divider, Title } from "UI/Atoms";
 import { InflictedDamage, InflictedDamageType } from "Rules/types";
 import { allWoundTables } from "Rules/Data/wounds";
-import { applyDamage } from "helpers";
+import {
+  woundTypeToCriticalType,
+  applyDamage,
+  normalizeCriticalType,
+} from "Services/damageServices";
 
 export function TakeDamage({
   setCharacter,
@@ -12,10 +16,12 @@ export function TakeDamage({
   log,
 }: WriteCharacter & SetMode & Log) {
   const [damage, setDamage] = useState<InflictedDamage>({
-    amount: 0,
+    amount: { result: 0, rolls: [0] },
     inflicted: "health",
-    woundType: "bleeding",
+    criticalType: "Bleeding",
   });
+  const normalizedWoundType = normalizeCriticalType(damage.criticalType)[0]
+    .woundType;
   return (
     <Block variant="light">
       <Title>Take damages</Title>
@@ -23,9 +29,12 @@ export function TakeDamage({
         <input
           className="input"
           type="number"
-          value={damage.amount}
+          value={damage.amount.result}
           onChange={(e) => {
-            setDamage((d) => ({ ...d, amount: parseInt(e.target.value) }));
+            setDamage((d) => {
+              const value = parseInt(e.target.value);
+              return { ...d, amount: { result: value, rolls: [value] } };
+            });
           }}
         />
         <Divider />
@@ -33,10 +42,13 @@ export function TakeDamage({
           {allWoundTables.map((wt) => (
             <div className="shrink-0">
               <Button
-                light={damage.woundType != wt.woundType}
+                light={normalizedWoundType != wt.woundType}
                 rounded
                 onClick={() => {
-                  setDamage((d) => ({ ...d, woundType: wt.woundType }));
+                  setDamage((d) => ({
+                    ...d,
+                    criticalType: woundTypeToCriticalType(wt.woundType),
+                  }));
                 }}
               >
                 {wt.name}
@@ -71,7 +83,7 @@ export function TakeDamage({
             dark
             rounded
             onClick={() => {
-              setCharacter(c => applyDamage(c, log, damage));
+              setCharacter((c) => applyDamage(c, log, damage));
               setMode({ mode: "CharacterSheet" });
             }}
           >

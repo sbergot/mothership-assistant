@@ -82,18 +82,21 @@ export type ArmorSpeedType = RollMode;
 
 export type WeaponRangeType = "adjacent" | "close" | "long";
 
+export type WoundType = "blunt" | "bleeding" | "gunshot" | "fire" | "gore";
+
 export type CriticalType =
   | "Gunshot"
   | "Gunshot [+]"
+  | "Bleeding"
   | "Bleeding [+]"
   | "Blunt Force"
   | "Blunt Force [+]"
   | "Fire/Explosives"
   | "Fire/Explosives [-]"
   | "Fire/Explosives [+]"
-  | "Bleeding"
-  | "Bleeding [+] or Gore [+]"
+  | "Gore"
   | "Gore [+]"
+  | "Bleeding [+] or Gore [+]"
   | "Bleeding + Gore";
 
 export interface NormalizedCriticalType {
@@ -176,8 +179,6 @@ export interface StressEffect {
   description: string;
   effect(c: Character, log: (m: GameMessage) => void): Character;
 }
-
-export type WoundType = "blunt" | "bleeding" | "gunshot" | "fire" | "gore";
 
 export interface WoundTable {
   woundType: WoundType;
