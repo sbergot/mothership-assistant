@@ -10,7 +10,7 @@ export function RollHealth({ character, onConfirm }: StepProps) {
   const done = newCharacter.maxHealth > 0;
 
   function rollHealth(): void {
-    const maxHealth = roll(10, 1) + 10;
+    const maxHealth = roll(1, 10) + 10;
     const newChar: Character = { ...newCharacter, maxHealth, health: maxHealth };
     setCharacter(newChar);
   }

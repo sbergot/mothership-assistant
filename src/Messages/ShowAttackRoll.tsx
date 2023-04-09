@@ -2,14 +2,20 @@ import { analyseStatRoll } from "helpers";
 import { AttackRollResult, StatRollResult } from "Rules/types";
 import { MessageContext } from "./types";
 import { Button } from "UI/Atoms";
+import { rollDamages } from "Services/damageServices";
 
 export function ShowAttackRoll({
   roll,
   weaponId,
   context,
-}: AttackRollResult & { context: MessageContext}) {
+}: AttackRollResult & { context: MessageContext }) {
   const { rollDescritpion, rollValue, target, isSuccess, result } =
     analyseStatRoll(roll);
+  const weapon =
+    context.type === "player"
+      ? context.character.weapons.find((w) => w.id === weaponId)
+      : undefined;
+  const damages = weapon !== undefined ? weapon.damage : [];
   return (
     <div>
       <div>Stat roll: {rollDescritpion}</div>
@@ -24,9 +30,22 @@ export function ShowAttackRoll({
       <span>
         vs {target} - {isSuccess ? "Success" : "Failure"}!
       </span>
-      {isSuccess && context.isOwnMessage && context.type === "player" &&  (
-        <Button onClick={() => {}}>Deal damage</Button>
-      )}
+      <div>
+        {isSuccess &&
+          context.isOwnMessage &&
+          damages.map((d) => (
+            <Button
+              onClick={() => {
+                context.log({
+                  type: "DamageMessage",
+                  props: { ...rollDamages(d, weapon!.critical) },
+                });
+              }}
+            >
+              Roll damage {d.damageType}
+            </Button>
+          ))}
+      </div>
     </div>
   );
 }

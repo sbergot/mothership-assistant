@@ -12,7 +12,7 @@ export function RollStats({ character, onConfirm }: StepProps) {
   function rollStats(): void {
     let newChar = character;
     allStats.forEach((save) => {
-      newChar = { ...newChar, [save]: roll(10, 2) + 25 };
+      newChar = { ...newChar, [save]: roll(2, 10) + 25 };
     });
     setCharacter(newChar);
   }

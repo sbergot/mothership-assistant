@@ -32,14 +32,14 @@ export function RollEquipment({ character, onConfirm }: StepProps) {
         weapons: loadout.weapons.map(clone),
         armor: loadout.armors.map(clone),
         equipment: loadout.equipments.map(clone),
-        credits: roll(10, 2) * 10,
+        credits: roll(2, 10) * 10,
       }));
     }
 
     if (gearOption === "credits") {
       setCharacter((c) => ({
         ...c,
-        credits: roll(10, 2) * 100,
+        credits: roll(2, 10) * 100,
       }));
     }
   }

@@ -2,7 +2,7 @@ export function simpleRoll(sides: number): number {
     return Math.floor(Math.random() * sides);
 }
 
-export function roll(sides: number, number: number): number {
+export function roll(number: number, sides: number): number {
     let result = 0;
     for (let i = 0; i < number; i++) {
         result += simpleRoll(sides) + 1;
