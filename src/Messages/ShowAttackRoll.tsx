@@ -9,7 +9,7 @@ export function ShowAttackRoll({
   weaponId,
   context,
 }: AttackRollResult & { context: MessageContext }) {
-  const { rollDescritpion, rollValue, target, isSuccess, result } =
+  const { rollDescritpion, rollValue, target, isSuccess, result, isCritical } =
     analyseStatRoll(roll);
   const weapon =
     context.type === "player"
@@ -28,17 +28,19 @@ export function ShowAttackRoll({
         </span>
       ))}
       <span>
-        vs {target} - {isSuccess ? "Success" : "Failure"}!
+        vs {target} - {isCritical ? "Critical " : ""}{isSuccess ? "Success" : "Failure"}!
       </span>
       <div>
         {isSuccess &&
           context.isOwnMessage &&
           damages.map((d) => (
             <Button
+              dark
+              rounded
               onClick={() => {
                 context.log({
                   type: "DamageMessage",
-                  props: { ...rollDamages(d, weapon!.critical) },
+                  props: { ...rollDamages(d, weapon!.critical, isCritical) },
                 });
               }}
             >

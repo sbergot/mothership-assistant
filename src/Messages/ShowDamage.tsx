@@ -23,13 +23,17 @@ export function ShowDamage({
       </span>
       <div>
         <Button
+          dark
+          rounded
           onClick={() => {
             if (context.type === "player") {
-              context.setCharacter(c => applyDamage(c, context.log, {
+              // not using setter function because it is run twice and we are emitting messages
+              const newChar = applyDamage(context.character, context.log, {
                 amount,
                 criticalType,
                 inflicted,
-              }));
+              });
+              context.setCharacter((c) => newChar);
             }
           }}
         >

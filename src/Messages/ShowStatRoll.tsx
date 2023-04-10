@@ -2,7 +2,7 @@ import { analyseStatRoll } from "helpers";
 import { StatRollResult } from "Rules/types";
 
 export function ShowStatRoll(rollResult: StatRollResult) {
-  const { rollDescritpion, rollValue, target, isSuccess, result } =
+  const { rollDescritpion, rollValue, target, isSuccess, result, isCritical } =
     analyseStatRoll(rollResult);
   return (
     <div>
@@ -12,7 +12,7 @@ export function ShowStatRoll(rollResult: StatRollResult) {
           {r}
         </span>
       ))}
-      vs {target} - <span>{isSuccess ? "Success" : "Failure"}!</span>
+      vs {target} - <span>{isCritical ? "Critical " : ""}{isSuccess ? "Success" : "Failure"}!</span>
     </div>
   );
 }

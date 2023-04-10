@@ -147,7 +147,7 @@ function applyRollMode(rollMode: RollMode, roll: () => number): RollWithMode {
   throw new Error("unknwon roll mode");
 }
 
-export function rollDamages(
+export function innerRollDamages(
   damages: Damage,
   criticalType: CriticalType
 ): InflictedDamage {
@@ -202,4 +202,17 @@ export function rollDamages(
   }
 
   throw new Error("unknown damage type");
+}
+
+export function rollDamages(
+  damages: Damage,
+  criticalType: CriticalType,
+  isCritical: boolean
+): InflictedDamage {
+  const damage = innerRollDamages(damages, criticalType);
+  if (isCritical) {
+    damage.amount.result *= 2;
+    damage.amount.rolls = damage.amount.rolls.map(v => v*2);
+  }
+  return damage;
 }

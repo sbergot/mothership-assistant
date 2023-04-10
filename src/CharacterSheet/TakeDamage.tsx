@@ -87,7 +87,7 @@ export function TakeDamage({
               setMode({ mode: "CharacterSheet" });
             }}
           >
-            roll
+            take damage
           </Button>
           <Button
             rounded
