@@ -14,9 +14,12 @@ import { useEffect, useRef, useState } from "react";
 import { Character } from "Rules/types";
 import { useLog } from "Services/messageServices";
 
+type ConnectionStatus = "connecting" | "connected" | "error" | "disconnected";
+
 function usePlayerConnection(sessionCode: string, character: Character) {
   const browserId = useBrowserId();
   const [messages, setMessages] = useState<StampedMessage[]>([]);
+  const [connectionStatus, setConnectionStatus] = useState<ConnectionStatus>("connecting");
   const debounceRef = useRef(false);
   const peerRef = useRef<Peer | null>(null);
   const connRef = useRef<DataConnection | null>(null);
@@ -42,13 +45,16 @@ function usePlayerConnection(sessionCode: string, character: Character) {
     });
     peer.on("disconnected", function () {
       console.log("Connection lost. Please reconnect");
+      setConnectionStatus("disconnected");
       peer.reconnect();
     });
     peer.on("close", function () {
       peerRef.current = null;
+      setConnectionStatus("disconnected");
       console.log("Peer destroyed. Please refresh");
     });
     peer.on("error", function (err) {
+      setConnectionStatus("error");
       console.log(err);
     });
   }
@@ -57,6 +63,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
     // Close old connection
     if (connRef.current) {
       console.log("closing previous connection");
+      setConnectionStatus("disconnected");
       connRef.current.close();
     }
 
@@ -75,6 +82,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
         props: { content: `${character.name} joined the session` },
       });
 
+      setConnectionStatus("connected");
       syncLog({ type: "UpdateChar", props: { character } });
       syncLog({ type: "MessageHistoryRequest", props: {} });
     });
@@ -96,9 +104,11 @@ function usePlayerConnection(sessionCode: string, character: Character) {
     });
     conn.on("close", function () {
       console.log("Connection closed");
+      setConnectionStatus("disconnected");
       connRef.current = null;
     });
     conn.on("error", (e) => {
+      setConnectionStatus("error");
       console.error("connexion error", e);
     });
   }
@@ -132,8 +142,8 @@ function usePlayerConnection(sessionCode: string, character: Character) {
   }, [character]);
 
   return !!sessionCode
-    ? { log, messages }
-    : { log: stub.log, messages: stub.messages };
+    ? { log, messages, connectionStatus }
+    : { log: stub.log, messages: stub.messages, connectionStatus };
 }
 
 interface Props extends ReadWriteCharacter {
@@ -141,7 +151,7 @@ interface Props extends ReadWriteCharacter {
 }
 
 export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
-  const { log, messages } = usePlayerConnection(sessionCode, character);
+  const { log, messages, connectionStatus } = usePlayerConnection(sessionCode, character);
   const [mode, setMode] = useState<Modes>({ mode: "CharacterSheet" });
   const playerContext: ReadWriteCharacter & SetMode = {
     character,
@@ -154,6 +164,7 @@ export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
   return (
     <div className="flex gap-2">
       <div className="max-w-3xl w-full">
+        {connectionStatus}
         <CharacterSheet
           character={character}
           setCharacter={setCharacter}
