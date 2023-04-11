@@ -1,4 +1,14 @@
-import { Armor, BaseCharacter, Character, CharacterSkill, ConditionType, Contractor, Equipment, SkillType, Weapon } from "Rules/types";
+import {
+  Armor,
+  BaseCharacter,
+  Character,
+  CharacterSkill,
+  ConditionType,
+  Contractor,
+  Equipment,
+  SkillType,
+  Weapon,
+} from "Rules/types";
 
 export interface ReadCharacter {
   character: Character;
@@ -29,125 +39,34 @@ export interface Cancel {
   onCancel(): void;
 }
 
-interface CharacterSheetMode {
-  mode: "CharacterSheet";
-}
-
-interface AddConditionMode {
-  mode: "AddCondition";
-}
-
-interface ViewConditionMode {
-  mode: "ViewCondition";
-  condition: ConditionType;
-}
-
-interface SelectSkillMode {
-  mode: "SelectSkill";
-}
-
-interface StartTrainingSkillMode {
-  mode: "StartTrainingSkill";
-  skill: SkillType;
-}
-
-interface TrainSkillMode {
-  mode: "TrainSkill";
-}
-
-interface ViewSkillMode {
-  mode: "ViewSkill";
-  skill: CharacterSkill;
-}
-
-interface AddWeaponMode {
-  mode: "AddWeapon";
-}
-
-interface AddArmorMode {
-  mode: "AddArmor";
-}
-
-interface AddEquipmentMode {
-  mode: "AddEquipment"
-}
-
-interface AddCustomItemMode {
-  mode: "AddCustomItem"
-}
-
-interface AddContractorMode {
-  mode: "AddContractor"
-}
-
-interface ViewWeaponMode {
-  mode: "ViewWeapon"
-  weaponId: string
-}
-
-interface ViewArmorMode {
-  mode: "ViewArmor"
-  armorId: string
-}
-
-interface ViewEquipmentMode {
-  mode: "ViewEquipment"
-  equipmentId: string
-}
-
-interface ViewContractorMode {
-  mode: "ViewContractor"
-  contractorId: string
-}
-
-interface EditStatsMode {
-  mode: "EditStats"
-}
-
-interface RollStatMode {
-  mode: "RollStat"
-}
-
-interface RollAttackMode {
-  mode: "RollAttack"
-  weaponId: string
-}
-
-interface RollSaveMode {
-  mode: "RollSave"
-}
-
-interface PanicCheckMode {
-  mode: "PanicCheck"
-}
-
-interface TakeDamageMode {
-  mode: "TakeDamage"
+interface PlayerSessionMode<T extends string> {
+  mode: T;
 }
 
 export type Modes =
-  | CharacterSheetMode
-  | AddConditionMode
-  | ViewConditionMode
-  | SelectSkillMode
-  | StartTrainingSkillMode
-  | TrainSkillMode
-  | ViewSkillMode
-  | AddWeaponMode
-  | AddArmorMode
-  | AddEquipmentMode
-  | AddCustomItemMode
-  | AddContractorMode
-  | ViewWeaponMode
-  | ViewArmorMode
-  | ViewEquipmentMode
-  | ViewContractorMode
-  | EditStatsMode
-  | RollSaveMode
-  | RollStatMode
-  | RollAttackMode
-  | PanicCheckMode
-  | TakeDamageMode;
+  | PlayerSessionMode<"CharacterSheet">
+  | PlayerSessionMode<"AddCondition">
+  | (PlayerSessionMode<"ViewCondition"> & { condition: ConditionType })
+  | PlayerSessionMode<"SelectSkill">
+  | (PlayerSessionMode<"StartTrainingSkill"> & { skill: SkillType })
+  | PlayerSessionMode<"TrainSkill">
+  | (PlayerSessionMode<"ViewSkill"> & { skill: CharacterSkill })
+  | PlayerSessionMode<"AddWeapon">
+  | PlayerSessionMode<"AddArmor">
+  | PlayerSessionMode<"AddEquipment">
+  | PlayerSessionMode<"AddCustomItem">
+  | PlayerSessionMode<"AddContractor">
+  | (PlayerSessionMode<"ViewWeapon"> & { weaponId: string })
+  | (PlayerSessionMode<"ViewArmor"> & { armorId: string })
+  | (PlayerSessionMode<"ViewEquipment"> & { equipmentId: string })
+  | (PlayerSessionMode<"ViewContractor"> & { contractorId: string })
+  | PlayerSessionMode<"EditStats">
+  | PlayerSessionMode<"RollSave">
+  | PlayerSessionMode<"RollStat">
+  | (PlayerSessionMode<"RollAttack"> & { weaponId: string })
+  | PlayerSessionMode<"PanicCheck">
+  | PlayerSessionMode<"TakeDamage">
+  | PlayerSessionMode<"RollWound">;
 
 export interface SetMode {
   setMode(mode: Modes): void;

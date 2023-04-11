@@ -49,6 +49,9 @@ export function Status({ character, setCharacter, setMode }: ReadWriteCharacter 
         <Button onClick={() => setMode({ mode: "TakeDamage" })}>
           Take damages
         </Button>
+        <Button onClick={() => setMode({ mode: "RollWound" })}>
+          Roll wound
+        </Button>
       </div>
     </Block>
   );

@@ -30,13 +30,14 @@ import { Weapons } from "./Weapons";
 import { RollPanic } from "./RollPanic";
 import { TakeDamage } from "./TakeDamage";
 import { updateInList } from "helpers";
+import { RollWound } from "./RollWound";
 
 export function CharacterSheet({
   character,
   setCharacter,
   log,
   mode,
-  setMode
+  setMode,
 }: ReadWriteCharacter & Log & SetMode & { mode: Modes }) {
   function back() {
     setMode({ mode: "CharacterSheet" });
@@ -248,11 +249,13 @@ export function CharacterSheet({
 
   if (mode.mode === "TakeDamage") {
     return (
-      <TakeDamage
-        setCharacter={setCharacter}
-        log={log}
-        setMode={setMode}
-      />
+      <TakeDamage setCharacter={setCharacter} log={log} setMode={setMode} />
+    );
+  }
+
+  if (mode.mode === "RollWound") {
+    return (
+      <RollWound setCharacter={setCharacter} log={log} setMode={setMode} />
     );
   }
 
