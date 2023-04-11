@@ -1,14 +1,14 @@
-- connection
-  - debounce frequent character updates
-
 - rolls
   - panic
     - loss of confidence on skill?
   - damage
     - DM can assign damage to NPC/monster
-  - wound
-  - rest
-  - death
+  - wound roll screen
+  - rest button
+  - death check button
+
+- connection
+  - debounce frequent character updates
 
 - quality
   - design review

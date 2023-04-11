@@ -38,7 +38,7 @@ export function TrainSkill({ character, setCharacter, setMode }: Props) {
               skillInProgress: null,
               skillTrainingYearsRemaining: 0,
               skillTrainingMonthsRemaining: 0,
-              skills: [...character.skills, skill],
+              skills: [...character.skills, { type: skill, lossOfConfidence: false }],
             }));
             setMode({ mode: "CharacterSheet" });
           }}

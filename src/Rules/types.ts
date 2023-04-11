@@ -49,6 +49,11 @@ export type SkillType =
   | "surgery"
   | "xenoesoterism";
 
+export interface CharacterSkill {
+  type: SkillType;
+  lossOfConfidence: boolean;
+}
+
 export type SkillLevel = "Trained" | "Expert" | "Master";
 
 export interface SkillLevelDefinition {
@@ -310,7 +315,7 @@ export interface Character extends BaseCharacter {
   skillInProgress: null | SkillType;
   skillTrainingYearsRemaining: number;
   skillTrainingMonthsRemaining: number;
-  skills: SkillType[];
+  skills: CharacterSkill[];
   conditions: Condition[];
   creationComplete: boolean;
   woundEffects: Wound[];

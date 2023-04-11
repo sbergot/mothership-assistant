@@ -11,9 +11,9 @@ export function Skills({ character, setMode }: ReadCharacter & SetMode) {
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.skills.map((s) => (
           <Skill
-            key={s}
-            skill={allSkillsDict[s]}
-            onClick={() => setMode({ mode: "ViewSkill", skill: s })}
+            key={s.type}
+            skill={allSkillsDict[s.type]}
+            onClick={() => setMode({ mode: "ViewSkill", skill: s.type })}
           />
         ))}
         {character.skillInProgress === null && (

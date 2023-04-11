@@ -1,11 +1,11 @@
 import { toDict } from "Services/services";
 import { allSkillsDict } from "./data";
-import { SkillDefinition, SkillType, SkillLevel } from "./types";
+import { SkillDefinition, SkillType, SkillLevel, CharacterSkill } from "./types";
 
 export type SkillFilter = (s: SkillDefinition) => boolean;
 
-export function isPrerequisiteOk(selectedSkills: SkillType[]): SkillFilter {
-  const selectedDict = toDict(selectedSkills, (s) => s);
+export function isPrerequisiteOk(selectedSkills: CharacterSkill[]): SkillFilter {
+  const selectedDict = toDict(selectedSkills, (s) => s.type);
   return (s: SkillDefinition) => {
     const { prerequisites } = allSkillsDict[s.key];
     if (prerequisites.length === 0) {
@@ -15,8 +15,8 @@ export function isPrerequisiteOk(selectedSkills: SkillType[]): SkillFilter {
   };
 }
 
-export function isNotSelected(selectedSkills: SkillType[]): SkillFilter {
-  const selectedDict = toDict(selectedSkills, (s) => s);
+export function isNotSelected(selectedSkills: CharacterSkill[]): SkillFilter {
+  const selectedDict = toDict(selectedSkills, (s) => s.type);
   return (s: SkillDefinition) => {
     return !selectedDict[s.key];
   };

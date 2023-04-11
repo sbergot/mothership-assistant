@@ -14,7 +14,7 @@ const classBonuses: Record<CharacterClass, (c: Character) => Character> = {
       body: c.body + 10,
       fear: c.fear + 20,
       maxWounds: 3,
-      skills: ["militaryTraining", "athletics"],
+      skills: [{ type: "militaryTraining", lossOfConfidence: false }, { type: "athletics", lossOfConfidence: false }],
     };
   },
   android(c) {
@@ -23,7 +23,7 @@ const classBonuses: Record<CharacterClass, (c: Character) => Character> = {
       intellect: c.intellect + 20,
       fear: c.fear + 60,
       maxWounds: 3,
-      skills: ["linguistics", "computers", "mathematics"],
+      skills: [{ type: "linguistics", lossOfConfidence: false }, { type: "computers", lossOfConfidence: false }, { type: "mathematics", lossOfConfidence: false }],
     };
   },
   scientist(c) {
@@ -44,7 +44,7 @@ const classBonuses: Record<CharacterClass, (c: Character) => Character> = {
       body: c.body + 10,
       fear: c.fear + 10,
       sanity: c.sanity + 10,
-      skills: ["industrialEquipment", "zeroG"],
+      skills: [{ type: "industrialEquipment", lossOfConfidence: false }, { type: "zeroG", lossOfConfidence: false }],
       maxWounds: 2,
     };
   },

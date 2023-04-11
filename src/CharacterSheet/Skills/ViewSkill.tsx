@@ -21,7 +21,7 @@ export function ViewSkill({ setCharacter, setMode, skill }: Props) {
           onClick={() => {
             setCharacter((character) => ({
               ...character,
-              skills: character.skills.filter((s) => s !== skill),
+              skills: character.skills.filter((s) => s.type !== skill),
             }));
             setMode({ mode: "CharacterSheet" });
           }}

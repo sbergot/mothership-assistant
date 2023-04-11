@@ -67,12 +67,12 @@ export function RollStat({
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.skills.map((s) => (
           <Skill
-            key={s}
-            skill={allSkillsDict[s]}
+            key={s.type}
+            skill={allSkillsDict[s.type]}
             onClick={() => {
-              setSkill((ss) => (ss === s ? null : s));
+              setSkill((ss) => (ss === s.type ? null : s.type));
             }}
-            selected={s === skill}
+            selected={s.type === skill}
           />
         ))}
       </div>

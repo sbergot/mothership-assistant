@@ -121,7 +121,7 @@ function computeRemaining(
 ) {
   let remaining: Record<SkillLevel, number> = budget;
   character.skills.forEach((skill) => {
-    const level = allSkillsDict[skill].level;
+    const level = allSkillsDict[skill.type].level;
     remaining = { ...remaining, [level]: remaining[level] - 1 };
   });
   return remaining;
@@ -134,7 +134,7 @@ function computeSkillNbrByLevel(character: Character) {
     Master: 0,
   };
   character.skills.forEach((skill) => {
-    const level = allSkillsDict[skill].level;
+    const level = allSkillsDict[skill.type].level;
     skillNbrByLevel = {
       ...skillNbrByLevel,
       [level]: skillNbrByLevel[level] + 1,
@@ -159,13 +159,13 @@ export function SelectSkills({ character, onConfirm }: StepProps) {
         </BlockWithTitle>
         <div className="flex flex-wrap gap-2 mt-2">
           {newCharacter.skills.map((s) => (
-            <Skill skill={allSkillsDict[s]} />
+            <Skill skill={allSkillsDict[s.type]} />
           ))}
         </div>
         <SkillSelection
           character={newCharacter}
           onSelect={(s) =>
-            setCharacter((c) => ({ ...c, skills: [...c.skills, s] }))
+            setCharacter((c) => ({ ...c, skills: [...c.skills, { type: s, lossOfConfidence: false }] }))
           }
           onFinish={() => setDone(true)}
         />
