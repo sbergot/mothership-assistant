@@ -13,7 +13,7 @@ export function Skills({ character, setMode }: ReadCharacter & SetMode) {
           <Skill
             key={s.type}
             skill={allSkillsDict[s.type]}
-            onClick={() => setMode({ mode: "ViewSkill", skill: s.type })}
+            onClick={() => setMode({ mode: "ViewSkill", skill: s })}
           />
         ))}
         {character.skillInProgress === null && (

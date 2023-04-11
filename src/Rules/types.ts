@@ -339,7 +339,7 @@ export interface Loadout {
 
 export interface StatRoll {
   stat: { name: StatType; value: number };
-  skill: SkillType | null;
+  skill: CharacterSkill | null;
   rollMode: RollMode;
 }
 

@@ -3,6 +3,7 @@ import { Log } from "Messages/types";
 import { useState } from "react";
 import { allSkillsDict, allStats } from "Rules/data";
 import {
+  CharacterSkill,
   RollMode,
   SkillType,
   StatRoll,
@@ -34,7 +35,7 @@ export function RollStat({
   weaponId,
 }: Props) {
   const [stat, setStat] = useState<StatType>("combat");
-  const [skill, setSkill] = useState<SkillType | null>(null);
+  const [skill, setSkill] = useState<CharacterSkill | null>(null);
   const [rollMode, setRollMode] = useState<RollMode>("normal");
 
   function spendAmmo() {
@@ -70,9 +71,9 @@ export function RollStat({
             key={s.type}
             skill={allSkillsDict[s.type]}
             onClick={() => {
-              setSkill((ss) => (ss === s.type ? null : s.type));
+              setSkill((ss) => (ss?.type === s.type ? null : s));
             }}
-            selected={s.type === skill}
+            selected={s.type === skill?.type}
           />
         ))}
       </div>

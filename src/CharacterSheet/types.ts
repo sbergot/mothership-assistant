@@ -1,4 +1,4 @@
-import { Armor, BaseCharacter, Character, ConditionType, Contractor, Equipment, SkillType, Weapon } from "Rules/types";
+import { Armor, BaseCharacter, Character, CharacterSkill, ConditionType, Contractor, Equipment, SkillType, Weapon } from "Rules/types";
 
 export interface ReadCharacter {
   character: Character;
@@ -57,7 +57,7 @@ interface TrainSkillMode {
 
 interface ViewSkillMode {
   mode: "ViewSkill";
-  skill: SkillType;
+  skill: CharacterSkill;
 }
 
 interface AddWeaponMode {

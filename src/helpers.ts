@@ -44,12 +44,12 @@ export function analyseStatRoll(rollResult: StatRollResult): StatRollAnalysis {
   if (rollMode === "disadvantage") {
     rollValue = Math.max(...result);
   }
-  const skillDefinition = skill !== null ? allSkillsDict[skill] : null;
+  const skillDefinition = skill !== null ? allSkillsDict[skill.type] : null;
   const skillLevel =
     skillDefinition !== null
       ? allSkillLevelDefinitionDict[skillDefinition.level]
       : null;
-  const skillBonus = skillLevel?.bonus ?? 0;
+  const skillBonus = skill?.lossOfConfidence || skillLevel == null ? 0 : skillLevel.bonus;
   const target = stat.value + skillBonus;
   const isSuccess = rollValue < target;
   const isCritical = rollValue % 11 === 0;

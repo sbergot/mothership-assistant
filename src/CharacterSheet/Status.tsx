@@ -36,7 +36,7 @@ export function Status({ character, setCharacter, setMode }: ReadWriteCharacter 
       {character.conditions.length > 0 && <Title>Warning!</Title>}
       <div className="flex flex-wrap justify-center gap-2">
         {character.conditions.map((c) => (
-          <Button dark onClick={() => setMode({ mode: "ViewCondition", condition: c.conditionType })}>
+          <Button key={c.conditionType} dark onClick={() => setMode({ mode: "ViewCondition", condition: c.conditionType })}>
             {allConditionDefinitionsDict[c.conditionType].name}
           </Button>
         ))}
