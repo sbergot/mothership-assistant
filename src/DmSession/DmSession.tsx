@@ -40,8 +40,8 @@ function useDmConnection(
   messagesRef.current = messages;
   const debounceRef = useRef(false);
   const connRef = useRef<DataConnection | null>(null);
-
   const playerConnectionsRef = useRef<Record<string, DataConnection>>({});
+  const [ transientMessages, setTransientMessages ] = useState<StampedMessage[]>(messages);
 
   function initialize() {
     if (debounceRef.current) {
@@ -110,7 +110,10 @@ function useDmConnection(
         if (typeData.type === "MessageHistoryResponse") {
           return;
         }
-        storeMessage(typeData);
+        if (!typeData.transient) {
+          storeMessage(typeData);
+        }
+        setTransientMessages(tms => [...tms, typeData]);
         Object.values(playerConnectionsRef.current).forEach((c) => {
           c.send(typeData);
         });
@@ -154,14 +157,14 @@ function useDmConnection(
 
   return {
     sessionCode,
-    messages,
     connections: Object.values(connectionsState),
     log,
+    messages: transientMessages
   };
 }
 
 export function DmSession({ game, setGame }: Props) {
-  const { sessionCode, messages, connections, log } = useDmConnection(
+  const { sessionCode, connections, log, messages } = useDmConnection(
     game.messages,
     (m) => {
       setGame((g) => ({ ...g, messages: [...g.messages, m] }));

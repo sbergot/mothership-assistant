@@ -19,6 +19,7 @@ export type ContextType = "player" | "warden";
 export interface Message<T extends string, P> {
   type: T;
   props: P;
+  transient?: boolean;
 }
 
 export interface SimpleMessage {

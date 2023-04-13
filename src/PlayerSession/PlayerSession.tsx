@@ -80,6 +80,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
       log({
         type: "SimpleMessage",
         props: { content: `${character.name} joined the session` },
+        transient: true,
       });
 
       setConnectionStatus("connected");
