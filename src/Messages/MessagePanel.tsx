@@ -39,7 +39,7 @@ export function MessagePanel({
   }, [messages]);
 
   return (
-    <div className="max-w-lg w-full h-screen sticky top-2 border-2 rounded-3xl p-4 mb-2 border-mother-5">
+    <div className="max-w-lg w-full h-[calc(100vh-1rem)] fixed top-2 right-6 border-2 rounded-3xl p-4 mb-2 border-mother-5 bg-white">
       <div className="overflow-auto flex flex-col gap-2 h-full pr-1">
         {messages.map((m, i) => {
           const stamp = `${m.author} - ${m.time}`;

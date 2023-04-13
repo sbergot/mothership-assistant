@@ -165,7 +165,7 @@ export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
 
   return (
     <div className="flex gap-2">
-      <div className="max-w-3xl w-full">
+      <div className="max-w-2xl w-full">
         {connectionStatus}
         <CharacterSheet
           character={character}
