@@ -1,5 +1,4 @@
 - rolls
-  - death check button
   - damage
     - DM can assign damage to NPC/monster
 

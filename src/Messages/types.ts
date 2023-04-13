@@ -5,6 +5,7 @@ import {
 } from "CharacterSheet/types";
 import {
   AttackRollResult,
+  DeathCheckResult,
   InflictedDamage,
   PanicEffect,
   PanicRollResult,
@@ -39,6 +40,7 @@ export type GameMessage =
   | Message<"SaveRollMessage", SaveRollResult>
   | Message<"RestRollMessage", SaveRollResult>
   | Message<"PanicRollMessage", PanicRollResult>
+  | Message<"DeathCheckMessage", DeathCheckResult>
   | Message<"PanicEffectMessage", PanicEffect>
   | Message<"DamageMessage", InflictedDamage>
   | Message<"WoundEffectMessage", WoundEffectEntry>

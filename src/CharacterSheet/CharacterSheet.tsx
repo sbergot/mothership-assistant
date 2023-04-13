@@ -294,6 +294,7 @@ export function CharacterSheet({
         character={character}
         setCharacter={setCharacter}
         setMode={setMode}
+        log={log}
       />
       <Stats character={character} setMode={setMode} />
       <Skills character={character} setMode={setMode} />

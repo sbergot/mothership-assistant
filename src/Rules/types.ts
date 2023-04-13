@@ -206,7 +206,7 @@ export interface Damage {
   rollMode: RollMode;
 }
 
-export type InflictedDamageType = "health" | "wounds"
+export type InflictedDamageType = "health" | "wounds";
 
 export interface InflictedDamage {
   amount: RollWithMode;
@@ -391,6 +391,10 @@ export interface PanicRoll {
 
 export interface PanicRollResult extends PanicRoll {
   result: number[];
+}
+
+export interface DeathCheckResult {
+  rollValue: number;
 }
 
 export interface PanicRollAnalysis extends PanicRollResult {

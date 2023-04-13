@@ -2,12 +2,15 @@ import { allConditionDefinitionsDict, classDefinitionsDict } from "Rules/data";
 import { Block, Button, Divider, Title } from "UI/Atoms";
 import { Gauge } from "UI/Molecules";
 import { ReadWriteCharacter, SetMode } from "./types";
+import { GameMessage, Log } from "Messages/types";
+import { roll } from "Services/diceServices";
 
 export function Status({
   character,
   setCharacter,
   setMode,
-}: ReadWriteCharacter & SetMode) {
+  log
+}: ReadWriteCharacter & SetMode & Log) {
   return (
     <Block variant="light">
       <Title>Status report</Title>
@@ -75,7 +78,15 @@ export function Status({
         <Button onClick={() => setMode({ mode: "RollWound" })}>
           Roll wound
         </Button>
+        <Button onClick={() => deathCheck(log)}>
+          Death check
+        </Button>
       </div>
     </Block>
   );
+}
+
+function deathCheck(log: (m: GameMessage) => void) {
+  const rollValue = roll(1, 10);
+  log({ type: "DeathCheckMessage", props: { rollValue } });
 }
