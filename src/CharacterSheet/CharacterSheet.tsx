@@ -31,6 +31,7 @@ import { RollPanic } from "./RollPanic";
 import { TakeDamage } from "./TakeDamage";
 import { updateInList } from "helpers";
 import { RollWound } from "./RollWound";
+import { ViewBleeding } from "./ViewBleeding";
 
 export function CharacterSheet({
   character,
@@ -66,6 +67,16 @@ export function CharacterSheet({
         setCharacter={setCharacter}
         setMode={setMode}
         condition={mode.condition}
+      />
+    );
+  }
+
+  if (mode.mode === "ViewBleeding") {
+    return (
+      <ViewBleeding
+        character={character}
+        setCharacter={setCharacter}
+        setMode={setMode}
       />
     );
   }

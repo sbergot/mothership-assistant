@@ -48,7 +48,13 @@ export function ViewWeapon({ setCharacter, setMode, weapon, wallet }: Props) {
         <Title>{weapon.weaponType}</Title>
         <ItemDetails fields={fields} item={weapon} />
         {weapon.magazines && (
-          <Rating title="Magazines" value={magazines} onUpdate={setMagazines} />
+          <div className="mt-2">
+            <Rating
+              title="Magazines"
+              value={magazines}
+              onUpdate={setMagazines}
+            />
+          </div>
         )}
       </Block>
       <div className="flex justify-center gap-2">

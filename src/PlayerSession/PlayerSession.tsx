@@ -14,7 +14,7 @@ import { useEffect, useRef, useState } from "react";
 import { Character } from "Rules/types";
 import { useLog } from "Services/messageServices";
 
-type ConnectionStatus = "connecting" | "connected" | "error" | "disconnected";
+type ConnectionStatus = "connecting" | "connected" | "error" | "disconnected" | "offline";
 
 function usePlayerConnection(sessionCode: string, character: Character) {
   const browserId = useBrowserId();
@@ -127,6 +127,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
 
   useEffect(() => {
     if (!sessionCode) {
+      setConnectionStatus("offline");
       return;
     }
     if (debounceRef.current) {
