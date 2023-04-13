@@ -34,6 +34,10 @@ export function ShowDamage({
                 inflicted,
               });
               context.setCharacter((c) => newChar);
+              return;
+            }
+            if (context.type === "warden") {
+              context.setMode({ mode: "DealDamage" });
             }
           }}
         >

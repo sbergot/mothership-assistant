@@ -1,13 +1,9 @@
 import {
-  Armor,
   BaseCharacter,
   Character,
   CharacterSkill,
   ConditionType,
-  Contractor,
-  Equipment,
   SkillType,
-  Weapon,
 } from "Rules/types";
 
 export interface ReadCharacter {

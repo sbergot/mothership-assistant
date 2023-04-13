@@ -14,10 +14,10 @@ import {
 } from "Messages/types";
 import { ButtonIcon, CopyIcon } from "UI/Icons";
 import { stamp } from "helpers";
+import { Modes, ReadWriteGame } from "./types";
+import { DmSessionRouting } from "./DmSessionRouting";
 
-interface Props {
-  game: Game;
-  setGame(setter: (c: Game) => Game): void;
+interface Props extends ReadWriteGame {
 }
 
 type ConnectionState = "opened" | "closed" | "error";
@@ -41,7 +41,8 @@ function useDmConnection(
   const debounceRef = useRef(false);
   const connRef = useRef<DataConnection | null>(null);
   const playerConnectionsRef = useRef<Record<string, DataConnection>>({});
-  const [ transientMessages, setTransientMessages ] = useState<StampedMessage[]>(messages);
+  const [transientMessages, setTransientMessages] =
+    useState<StampedMessage[]>(messages);
 
   function initialize() {
     if (debounceRef.current) {
@@ -113,7 +114,7 @@ function useDmConnection(
         if (!typeData.transient) {
           storeMessage(typeData);
         }
-        setTransientMessages(tms => [...tms, typeData]);
+        setTransientMessages((tms) => [...tms, typeData]);
         Object.values(playerConnectionsRef.current).forEach((c) => {
           c.send(typeData);
         });
@@ -159,7 +160,7 @@ function useDmConnection(
     sessionCode,
     connections: Object.values(connectionsState),
     log,
-    messages: transientMessages
+    messages: transientMessages,
   };
 }
 
@@ -170,6 +171,7 @@ export function DmSession({ game, setGame }: Props) {
       setGame((g) => ({ ...g, messages: [...g.messages, m] }));
     }
   );
+  const [mode, setMode] = useState<Modes>({ mode: "DmSheet" });
 
   const characters: Character[] = connections
     .map((c) => c.character)
@@ -195,13 +197,20 @@ export function DmSession({ game, setGame }: Props) {
             {id} - {character?.name ?? "???"} - {state}
           </div>
         ))}
-        <DmSheet game={game} setGame={setGame} characters={characters} />
+        <DmSessionRouting
+          game={game}
+          setGame={setGame}
+          characters={characters}
+          mode={mode}
+          setMode={setMode}
+        />
       </div>
       <MessagePanel
         messages={messages}
         authorId={"warden"}
         contextType="warden"
         commonContext={commonContext}
+        wardenContext={{ setMode }}
       />
     </div>
   );

@@ -3,6 +3,7 @@ import {
   ReadWriteCharacter,
   SetMode,
 } from "CharacterSheet/types";
+import { SetDmMode } from "DmSession/types";
 import {
   AttackRollResult,
   DeathCheckResult,
@@ -58,7 +59,7 @@ export interface PlayerMessageContext
   type: "player";
 }
 
-export interface WardenMessageContext extends BaseMessageContext {
+export interface WardenMessageContext extends BaseMessageContext, SetDmMode {
   type: "warden";
 }
 

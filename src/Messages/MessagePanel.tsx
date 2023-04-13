@@ -10,6 +10,7 @@ import {
   WardenMessageContext,
 } from "./types";
 import { ReadWriteCharacter, SetMode } from "CharacterSheet/types";
+import { SetDmMode } from "DmSession/types";
 
 interface Props {
   messages: StampedMessage[];
@@ -17,6 +18,7 @@ interface Props {
   contextType: ContextType;
   commonContext: Log;
   playerContext?: ReadWriteCharacter & SetMode;
+  wardenContext?: SetDmMode;
 }
 
 export function MessagePanel({
@@ -25,6 +27,7 @@ export function MessagePanel({
   contextType,
   commonContext,
   playerContext,
+  wardenContext
 }: Props) {
   const messagesEnd = useRef<HTMLDivElement | null>(null);
 
@@ -56,6 +59,7 @@ export function MessagePanel({
                   type: "warden",
                   isOwnMessage,
                   ...commonContext,
+                  ...wardenContext!
                 } satisfies WardenMessageContext);
           return m.type === "SimpleMessage" ? (
             <div key={i} className="text-sm">
