@@ -18,7 +18,7 @@ export function RollSaves({ character, onConfirm }: StepProps) {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-2">
       <Block variant="light">
         <Title>1. Roll 2d10 + 10 for each stat</Title>
         <div className="flex justify-center gap-8">
@@ -27,12 +27,10 @@ export function RollSaves({ character, onConfirm }: StepProps) {
           <Rating title="Body" value={newCharacter.body} />
         </div>
       </Block>
-      <div className="self-center">
+      <div className="self-center flex gap-2">
         <Button rounded dark disabled={done} onClick={rollSaves}>
           Roll
         </Button>
-      </div>
-      <div className="self-center">
         <Button rounded dark disabled={!done} onClick={() => onConfirm(newCharacter)}>
           Confirm
         </Button>

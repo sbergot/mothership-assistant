@@ -16,7 +16,7 @@ export function RollHealth({ character, onConfirm }: StepProps) {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-2">
       <Block variant="light">
         <Title>4. Roll 1d10 + 10 for your health</Title>
         <div className="flex justify-around">
@@ -34,12 +34,10 @@ export function RollHealth({ character, onConfirm }: StepProps) {
         />
       </div>
       </Block>
-      <div className="self-center">
+      <div className="self-center flex gap-2">
         <Button rounded dark disabled={done} onClick={rollHealth}>
           Roll
         </Button>
-      </div>
-      <div className="self-center">
         <Button rounded dark disabled={!done} onClick={() => onConfirm(newCharacter)}>
           Confirm
         </Button>

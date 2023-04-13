@@ -2,6 +2,8 @@
   - damage
     - DM can assign damage to NPC/monster
 
+- fixed message panel layout
+
 - publish canary version & communicate on discord
 
 - connection

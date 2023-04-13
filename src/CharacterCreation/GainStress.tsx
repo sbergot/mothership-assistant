@@ -18,7 +18,7 @@ export function GainStress({ character, onConfirm }: StepProps) {
           />
         </div>
       </Block>
-      <div className="self-center">
+      <div className="self-center mt-2">
         <Button rounded dark disabled={!done} onClick={() => onConfirm(character)}>
           Confirm
         </Button>

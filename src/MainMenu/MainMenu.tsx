@@ -24,6 +24,8 @@ export function MainMenu({
   const [sessionCode, setSessionCode] = useState<string>("");
   const [selectedCharId, setSelectedCharId] = useState<string | null>(null);
   const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
+  const [newGameName, setNewGameName] = useState("");
+
   return (
     <div className="flex gap-2">
       <div className="flex flex-col gap-2 max-w-lg w-full">
@@ -83,7 +85,17 @@ export function MainMenu({
             onChange={(e) => setSessionCode(e.target.value)}
           />
           <div className="shrink-0">
-            <Button dark onClick={() => { setMode({ mode: "PlayerSession", sessionCode, characterId: selectedCharId! }) }} disabled={selectedCharId === null && !!sessionCode}>
+            <Button
+              dark
+              onClick={() => {
+                setMode({
+                  mode: "PlayerSession",
+                  sessionCode,
+                  characterId: selectedCharId!,
+                });
+              }}
+              disabled={selectedCharId === null && !!sessionCode}
+            >
               Join session
             </Button>
           </div>
@@ -94,41 +106,55 @@ export function MainMenu({
           <Button
             key={c.id}
             onClick={() => setSelectedGameId(c.id)}
-            light={selectedCharId !== c.id}
+            light={selectedGameId !== c.id}
           >
             {c.value.title}
           </Button>
         ))}
         <Block variant="light">
-          <Button
-            onClick={() => {
-              const newId = saveNewGame({
-                monsters: [],
-                npcs: [],
-                messages: [],
-                title: "game title",
-              });
-              setMode({ mode: "DmSession", gameId: newId });
-            }}
-          >
-            New game
-          </Button>
-          <Button
-            disabled={selectedGameId === null}
-            onClick={() =>
-              setMode({ mode: "DmSession", gameId: selectedGameId! })
-            }
-          >
-            Resume game
-          </Button>
-          <Button
-            disabled={selectedGameId === null}
-            onClick={() =>
-              deleteGameEntry(gameEntries.find(g => g.id === selectedGameId)!)
-            }
-          >
-            Delete game
-          </Button>
+          <div className="flex items-center gap-2">
+            <div className="shrink-0">
+              <Button
+                onClick={() => {
+                  const newId = saveNewGame({
+                    monsters: [],
+                    npcs: [],
+                    messages: [],
+                    title: newGameName,
+                  });
+                  setMode({ mode: "DmSession", gameId: newId });
+                }}
+              >
+                New game
+              </Button>
+            </div>
+            <input
+              className="input border-2 border-mother-5"
+              placeholder="name"
+              value={newGameName}
+              onChange={(e) => setNewGameName(e.target.value)}
+            />
+          </div>
+          <div className="flex gap-2 mt-2">
+            <Button
+              disabled={selectedGameId === null}
+              onClick={() =>
+                setMode({ mode: "DmSession", gameId: selectedGameId! })
+              }
+            >
+              Resume game
+            </Button>
+            <Button
+              disabled={selectedGameId === null}
+              onClick={() =>
+                deleteGameEntry(
+                  gameEntries.find((g) => g.id === selectedGameId)!
+                )
+              }
+            >
+              Delete game
+            </Button>
+          </div>
         </Block>
       </div>
     </div>

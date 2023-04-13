@@ -10,7 +10,7 @@ export function PersonalDetails({ character, onConfirm }: StepProps) {
       <Block variant="dark">
         <Title variant="light">9. Personal details</Title>
         <div>
-          <label>Character Name</label>
+          <label>Character Name*</label>
           <input
             className="input"
             id="characterClass"
@@ -21,7 +21,7 @@ export function PersonalDetails({ character, onConfirm }: StepProps) {
           />
         </div>
         <div>
-          <label>Pronouns</label>
+          <label>Pronouns*</label>
           <input
             className="input"
             value={newCharacter.pronouns}
@@ -41,7 +41,7 @@ export function PersonalDetails({ character, onConfirm }: StepProps) {
           />
         </div>
       </Block>
-      <div className="self-center">
+      <div className="self-center mt-2">
         <Button rounded dark disabled={!done} onClick={() => onConfirm(newCharacter)}>
           Confirm
         </Button>

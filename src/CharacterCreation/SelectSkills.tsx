@@ -170,7 +170,7 @@ export function SelectSkills({ character, onConfirm }: StepProps) {
           onFinish={() => setDone(true)}
         />
       </Block>
-      <div className="self-center">
+      <div className="self-center mt-2">
         <div className="flex items-center gap-4">
           <Button rounded dark onClick={() => setCharacter({ ...character })}>
             Reset
