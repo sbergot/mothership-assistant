@@ -1,9 +1,7 @@
 - rolls
+  - death check button
   - damage
     - DM can assign damage to NPC/monster
-  - wound roll screen
-  - rest button
-  - death check button
 
 - connection
   - debounce frequent character updates

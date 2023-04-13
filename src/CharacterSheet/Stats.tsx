@@ -23,6 +23,7 @@ export function Stats({ character, setMode }: ReadCharacter & SetMode) {
         <Button onClick={() => setMode({ mode: "EditStats" })} dark>Edit</Button>
         <Button onClick={() => setMode({ mode: "RollStat" })} dark>Stat check</Button>
         <Button onClick={() => setMode({ mode: "RollSave" })} dark>Save check</Button>
+        <Button onClick={() => setMode({ mode: "RollRest" })} dark>Rest check</Button>
       </div>
     </Block>
   );

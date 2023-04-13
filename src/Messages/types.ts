@@ -37,6 +37,7 @@ export type GameMessage =
   | Message<"StatRollMessage", StatRollResult>
   | Message<"AttackRollMessage", AttackRollResult>
   | Message<"SaveRollMessage", SaveRollResult>
+  | Message<"RestRollMessage", SaveRollResult>
   | Message<"PanicRollMessage", PanicRollResult>
   | Message<"PanicEffectMessage", PanicEffect>
   | Message<"DamageMessage", InflictedDamage>

@@ -63,6 +63,7 @@ export type Modes =
   | (PlayerSessionMode<"ViewContractor"> & { contractorId: string })
   | PlayerSessionMode<"EditStats">
   | PlayerSessionMode<"RollSave">
+  | PlayerSessionMode<"RollRest">
   | PlayerSessionMode<"RollStat">
   | (PlayerSessionMode<"RollAttack"> & { weaponId: string })
   | PlayerSessionMode<"PanicCheck">

@@ -32,6 +32,7 @@ import { TakeDamage } from "./TakeDamage";
 import { updateInList } from "helpers";
 import { RollWound } from "./RollWound";
 import { ViewBleeding } from "./ViewBleeding";
+import { RollRest } from "./RollRest";
 
 export function CharacterSheet({
   character,
@@ -239,6 +240,17 @@ export function CharacterSheet({
   if (mode.mode === "RollSave") {
     return (
       <RollSave
+        character={character}
+        setCharacter={setCharacter}
+        log={log}
+        setMode={setMode}
+      />
+    );
+  }
+
+  if (mode.mode === "RollRest") {
+    return (
+      <RollRest
         character={character}
         setCharacter={setCharacter}
         log={log}
