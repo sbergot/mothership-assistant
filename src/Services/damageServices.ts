@@ -80,12 +80,11 @@ export function normalizeCriticalType(
   throw new Error("unknown critical type");
 }
 
-function rollWound(
+export function rollWound(
   character: Character,
   log: (m: GameMessage) => void,
-  criticalType: CriticalType
+  woundRolls: NormalizedCriticalType[]
 ): Character {
-  const woundRolls = normalizeCriticalType(criticalType);
   let newChar = { ...character };
   woundRolls.forEach((wr) => {
     const woundTable = allWoundTablesDict[wr.woundType];
@@ -124,7 +123,8 @@ export function applyDamage(
   }
 
   for (let i = 0; i < woundsNbr; i++) {
-    newChar = rollWound(newChar, log, damage.criticalType);
+    const woundRolls = normalizeCriticalType(damage.criticalType);
+    newChar = rollWound(newChar, log, woundRolls);
   }
 
   return newChar;

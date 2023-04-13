@@ -1,22 +1,14 @@
 import { NormalizedCriticalType, WoundType } from "Rules/types";
 import { Block, Button, Divider } from "UI/Atoms";
-import { analysePanicRoll, applyPanic } from "helpers";
 import { useState } from "react";
-import { SetMode, WriteCharacter } from "./types";
+import { ReadWriteCharacter, SetMode, WriteCharacter } from "./types";
 import { Log } from "Messages/types";
 import { allWoundTables } from "Rules/Data/wounds";
+import { rollWound } from "Services/damageServices";
 
-const allWoundTypes: WoundType[] = [
-  "bleeding",
-  "blunt",
-  "fire",
-  "gore",
-  "gunshot",
-];
+interface Props extends ReadWriteCharacter, SetMode, Log {}
 
-interface Props extends WriteCharacter, SetMode, Log {}
-
-export function RollWound({ setCharacter, setMode, log }: Props) {
+export function RollWound({ character, setCharacter, setMode, log }: Props) {
   const [woundRoll, setWoundRoll] = useState<NormalizedCriticalType>({
     rollMode: "normal",
     woundType: "bleeding",
@@ -62,7 +54,7 @@ export function RollWound({ setCharacter, setMode, log }: Props) {
               rounded
               onClick={() => {
                 setWoundRoll((wr) => ({
-                  ...woundRoll,
+                  ...wr,
                   woundType: wt.woundType,
                 }));
               }}
@@ -74,7 +66,12 @@ export function RollWound({ setCharacter, setMode, log }: Props) {
       </div>
       <Divider />
       <div className="flex justify-center gap-2">
-        <Button dark rounded onClick={() => {}}>
+        <Button dark rounded onClick={() => {
+          // we don't use setter function because we have side effects and it is run twice
+          const newChar = rollWound(character, log, [woundRoll]);
+          setCharacter(c => newChar);
+          setMode({ mode: "CharacterSheet" });
+        }}>
           roll
         </Button>
         <Button

@@ -255,7 +255,12 @@ export function CharacterSheet({
 
   if (mode.mode === "RollWound") {
     return (
-      <RollWound setCharacter={setCharacter} log={log} setMode={setMode} />
+      <RollWound
+        character={character}
+        setCharacter={setCharacter}
+        log={log}
+        setMode={setMode}
+      />
     );
   }
 
