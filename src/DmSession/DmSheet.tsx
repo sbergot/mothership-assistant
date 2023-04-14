@@ -137,8 +137,8 @@ export function DmSheet({ game, setGame, characters }: Props) {
         <input
           className="input border-2 border-mother-5"
           placeholder="name"
-          value={newNpcName}
-          onChange={(e) => setNewNpcName(e.target.value)}
+          value={newMonsterName}
+          onChange={(e) => setNewMonsterName(e.target.value)}
         />
       </div>
     </div>

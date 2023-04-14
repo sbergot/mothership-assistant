@@ -15,7 +15,7 @@ export function DmSessionRouting({ game, setGame, mode, characters, setMode }: P
   }
 
   if (mode.mode === "DealDamage") {
-    return <DealDamage game={game} setGame={setGame} />
+    return <DealDamage game={game} setGame={setGame} setMode={setMode} />
   }
 
   return <div>unknown mode</div>
