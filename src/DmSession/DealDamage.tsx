@@ -20,7 +20,7 @@ export function DealDamage({ game, setGame, setMode, damage }: Props) {
   return (
     <Block variant="light">
       <Title>Select target</Title>
-      <div>
+      <div className="flex flex-wrap gap-1 my-2">
         {npcs.map((npc) => (
           <Button
             light={selection?.id !== npc.id}

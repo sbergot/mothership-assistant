@@ -2,7 +2,7 @@ import { analyseStatRoll } from "helpers";
 import { AttackRollResult, StatRollResult } from "Rules/types";
 import { MessageContext } from "./types";
 import { Button } from "UI/Atoms";
-import { rollDamages } from "Services/damageServices";
+import { getDamageDescription, rollDamages } from "Services/damageServices";
 
 export function ShowAttackRoll({
   roll,
@@ -44,7 +44,7 @@ export function ShowAttackRoll({
                 });
               }}
             >
-              Roll damage {d.damageType}
+              Roll damage {getDamageDescription(d)}
             </Button>
           ))}
       </div>

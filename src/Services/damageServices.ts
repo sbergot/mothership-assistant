@@ -176,6 +176,32 @@ function applyRollMode(rollMode: RollMode, roll: () => number): RollWithMode {
   throw new Error("unknwon roll mode");
 }
 
+export function getDamageDescription(damages: Damage): string {
+  if (damages.damageType === "d100") {
+    return "d100";
+  }
+  if (damages.damageType === "d10x10") {
+    return "d10x10";
+  }
+  if (damages.damageType === "d5MinusOneWounds") {
+    return "d5 - 1 wounds";
+  }
+  if (damages.damageType === "fixedDamage") {
+    return `fixed ${damages.amount}`;
+  }
+  if (damages.damageType === "fixedWounds") {
+    return `fixed ${damages.amount} wounds`;
+  }
+  if (damages.damageType === "xd10") {
+    return `${damages.amount}d10`;
+  }
+  if (damages.damageType === "xd5") {
+    return `${damages.amount}d5`;
+  }
+
+  throw new Error("unknown damage type");
+}
+
 export function innerRollDamages(
   damages: Damage,
   criticalType: CriticalType
