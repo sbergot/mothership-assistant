@@ -9,6 +9,9 @@ import {
   RollWithMode,
   Damage,
   WoundType,
+  BaseCharacter,
+  WithHealth,
+  WithWound,
 } from "Rules/types";
 import { roll } from "./diceServices";
 
@@ -99,11 +102,27 @@ export function rollWound(
   return newChar;
 }
 
-export function applyDamage(
-  character: Character,
-  log: (m: GameMessage) => void,
+export function applyWoundDamage<T extends WithWound>(
+  character: T,
   damage: InflictedDamage
-): Character {
+): T {
+  let newChar = { ...character };
+
+  if (damage.inflicted === "health") {
+    newChar.wounds += Math.floor(damage.amount.result / 10) + 1;
+  }
+
+  if (damage.inflicted === "wounds") {
+    newChar.wounds += damage.amount.result;
+  }
+
+  return newChar;
+}
+
+export function applyHealthDamage<T extends WithWound & WithHealth>(
+  character: T,
+  damage: InflictedDamage
+): { newChar: T; woundsNbr: number } {
   let newChar = { ...character };
   let woundsNbr = 0;
   if (damage.inflicted === "health") {
@@ -121,6 +140,16 @@ export function applyDamage(
     woundsNbr = damage.amount.result;
     newChar.wounds += damage.amount.result;
   }
+
+  return { newChar, woundsNbr };
+}
+
+export function applyDamage(
+  character: Character,
+  log: (m: GameMessage) => void,
+  damage: InflictedDamage
+): Character {
+  let { newChar, woundsNbr } = applyHealthDamage(character, damage);
 
   for (let i = 0; i < woundsNbr; i++) {
     const woundRolls = normalizeCriticalType(damage.criticalType);
@@ -212,7 +241,7 @@ export function rollDamages(
   const damage = innerRollDamages(damages, criticalType);
   if (isCritical) {
     damage.amount.result *= 2;
-    damage.amount.rolls = damage.amount.rolls.map(v => v*2);
+    damage.amount.rolls = damage.amount.rolls.map((v) => v * 2);
   }
   return damage;
 }

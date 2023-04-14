@@ -9,14 +9,27 @@ interface Props extends ReadWriteGame {
   setMode(mode: Modes): void;
 }
 
-export function DmSessionRouting({ game, setGame, mode, characters, setMode }: Props) {
+export function DmSessionRouting({
+  game,
+  setGame,
+  mode,
+  characters,
+  setMode,
+}: Props) {
   if (mode.mode === "DmSheet") {
-    return <DmSheet game={game} setGame={setGame} characters={characters} />
+    return <DmSheet game={game} setGame={setGame} characters={characters} />;
   }
 
   if (mode.mode === "DealDamage") {
-    return <DealDamage game={game} setGame={setGame} setMode={setMode} />
+    return (
+      <DealDamage
+        game={game}
+        setGame={setGame}
+        setMode={setMode}
+        damage={mode.damage}
+      />
+    );
   }
 
-  return <div>unknown mode</div>
+  return <div>unknown mode</div>;
 }

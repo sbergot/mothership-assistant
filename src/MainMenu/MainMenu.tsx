@@ -94,7 +94,7 @@ export function MainMenu({
                   characterId: selectedCharId!,
                 });
               }}
-              disabled={selectedCharId === null && !!sessionCode}
+              disabled={selectedCharId === null || !sessionCode || sessionCode.length === 0}
             >
               Join session
             </Button>

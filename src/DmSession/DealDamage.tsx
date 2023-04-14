@@ -1,15 +1,20 @@
 import { Block, Button, Title } from "UI/Atoms";
 import { ReadWriteGame, SetDmMode } from "./types";
 import { useState } from "react";
+import { updateInList } from "helpers";
+import { applyHealthDamage, applyWoundDamage } from "Services/damageServices";
+import { InflictedDamage } from "Rules/types";
 
-interface Props extends ReadWriteGame, SetDmMode {}
+interface Props extends ReadWriteGame, SetDmMode {
+  damage: InflictedDamage;
+}
 
 interface Selection {
   type: "npc" | "monster";
   id: string;
 }
 
-export function DealDamage({ game, setGame, setMode }: Props) {
+export function DealDamage({ game, setGame, setMode, damage }: Props) {
   const { npcs, monsters } = game;
   const [selection, setSelection] = useState<Selection | null>(null);
   return (
@@ -43,6 +48,22 @@ export function DealDamage({ game, setGame, setMode }: Props) {
           rounded
           disabled={selection === null}
           onClick={() => {
+            if (selection?.type === "npc") {
+              setGame((g) => ({
+                ...g,
+                npcs: updateInList(g.npcs, selection?.id, (n) =>
+                  applyWoundDamage(n, damage)
+                ),
+              }));
+            }
+            if (selection?.type === "monster") {
+              setGame((g) => ({
+                ...g,
+                monsters: updateInList(g.monsters, selection?.id, (n) =>
+                  applyHealthDamage(n, damage).newChar
+                ),
+              }));
+            }
             setMode({ mode: "DmSheet" });
           }}
         >

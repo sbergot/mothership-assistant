@@ -200,6 +200,16 @@ export interface WithId {
   id: string;
 }
 
+export interface WithWound {
+  wounds: number;
+  maxWounds: number;
+}
+
+export interface WithHealth {
+  maxHealth: number;
+  health: number;
+}
+
 export interface Damage {
   damageType: DamageType;
   amount: number;
@@ -269,12 +279,10 @@ export interface Item extends WithId {
   quantity: number;
 }
 
-export interface BaseCharacter extends WithId {
+export interface BaseCharacter extends WithId, WithWound {
   name: string;
   pronouns: string;
   thumbnailPath?: string;
-  wounds: number;
-  maxWounds: number;
   equipment: Equipment[];
   armor: Armor[];
   weapons: Weapon[];
@@ -292,7 +300,7 @@ export interface Contractor extends BaseCharacter {
   probability: Probability;
 }
 
-export interface Character extends BaseCharacter {
+export interface Character extends BaseCharacter, WithHealth {
   personalNotes: string;
   characterClass: CharacterClass;
   strength: number;
@@ -302,8 +310,6 @@ export interface Character extends BaseCharacter {
   sanity: number;
   fear: number;
   body: number;
-  maxHealth: number;
-  health: number;
   stress: number;
   minStress: number;
   credits: number;
@@ -413,18 +419,13 @@ export interface WoundEffectEntry {
   type: WoundType;
 }
 
-export interface Npc extends WithId {
+export interface Npc extends WithId, WithWound {
   name: string;
   combat: number;
   instinct: number;
-  wounds: number;
-  maxWounds: number;
 }
 
-export interface Monster extends Npc {
-  health: number;
-  maxHealth: number;
-}
+export interface Monster extends Npc, WithHealth {}
 
 export interface Game {
   title: string;

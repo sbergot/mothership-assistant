@@ -1,4 +1,4 @@
-import { Game } from "Rules/types";
+import { Game, InflictedDamage } from "Rules/types";
 
 interface DmSessionMode<T extends string> {
   mode: T;
@@ -6,7 +6,7 @@ interface DmSessionMode<T extends string> {
 
 export type Modes =
   | DmSessionMode<"DmSheet">
-  | DmSessionMode<"DealDamage">;
+  | DmSessionMode<"DealDamage"> & { damage: InflictedDamage };
 
 export interface ReadWriteGame {
   game: Game;

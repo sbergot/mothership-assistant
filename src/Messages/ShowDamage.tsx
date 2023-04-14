@@ -26,18 +26,23 @@ export function ShowDamage({
           dark
           rounded
           onClick={() => {
+            const inflictedDamage: InflictedDamage = {
+              amount,
+              criticalType,
+              inflicted,
+            };
             if (context.type === "player") {
               // not using setter function because it is run twice and we are emitting messages
-              const newChar = applyDamage(context.character, context.log, {
-                amount,
-                criticalType,
-                inflicted,
-              });
+              const newChar = applyDamage(
+                context.character,
+                context.log,
+                inflictedDamage
+              );
               context.setCharacter((c) => newChar);
               return;
             }
             if (context.type === "warden") {
-              context.setMode({ mode: "DealDamage" });
+              context.setMode({ mode: "DealDamage", damage: inflictedDamage });
             }
           }}
         >
