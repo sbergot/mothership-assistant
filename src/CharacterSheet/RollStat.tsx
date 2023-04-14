@@ -44,10 +44,28 @@ export function RollStat({
     }
     setCharacter((c) => ({
       ...c,
-      weapons: updateInList(c.weapons, weaponId, (w) => ({
-        ...w,
-        shots: w.shots ? w.shots - 1 : null,
-      })),
+      weapons: updateInList(c.weapons, weaponId, (w) => {
+        if (w.shots == null) {
+          return w;
+        }
+        if (w.shots > 1) {
+          return {
+            ...w,
+            shots: w.shots - 1,
+          };
+        }
+        if (w.shots === 1 && w.magazines! > 0) {
+          return {
+            ...w,
+            shots: w.magazineSize,
+            magazines: w.magazines! - 1
+          };
+        }
+        return {
+          ...w,
+          shots: 0,
+        };
+      }),
     }));
   }
 

@@ -1,4 +1,4 @@
-import { formatCredits } from "helpers";
+import { formatCredits, updateInList } from "helpers";
 import { useState } from "react";
 import { Weapon } from "Rules/types";
 import { Block, Button, Title } from "UI/Atoms";
@@ -47,15 +47,34 @@ export function ViewWeapon({ setCharacter, setMode, weapon, wallet }: Props) {
       <Block variant="light">
         <Title>{weapon.weaponType}</Title>
         <ItemDetails fields={fields} item={weapon} />
-        {weapon.magazines && (
-          <div className="mt-2">
-            <Rating
-              title="Magazines"
-              value={magazines}
-              onUpdate={setMagazines}
-            />
-          </div>
-        )}
+        <div className="flex justify-center gap-4">
+          {weapon.magazines !== null && (
+            <div className="mt-2">
+              <Rating
+                title="Magazines"
+                value={magazines}
+                onUpdate={setMagazines}
+              />
+            </div>
+          )}
+          {weapon.shots !== null && (
+            <div className="mt-2">
+              <Rating
+                title="Shots"
+                value={weapon.shots}
+                onUpdate={(value) =>
+                  setCharacter((c) => ({
+                    ...c,
+                    weapons: updateInList(c.weapons, weapon.id, (w) => ({
+                      ...w,
+                      shots: value,
+                    })),
+                  }))
+                }
+              />
+            </div>
+          )}
+        </div>
       </Block>
       <div className="flex justify-center gap-2">
         <Button
@@ -73,7 +92,7 @@ export function ViewWeapon({ setCharacter, setMode, weapon, wallet }: Props) {
         </Button>
         <Button onClick={back}>Back</Button>
       </div>
-      {weapon.magazines && weapon.magazines !== magazines && (
+      {weapon.magazines !== null && weapon.magazines !== magazines && (
         <div className="flex justify-center gap-2">
           <Button
             onClick={() => {
