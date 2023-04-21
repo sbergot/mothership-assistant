@@ -5,6 +5,10 @@
   background-color: #ffffff;
 }
 
+input[type=number] {
+  -moz-appearance:textfield; /* Firefox */
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -23,7 +27,7 @@
   }
 
   .input {
-    @apply p-2 w-full rounded-lg uppercase text-mother-5
+    @apply p-2 w-full rounded-lg uppercase text-mother-5 bg-mother-1
   }
 }
 
