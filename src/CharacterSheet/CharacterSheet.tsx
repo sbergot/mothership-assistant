@@ -33,6 +33,7 @@ import { updateInList } from "helpers";
 import { RollWound } from "./RollWound";
 import { ViewBleeding } from "./ViewBleeding";
 import { RollRest } from "./RollRest";
+import { AddCredits } from "./AddCredits";
 
 export function CharacterSheet({
   character,
@@ -139,6 +140,16 @@ export function CharacterSheet({
         setCharacter={setCharacter}
         setMode={setMode}
         wallet={wallet}
+      />
+    );
+  }
+
+  if (mode.mode === "AddCredits") {
+    return (
+      <AddCredits
+        character={character}
+        setCharacter={setCharacter}
+        back={back}
       />
     );
   }

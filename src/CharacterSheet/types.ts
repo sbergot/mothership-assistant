@@ -51,6 +51,7 @@ export type Modes =
   | PlayerSessionMode<"AddWeapon">
   | PlayerSessionMode<"AddArmor">
   | PlayerSessionMode<"AddEquipment">
+  | PlayerSessionMode<"AddCredits">
   | PlayerSessionMode<"AddCustomItem">
   | PlayerSessionMode<"AddContractor">
   | (PlayerSessionMode<"ViewWeapon"> & { weaponId: string })

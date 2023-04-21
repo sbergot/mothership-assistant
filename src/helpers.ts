@@ -6,6 +6,7 @@ import {
   stressTable,
 } from "Rules/data";
 import {
+  BaseCharacter,
   Character,
   PanicRollAnalysis,
   PanicRollResult,
@@ -173,4 +174,8 @@ export function stamp(character: { id: string, name: string }, m: GameMessage): 
     authorId: character.id,
     time: getNow(),
   };
+}
+
+export function isCharacter(c: BaseCharacter): c is Character {
+  return (c as any).credits != undefined;
 }
