@@ -1,13 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
-import { Layout } from './UI/Layout'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { Layout } from "./UI/Layout";
+import { Root } from "Root/Root";
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Layout>
-      <App />
+      <Root />
     </Layout>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
