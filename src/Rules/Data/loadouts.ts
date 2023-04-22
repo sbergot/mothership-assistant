@@ -94,7 +94,7 @@ function instantiateEquipment(ref: DataRef<Equipment>): Equipment {
   let model = allEquipmentDict[ref.ref];
   if (model === undefined) {
     if (ref.ref.length > 0) {
-      console.error(`weapon ref not found: ${ref.ref}`);
+      console.error(`equipment ref not found: ${ref.ref}`);
     }
     model = baseEquipment;
   }
@@ -120,7 +120,7 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
           custom: { weaponType: "Combat Knife", baseType: "knife" },
         },
       ],
-      equipments: [{ ref: "stimpak" }],
+      equipments: [{ ref: "stimpak", custom: { quantity: 1, cost: 80 } }],
     },
     {
       armors: [{ ref: "advancedBattleDress" }],
@@ -130,7 +130,10 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
     {
       armors: [{ ref: "standardBattleDress" }],
       weapons: [{ ref: "combatShotgun" }],
-      equipments: [{ ref: "rucksack" }, { ref: "campingGear" }],
+      equipments: [
+        { ref: "rucksack" },
+        simpleEquipment("Camping Gear", { cost: 50 }),
+      ],
     },
     {
       armors: [{ ref: "standardBattleDress" }],
@@ -177,7 +180,10 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
     {
       armors: [{ ref: "vaccsuit" }],
       weapons: [{ ref: "revolver" }],
-      equipments: [{ ref: "longrangecomms" }, { ref: "satchel" }],
+      equipments: [
+        { ref: "longrangecomms" },
+        simpleEquipment("Satchel", { cost: 500 }),
+      ],
     },
     {
       armors: [{ ref: "hazardSuit" }],
@@ -280,14 +286,14 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
       equipments: [
         { ref: "automed" },
         { ref: "oxygenTank" },
-        { ref: "filterMask" },
+        simpleEquipment("Filter mask", { cost: 50 }),
       ],
     },
     {
       armors: [scrubs],
       weapons: [],
       equipments: [
-        { ref: "vialOfAcid" },
+        simpleEquipment("Vial of acid", { cost: 100 }),
         { ref: "mylarBlanket" },
         { ref: "firstAidKit" },
       ],
@@ -365,7 +371,7 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
       weapons: [{ ref: "combatShotgun" }],
       equipments: [
         { ref: "petOrganic", custom: { name: "Cat", baseType: "cat" } },
-        { ref: "extensionCord" },
+        simpleEquipment("Extension cord", { cost: 50 }),
       ],
     },
     {
@@ -383,7 +389,7 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
       equipments: [
         { ref: "waterFiltrationDevice" },
         { ref: "personalLocator" },
-        { ref: "subsurfaceScanner" },
+        simpleEquipment("Subsurface Scanner", { cost: 500 }),
       ],
     },
     {

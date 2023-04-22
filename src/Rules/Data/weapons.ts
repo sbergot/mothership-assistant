@@ -357,6 +357,6 @@ export const allWeapons: WeaponExt[] = [
   
   export const allWeaponDict: Record<WeaponType, WeaponExt> = toDict(
     allWeapons,
-    (w) => w.weaponType
+    (w) => w.baseType
   );
   

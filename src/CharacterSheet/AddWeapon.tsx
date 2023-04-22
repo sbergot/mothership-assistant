@@ -9,7 +9,7 @@ import { SetMode, Wallet, WriteBaseChar } from "./types";
 function getDefaultSelection(): Record<WeaponType, number> {
   const res = {} as Record<WeaponType, number>;
   allWeapons.forEach((w) => {
-    res[w.weaponType] = 0;
+    res[w.baseType] = 0;
   });
   return res;
 }
@@ -29,7 +29,7 @@ export function AddWeapon({
       cell({ elt }) {
         return (
           <div className="py-1">
-            <div className="leading-none">{elt.weaponType}</div>
+            <div className="leading-none">{elt.baseType}</div>
             <div className="text-sm leading-none">{elt.damageString}</div>
           </div>
         );
@@ -49,17 +49,17 @@ export function AddWeapon({
         return (
           <div className="mx-auto">
             <Counter
-              amount={selected[elt.weaponType]}
+              amount={selected[elt.baseType]}
               onDeselect={() =>
                 setSelected((s) => ({
                   ...s,
-                  [elt.weaponType]: s[elt.weaponType] - 1,
+                  [elt.baseType]: s[elt.baseType] - 1,
                 }))
               }
               onSelect={() =>
                 setSelected((s) => ({
                   ...s,
-                  [elt.weaponType]: s[elt.weaponType] + 1,
+                  [elt.baseType]: s[elt.baseType] + 1,
                 }))
               }
             />
@@ -74,7 +74,7 @@ export function AddWeapon({
   const melee = allWeapons.filter((w) => w.type === "Melee");
 
   const totalCost = allWeapons
-    .map((w) => w.cost * selected[w.weaponType])
+    .map((w) => w.cost * selected[w.baseType])
     .reduce((a, b) => a + b, 0);
 
   function getNewWeapons() {
