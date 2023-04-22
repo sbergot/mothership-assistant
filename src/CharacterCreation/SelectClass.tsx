@@ -14,7 +14,10 @@ const classBonuses: Record<CharacterClass, (c: Character) => Character> = {
       body: c.body + 10,
       fear: c.fear + 20,
       maxWounds: 3,
-      skills: [{ type: "militaryTraining", lossOfConfidence: false }, { type: "athletics", lossOfConfidence: false }],
+      skills: [
+        { type: "militaryTraining", lossOfConfidence: false },
+        { type: "athletics", lossOfConfidence: false },
+      ],
     };
   },
   android(c) {
@@ -23,14 +26,18 @@ const classBonuses: Record<CharacterClass, (c: Character) => Character> = {
       intellect: c.intellect + 20,
       fear: c.fear + 60,
       maxWounds: 3,
-      skills: [{ type: "linguistics", lossOfConfidence: false }, { type: "computers", lossOfConfidence: false }, { type: "mathematics", lossOfConfidence: false }],
+      skills: [
+        { type: "linguistics", lossOfConfidence: false },
+        { type: "computers", lossOfConfidence: false },
+        { type: "mathematics", lossOfConfidence: false },
+      ],
     };
   },
   scientist(c) {
     return {
       ...c,
       intellect: c.intellect + 10,
-      sanity: c.sanity + 20,
+      sanity: c.sanity + 30,
       maxWounds: 2,
     };
   },
@@ -44,7 +51,10 @@ const classBonuses: Record<CharacterClass, (c: Character) => Character> = {
       body: c.body + 10,
       fear: c.fear + 10,
       sanity: c.sanity + 10,
-      skills: [{ type: "industrialEquipment", lossOfConfidence: false }, { type: "zeroG", lossOfConfidence: false }],
+      skills: [
+        { type: "industrialEquipment", lossOfConfidence: false },
+        { type: "zeroG", lossOfConfidence: false },
+      ],
       maxWounds: 2,
     };
   },
@@ -214,7 +224,12 @@ export function SelectClass({ character, onConfirm }: StepProps) {
         </div>
       </Block>
       <div className="self-center mt-2">
-        <Button rounded dark disabled={!done} onClick={() => onConfirm(newCharacter)}>
+        <Button
+          rounded
+          dark
+          disabled={!done}
+          onClick={() => onConfirm(newCharacter)}
+        >
           Confirm
         </Button>
       </div>
@@ -236,13 +251,13 @@ function ClassSummary({
 }: ClassSummaryProps) {
   return (
     <div className="w-48">
-    <SelectableBlockWithTitle
-      title={className}
-      selected={className === selected}
-      onClick={() => onClick(className)}
-    >
-      {children}
-    </SelectableBlockWithTitle>
+      <SelectableBlockWithTitle
+        title={className}
+        selected={className === selected}
+        onClick={() => onClick(className)}
+      >
+        {children}
+      </SelectableBlockWithTitle>
     </div>
   );
 }
