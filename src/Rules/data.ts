@@ -388,7 +388,7 @@ export const classDefinitions: ClassDefinition[] = [
   },
   {
     name: "marine",
-    traumaResponse: "Once per session, you may take advantage on a panic check",
+    traumaResponse: "Whenever you panic, every close friendly player must make a fear save",
     initialSkills: [
       "Military Training, Athletics",
       "Bonus: 1 Expert Skill",
