@@ -1,4 +1,11 @@
-import { Armor, CharacterClass, Equipment, Loadout, Weapon } from "Rules/types";
+import {
+  Armor,
+  ArmorType,
+  CharacterClass,
+  Equipment,
+  Loadout,
+  Weapon,
+} from "Rules/types";
 
 interface DataRef<T> {
   ref: string;
@@ -11,10 +18,20 @@ export interface LoadoutRef {
   equipments: DataRef<Equipment>[];
 }
 
+const baseEquipment: Equipment = {
+  id: "",
+  name: "",
+  description: "",
+  equipped: true,
+  quantity: 1,
+  cost: 0,
+  baseType: "",
+};
+
 function simpleEquipment(name: string, custom: Partial<Equipment>) {
   return {
     ref: "",
-    custom: { ...custom, name, baseType: name.toLowerCase() },
+    custom: { ...baseEquipment, ...custom, name, baseType: name.toLowerCase() },
   };
 }
 
@@ -87,16 +104,72 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
     { armors: [{ ref: "advancedBattleDress" }], weapons: [], equipments: [] },
   ],
   android: [
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
+    {
+      armors: [{ ref: "vaccsuit" }],
+      weapons: [{ ref: "smartRifle" }],
+      equipments: [{ ref: "infraredGoggles" }, { ref: "mylarBlanket" }],
+    },
+    {
+      armors: [{ ref: "vaccsuit" }],
+      weapons: [{ ref: "revolver" }],
+      equipments: [{ ref: "longrangecomms" }, { ref: "satchel" }],
+    },
+    {
+      armors: [{ ref: "hazardSuit" }],
+      weapons: [{ ref: "revolver" }],
+      equipments: [{ ref: "firstAidKit" }],
+    },
+    {
+      armors: [{ ref: "hazardSuit" }],
+      weapons: [{ ref: "foamGun" }],
+      equipments: [{ ref: "sampleKit" }, { ref: "assortedTools" }],
+    },
+    {
+      armors: [{ ref: "standardBattleDress" }],
+      weapons: [{ ref: "tranqPistol" }],
+      equipments: [{ ref: "paracord" }],
+    },
+    {
+      armors: [{ ref: "standardCrewAttire" }],
+      weapons: [{ ref: "stunBaton" }],
+      equipments: [{ ref: "petSynthetic" }],
+    },
+    {
+      armors: [{ ref: "standardCrewAttire" }],
+      weapons: [{ ref: "scalpel" }],
+      equipments: [{ ref: "bioscanner" }],
+    },
+    {
+      armors: [{ ref: "standardCrewAttire" }],
+      weapons: [
+        { ref: "fragGrenade" },
+        {
+          ref: "scalpel",
+          custom: { weaponType: "Pen knife", baseType: "penKnife" },
+        },
+      ],
+      equipments: [],
+    },
+    {
+      armors: [
+        {
+          ref: "standardCrewAttire",
+          custom: {
+            name: "Manufacturer Supplied Attire",
+            armorType: "manufacturerSuppliedAttire" as ArmorType,
+          },
+        },
+      ],
+      weapons: [],
+      equipments: [
+        simpleEquipment("Jump-9 ticket (destination blank)", { cost: 5000 }),
+      ],
+    },
+    {
+      armors: [{ ref: "standardCrewAttire" }],
+      weapons: [],
+      equipments: [simpleEquipment("VIP Corporate key card", { cost: 10000 })],
+    },
   ],
   scientist: [
     { armors: [], weapons: [], equipments: [] },
