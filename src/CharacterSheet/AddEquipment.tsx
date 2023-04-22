@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { allEquipment, allEquipmentDict } from "Rules/data";
+import { allEquipment, allEquipmentDict } from "Rules/Data/equipment";
 import { Equipment } from "Rules/types";
 import { Block, Button, Title } from "UI/Atoms";
 import { clone, formatCredits } from "helpers";
@@ -17,7 +17,7 @@ function getDefaultSelection(): Record<string, number> {
 export function AddEquipment({
   setCharacter,
   setMode,
-  wallet
+  wallet,
 }: WriteBaseChar & SetMode & { wallet: Wallet }) {
   const [selected, setSelected] = useState<Record<string, number>>(
     getDefaultSelection()

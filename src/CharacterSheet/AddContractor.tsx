@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { allContractorTypes, allContractors, allContractorDict } from "Rules/data";
+import {
+  allContractorTypes,
+  allContractors,
+  allContractorDict,
+} from "Rules/Data/contractors";
 import { Contractor, ContractorType } from "Rules/types";
 import { Block, Button, Title } from "UI/Atoms";
 import { formatCredits } from "helpers";

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Block, Button, Divider, DividerOr, Tag, Title } from "UI/Atoms";
-import { loadouts, patches, trinkets } from "Rules/data";
+import { patches, trinkets } from "Rules/data";
 import { BlockWithTitle, SelectableBlockWithTitle } from "UI/Molecules";
 import { pickRandom, roll } from "Services/diceServices";
 import { StepProps } from "./types";
 import { clone, formatCredits } from "helpers";
+import { loadouts } from "Rules/Data/loadouts";
 
 export function RollEquipment({ character, onConfirm }: StepProps) {
   const [newCharacter, setCharacter] = useState({ ...character });
