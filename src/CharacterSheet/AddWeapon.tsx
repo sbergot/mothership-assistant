@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { allWeaponDict, allWeapons } from "Rules/data";
+import { allWeaponDict, allWeapons } from "Rules/Data/weapons";
 import { Weapon, WeaponType } from "Rules/types";
 import { Block, Button, Title } from "UI/Atoms";
 import { clone, formatCredits } from "helpers";
