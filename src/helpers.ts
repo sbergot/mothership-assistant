@@ -1,10 +1,7 @@
 import { GameMessage, StampedMessage } from "Messages/types";
 import { useMemo } from "react";
-import {
-  allSkillsDict,
-  allSkillLevelDefinitionDict,
-  stressTable,
-} from "Rules/data";
+import { stressTable } from "Rules/data";
+import { allSkillsDict, allSkillLevelDefinitionDict } from "Rules/Data/skills";
 import {
   BaseCharacter,
   Character,
@@ -50,7 +47,8 @@ export function analyseStatRoll(rollResult: StatRollResult): StatRollAnalysis {
     skillDefinition !== null
       ? allSkillLevelDefinitionDict[skillDefinition.level]
       : null;
-  const skillBonus = skill?.lossOfConfidence || skillLevel == null ? 0 : skillLevel.bonus;
+  const skillBonus =
+    skill?.lossOfConfidence || skillLevel == null ? 0 : skillLevel.bonus;
   const target = stat.value + skillBonus;
   const isSuccess = rollValue < target;
   const isCritical = rollValue % 11 === 0;
@@ -167,7 +165,10 @@ function getNow(): string {
   return nowLocal.toISOString().split(".")[0];
 }
 
-export function stamp(character: { id: string, name: string }, m: GameMessage): StampedMessage {
+export function stamp(
+  character: { id: string; name: string },
+  m: GameMessage
+): StampedMessage {
   return {
     ...m,
     author: character.name,

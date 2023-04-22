@@ -1,5 +1,5 @@
 import { toDict } from "Services/services";
-import { allSkillsDict } from "./data";
+import { allSkillsDict } from "./Data/skills";
 import { SkillDefinition, SkillType, SkillLevel, CharacterSkill } from "./types";
 
 export type SkillFilter = (s: SkillDefinition) => boolean;

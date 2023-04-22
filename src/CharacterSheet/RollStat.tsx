@@ -1,11 +1,10 @@
 import { analyseStatRoll, updateInList } from "helpers";
 import { Log } from "Messages/types";
 import { useState } from "react";
-import { allSkillsDict, allStats } from "Rules/data";
+import { allStats } from "Rules/data";
 import {
   CharacterSkill,
   RollMode,
-  SkillType,
   StatRoll,
   StatRollResult,
   StatType,
@@ -14,6 +13,7 @@ import { simpleRoll } from "Services/diceServices";
 import { Block, Button, Divider } from "UI/Atoms";
 import { SelectableRating, Skill } from "UI/Molecules";
 import { ReadWriteCharacter, SetMode } from "./types";
+import { allSkillsDict } from "Rules/Data/skills";
 
 interface Props extends ReadWriteCharacter, Log, SetMode {
   weaponId?: string;
