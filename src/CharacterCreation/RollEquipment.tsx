@@ -75,9 +75,22 @@ export function RollEquipment({ character, onConfirm }: StepProps) {
               <div className="mx-auto">
                 {gearOptionRolled ? (
                   <div className="flex flex-wrap gap-1">
-                    {newCharacter.armor.map(a => <Tag key={a.id} variant="dark">{a.name}</Tag>)}
-                    {newCharacter.weapons.map(a => <Tag key={a.id} variant="dark">{a.weaponType}</Tag>)}
-                    {newCharacter.equipment.map(a => <Tag key={a.id} variant="dark">{a.name}</Tag>)}
+                    {newCharacter.armor.map((a) => (
+                      <Tag key={a.id} variant="dark">
+                        {a.name}
+                      </Tag>
+                    ))}
+                    {newCharacter.weapons.map((a) => (
+                      <Tag key={a.id} variant="dark">
+                        {a.weaponType}
+                        {a.name !== "" ? ` - ${a.name}` : ""}
+                      </Tag>
+                    ))}
+                    {newCharacter.equipment.map((a) => (
+                      <Tag key={a.id} variant="dark">
+                        {a.name}
+                      </Tag>
+                    ))}
                     <Tag variant="dark">{newCharacter.credits}cr</Tag>
                   </div>
                 ) : (
@@ -95,7 +108,9 @@ export function RollEquipment({ character, onConfirm }: StepProps) {
             >
               <div className="mx-auto">
                 {gearOptionRolled ? (
-                  <Tag variant="dark">{formatCredits(newCharacter.credits)}cr</Tag>
+                  <Tag variant="dark">
+                    {formatCredits(newCharacter.credits)}cr
+                  </Tag>
                 ) : (
                   "-"
                 )}
@@ -103,14 +118,24 @@ export function RollEquipment({ character, onConfirm }: StepProps) {
             </SelectableBlockWithTitle>
           )}
           <div className="self-center">
-            <Button rounded dark disabled={gearOptionRolled} onClick={rollGearOption}>
+            <Button
+              rounded
+              dark
+              disabled={gearOptionRolled}
+              onClick={rollGearOption}
+            >
               Roll
             </Button>
           </div>
         </div>
       </Block>
       <div className="self-center mt-2">
-        <Button rounded dark disabled={!done} onClick={() => onConfirm(newCharacter)}>
+        <Button
+          rounded
+          dark
+          disabled={!done}
+          onClick={() => onConfirm(newCharacter)}
+        >
           Confirm
         </Button>
       </div>
