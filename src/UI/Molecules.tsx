@@ -1,5 +1,5 @@
 import { ReadCharacter } from "CharacterSheet/types";
-import { allSkillLevelDefinitionDict, allSkillsDict } from "Rules/data";
+import { allSkillLevelDefinitionDict, allSkillsDict } from "Rules/Data/skills";
 import { SkillDefinition } from "Rules/types";
 import { Children } from "./types";
 

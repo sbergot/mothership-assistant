@@ -1,9 +1,12 @@
 import { Button, Title } from "UI/Atoms";
-import {
-  allSkills,
-} from "Rules/data";
+import { allSkills } from "Rules/Data/skills";
 import { Character, SkillDefinition, SkillType } from "Rules/types";
-import { and, isNotSelected, isPrerequisiteOk, isSkillLevel } from "Rules/skillFilters";
+import {
+  and,
+  isNotSelected,
+  isPrerequisiteOk,
+  isSkillLevel,
+} from "Rules/skillFilters";
 
 interface SelectSkillProps {
   character: Character;
@@ -14,7 +17,8 @@ interface SelectSkillProps {
 export function SelectSkill({ onSelect, filter, character }: SelectSkillProps) {
   const fullFilter = and(
     isNotSelected(character.skills),
-    and(isPrerequisiteOk(character.skills), filter));
+    and(isPrerequisiteOk(character.skills), filter)
+  );
   const filteredSkills = allSkills.filter(fullFilter);
   const trainedSkills = filteredSkills.filter(isSkillLevel("Trained"));
   const expertSkills = filteredSkills.filter(isSkillLevel("Expert"));
@@ -60,4 +64,3 @@ export function SelectSkill({ onSelect, filter, character }: SelectSkillProps) {
     </div>
   );
 }
-

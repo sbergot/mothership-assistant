@@ -1,7 +1,7 @@
 import { Block, Button, Divider, Title } from "UI/Atoms";
-import { allSkillsDict } from "Rules/data";
 import { Skill, SkillInTraining } from "UI/Molecules";
 import { ReadCharacter, SetMode } from "./types";
+import { allSkillsDict } from "Rules/Data/skills";
 
 export function Skills({ character, setMode }: ReadCharacter & SetMode) {
   return (

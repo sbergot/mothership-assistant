@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { Block, Button, Title } from "UI/Atoms";
 import {
-  allSkillLevels,
-  allSkillsDict,
   classDefinitionsDict,
 } from "Rules/data";
 import { BlockWithTitle, Skill } from "UI/Molecules";
@@ -15,6 +13,7 @@ import {
   or,
 } from "Rules/skillFilters";
 import { SelectSkill } from "UI/Organisms/SelectSkills";
+import { allSkillLevels, allSkillsDict } from "Rules/Data/skills";
 
 interface SkillSelectionProps {
   character: Character;

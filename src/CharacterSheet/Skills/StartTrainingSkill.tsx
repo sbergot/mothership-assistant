@@ -1,5 +1,5 @@
 import { ReadWriteCharacter, SetMode } from "CharacterSheet/types";
-import { allSkillLevelDefinitionDict, allSkillsDict } from "Rules/data";
+import { allSkillLevelDefinitionDict, allSkillsDict } from "Rules/Data/skills";
 import { SkillType } from "Rules/types";
 import { Block, Button, Divider, Title } from "UI/Atoms";
 

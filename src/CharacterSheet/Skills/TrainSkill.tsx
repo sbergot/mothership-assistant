@@ -1,5 +1,5 @@
 import { ReadWriteCharacter, SetMode } from "CharacterSheet/types";
-import { allSkillsDict } from "Rules/data";
+import { allSkillsDict } from "Rules/Data/skills";
 import { Block, Button, Divider, Title } from "UI/Atoms";
 import { GaugeBase } from "UI/Molecules";
 
