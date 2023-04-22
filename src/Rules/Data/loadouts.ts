@@ -45,6 +45,32 @@ const fatigues: DataRef<Armor> = {
   },
 };
 
+const labCoat: DataRef<Armor> = {
+  ref: "standardCrewAttire",
+  custom: {
+    armorType: "labCoat" as ArmorType,
+    name: "Lab Coat",
+  },
+};
+
+const scrubs: DataRef<Armor> = {
+  ref: "standardCrewAttire",
+  custom: {
+    armorType: "scrubs" as ArmorType,
+    name: "Scrubs",
+  },
+};
+
+const workClothes: DataRef<Armor> = {
+  ref: "standardCrewAttire",
+  custom: {
+    armorType: "workClothes" as ArmorType,
+    name: "Heavy Duty Work Clothes",
+    armorPoints: 2,
+    cost: 50,
+  },
+};
+
 export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
   marine: [
     {
@@ -172,28 +198,171 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
     },
   ],
   scientist: [
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
+    {
+      armors: [{ ref: "hazardSuit" }],
+      weapons: [{ ref: "tranqPistol" }],
+      equipments: [{ ref: "bioscanner" }, { ref: "sampleKit" }],
+    },
+    {
+      armors: [{ ref: "hazardSuit" }],
+      weapons: [{ ref: "flamethrower" }],
+      equipments: [{ ref: "painPills" }, { ref: "electronicToolSet" }],
+    },
+    {
+      armors: [{ ref: "vaccsuit" }],
+      weapons: [{ ref: "riggingGun" }],
+      equipments: [{ ref: "sampleKit" }, { ref: "flashlight" }],
+    },
+    {
+      armors: [{ ref: "vaccsuit" }],
+      weapons: [{ ref: "foamGun" }],
+      equipments: [{ ref: "foldableStretcher" }, { ref: "firstAidKit" }],
+    },
+    {
+      armors: [labCoat],
+      weapons: [],
+      equipments: [
+        { ref: "medscanner" },
+        simpleEquipment("Screwdriver", {}),
+        simpleEquipment("Vaccine", {}),
+      ],
+    },
+    {
+      armors: [labCoat],
+      weapons: [],
+      equipments: [
+        { ref: "cyberneticDiagnostic" },
+        { ref: "portableComputerTerminal" },
+      ],
+    },
+    {
+      armors: [scrubs],
+      weapons: [{ ref: "scalpel" }],
+      equipments: [
+        { ref: "automed" },
+        { ref: "oxygenTank" },
+        { ref: "filterMask" },
+      ],
+    },
+    {
+      armors: [scrubs],
+      weapons: [],
+      equipments: [
+        { ref: "vialOfAcid" },
+        { ref: "mylarBlanket" },
+        { ref: "firstAidKit" },
+      ],
+    },
+    {
+      armors: [{ ref: "standardCrewAttire" }],
+      weapons: [{ ref: "scalpel" }],
+      equipments: [
+        { ref: "cyberneticDiagnostic" },
+        simpleEquipment("ductTape", {}),
+      ],
+    },
+    {
+      armors: [
+        {
+          ref: "standardCrewAttire",
+          custom: {
+            name: "Civilian clothes",
+            armorType: "civilianClothes" as ArmorType,
+          },
+        },
+      ],
+      weapons: [],
+      equipments: [
+        simpleEquipment("Briefcase", { cost: 50 }),
+        simpleEquipment("Prescription pad", {}),
+        simpleEquipment("Fountain pen (Poison injector)", { cost: 100 }),
+      ],
+    },
   ],
   teamster: [
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
-    { armors: [], weapons: [], equipments: [] },
+    {
+      armors: [{ ref: "vaccsuit" }],
+      weapons: [{ ref: "laserCutter" }],
+      equipments: [{ ref: "patchKit" }, { ref: "assortedTools" }],
+    },
+    {
+      armors: [{ ref: "vaccsuit" }],
+      weapons: [{ ref: "revolver" }, { ref: "crowbar" }],
+      equipments: [{ ref: "flashlight" }],
+    },
+    {
+      armors: [{ ref: "vaccsuit" }],
+      weapons: [{ ref: "riggingGun" }],
+      equipments: [simpleEquipment("Shovel", {}), { ref: "droneSalvage" }],
+    },
+    {
+      armors: [{ ref: "hazardSuit" }],
+      weapons: [{ ref: "vibechete" }],
+      equipments: [
+        simpleEquipment("Spanner", {}),
+        simpleEquipment("Campign gear", {}),
+        { ref: "waterFiltrationDevice" },
+      ],
+    },
+    {
+      armors: [workClothes],
+      weapons: [],
+      equipments: [
+        { ref: "explosivesDetonator" },
+        simpleEquipment("Cigarettes", {}),
+      ],
+    },
+    {
+      armors: [workClothes],
+      weapons: [],
+      equipments: [
+        simpleEquipment("Drill", { cost: 20 }),
+        { ref: "paracord" },
+        { ref: "droneRecon" },
+      ],
+    },
+    {
+      armors: [{ ref: "standardCrewAttire" }],
+      weapons: [{ ref: "combatShotgun" }],
+      equipments: [
+        { ref: "petOrganic", custom: { name: "Cat", baseType: "cat" } },
+        { ref: "extensionCord" },
+      ],
+    },
+    {
+      armors: [{ ref: "standardCrewAttire" }],
+      weapons: [{ ref: "nailGun" }],
+      equipments: [
+        simpleEquipment("Head Lamp", {}),
+        { ref: "assortedTools" },
+        simpleEquipment("Lunch Box", {}),
+      ],
+    },
+    {
+      armors: [{ ref: "standardCrewAttire" }],
+      weapons: [{ ref: "flareGun" }],
+      equipments: [
+        { ref: "waterFiltrationDevice" },
+        { ref: "personalLocator" },
+        { ref: "subsurfaceScanner" },
+      ],
+    },
+    {
+      armors: [
+        {
+          ref: "standardCrewAttire",
+          custom: {
+            name: "Lounge Wear",
+            armorType: "loungeWear" as ArmorType,
+          },
+        },
+      ],
+      weapons: [{ ref: "crowbar" }],
+      equipments: [
+        { ref: "painPills" },
+        simpleEquipment("Six pack of beer", {}),
+      ],
+    },
   ],
 };
 
