@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Block, Button, Divider, DividerOr, Tag, Title } from "UI/Atoms";
+import { Block, Button, DividerOr, Tag, Title } from "UI/Atoms";
 import { patches, trinkets } from "Rules/data";
 import { BlockWithTitle, SelectableBlockWithTitle } from "UI/Molecules";
 import { pickRandom, roll } from "Services/diceServices";

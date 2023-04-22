@@ -1,4 +1,128 @@
-import { CharacterClass, Loadout } from "Rules/types";
+import { Armor, CharacterClass, Equipment, Loadout, Weapon } from "Rules/types";
+
+interface DataRef<T> {
+  ref: string;
+  custom?: Partial<T>;
+}
+
+export interface LoadoutRef {
+  armors: DataRef<Armor>[];
+  weapons: DataRef<Weapon>[];
+  equipments: DataRef<Equipment>[];
+}
+
+function simpleEquipment(name: string, custom: Partial<Equipment>) {
+  return {
+    ref: "",
+    custom: { ...custom, name, baseType: name.toLowerCase() },
+  };
+}
+
+const fatigues: DataRef<Armor> = {
+  ref: "standardCrewAttire",
+  custom: {
+    armorType: "fatigues",
+    name: "Fatigues",
+    armorPoints: 2,
+    cost: 50,
+  },
+};
+
+export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
+  marine: [
+    {
+      armors: [{ ref: "standardCrewAttire" }],
+      weapons: [
+        {
+          ref: "scalpel",
+          custom: { weaponType: "Combat Knife", baseType: "knife" },
+        },
+      ],
+      equipments: [{ ref: "stimpak" }],
+    },
+    {
+      armors: [{ ref: "advancedBattleDress" }],
+      weapons: [{ ref: "flamethrower" }, { ref: "boardingAxe" }],
+      equipments: [],
+    },
+    {
+      armors: [{ ref: "standardBattleDress" }],
+      weapons: [{ ref: "combatShotgun" }],
+      equipments: [{ ref: "rucksack" }, { ref: "campingGear" }],
+    },
+    {
+      armors: [{ ref: "standardBattleDress" }],
+      weapons: [{ ref: "pulseRifle" }],
+      equipments: [{ ref: "infraredGoggles" }],
+    },
+    {
+      armors: [{ ref: "standardBattleDress" }],
+      weapons: [{ ref: "smartRifle" }],
+      equipments: [{ ref: "binoculars" }, { ref: "personalLocator" }],
+    },
+    {
+      armors: [{ ref: "standardBattleDress" }],
+      weapons: [{ ref: "smg" }],
+      equipments: [{ ref: "mre" }],
+    },
+    {
+      armors: [fatigues],
+      weapons: [{ ref: "combatShotgun" }],
+      equipments: [
+        simpleEquipment("Dog", { cost: 120 }),
+        simpleEquipment("Leash", { cost: 10 }),
+        simpleEquipment("Tennis ball", { cost: 10 }),
+      ],
+    },
+    {
+      armors: [fatigues],
+      weapons: [{ ref: "revolver" }, { ref: "fragGrenade" }],
+      equipments: [],
+    },
+    {
+      armors: [{ ref: "standardCrewAttire" }],
+      weapons: [{ ref: "revolver" }],
+      equipments: [simpleEquipment("Challenge Coin", { cost: 10 })],
+    },
+    { armors: [{ ref: "advancedBattleDress" }], weapons: [], equipments: [] },
+  ],
+  android: [
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+  ],
+  scientist: [
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+  ],
+  teamster: [
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+    { armors: [], weapons: [], equipments: [] },
+  ],
+};
 
 export const loadouts: Record<CharacterClass, Loadout[]> = {
   marine: [
