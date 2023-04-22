@@ -154,7 +154,7 @@ export const allSkills: SkillDefinition[] = [
       level: "Expert",
       description:
         "Training in the tools and procedures used for mining asteroids.",
-      prerequisites: ["geology"],
+      prerequisites: ["geology", "industrialEquipment"],
     },
     {
       key: "ecology",
@@ -242,14 +242,14 @@ export const allSkills: SkillDefinition[] = [
       level: "Expert",
       description:
         "Operation and control of aircraft, spacecraft, and other vehicles.",
-      prerequisites: ["piloting"],
+      prerequisites: ["zeroG"],
     },
     {
       key: "psychology",
       name: "psychology",
       level: "Expert",
       description: "The study of behavior and the human mind.",
-      prerequisites: ["zoology"],
+      prerequisites: ["zoology", "botany"],
     },
     {
       key: "wildernessSurvival",
@@ -322,14 +322,14 @@ export const allSkills: SkillDefinition[] = [
       key: "sophontology",
       name: "sophontology",
       level: "Master",
-      description: " The study of the behavior and mind of inhuman entities",
+      description: "The study of the behavior and mind of inhuman entities",
       prerequisites: ["psychology", "linguistics"],
     },
     {
       key: "surgery",
       name: "surgery",
       level: "Master",
-      description: " Manually operating on living or dead biological subjects.",
+      description: "Manually operating on living or dead biological subjects.",
       prerequisites: ["fieldMedicine", "pathology"],
     },
     {
