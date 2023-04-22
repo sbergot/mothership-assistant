@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   build: {
     rollupOptions: {
-      input: ["index.html"]
+      input: ["index.html", "debug-loadouts.html"]
     }
   }
 })
