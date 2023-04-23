@@ -261,10 +261,15 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
       ],
     },
     {
-      armors: [{ ref: "standardCrewAttire", custom: {
-        name: "Corporate Attire",
-        armorType: "corporateAttire" as ArmorType,
-      }, }],
+      armors: [
+        {
+          ref: "standardCrewAttire",
+          custom: {
+            name: "Corporate Attire",
+            armorType: "corporateAttire" as ArmorType,
+          },
+        },
+      ],
       weapons: [],
       equipments: [simpleEquipment("VIP Corporate key card", { cost: 10000 })],
     },
@@ -272,30 +277,34 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
   scientist: [
     {
       armors: [{ ref: "hazardSuit" }],
-      weapons: [{ ref: "tranqPistol" }],
+      weapons: [{ ref: "tranqPistol", custom: { magazines: 0, shots: 3 } }],
       equipments: [{ ref: "bioscanner" }, { ref: "sampleKit" }],
     },
     {
       armors: [{ ref: "hazardSuit" }],
-      weapons: [{ ref: "flamethrower" }],
+      weapons: [{ ref: "flamethrower", custom: { magazines: 0, shots: 1 } }],
       equipments: [{ ref: "painPills" }, { ref: "electronicToolSet" }],
     },
     {
       armors: [{ ref: "vaccsuit" }],
       weapons: [{ ref: "riggingGun" }],
-      equipments: [{ ref: "sampleKit" }, { ref: "flashlight" }],
+      equipments: [
+        { ref: "sampleKit" },
+        { ref: "flashlight" },
+        { ref: "petOrganic", custom: { name: "Lab rat", baseType: "labRat" } },
+      ],
     },
     {
       armors: [{ ref: "vaccsuit" }],
-      weapons: [{ ref: "foamGun" }],
-      equipments: [{ ref: "foldableStretcher" }, { ref: "firstAidKit" }],
+      weapons: [{ ref: "foamGun", custom: { magazines: 0, shots: 2 } }],
+      equipments: [{ ref: "foldableStretcher" }, { ref: "firstAidKit" }, { ref: "radiationPills" }],
     },
     {
       armors: [labCoat],
       weapons: [],
       equipments: [
-        { ref: "medscanner" },
         simpleEquipment("Screwdriver", {}),
+        { ref: "medscanner" },
         simpleEquipment("Vaccine", {}),
       ],
     },
@@ -311,7 +320,7 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
       armors: [scrubs],
       weapons: [{ ref: "scalpel" }],
       equipments: [
-        { ref: "automed" },
+        { ref: "automed", custom: { quantity: 6 } },
         { ref: "oxygenTank" },
         simpleEquipment("Filter mask", { cost: 50 }),
       ],
@@ -327,10 +336,10 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
     },
     {
       armors: [{ ref: "standardCrewAttire" }],
-      weapons: [{ ref: "scalpel" }],
+      weapons: [{ ref: "scalpel", custom: { weaponType: "Utility knife", baseType: "utilityKnife" } }],
       equipments: [
         { ref: "cyberneticDiagnostic" },
-        simpleEquipment("ductTape", {}),
+        simpleEquipment("Duct Tape", {}),
       ],
     },
     {
@@ -359,7 +368,7 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
     },
     {
       armors: [{ ref: "vaccsuit" }],
-      weapons: [{ ref: "revolver" }, { ref: "crowbar" }],
+      weapons: [{ ref: "revolver", custom: { magazines: 0 } }, { ref: "crowbar" }],
       equipments: [{ ref: "flashlight" }],
     },
     {
@@ -395,24 +404,24 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
     },
     {
       armors: [{ ref: "standardCrewAttire" }],
-      weapons: [{ ref: "combatShotgun" }],
+      weapons: [{ ref: "combatShotgun", custom: { magazines: 0, shots: 4 } }],
       equipments: [
-        { ref: "petOrganic", custom: { name: "Cat", baseType: "cat" } },
         simpleEquipment("Extension cord", { cost: 50 }),
+        { ref: "petOrganic", custom: { name: "Cat", baseType: "cat" } },
       ],
     },
     {
       armors: [{ ref: "standardCrewAttire" }],
-      weapons: [{ ref: "nailGun" }],
+      weapons: [{ ref: "nailGun", custom: { magazines: 0 } }],
       equipments: [
         simpleEquipment("Head Lamp", {}),
-        { ref: "assortedTools" },
+        { ref: "assortedTools", custom: { name: "Toolbelt", baseType: "toolbelt" } },
         simpleEquipment("Lunch Box", {}),
       ],
     },
     {
       armors: [{ ref: "standardCrewAttire" }],
-      weapons: [{ ref: "flareGun" }],
+      weapons: [{ ref: "flareGun", custom: { magazines: 0 } }],
       equipments: [
         { ref: "waterFiltrationDevice" },
         { ref: "personalLocator" },
