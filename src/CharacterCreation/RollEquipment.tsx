@@ -5,7 +5,7 @@ import { BlockWithTitle, SelectableBlockWithTitle } from "UI/Molecules";
 import { pickRandom, roll } from "Services/diceServices";
 import { StepProps } from "./types";
 import { clone, formatCredits } from "helpers";
-import { loadouts } from "Rules/Data/loadouts";
+import { instantiateLoadout, loadoutRefs } from "Rules/Data/loadouts";
 
 export function RollEquipment({ character, onConfirm }: StepProps) {
   const [newCharacter, setCharacter] = useState({ ...character });
@@ -27,7 +27,9 @@ export function RollEquipment({ character, onConfirm }: StepProps) {
 
   function rollGearOption() {
     if (gearOption === "loadout") {
-      const loadout = pickRandom(loadouts[newCharacter.characterClass]);
+      const loadout = instantiateLoadout(
+        pickRandom(loadoutRefs[newCharacter.characterClass])
+      );
       setCharacter((c) => ({
         ...c,
         weapons: loadout.weapons.map(clone),

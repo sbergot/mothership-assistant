@@ -1,4 +1,4 @@
-import { loadouts } from "Rules/Data/loadouts";
+import { instantiateLoadout, loadoutRefs } from "Rules/Data/loadouts";
 import { Title } from "UI/Atoms";
 import { Table } from "UI/Organisms/Table";
 import { armorColumns, equipmentColumns, weaponsColumns } from "./columns";
@@ -8,11 +8,11 @@ export function LoadoutsDebug() {
     <div className="text-base">
       <Title>loadouts debug</Title>
       <div className="flex flex-col gap-4">
-        {Object.entries(loadouts).map(([k, v]) => (
+        {Object.entries(loadoutRefs).map(([k, v]) => (
           <div className="flex flex-col gap-4">
             <div className="text-lg">{k}</div>
-            {v.map((l, i) => (
-              <div className="flex flex-col">
+            {v.map(instantiateLoadout).map((l, i) => (
+              <div className="flex flex-col text-sm">
                 <div>{i}</div>
                 <div>
                   {l.armors[0].name} - {l.armors[0].armorPoints} AP
@@ -20,9 +20,11 @@ export function LoadoutsDebug() {
                 <div>
                   {l.weapons.map((w) => (
                     <div>
-                      {w.weaponType} - {w.damageString} - mag size{" "}
-                      {w.magazineSize ?? "NA"} - mag num {w.magazines ?? "NA"} -
-                      rounds {w.shots ?? "NA"}
+                      {`${w.weaponType} - ${w.damageString} - ${
+                        w.magazineSize
+                          ? `mag size ${w.magazineSize} - mag num ${w.magazines} - rounds ${w.shots}`
+                          : "melee"
+                      }`}
                     </div>
                   ))}
                 </div>

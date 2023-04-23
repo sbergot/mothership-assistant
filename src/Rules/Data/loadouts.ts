@@ -102,7 +102,7 @@ function instantiateEquipment(ref: DataRef<Equipment>): Equipment {
   return { ...model, ...ref.custom };
 }
 
-function instantiateLoadout(ref: LoadoutRef): Loadout {
+export function instantiateLoadout(ref: LoadoutRef): Loadout {
   return {
     armors: ref.armors.map(instantiateArmor),
     weapons: ref.weapons.map(instantiateWeapon),
@@ -447,9 +447,3 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
   ],
 };
 
-export const loadouts: Record<CharacterClass, Loadout[]> = {
-  marine: loadoutRefs.marine.map(instantiateLoadout),
-  android: loadoutRefs.android.map(instantiateLoadout),
-  scientist: loadoutRefs.scientist.map(instantiateLoadout),
-  teamster: loadoutRefs.teamster.map(instantiateLoadout),
-};
