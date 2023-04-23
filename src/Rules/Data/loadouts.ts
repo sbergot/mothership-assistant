@@ -27,7 +27,7 @@ const baseEquipment: Equipment = {
   description: "",
   equipped: true,
   quantity: 1,
-  cost: 0,
+  cost: 10,
   baseType: "",
 };
 
@@ -113,11 +113,24 @@ function instantiateLoadout(ref: LoadoutRef): Loadout {
 export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
   marine: [
     {
-      armors: [{ ref: "standardCrewAttire" }],
+      armors: [
+        {
+          ref: "standardCrewAttire",
+          custom: {
+            name: "Tank Top and Camo Pants",
+            armorType: "tankTopandCamoPants" as ArmorType,
+          },
+        },
+      ],
       weapons: [
         {
           ref: "scalpel",
-          custom: { weaponType: "Combat Knife", baseType: "knife" },
+          custom: {
+            weaponType: "Combat Knife",
+            baseType: "knife",
+            damageString: "1d5 DMG [+]",
+            damage: [{ damageType: "xd5", amount: 1, rollMode: "advantage" }],
+          },
         },
       ],
       equipments: [{ ref: "stimpak", custom: { quantity: 1, cost: 80 } }],
@@ -129,7 +142,7 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
     },
     {
       armors: [{ ref: "standardBattleDress" }],
-      weapons: [{ ref: "combatShotgun" }],
+      weapons: [{ ref: "combatShotgun", custom: { magazines: 0 } }],
       equipments: [
         { ref: "rucksack" },
         simpleEquipment("Camping Gear", { cost: 50 }),
@@ -137,22 +150,22 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
     },
     {
       armors: [{ ref: "standardBattleDress" }],
-      weapons: [{ ref: "pulseRifle" }],
+      weapons: [{ ref: "pulseRifle", custom: { magazines: 3 } }],
       equipments: [{ ref: "infraredGoggles" }],
     },
     {
       armors: [{ ref: "standardBattleDress" }],
-      weapons: [{ ref: "smartRifle" }],
+      weapons: [{ ref: "smartRifle", custom: { magazines: 3 } }],
       equipments: [{ ref: "binoculars" }, { ref: "personalLocator" }],
     },
     {
       armors: [{ ref: "standardBattleDress" }],
-      weapons: [{ ref: "smg" }],
+      weapons: [{ ref: "smg", custom: { magazines: 3 } }],
       equipments: [{ ref: "mre" }],
     },
     {
       armors: [fatigues],
-      weapons: [{ ref: "combatShotgun" }],
+      weapons: [{ ref: "combatShotgun", custom: { magazines: 0, shots: 2 } }],
       equipments: [
         simpleEquipment("Dog", { cost: 120 }),
         simpleEquipment("Leash", { cost: 10 }),
@@ -161,20 +174,27 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
     },
     {
       armors: [fatigues],
-      weapons: [{ ref: "revolver" }, { ref: "fragGrenade" }],
+      weapons: [
+        { ref: "revolver" },
+        { ref: "fragGrenade", custom: { magazines: 0 } },
+      ],
       equipments: [],
     },
     {
       armors: [{ ref: "standardCrewAttire" }],
-      weapons: [{ ref: "revolver" }],
+      weapons: [{ ref: "revolver", custom: { magazines: 0, shots: 1 } }],
       equipments: [simpleEquipment("Challenge Coin", { cost: 10 })],
     },
-    { armors: [{ ref: "advancedBattleDress" }], weapons: [], equipments: [] },
+    {
+      armors: [{ ref: "advancedBattleDress" }],
+      weapons: [{ ref: "heavyMachineGun" }],
+      equipments: [{ ref: "headsUpDisplayHUD" }],
+    },
   ],
   android: [
     {
       armors: [{ ref: "vaccsuit" }],
-      weapons: [{ ref: "smartRifle" }],
+      weapons: [{ ref: "smartRifle", custom: { magazines: 2 } }],
       equipments: [{ ref: "infraredGoggles" }, { ref: "mylarBlanket" }],
     },
     {
@@ -187,18 +207,22 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
     },
     {
       armors: [{ ref: "hazardSuit" }],
-      weapons: [{ ref: "revolver" }],
-      equipments: [{ ref: "firstAidKit" }],
+      weapons: [{ ref: "revolver", custom: { magazines: 0 } }],
+      equipments: [
+        simpleEquipment("Defibrillator", { cost: 500 }),
+        { ref: "firstAidKit" },
+        { ref: "flashlight" },
+      ],
     },
     {
       armors: [{ ref: "hazardSuit" }],
-      weapons: [{ ref: "foamGun" }],
-      equipments: [{ ref: "sampleKit" }, { ref: "assortedTools" }],
+      weapons: [{ ref: "foamGun", custom: { magazines: 0, shots: 2 } }],
+      equipments: [{ ref: "sampleKit" }, simpleEquipment("Screwdriver", {})],
     },
     {
       armors: [{ ref: "standardBattleDress" }],
-      weapons: [{ ref: "tranqPistol" }],
-      equipments: [{ ref: "paracord" }],
+      weapons: [{ ref: "tranqPistol", custom: { magazines: 0, shots: 3 } }],
+      equipments: [{ ref: "paracord", custom: { quantity: 2 } }],
     },
     {
       armors: [{ ref: "standardCrewAttire" }],
@@ -213,7 +237,7 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
     {
       armors: [{ ref: "standardCrewAttire" }],
       weapons: [
-        { ref: "fragGrenade" },
+        { ref: "fragGrenade", custom: { magazines: 0, shots: 1 } },
         {
           ref: "scalpel",
           custom: { weaponType: "Pen knife", baseType: "penKnife" },
@@ -237,7 +261,10 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
       ],
     },
     {
-      armors: [{ ref: "standardCrewAttire" }],
+      armors: [{ ref: "standardCrewAttire", custom: {
+        name: "Corporate Attire",
+        armorType: "corporateAttire" as ArmorType,
+      }, }],
       weapons: [],
       equipments: [simpleEquipment("VIP Corporate key card", { cost: 10000 })],
     },

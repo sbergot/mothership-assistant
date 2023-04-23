@@ -7,25 +7,37 @@ export function LoadoutsDebug() {
   return (
     <div className="text-base">
       <Title>loadouts debug</Title>
-      {Object.entries(loadouts).map(([k, v]) => (
-        <div className="flex flex-col gap-4">
-          <div>{k}</div>
-          {v.map((l, i) => (
-            <div className="flex flex-col gap-2">
-              <div>{i}</div>
-              {l.armors.length > 0 && (
-                <Table columns={armorColumns} rows={l.armors} />
-              )}
-              {l.weapons.length > 0 && (
-                <Table columns={weaponsColumns} rows={l.weapons} />
-              )}
-              {l.equipments.length > 0 && (
-                <Table columns={equipmentColumns} rows={l.equipments} />
-              )}
-            </div>
-          ))}
-        </div>
-      ))}
+      <div className="flex flex-col gap-4">
+        {Object.entries(loadouts).map(([k, v]) => (
+          <div className="flex flex-col gap-4">
+            <div className="text-lg">{k}</div>
+            {v.map((l, i) => (
+              <div className="flex flex-col">
+                <div>{i}</div>
+                <div>
+                  {l.armors[0].name} - {l.armors[0].armorPoints} AP
+                </div>
+                <div>
+                  {l.weapons.map((w) => (
+                    <div>
+                      {w.weaponType} - {w.damageString} - mag size{" "}
+                      {w.magazineSize ?? "NA"} - mag num {w.magazines ?? "NA"} -
+                      rounds {w.shots ?? "NA"}
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  {l.equipments.map((e) => (
+                    <div>
+                      {e.name} X {e.quantity} - {e.cost} creds
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
