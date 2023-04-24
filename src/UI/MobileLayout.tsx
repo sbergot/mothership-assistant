@@ -13,7 +13,7 @@ export function MobileLayout({ leftPart, rightPart }: Props) {
       <div className="flex gap-2">
         <div className="max-w-2xl w-full">{leftPart}</div>
         <div
-          className={`max-w-[calc(100vw-4rem)] test lg:max-w-[calc(100vw - 50rem)] w-full h-[calc(100dvh-1rem)] fixed top-2 right-6 border-2 rounded-3xl p-4 mb-2 border-mother-5 bg-white ${visibilityClasses}`}
+          className={`max-w-[calc(100vw-4rem)] test lg:max-w-[calc(100vw - 50rem)] w-full h-[calc(100dvh-1rem)] fixed bottom-2 right-6 border-2 rounded-3xl p-4 mb-2 border-mother-5 bg-white ${visibilityClasses}`}
         >
           {rightPart}
         </div>

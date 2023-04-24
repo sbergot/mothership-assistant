@@ -50,6 +50,6 @@ input[type=number] {
 
 @media (min-width: 1024px) {
   .test {
-    max-width: max(100vw - 50rem, 20rem);
+    max-width: max(100vw - 50rem, 25rem);
   }
 }
