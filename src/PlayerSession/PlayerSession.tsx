@@ -13,13 +13,20 @@ import Peer, { DataConnection } from "peerjs";
 import { useEffect, useRef, useState } from "react";
 import { Character } from "Rules/types";
 import { useLog } from "Services/messageServices";
+import { MobileLayout } from "UI/MobileLayout";
 
-type ConnectionStatus = "connecting" | "connected" | "error" | "disconnected" | "offline";
+type ConnectionStatus =
+  | "connecting"
+  | "connected"
+  | "error"
+  | "disconnected"
+  | "offline";
 
 function usePlayerConnection(sessionCode: string, character: Character) {
   const browserId = useBrowserId();
   const [messages, setMessages] = useState<StampedMessage[]>([]);
-  const [connectionStatus, setConnectionStatus] = useState<ConnectionStatus>("connecting");
+  const [connectionStatus, setConnectionStatus] =
+    useState<ConnectionStatus>("connecting");
   const debounceRef = useRef(false);
   const peerRef = useRef<Peer | null>(null);
   const connRef = useRef<DataConnection | null>(null);
@@ -153,7 +160,10 @@ interface Props extends ReadWriteCharacter {
 }
 
 export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
-  const { log, messages, connectionStatus } = usePlayerConnection(sessionCode, character);
+  const { log, messages, connectionStatus } = usePlayerConnection(
+    sessionCode,
+    character
+  );
   const [mode, setMode] = useState<Modes>({ mode: "CharacterSheet" });
   const playerContext: ReadWriteCharacter & SetMode = {
     character,
@@ -163,25 +173,28 @@ export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
 
   const commonContext: Log = { log };
 
-  return (
-    <div className="flex gap-2">
-      <div className="max-w-2xl w-full">
-        {connectionStatus}
-        <CharacterSheet
-          character={character}
-          setCharacter={setCharacter}
-          log={log}
-          mode={mode}
-          setMode={setMode}
-        />
-      </div>
-      <MessagePanel
-        messages={messages}
-        authorId={character.id}
-        contextType="player"
-        commonContext={commonContext}
-        playerContext={playerContext}
+  const leftPart = (
+    <>
+      {connectionStatus}
+      <CharacterSheet
+        character={character}
+        setCharacter={setCharacter}
+        log={log}
+        mode={mode}
+        setMode={setMode}
       />
-    </div>
+    </>
   );
+
+  const rightPart = (
+    <MessagePanel
+      messages={messages}
+      authorId={character.id}
+      contextType="player"
+      commonContext={commonContext}
+      playerContext={playerContext}
+    />
+  );
+
+  return <MobileLayout leftPart={leftPart} rightPart={rightPart} />;
 }

@@ -16,9 +16,9 @@ import { ButtonIcon, CopyIcon } from "UI/Icons";
 import { stamp } from "helpers";
 import { Modes, ReadWriteGame } from "./types";
 import { DmSessionRouting } from "./DmSessionRouting";
+import { MobileLayout } from "UI/MobileLayout";
 
-interface Props extends ReadWriteGame {
-}
+interface Props extends ReadWriteGame {}
 
 type ConnectionState = "opened" | "closed" | "error";
 
@@ -179,39 +179,42 @@ export function DmSession({ game, setGame }: Props) {
 
   const commonContext: Log = { log };
 
-  return (
-    <div className="flex gap-2">
-      <div className="max-w-2xl w-full">
-        <Title>
-          <span className="normal-case">Session code: {sessionCode}</span>
-          <ButtonIcon
-            onClick={() => {
-              navigator.clipboard.writeText(sessionCode);
-            }}
-          >
-            <CopyIcon />
-          </ButtonIcon>
-        </Title>
-        {connections.map(({ id, character, state }) => (
-          <div key={id}>
-            {id} - {character?.name ?? "???"} - {state}
-          </div>
-        ))}
-        <DmSessionRouting
-          game={game}
-          setGame={setGame}
-          characters={characters}
-          mode={mode}
-          setMode={setMode}
-        />
-      </div>
-      <MessagePanel
-        messages={messages}
-        authorId={"warden"}
-        contextType="warden"
-        commonContext={commonContext}
-        wardenContext={{ setMode }}
+  const leftPart = (
+    <>
+      <Title>
+        <span className="normal-case">Session code: {sessionCode}</span>
+        <ButtonIcon
+          onClick={() => {
+            navigator.clipboard.writeText(sessionCode);
+          }}
+        >
+          <CopyIcon />
+        </ButtonIcon>
+      </Title>
+      {connections.map(({ id, character, state }) => (
+        <div key={id}>
+          {id} - {character?.name ?? "???"} - {state}
+        </div>
+      ))}
+      <DmSessionRouting
+        game={game}
+        setGame={setGame}
+        characters={characters}
+        mode={mode}
+        setMode={setMode}
       />
-    </div>
+    </>
   );
+
+  const rightPart = (
+    <MessagePanel
+      messages={messages}
+      authorId={"warden"}
+      contextType="warden"
+      commonContext={commonContext}
+      wardenContext={{ setMode }}
+    />
+  );
+
+  return <MobileLayout leftPart={leftPart} rightPart={rightPart} />;
 }
