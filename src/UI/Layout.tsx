@@ -2,7 +2,7 @@ import { Children } from "./types";
 
 export function Layout({ children }: Children) {
   return (
-    <div className="p-4 mx-auto max-w-6xl bg-mother-1">
+    <div className="p-4 max-w-6xl bg-mother-1">
       <h1 className="text-4xl">
         <a href="/">Mothership assistant</a>
       </h1>
