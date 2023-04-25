@@ -18,7 +18,7 @@ export function CharacterShort({ character, onTitleClick }: Props) {
         {character.name}
       </div>
       <div className="flex flex-col gap-2 p-4">
-        <div className="flex justify-center gap-8">
+        <div className="flex flex-wrap justify-around gap-x-4 self-center">
           {allStats.map((s) => (
             <Rating key={s} title={s} value={character[s]} />
           ))}
@@ -28,7 +28,7 @@ export function CharacterShort({ character, onTitleClick }: Props) {
             <Rating key={s} title={s} value={character[s]} />
           ))}
         </div>
-        <div className="flex justify-center gap-4">
+        <div className="flex flex-wrap justify-around">
           <Gauge
             title="Health"
             limitName="Maximum"

@@ -32,7 +32,7 @@ export function MonsterShort({ monster, setMonster, deleteMonster }: Props) {
             onUpdate={(v) => setMonster((m) => ({ ...m, instinct: v }))}
           />
         </div>
-        <div className="flex justify-center gap-4">
+        <div className="flex flex-wrap justify-center gap-x-4 mt-4">
           <Gauge
             title="Health"
             limitName="Maximum"

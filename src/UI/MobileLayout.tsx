@@ -10,7 +10,7 @@ export function MobileLayout({ leftPart, rightPart }: Props) {
   const [isMessagePanelVisible, setIsMessagePanelVisible] = useState(false);
   const visibilityClasses = isMessagePanelVisible
     ? "opacity-100"
-    : "opacity-0 lg:opacity-100";
+    : "opacity-0 invisible lg:opacity-100 lg:visible";
   return (
     <>
       <div className="flex gap-2">
