@@ -87,7 +87,7 @@ export function Button({
   return (
     <span
       onClick={disabled ? undefined : onClick}
-      className={`py-1 transition-colors ${border} ${colors} ${cursor} ${corners}`}
+      className={`py-1 transition-all ${border} ${colors} ${cursor} ${corners}`}
     >
       {children}
     </span>

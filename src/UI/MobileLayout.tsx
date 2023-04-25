@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ChatIcon, XIcon } from "./Icons";
 
 interface Props {
   leftPart: React.ReactNode;
@@ -19,9 +20,13 @@ export function MobileLayout({ leftPart, rightPart }: Props) {
         </div>
       </div>
       <div
-        className="w-12 h-12 rounded-full bg-mother-4 hover:bg-mother-6 fixed right-8 bottom-8 cursor-pointer visible lg:invisible"
+        className="w-12 h-12 rounded-full bg-mother-3 border-mother-5 hover:bg-mother-4 border-2 fixed right-8 bottom-8 transition-all cursor-pointer active:scale-90 visible lg:invisible flex items-center justify-center"
         onClick={() => setIsMessagePanelVisible((v) => !v)}
-      />
+      >
+        <div className="scale-125">
+          {isMessagePanelVisible ? <XIcon /> : <ChatIcon />}
+        </div>
+      </div>
     </>
   );
 }
