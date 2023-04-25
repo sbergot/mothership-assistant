@@ -14,7 +14,7 @@ export function Status({
   return (
     <Block variant="light">
       <Title>Status report</Title>
-      <div className="flex justify-around">
+      <div className="flex flex-wrap justify-around">
         <Gauge
           title="Health"
           onChange={(n) => setCharacter((char) => ({ ...char, health: n }))}

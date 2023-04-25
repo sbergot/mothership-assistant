@@ -17,7 +17,13 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 # roadmap
 
-- game data review
+- basic mobile layout
+- import / export data
+- warden rolls
+  - d5, d10, d20
+  - optionally deal damage
+- styles for printing
+
 - UI review:
   - reduce various font sizes
   - make the UI denser
