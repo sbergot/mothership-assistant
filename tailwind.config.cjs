@@ -16,6 +16,9 @@ module.exports = {
           6: '#000000'
         },
       },
+      screens: {
+        'print': { 'raw': 'print' },
+      },
     },
   },
   plugins: [],
