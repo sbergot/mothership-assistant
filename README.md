@@ -17,8 +17,6 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 # roadmap
 
-- show patch & trinkets
-- confirm deletion for chars & games
 - import / export data
 - warden rolls
   - xd5, xd10, xd20, xd100

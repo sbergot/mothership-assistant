@@ -3,6 +3,7 @@ import { useState } from "react";
 import { RootModes } from "Root/types";
 import { Character, Game } from "Rules/types";
 import { Block, Button, DividerOr, Title } from "UI/Atoms";
+import { DangerIcon } from "UI/Icons";
 
 interface Props {
   characterEntries: Entry<Character>[];
@@ -23,7 +24,9 @@ export function MainMenu({
 }: Props) {
   const [sessionCode, setSessionCode] = useState<string>("");
   const [selectedCharId, setSelectedCharId] = useState<string | null>(null);
+  const [confirmCharDeletion, setConfirmCharDeletion] = useState(false);
   const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
+  const [confirmGameDeletion, setConfirmGameDeletion] = useState(false);
   const [newGameName, setNewGameName] = useState("");
 
   return (
@@ -33,7 +36,10 @@ export function MainMenu({
         {characterEntries.map((c) => (
           <Button
             key={c.id}
-            onClick={() => setSelectedCharId(c.id)}
+            onClick={() => {
+              setSelectedCharId(c.id);
+              setConfirmCharDeletion(false);
+            }}
             light={selectedCharId !== c.id}
           >
             {c.value.name}
@@ -42,15 +48,8 @@ export function MainMenu({
         <Block variant="light">
           <div className="flex flex-wrap gap-2">
             <div className="shrink-0">
-              <Button
-                disabled={selectedCharId === null}
-                onClick={() =>
-                  deleteCharacterEntry(
-                    characterEntries.find((c) => c.id === selectedCharId)!
-                  )
-                }
-              >
-                Remove character
+              <Button onClick={() => setMode({ mode: "CreateCharacter" })}>
+                Create character
               </Button>
             </div>
             <div className="shrink-0">
@@ -68,8 +67,22 @@ export function MainMenu({
               </Button>
             </div>
             <div className="shrink-0">
-              <Button onClick={() => setMode({ mode: "CreateCharacter" })}>
-                Create character
+              <Button
+                disabled={selectedCharId === null}
+                onClick={() => {
+                  if (confirmCharDeletion) {
+                    deleteCharacterEntry(
+                      characterEntries.find((c) => c.id === selectedCharId)!
+                    );
+                    setConfirmCharDeletion(false);
+                  } else {
+                    setConfirmCharDeletion(true);
+                  }
+                }}
+              >
+                {confirmCharDeletion
+                  ? <span><DangerIcon />Confirm deletion?</span>
+                  : <span>Remove character</span>}
               </Button>
             </div>
           </div>
@@ -94,7 +107,11 @@ export function MainMenu({
                   characterId: selectedCharId!,
                 });
               }}
-              disabled={selectedCharId === null || !sessionCode || sessionCode.length === 0}
+              disabled={
+                selectedCharId === null ||
+                !sessionCode ||
+                sessionCode.length === 0
+              }
             >
               Join session
             </Button>
@@ -105,7 +122,10 @@ export function MainMenu({
         {gameEntries.map((c) => (
           <Button
             key={c.id}
-            onClick={() => setSelectedGameId(c.id)}
+            onClick={() => {
+              setSelectedGameId(c.id);
+              setConfirmGameDeletion(false);
+            }}
             light={selectedGameId !== c.id}
           >
             {c.value.title}
@@ -146,13 +166,18 @@ export function MainMenu({
             </Button>
             <Button
               disabled={selectedGameId === null}
-              onClick={() =>
-                deleteGameEntry(
-                  gameEntries.find((g) => g.id === selectedGameId)!
-                )
-              }
+              onClick={() => {
+                if (confirmGameDeletion) {
+                  deleteGameEntry(
+                    gameEntries.find((g) => g.id === selectedGameId)!
+                  );
+                  setConfirmGameDeletion(false);
+                } else {
+                  setConfirmGameDeletion(true);
+                }
+              }}
             >
-              Delete game
+              {confirmGameDeletion ? <span><DangerIcon />Confirm deletion?</span> : <span>Delete game</span>}
             </Button>
           </div>
         </Block>
