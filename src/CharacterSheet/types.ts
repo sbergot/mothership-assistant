@@ -44,6 +44,8 @@ export type Modes =
   | PlayerSessionMode<"AddCondition">
   | (PlayerSessionMode<"ViewCondition"> & { condition: ConditionType })
   | PlayerSessionMode<"ViewBleeding">
+  | PlayerSessionMode<"ViewTrinket">
+  | PlayerSessionMode<"ViewPatch">
   | PlayerSessionMode<"SelectSkill">
   | (PlayerSessionMode<"StartTrainingSkill"> & { skill: SkillType })
   | PlayerSessionMode<"TrainSkill">

@@ -30,6 +30,12 @@ export function Equipment({ character, setMode }: ReadBaseChar & SetMode) {
             {e.quantity > 1 ? ` x${e.quantity}` : ""}
           </Button>
         ))}
+        <Button dark onClick={() => setMode({ mode: "ViewTrinket" })}>
+          Trinket
+        </Button>
+        <Button dark onClick={() => setMode({ mode: "ViewPatch" })}>
+          Patch
+        </Button>
         <Button
           onClick={() => {
             setMode({ mode: "AddEquipment" });

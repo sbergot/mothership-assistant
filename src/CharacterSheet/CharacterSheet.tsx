@@ -34,6 +34,8 @@ import { RollWound } from "./RollWound";
 import { ViewBleeding } from "./ViewBleeding";
 import { RollRest } from "./RollRest";
 import { AddCredits } from "./AddCredits";
+import { ViewTrinket } from "./ViewTrinket";
+import { ViewPatch } from "./ViewPatch";
 
 export function CharacterSheet({
   character,
@@ -81,6 +83,14 @@ export function CharacterSheet({
         setMode={setMode}
       />
     );
+  }
+
+  if (mode.mode === "ViewTrinket") {
+    return <ViewTrinket character={character} setMode={setMode} />;
+  }
+
+  if (mode.mode === "ViewPatch") {
+    return <ViewPatch character={character} setMode={setMode} />;
   }
 
   if (mode.mode === "SelectSkill") {
