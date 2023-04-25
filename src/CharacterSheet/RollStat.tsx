@@ -71,7 +71,7 @@ export function RollStat({
 
   return (
     <Block variant="light">
-      <div className="flex justify-center gap-8">
+      <div className="flex flex-wrap justify-center gap-8">
         {allStats.map((s) => (
           <SelectableRating
             key={s}

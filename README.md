@@ -17,7 +17,6 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 # roadmap
 
-- mobile layout for character creation
 - show patch & trinkets
 - confirm deletion for chars & games
 - import / export data

@@ -11,7 +11,7 @@ export function EditStats({ character, setCharacter, back }: Props) {
     <>
       <Block variant="light">
         <Title>Stats</Title>
-        <div className="flex justify-center gap-8">
+        <div className="flex flex-wrap justify-center gap-8">
           <Rating
             title="Strength"
             value={character.strength}
