@@ -8,7 +8,9 @@ interface Props {
 
 export function MobileLayout({ leftPart, rightPart }: Props) {
   const [isMessagePanelVisible, setIsMessagePanelVisible] = useState(false);
-  const visibilityClasses = isMessagePanelVisible ? "" : "invisible lg:visible";
+  const visibilityClasses = isMessagePanelVisible
+    ? "opacity-100"
+    : "opacity-0 lg:opacity-100";
   return (
     <>
       <div className="flex gap-2">
