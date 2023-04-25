@@ -73,7 +73,7 @@ function StatSelection({ onSelect }: StatSelectionProps) {
   }
 
   return (
-    <div className="flex justify-center gap-4">
+    <div className="flex flex-wrap justify-center gap-4">
       {allStats.map((s) => {
         return (
           <Button
@@ -202,13 +202,13 @@ export function SelectClass({ character, onConfirm }: StepProps) {
     <div className="flex flex-col">
       <Block variant="light">
         <Title>3. Select your class</Title>
-        <div className="flex justify-center gap-8">
+        <div className="flex flex-wrap justify-center gap-x-8">
           <Rating title="Strength" value={newCharacter.strength} />
           <Rating title="Speed" value={newCharacter.speed} />
           <Rating title="Intellect" value={newCharacter.intellect} />
           <Rating title="Combat" value={newCharacter.combat} />
         </div>
-        <div className="flex justify-center gap-8">
+        <div className="flex flex-wrap justify-center gap-8 my-4">
           <Rating title="Sanity" value={newCharacter.sanity} />
           <Rating title="Fear" value={newCharacter.fear} />
           <Rating title="Body" value={newCharacter.body} />

@@ -11,7 +11,11 @@ export function RollHealth({ character, onConfirm }: StepProps) {
 
   function rollHealth(): void {
     const maxHealth = roll(1, 10) + 10;
-    const newChar: Character = { ...newCharacter, maxHealth, health: maxHealth };
+    const newChar: Character = {
+      ...newCharacter,
+      maxHealth,
+      health: maxHealth,
+    };
     setCharacter(newChar);
   }
 
@@ -19,26 +23,31 @@ export function RollHealth({ character, onConfirm }: StepProps) {
     <div className="flex flex-col gap-2">
       <Block variant="light">
         <Title>4. Roll 1d10 + 10 for your health</Title>
-        <div className="flex justify-around">
-        <Gauge
-          title="Health"
-          limitName="Maximum"
-          current={newCharacter.health}
-          limit={newCharacter.maxHealth}
-        />
-        <Gauge
-          title="Wounds"
-          limitName="Maximum"
-          current={newCharacter.wounds}
-          limit={newCharacter.maxWounds}
-        />
-      </div>
+        <div className="flex flex-wrap justify-center gap-x-8">
+          <Gauge
+            title="Health"
+            limitName="Maximum"
+            current={newCharacter.health}
+            limit={newCharacter.maxHealth}
+          />
+          <Gauge
+            title="Wounds"
+            limitName="Maximum"
+            current={newCharacter.wounds}
+            limit={newCharacter.maxWounds}
+          />
+        </div>
       </Block>
       <div className="self-center flex gap-2">
         <Button rounded dark disabled={done} onClick={rollHealth}>
           Roll
         </Button>
-        <Button rounded dark disabled={!done} onClick={() => onConfirm(newCharacter)}>
+        <Button
+          rounded
+          dark
+          disabled={!done}
+          onClick={() => onConfirm(newCharacter)}
+        >
           Confirm
         </Button>
       </div>

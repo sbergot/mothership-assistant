@@ -21,7 +21,7 @@ export function RollStats({ character, onConfirm }: StepProps) {
     <div className="flex flex-col gap-2">
       <Block variant="light">
         <Title>1. Roll 2d10 + 25 for each stat</Title>
-        <div className="flex justify-center gap-8">
+        <div className="flex flex-wrap justify-center gap-8">
           <Rating title="Strength" value={newCharacter.strength} />
           <Rating title="Speed" value={newCharacter.speed} />
           <Rating title="Intellect" value={newCharacter.intellect} />
