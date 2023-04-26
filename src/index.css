@@ -29,27 +29,26 @@ input[type=number] {
   .input {
     @apply px-2 py-1 w-full rounded-lg uppercase text-mother-5 bg-mother-1
   }
-}
-
-.diagonalRising
-{
-  transform: skew(-30deg);
-}
-
-.circle {
-  width: 3.8rem;
-  height: 3.8rem;
-  border-radius: 1.9rem;
-}
-
-.circle-small {
-  width: 1.4rem;
-  height: 1.4rem;
-  border-radius: .7rem;
-}
-
-@media (min-width: 1024px) {
-  .test {
-    max-width: max(100vw - 50rem, 25rem);
+  .diagonalRising
+  {
+    transform: skew(-30deg);
+  }
+  
+  .circle {
+    width: 3.8rem;
+    height: 3.8rem;
+    border-radius: 1.9rem;
+  }
+  
+  .circle-small {
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: .7rem;
+  }
+  
+  @media (min-width: 1024px) {
+    .right-part-width {
+      max-width: max(100vw - 50rem, 25rem);
+    }
   }
 }
