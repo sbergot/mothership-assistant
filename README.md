@@ -17,9 +17,6 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 # roadmap
 
-- warden rolls
-  - xd5, xd10, xd20, xd100
-  - optionally deal damage
 - clear logs & limit log size
 - styles for printing
 
