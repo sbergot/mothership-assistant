@@ -45,10 +45,10 @@ input[type=number] {
     height: 1.4rem;
     border-radius: .7rem;
   }
-  
-  @media (min-width: 1024px) {
-    .right-part-width {
-      max-width: max(100vw - 50rem, 25rem);
-    }
+}
+
+@media (min-width: 1024px) {
+  .right-part-width {
+    max-width: max(100vw - 50rem, 25rem);
   }
 }
