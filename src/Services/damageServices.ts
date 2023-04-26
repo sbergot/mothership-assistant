@@ -13,7 +13,7 @@ import {
   WithHealth,
   WithWound,
 } from "Rules/types";
-import { roll } from "./diceServices";
+import { applyRollMode, roll } from "./diceServices";
 
 export function woundTypeToCriticalType(wt: WoundType): CriticalType {
   if (wt === "bleeding") {
@@ -157,23 +157,6 @@ export function applyDamage(
   }
 
   return newChar;
-}
-
-function applyRollMode(rollMode: RollMode, roll: () => number): RollWithMode {
-  if (rollMode === "normal") {
-    const result = roll();
-    return { result, rolls: [result] };
-  }
-  if (rollMode === "advantage") {
-    const rolls = [roll(), roll()];
-    return { rolls, result: Math.max(...rolls) };
-  }
-  if (rollMode === "disadvantage") {
-    const rolls = [roll(), roll()];
-    return { rolls, result: Math.min(...rolls) };
-  }
-
-  throw new Error("unknwon roll mode");
 }
 
 export function getDamageDescription(damages: Damage): string {

@@ -1,3 +1,5 @@
+import { RollMode, RollWithMode } from "Rules/types";
+
 export function simpleRoll(sides: number): number {
     return Math.floor(Math.random() * sides);
 }
@@ -12,4 +14,21 @@ export function roll(number: number, sides: number): number {
 
 export function pickRandom<T>(source: T[]): T {
     return source[simpleRoll(source.length)];
+}
+
+export function applyRollMode(rollMode: RollMode, roll: () => number): RollWithMode {
+  if (rollMode === "normal") {
+    const result = roll();
+    return { result, rolls: [result] };
+  }
+  if (rollMode === "advantage") {
+    const rolls = [roll(), roll()];
+    return { rolls, result: Math.max(...rolls) };
+  }
+  if (rollMode === "disadvantage") {
+    const rolls = [roll(), roll()];
+    return { rolls, result: Math.min(...rolls) };
+  }
+
+  throw new Error("unknwon roll mode");
 }

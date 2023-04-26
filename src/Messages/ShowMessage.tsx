@@ -9,6 +9,7 @@ import { ShowAttackRoll } from "./ShowAttackRoll";
 import { ShowDamage } from "./ShowDamage";
 import { ShowRestRoll } from "./ShowRestRoll";
 import { ShowDeathCheck } from "./ShowDeathCheck";
+import { ShowGenericRoll } from "./ShowGenericRoll";
 
 interface Props {
   message: GameMessage;
@@ -18,6 +19,10 @@ interface Props {
 export function ShowMessage({ message, context }: Props) {
   if (message.type === "StatRollMessage") {
     return <ShowStatRoll {...message.props} />;
+  }
+
+  if (message.type === "GenericRollMessage") {
+    return <ShowGenericRoll {...message.props} />;
   }
 
   if (message.type === "AttackRollMessage") {

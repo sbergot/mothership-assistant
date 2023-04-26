@@ -147,8 +147,13 @@ function useDmConnection(
   }
 
   function log(m: GameMessage) {
+    const stamped = stamp({ id: "warden", name: "warden" }, m);
+    if (!m.transient) {
+      storeMessage(stamped);
+    }
+    setTransientMessages((tms) => [...tms, stamped]);
     if (connRef.current) {
-      connRef.current.send(stamp({ id: "warden", name: "warden" }, m));
+      connRef.current.send(stamped);
     }
   }
 
@@ -202,6 +207,7 @@ export function DmSession({ game, setGame }: Props) {
         characters={characters}
         mode={mode}
         setMode={setMode}
+        log={log}
       />
     </>
   );

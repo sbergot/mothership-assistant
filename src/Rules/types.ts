@@ -343,6 +343,13 @@ export interface Loadout {
   equipments: Equipment[];
 }
 
+export interface GenericRollResult {
+  diceType: number;
+  diceNbr: number;
+  rollMode: RollMode;
+  result: RollWithMode;
+}
+
 export interface StatRoll {
   stat: { name: StatType; value: number };
   skill: CharacterSkill | null;

@@ -7,6 +7,7 @@ import { SetDmMode } from "DmSession/types";
 import {
   AttackRollResult,
   DeathCheckResult,
+  GenericRollResult,
   InflictedDamage,
   PanicEffect,
   PanicRollResult,
@@ -37,6 +38,7 @@ export type SyncMessage =
   | Message<"MessageHistoryResponse", MessageHistory>;
 
 export type GameMessage =
+  | Message<"GenericRollMessage", GenericRollResult>
   | Message<"StatRollMessage", StatRollResult>
   | Message<"AttackRollMessage", AttackRollResult>
   | Message<"SaveRollMessage", SaveRollResult>
