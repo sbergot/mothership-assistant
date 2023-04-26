@@ -26,6 +26,7 @@ export function Root() {
         saveNewGame={gamesRepo.saveNew}
         setMode={setMode}
         reloadCharacters={characterRepo.reload}
+        reloadGames={gamesRepo.reload}
       />
     );
   }

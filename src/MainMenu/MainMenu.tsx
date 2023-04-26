@@ -2,7 +2,6 @@ import { Entry } from "BaseTypes";
 import { useState } from "react";
 import { RootModes } from "Root/types";
 import { Character, Game } from "Rules/types";
-import { uuidv4 } from "Services/storageServices";
 import {
   Block,
   Button,
@@ -11,7 +10,6 @@ import {
   FileImport,
   Title,
 } from "UI/Atoms";
-import { DangerIcon } from "UI/Icons";
 
 function download(filename: string, text: string) {
   var element = document.createElement("a");
@@ -37,6 +35,7 @@ interface Props {
   saveNewGame(game: Game): string;
   setMode(mode: RootModes): void;
   reloadCharacters(): void;
+  reloadGames(): void;
 }
 
 export function MainMenu({
@@ -46,7 +45,8 @@ export function MainMenu({
   deleteGameEntry,
   saveNewGame,
   setMode,
-  reloadCharacters
+  reloadCharacters,
+  reloadGames,
 }: Props) {
   const [sessionCode, setSessionCode] = useState<string>("");
   const [selectedCharId, setSelectedCharId] = useState<string | null>(null);
@@ -90,20 +90,6 @@ export function MainMenu({
               </Button>
             </div>
             <div className="shrink-0">
-              <ConfirmationButton
-                key={selectedCharId}
-                label="Remove character"
-                confirmLabel="Confirm deletion?"
-                disabled={selectedCharId === null}
-                onConfirm={() => {
-                  deleteCharacterEntry(
-                    characterEntries.find((c) => c.id === selectedCharId)!
-                  );
-                  setSelectedCharId(null);
-                }}
-              />
-            </div>
-            <div className="shrink-0">
               <Button
                 onClick={() => {
                   download(
@@ -122,6 +108,20 @@ export function MainMenu({
                   reloadCharacters();
                 }}
                 label="import characters"
+              />
+            </div>
+            <div className="shrink-0">
+              <ConfirmationButton
+                key={selectedCharId}
+                label="Remove character"
+                confirmLabel="Confirm deletion?"
+                disabled={selectedCharId === null}
+                onConfirm={() => {
+                  deleteCharacterEntry(
+                    characterEntries.find((c) => c.id === selectedCharId)!
+                  );
+                  setSelectedCharId(null);
+                }}
               />
             </div>
           </div>
@@ -193,27 +193,52 @@ export function MainMenu({
               onChange={(e) => setNewGameName(e.target.value)}
             />
           </div>
-          <div className="flex gap-2 mt-2">
-            <Button
-              disabled={selectedGameId === null}
-              onClick={() =>
-                setMode({ mode: "DmSession", gameId: selectedGameId! })
-              }
-            >
-              Resume game
-            </Button>
-            <ConfirmationButton
-              key={selectedGameId}
-              label="Delete game"
-              confirmLabel="Confirm deletion?"
-              disabled={selectedGameId === null}
-              onConfirm={() => {
-                deleteGameEntry(
-                  gameEntries.find((g) => g.id === selectedGameId)!
-                );
-                setSelectedGameId(null);
-              }}
-            />
+          <div className="flex flex-wrap gap-2 mt-2 w-96">
+            <div>
+              <Button
+                disabled={selectedGameId === null}
+                onClick={() =>
+                  setMode({ mode: "DmSession", gameId: selectedGameId! })
+                }
+              >
+                Resume game
+              </Button>
+            </div>
+            <div>
+              <ConfirmationButton
+                key={selectedGameId}
+                label="Delete game"
+                confirmLabel="Confirm deletion?"
+                disabled={selectedGameId === null}
+                onConfirm={() => {
+                  deleteGameEntry(
+                    gameEntries.find((g) => g.id === selectedGameId)!
+                  );
+                  setSelectedGameId(null);
+                }}
+              />
+            </div>
+            <div>
+              <Button
+                onClick={() => {
+                  download(
+                    "mothership-assistant-games.json",
+                    localStorage["games"]
+                  );
+                }}
+              >
+                export games
+              </Button>
+            </div>
+            <div>
+              <FileImport
+                onLoad={(body) => {
+                  localStorage["games"] = body;
+                  reloadGames();
+                }}
+                label="import games"
+              />
+            </div>
           </div>
         </Block>
       </div>
