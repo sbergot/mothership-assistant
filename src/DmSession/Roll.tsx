@@ -85,7 +85,7 @@ export function Roll({ log, setMode }: Log & SetDmMode) {
             disadvantage
           </Button>
         </div>
-        <div className="self-center">
+        <div className="self-center mt-4">
           <span className="mr-2">Deal damage</span>
           <input
             type="checkbox"
