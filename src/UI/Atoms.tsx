@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Children } from "./types";
+import { DangerIcon } from "./Icons";
 
 type ColorVariant = "light" | "dark" | "bright";
 
@@ -54,13 +56,16 @@ export function DividerOr() {
   );
 }
 
-interface ButtonProps extends Children {
-  onClick(): void;
+interface ButtonStyle {
   disabled?: boolean;
   rounded?: boolean;
   dark?: boolean;
   light?: boolean;
   noBorder?: boolean;
+}
+
+interface ButtonProps extends Children, ButtonStyle {
+  onClick(): void;
 }
 
 export function Button({
@@ -70,7 +75,7 @@ export function Button({
   light,
   disabled,
   rounded,
-  noBorder
+  noBorder,
 }: ButtonProps) {
   let colors = dark
     ? "bg-mother-6 text-mother-1 hover:bg-mother-5"
@@ -81,7 +86,9 @@ export function Button({
     : colors;
   colors = disabled ? "bg-mother-4 text-mother-1" : colors;
 
-  const cursor = disabled ? "cursor-not-allowed" : "cursor-pointer active:scale-90";
+  const cursor = disabled
+    ? "cursor-not-allowed"
+    : "cursor-pointer active:scale-90";
   const corners = rounded ? "px-4 rounded-3xl" : "px-2 rounded-lg";
   const border = noBorder ? "" : "border-2";
   return (
@@ -131,5 +138,42 @@ export function Progress({ current, max }: ProgressProps) {
       </svg>
       <span className="absolute">{current}</span>
     </div>
+  );
+}
+
+interface ConfirmationButtonProps extends ButtonStyle {
+  onConfirm(): void;
+  label: string;
+  confirmLabel: string;
+}
+
+export function ConfirmationButton({
+  onConfirm,
+  label,
+  confirmLabel,
+  ...buttonStyle
+}: ConfirmationButtonProps) {
+  const [confirmationNeeded, setConfirmationNeeded] = useState(false);
+  return (
+    <Button
+      onClick={() => {
+        if (confirmationNeeded) {
+          onConfirm();
+          setConfirmationNeeded(false);
+        } else {
+          setConfirmationNeeded(true);
+        }
+      }}
+      {...buttonStyle}
+    >
+      {confirmationNeeded ? (
+        <span>
+          <DangerIcon />
+          {confirmLabel}
+        </span>
+      ) : (
+        <span>{label}</span>
+      )}
+    </Button>
   );
 }

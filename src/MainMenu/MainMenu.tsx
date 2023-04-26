@@ -3,7 +3,7 @@ import { useState } from "react";
 import { RootModes } from "Root/types";
 import { Character, Game } from "Rules/types";
 import { uuidv4 } from "Services/storageServices";
-import { Block, Button, DividerOr, Title } from "UI/Atoms";
+import { Block, Button, ConfirmationButton, DividerOr, Title } from "UI/Atoms";
 import { DangerIcon } from "UI/Icons";
 
 function download(filename: string, text: string) {
@@ -41,9 +41,7 @@ export function MainMenu({
 }: Props) {
   const [sessionCode, setSessionCode] = useState<string>("");
   const [selectedCharId, setSelectedCharId] = useState<string | null>(null);
-  const [confirmCharDeletion, setConfirmCharDeletion] = useState(false);
   const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
-  const [confirmGameDeletion, setConfirmGameDeletion] = useState(false);
   const [newGameName, setNewGameName] = useState("");
   const [charFileInputKey, setCharFileInputKey] = useState(uuidv4());
 
@@ -56,7 +54,6 @@ export function MainMenu({
             key={c.id}
             onClick={() => {
               setSelectedCharId(c.id);
-              setConfirmCharDeletion(false);
             }}
             light={selectedCharId !== c.id}
           >
@@ -85,28 +82,17 @@ export function MainMenu({
               </Button>
             </div>
             <div className="shrink-0">
-              <Button
+              <ConfirmationButton
+                key={selectedCharId}
+                label="Remove character"
+                confirmLabel="Confirm deletion?"
                 disabled={selectedCharId === null}
-                onClick={() => {
-                  if (confirmCharDeletion) {
-                    deleteCharacterEntry(
-                      characterEntries.find((c) => c.id === selectedCharId)!
-                    );
-                    setConfirmCharDeletion(false);
-                  } else {
-                    setConfirmCharDeletion(true);
-                  }
-                }}
-              >
-                {confirmCharDeletion ? (
-                  <span>
-                    <DangerIcon />
-                    Confirm deletion?
-                  </span>
-                ) : (
-                  <span>Remove character</span>
-                )}
-              </Button>
+                onConfirm={() =>
+                  deleteCharacterEntry(
+                    characterEntries.find((c) => c.id === selectedCharId)!
+                  )
+                }
+              />
             </div>
             <div className="shrink-0">
               <Button
@@ -178,7 +164,6 @@ export function MainMenu({
             key={c.id}
             onClick={() => {
               setSelectedGameId(c.id);
-              setConfirmGameDeletion(false);
             }}
             light={selectedGameId !== c.id}
           >
@@ -218,28 +203,17 @@ export function MainMenu({
             >
               Resume game
             </Button>
-            <Button
+            <ConfirmationButton
+              key={selectedGameId}
+              label="Delete game"
+              confirmLabel="Confirm deletion?"
               disabled={selectedGameId === null}
-              onClick={() => {
-                if (confirmGameDeletion) {
-                  deleteGameEntry(
-                    gameEntries.find((g) => g.id === selectedGameId)!
-                  );
-                  setConfirmGameDeletion(false);
-                } else {
-                  setConfirmGameDeletion(true);
-                }
-              }}
-            >
-              {confirmGameDeletion ? (
-                <span>
-                  <DangerIcon />
-                  Confirm deletion?
-                </span>
-              ) : (
-                <span>Delete game</span>
-              )}
-            </Button>
+              onConfirm={() =>
+                deleteGameEntry(
+                  gameEntries.find((g) => g.id === selectedGameId)!
+                )
+              }
+            />
           </div>
         </Block>
       </div>
