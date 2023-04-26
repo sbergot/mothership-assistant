@@ -1,6 +1,5 @@
 import { MessagePanel } from "Messages/MessagePanel";
-import { Character, Game } from "Rules/types";
-import { DmSheet } from "./DmSheet";
+import { Character } from "Rules/types";
 import { DataConnection, Peer } from "peerjs";
 import { useEffect, useRef, useState } from "react";
 import { Title } from "UI/Atoms";
@@ -22,10 +21,16 @@ interface Props extends ReadWriteGame {}
 
 type ConnectionState = "opened" | "closed" | "error";
 
+const MAX_MESSAGE_NBR = 500;
+
 interface ConnectionInfo {
   id: string;
   character: Character | null;
   state: ConnectionState;
+}
+
+function rotateArray<T>(arr: T[], limit: number): T[] {
+  return arr.slice(Math.max(arr.length - limit, 0));
 }
 
 function useDmConnection(
@@ -151,7 +156,9 @@ function useDmConnection(
     if (!m.transient) {
       storeMessage(stamped);
     }
-    setTransientMessages((tms) => [...tms, stamped]);
+    setTransientMessages((tms) =>
+      rotateArray([...tms, stamped], MAX_MESSAGE_NBR)
+    );
     if (connRef.current) {
       connRef.current.send(stamped);
     }
@@ -173,7 +180,10 @@ export function DmSession({ game, setGame }: Props) {
   const { sessionCode, connections, log, messages } = useDmConnection(
     game.messages,
     (m) => {
-      setGame((g) => ({ ...g, messages: [...g.messages, m] }));
+      setGame((g) => ({
+        ...g,
+        messages: rotateArray([...g.messages, m], MAX_MESSAGE_NBR),
+      }));
     }
   );
   const [mode, setMode] = useState<Modes>({ mode: "DmSheet" });

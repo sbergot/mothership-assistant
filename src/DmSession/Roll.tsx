@@ -1,10 +1,12 @@
 import { Log } from "Messages/types";
-import { RollMode, WoundType } from "Rules/types";
+import { InflictedDamageType, RollMode, WoundType } from "Rules/types";
 import { applyRollMode, roll } from "Services/diceServices";
 import { Block, Button, Divider } from "UI/Atoms";
 import { useState } from "react";
 import { SetDmMode } from "./types";
 import { Rating } from "UI/Molecules";
+import { allWoundTables } from "Rules/Data/wounds";
+import { woundTypeToCriticalType } from "Services/damageServices";
 
 const allDiceTypes = [5, 10, 20, 100];
 
@@ -14,13 +16,26 @@ export function Roll({ log, setMode }: Log & SetDmMode) {
   const [diceNbr, setDiceNbr] = useState<number>(1);
   const [dealDamage, setDealDamage] = useState(false);
   const [woundType, setWoundType] = useState<WoundType>("bleeding");
+  const [inflictedType, setInflictedType] =
+    useState<InflictedDamageType>("health");
 
   function rollDices() {
     const result = applyRollMode(rollMode, () => roll(diceNbr, diceType));
-    log({
-      type: "GenericRollMessage",
-      props: { diceNbr, diceType, rollMode, result },
-    });
+    if (dealDamage) {
+      log({
+        type: "DamageMessage",
+        props: {
+          amount: result,
+          criticalType: woundTypeToCriticalType(woundType),
+          inflicted: inflictedType,
+        },
+      });
+    } else {
+      log({
+        type: "GenericRollMessage",
+        props: { diceNbr, diceType, rollMode, result },
+      });
+    }
   }
 
   return (
@@ -35,12 +50,18 @@ export function Roll({ log, setMode }: Log & SetDmMode) {
                 setDiceType(n);
               }}
             >
-              {n}
+              d{n}
             </Button>
           ))}
         </div>
-        <div>
-          <Rating title="dice #" value={diceNbr} onUpdate={(v) => setDiceNbr(v)} />
+        <div className="self-center">
+          <span className="mr-4">Dices #</span>
+          <input
+            type="number"
+            className="input w-10"
+            value={diceNbr}
+            onChange={(e) => setDiceNbr(parseInt(e.target.value))}
+          />
         </div>
         <div className="flex justify-center gap-2">
           <Button
@@ -62,6 +83,50 @@ export function Roll({ log, setMode }: Log & SetDmMode) {
             }}
           >
             disadvantage
+          </Button>
+        </div>
+        <div className="self-center">
+          <span className="mr-2">Deal damage</span>
+          <input
+            type="checkbox"
+            defaultChecked={dealDamage}
+            onChange={(e) => setDealDamage(e.target.checked)}
+          />
+        </div>
+        <div className="flex flex-wrap gap-2 justify-center">
+          {allWoundTables.map((wt) => (
+            <Button
+              light={woundType !== wt.woundType}
+              rounded
+              disabled={!dealDamage}
+              onClick={() => {
+                setWoundType(wt.woundType);
+              }}
+            >
+              {wt.name}
+            </Button>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-2 justify-center">
+          <Button
+            light={inflictedType !== "health"}
+            rounded
+            disabled={!dealDamage}
+            onClick={() => {
+              setInflictedType("health");
+            }}
+          >
+            health
+          </Button>
+          <Button
+            light={inflictedType !== "wounds"}
+            rounded
+            disabled={!dealDamage}
+            onClick={() => {
+              setInflictedType("wounds");
+            }}
+          >
+            wounds
           </Button>
         </div>
         <Divider />

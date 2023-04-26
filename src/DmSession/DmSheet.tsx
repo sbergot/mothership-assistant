@@ -14,8 +14,8 @@ export function DmSheet({ game, setGame, setMode, characters }: Props) {
   const contractors = characters.flatMap((c) => c.contractors);
   return (
     <div>
-      <Title>Characters</Title>
       <Button onClick={() => setMode({ mode: "DmRoll" })}>roll</Button>
+      <Title>Characters</Title>
       <div className="flex flex-col gap-2 mb-8">
         {characters.map((c) => (
           <CharacterShort key={c.id} character={c} onTitleClick={() => {}} />

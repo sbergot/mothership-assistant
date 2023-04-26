@@ -5,11 +5,8 @@ import {
   NormalizedCriticalType,
   Character,
   InflictedDamage,
-  RollMode,
-  RollWithMode,
   Damage,
   WoundType,
-  BaseCharacter,
   WithHealth,
   WithWound,
 } from "Rules/types";
