@@ -17,7 +17,6 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 # roadmap
 
-- import / export data
 - warden rolls
   - xd5, xd10, xd20, xd100
   - optionally deal damage
