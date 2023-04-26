@@ -19,11 +19,13 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 - Dices -> Dice
 - Fix top links
+- improve layout on wide displays (limit message width)
 - Custom stat blocks
 - Description for npc & monster
 - Reveal monster npc & custom to players 
 - clear logs & limit log size
-- styles for printing
+
+Later:
 
 - UI review:
   - reduce various font sizes
@@ -32,3 +34,4 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 - throttle frequent character network updates
 - check for the possibility to integrate with portraits from ashen-victor.itch.io
 - import/export characters from the mobile app
+- ship management 
