@@ -27,7 +27,7 @@ input[type=number] {
   }
 
   .input {
-    @apply p-2 w-full rounded-lg uppercase text-mother-5 bg-mother-1
+    @apply px-2 py-1 w-full rounded-lg uppercase text-mother-5 bg-mother-1
   }
 }
 
