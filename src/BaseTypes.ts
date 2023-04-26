@@ -11,6 +11,7 @@ export interface Repository<T> {
   deleteEntry(entry: Entry<T>): void;
   getEntries(): Entry<T>[];
   getEntry(id: string): T;
+  reload(): void;
 }
 
 export type StringProperties<T> = keyof {

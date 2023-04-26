@@ -3,7 +3,14 @@ import { useState } from "react";
 import { RootModes } from "Root/types";
 import { Character, Game } from "Rules/types";
 import { uuidv4 } from "Services/storageServices";
-import { Block, Button, ConfirmationButton, DividerOr, Title } from "UI/Atoms";
+import {
+  Block,
+  Button,
+  ConfirmationButton,
+  DividerOr,
+  FileImport,
+  Title,
+} from "UI/Atoms";
 import { DangerIcon } from "UI/Icons";
 
 function download(filename: string, text: string) {
@@ -29,6 +36,7 @@ interface Props {
   deleteGameEntry(c: Entry<Game>): void;
   saveNewGame(game: Game): string;
   setMode(mode: RootModes): void;
+  reloadCharacters(): void;
 }
 
 export function MainMenu({
@@ -38,12 +46,12 @@ export function MainMenu({
   deleteGameEntry,
   saveNewGame,
   setMode,
+  reloadCharacters
 }: Props) {
   const [sessionCode, setSessionCode] = useState<string>("");
   const [selectedCharId, setSelectedCharId] = useState<string | null>(null);
   const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
   const [newGameName, setNewGameName] = useState("");
-  const [charFileInputKey, setCharFileInputKey] = useState(uuidv4());
 
   return (
     <div className="flex flex-wrap gap-2">
@@ -87,11 +95,12 @@ export function MainMenu({
                 label="Remove character"
                 confirmLabel="Confirm deletion?"
                 disabled={selectedCharId === null}
-                onConfirm={() =>
+                onConfirm={() => {
                   deleteCharacterEntry(
                     characterEntries.find((c) => c.id === selectedCharId)!
-                  )
-                }
+                  );
+                  setSelectedCharId(null);
+                }}
               />
             </div>
             <div className="shrink-0">
@@ -103,27 +112,17 @@ export function MainMenu({
                   );
                 }}
               >
-                export
+                export characters
               </Button>
             </div>
             <div className="shrink-0">
-              <input
-                type="file"
-                key={charFileInputKey}
-                onChange={(event) => {
-                  var file = event.target.files![0];
-                  var reader = new FileReader();
-                  reader.onload = function (readerevent) {
-                    const fileContent: string = readerevent.target!
-                      .result as string;
-                    localStorage["characters"] = fileContent;
-                    setCharFileInputKey(uuidv4());
-                  };
-
-                  reader.readAsText(file);
+              <FileImport
+                onLoad={(body) => {
+                  localStorage["characters"] = body;
+                  reloadCharacters();
                 }}
+                label="import characters"
               />
-              <Button onClick={() => {}}>import</Button>
             </div>
           </div>
         </Block>
@@ -208,11 +207,12 @@ export function MainMenu({
               label="Delete game"
               confirmLabel="Confirm deletion?"
               disabled={selectedGameId === null}
-              onConfirm={() =>
+              onConfirm={() => {
                 deleteGameEntry(
                   gameEntries.find((g) => g.id === selectedGameId)!
-                )
-              }
+                );
+                setSelectedGameId(null);
+              }}
             />
           </div>
         </Block>

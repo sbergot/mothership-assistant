@@ -25,6 +25,7 @@ export function Root() {
         deleteGameEntry={gamesRepo.deleteEntry}
         saveNewGame={gamesRepo.saveNew}
         setMode={setMode}
+        reloadCharacters={characterRepo.reload}
       />
     );
   }

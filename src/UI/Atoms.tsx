@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Children } from "./types";
 import { DangerIcon } from "./Icons";
+import { uuidv4 } from "Services/storageServices";
 
 type ColorVariant = "light" | "dark" | "bright";
 
@@ -68,15 +69,30 @@ interface ButtonProps extends Children, ButtonStyle {
   onClick(): void;
 }
 
-export function Button({
-  children,
-  onClick,
-  dark,
-  light,
+export function Button({ children, onClick, ...buttonStyle }: ButtonProps) {
+  const classes = getButtonClasses(buttonStyle);
+  return (
+    <span
+      onClick={buttonStyle.disabled ? undefined : onClick}
+      className={classes}
+    >
+      {children}
+    </span>
+  );
+}
+
+interface ProgressProps {
+  current: number;
+  max: number;
+}
+
+function getButtonClasses({
   disabled,
   rounded,
+  dark,
+  light,
   noBorder,
-}: ButtonProps) {
+}: ButtonStyle) {
   let colors = dark
     ? "bg-mother-6 text-mother-1 hover:bg-mother-5"
     : "bg-mother-3 border-mother-5 hover:bg-mother-4";
@@ -91,19 +107,8 @@ export function Button({
     : "cursor-pointer active:scale-90";
   const corners = rounded ? "px-4 rounded-3xl" : "px-2 rounded-lg";
   const border = noBorder ? "" : "border-2";
-  return (
-    <span
-      onClick={disabled ? undefined : onClick}
-      className={`py-1 transition-all ${border} ${colors} ${cursor} ${corners}`}
-    >
-      {children}
-    </span>
-  );
-}
-
-interface ProgressProps {
-  current: number;
-  max: number;
+  const classes = `py-1 transition-all ${border} ${colors} ${cursor} ${corners}`;
+  return classes;
 }
 
 export function Progress({ current, max }: ProgressProps) {
@@ -175,5 +180,39 @@ export function ConfirmationButton({
         <span>{label}</span>
       )}
     </Button>
+  );
+}
+
+interface FileImportProps extends ButtonStyle {
+  onLoad(body: string): void;
+  label: string;
+}
+
+export function FileImport({ onLoad, label, ...buttonStyle }: FileImportProps) {
+  const [fileInputKey, setFileInputKey] = useState(uuidv4());
+
+  return (
+    <>
+      <label className={getButtonClasses(buttonStyle)} htmlFor={fileInputKey}>
+        {label}
+      </label>
+      <input
+        type="file"
+        className="opacity-0 absolute -z-10"
+        id={fileInputKey}
+        key={fileInputKey}
+        onChange={(event) => {
+          var file = event.target.files![0];
+          var reader = new FileReader();
+          reader.onload = function (readerevent) {
+            const fileContent: string = readerevent.target!.result as string;
+            onLoad(fileContent);
+            setFileInputKey(uuidv4());
+          };
+
+          reader.readAsText(file);
+        }}
+      />
+    </>
   );
 }

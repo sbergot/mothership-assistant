@@ -49,7 +49,11 @@ export function createRepository<T>(key: string) {
       return stateRepo[id].value;
     }
 
-    return { saveNew, update, deleteEntry, getEntries, getEntry };
+    function reload() {
+      setStateRepo(JSON.parse(localStorage.getItem(key) || "{}"))
+    }
+
+    return { saveNew, update, deleteEntry, getEntries, getEntry, reload };
   }
   return useRepository;
 }
