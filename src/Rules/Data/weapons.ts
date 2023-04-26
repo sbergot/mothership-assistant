@@ -1,5 +1,5 @@
 import { WeaponExt, WeaponType } from "Rules/types";
-import { toDict } from "Services/services";
+import { toDict } from "Services/storageServices";
 
 export const allWeapons: WeaponExt[] = [
     {

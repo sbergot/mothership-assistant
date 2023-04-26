@@ -1,5 +1,5 @@
 import { SkillDefinition, SkillDefinitionExtended, SkillLevel, SkillLevelDefinition, SkillType } from "Rules/types";
-import { toDict } from "Services/services";
+import { toDict } from "Services/storageServices";
 
 export const allSkillLevels: SkillLevel[] = ["Trained", "Expert", "Master"];
 

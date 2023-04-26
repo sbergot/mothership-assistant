@@ -1,4 +1,4 @@
-import { uuidv4 } from "./services";
+import { uuidv4 } from "./storageServices";
 import { Character } from "Rules/types";
 
 export function initCharacter(): Character {

@@ -14,7 +14,7 @@ import {
   StatRollResult,
   WithId,
 } from "Rules/types";
-import { uuidv4 } from "Services/services";
+import { uuidv4 } from "Services/storageServices";
 
 export function formatCredits(c: number): string {
   if (Math.abs(c) >= 1000) {

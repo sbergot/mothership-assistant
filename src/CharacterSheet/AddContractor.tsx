@@ -10,7 +10,7 @@ import { formatCredits } from "helpers";
 import { Column, Counter, Table } from "UI/Organisms/Table";
 import { ReadWriteCharacter, SetMode } from "./types";
 import { roll } from "Services/diceServices";
-import { uuidv4 } from "Services/services";
+import { uuidv4 } from "Services/storageServices";
 
 function getDefaultSelection(): Record<ContractorType, number> {
   const res = {} as Record<ContractorType, number>;

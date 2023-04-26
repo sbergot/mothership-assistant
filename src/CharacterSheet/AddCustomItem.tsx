@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Equipment } from "Rules/types";
-import { uuidv4 } from "Services/services";
+import { uuidv4 } from "Services/storageServices";
 import { Block, Button, Title } from "UI/Atoms";
 import { SetMode, WriteBaseChar, WriteCharacter } from "./types";
 

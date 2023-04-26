@@ -1,4 +1,4 @@
-import { toDict } from "Services/services";
+import { toDict } from "Services/storageServices";
 import { allSkillsDict } from "./Data/skills";
 import { SkillDefinition, SkillType, SkillLevel, CharacterSkill } from "./types";
 

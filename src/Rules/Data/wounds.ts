@@ -1,6 +1,6 @@
 import { Character, WoundTable, WoundType } from "Rules/types";
 import { roll } from "Services/diceServices";
-import { toDict } from "Services/services";
+import { toDict } from "Services/storageServices";
 
 function addBleeding(value: number): (c: Character) => Character {
     return c => ({...c, bleeding: c.bleeding + value})

@@ -1,5 +1,5 @@
 import { ContractorType, Contractor } from "Rules/types";
-import { toDict } from "Services/services";
+import { toDict } from "Services/storageServices";
 
 export const allContractorTypes: ContractorType[] = [
   "archaeologist",

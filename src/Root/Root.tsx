@@ -4,7 +4,7 @@ import { MainMenu } from "MainMenu/MainMenu";
 import { PlayerSession } from "PlayerSession/PlayerSession";
 import { useState } from "react";
 import { Character, Game } from "Rules/types";
-import { createRepository } from "Services/services";
+import { createRepository } from "Services/storageServices";
 import { RootModes } from "./types";
 
 const useCharacterRepo = createRepository<Character>("characters");

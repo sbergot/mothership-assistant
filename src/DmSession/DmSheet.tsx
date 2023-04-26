@@ -1,7 +1,7 @@
 import { deleteInList, updateInList } from "helpers";
 import { useState } from "react";
 import { Character, Game, Monster, Npc } from "Rules/types";
-import { uuidv4 } from "Services/services";
+import { uuidv4 } from "Services/storageServices";
 import { Button, Title } from "UI/Atoms";
 import { CharacterShort } from "UI/Organisms/CharacterShort";
 import { ContractorShort } from "UI/Organisms/ContractorShort";

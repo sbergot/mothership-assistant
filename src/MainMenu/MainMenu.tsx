@@ -2,8 +2,25 @@ import { Entry } from "BaseTypes";
 import { useState } from "react";
 import { RootModes } from "Root/types";
 import { Character, Game } from "Rules/types";
+import { uuidv4 } from "Services/storageServices";
 import { Block, Button, DividerOr, Title } from "UI/Atoms";
 import { DangerIcon } from "UI/Icons";
+
+function download(filename: string, text: string) {
+  var element = document.createElement("a");
+  element.setAttribute(
+    "href",
+    "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+  );
+  element.setAttribute("download", filename);
+
+  element.style.display = "none";
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
 
 interface Props {
   characterEntries: Entry<Character>[];
@@ -28,6 +45,7 @@ export function MainMenu({
   const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
   const [confirmGameDeletion, setConfirmGameDeletion] = useState(false);
   const [newGameName, setNewGameName] = useState("");
+  const [charFileInputKey, setCharFileInputKey] = useState(uuidv4());
 
   return (
     <div className="flex flex-wrap gap-2">
@@ -80,10 +98,46 @@ export function MainMenu({
                   }
                 }}
               >
-                {confirmCharDeletion
-                  ? <span><DangerIcon />Confirm deletion?</span>
-                  : <span>Remove character</span>}
+                {confirmCharDeletion ? (
+                  <span>
+                    <DangerIcon />
+                    Confirm deletion?
+                  </span>
+                ) : (
+                  <span>Remove character</span>
+                )}
               </Button>
+            </div>
+            <div className="shrink-0">
+              <Button
+                onClick={() => {
+                  download(
+                    "mothership-assistant-characters.json",
+                    localStorage["characters"]
+                  );
+                }}
+              >
+                export
+              </Button>
+            </div>
+            <div className="shrink-0">
+              <input
+                type="file"
+                key={charFileInputKey}
+                onChange={(event) => {
+                  var file = event.target.files![0];
+                  var reader = new FileReader();
+                  reader.onload = function (readerevent) {
+                    const fileContent: string = readerevent.target!
+                      .result as string;
+                    localStorage["characters"] = fileContent;
+                    setCharFileInputKey(uuidv4());
+                  };
+
+                  reader.readAsText(file);
+                }}
+              />
+              <Button onClick={() => {}}>import</Button>
             </div>
           </div>
         </Block>
@@ -177,7 +231,14 @@ export function MainMenu({
                 }
               }}
             >
-              {confirmGameDeletion ? <span><DangerIcon />Confirm deletion?</span> : <span>Delete game</span>}
+              {confirmGameDeletion ? (
+                <span>
+                  <DangerIcon />
+                  Confirm deletion?
+                </span>
+              ) : (
+                <span>Delete game</span>
+              )}
             </Button>
           </div>
         </Block>
