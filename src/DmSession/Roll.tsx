@@ -55,7 +55,7 @@ export function Roll({ log, setMode }: Log & SetDmMode) {
           ))}
         </div>
         <div className="self-center">
-          <span className="mr-4">Dices #</span>
+          <span className="mr-4">Dice #</span>
           <input
             type="number"
             className="input w-10"

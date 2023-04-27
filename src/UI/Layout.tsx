@@ -8,7 +8,7 @@ export function Layout({ children }: Children) {
           <a href="/">Mothership assistant</a>
         </h1>
         <h2>Mothership is a tabletop rpg by Tuesday Knight Games</h2>
-        <a className="link" href="www.tuesdayknightgames.com">
+        <a className="link" href="https://www.tuesdayknightgames.com">
           www.tuesdayknightgames.com
         </a>{" "}
         -{" "}

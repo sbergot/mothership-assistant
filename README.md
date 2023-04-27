@@ -17,8 +17,6 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 # roadmap
 
-- Dices -> Dice
-- Fix top links
 - improve layout on wide displays (limit message width)
 - Custom stat blocks
 - Description for npc & monster
