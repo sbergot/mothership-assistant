@@ -18,6 +18,7 @@ export function NPCs({ game, setGame }: ReadWriteGame) {
       wounds: 0,
       name,
       description: "",
+      visibleToAll: false,
       id: uuidv4(),
     };
   }
