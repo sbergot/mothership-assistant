@@ -442,6 +442,7 @@ export interface Monster extends Npc, WithHealth {}
 export interface Game {
   title: string;
   npcs: Npc[];
+  customEntries: CustomEntry[];
   monsters: Monster[];
   messages: StampedMessage[];
 }

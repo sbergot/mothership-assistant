@@ -5,6 +5,7 @@ import { ContractorShort } from "UI/Organisms/ContractorShort";
 import { Monsters } from "./Monsters";
 import { NPCs } from "./NPCs";
 import { ReadWriteGame, SetDmMode } from "./types";
+import { CustomEntries } from "./CustomEntries";
 
 interface Props extends ReadWriteGame, SetDmMode {
   characters: Character[];
@@ -29,6 +30,7 @@ export function DmSheet({ game, setGame, setMode, characters }: Props) {
       </div>
       <Monsters game={game} setGame={setGame} />
       <NPCs game={game} setGame={setGame} />
+      <CustomEntries game={game} setGame={setGame} />
     </div>
   );
 }

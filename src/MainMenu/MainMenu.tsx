@@ -173,10 +173,12 @@ export function MainMenu({
           <div className="flex items-center gap-2">
             <div className="shrink-0">
               <Button
+                disabled={!newGameName}
                 onClick={() => {
                   const newId = saveNewGame({
                     monsters: [],
                     npcs: [],
+                    customEntries: [],
                     messages: [],
                     title: newGameName,
                   });
