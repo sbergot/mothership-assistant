@@ -17,19 +17,21 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 # roadmap
 
-- improve layout on wide displays (limit message width)
+## in development
+
 - Custom stat blocks
 - Description for npc & monster
 - Reveal monster npc & custom to players 
 - clear logs & limit log size
 
-Later:
+## being considered
 
+- armor/weapons/equipment/contractors customization
+- throttle frequent character network updates
 - UI review:
   - reduce various font sizes
   - make the UI denser
   - design a better "select" component instead of using buttons
-- throttle frequent character network updates
 - check for the possibility to integrate with portraits from ashen-victor.itch.io
 - import/export characters from the mobile app
 - ship management 

@@ -47,8 +47,18 @@ input[type=number] {
   }
 }
 
+.session-right-part {
+  position: fixed;
+  left: 2rem;
+  bottom: 0.5rem;
+  width: 100%;
+  max-width: calc(100vw - 4rem);
+  height: calc(100dvh - 2rem);
+}
+
 @media (min-width: 1024px) {
-  .right-part-width {
-    max-width: max(100vw - 50rem, 25rem);
+  .session-right-part {
+    left: 45rem;
+    max-width: clamp(25rem, 100vw - 50rem, 40rem);
   }
 }
