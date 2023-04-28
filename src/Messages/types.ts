@@ -11,6 +11,7 @@ import {
   InflictedDamage,
   PanicEffect,
   PanicRollResult,
+  RevealedElement,
   SaveRollResult,
   StatRollResult,
   WoundEffectEntry,
@@ -32,8 +33,14 @@ export interface MessageHistory {
   messages: StampedMessage[];
 }
 
+export interface RevealedElements {
+  revealedElements: RevealedElement[];
+}
+
 export type SyncMessage =
   | Message<"UpdateChar", ReadCharacter>
+  | Message<"RevealedElementsRequest", {}>
+  | Message<"RevealedElementsResponse", RevealedElements>
   | Message<"MessageHistoryRequest", {}>
   | Message<"MessageHistoryResponse", MessageHistory>;
 

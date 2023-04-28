@@ -1,5 +1,5 @@
 import { MessagePanel } from "Messages/MessagePanel";
-import { Character } from "Rules/types";
+import { Character, CustomEntry, Game, RevealedElement } from "Rules/types";
 import { DataConnection, Peer } from "peerjs";
 import { useEffect, useRef, useState } from "react";
 import { Title } from "UI/Atoms";
@@ -8,11 +8,12 @@ import {
   ConnectionMetadata,
   GameMessage,
   Log,
+  RevealedElements,
   StampedMessage,
   SyncMessage,
 } from "Messages/types";
 import { ButtonIcon, CopyIcon } from "UI/Icons";
-import { stamp } from "helpers";
+import { getAllRevealedElements, stamp } from "helpers";
 import { Modes, ReadWriteGame } from "./types";
 import { DmSessionRouting } from "./DmSessionRouting";
 import { MobileLayout } from "UI/MobileLayout";
@@ -35,6 +36,7 @@ function rotateArray<T>(arr: T[], limit: number): T[] {
 
 function useDmConnection(
   messages: StampedMessage[],
+  revealedElements: RevealedElement[],
   storeMessage: (m: StampedMessage) => void
 ) {
   const [sessionCode, setSessionCode] = useState("");
@@ -43,8 +45,9 @@ function useDmConnection(
   >({});
   const messagesRef = useRef(messages);
   messagesRef.current = messages;
+  const revealedElementsRef = useRef(revealedElements);
+  revealedElementsRef.current = revealedElements;
   const debounceRef = useRef(false);
-  const connRef = useRef<DataConnection | null>(null);
   const playerConnectionsRef = useRef<Record<string, DataConnection>>({});
   const [transientMessages, setTransientMessages] =
     useState<StampedMessage[]>(messages);
@@ -91,7 +94,7 @@ function useDmConnection(
       }));
 
       conn.on("data", function (data) {
-        console.log("Data recieved", data);
+        console.log("Data received", data);
         const typeData = data as AnyMessage;
         if (typeData.type === "UpdateChar") {
           const newChar = typeData.props.character;
@@ -116,13 +119,18 @@ function useDmConnection(
         if (typeData.type === "MessageHistoryResponse") {
           return;
         }
-        if (!typeData.transient) {
-          storeMessage(typeData);
+        if (typeData.type === "RevealedElementsRequest") {
+          const response: SyncMessage = {
+            type: "RevealedElementsResponse",
+            props: { revealedElements: revealedElementsRef.current },
+          };
+          conn.send(response);
+          return;
         }
-        setTransientMessages((tms) => [...tms, typeData]);
-        Object.values(playerConnectionsRef.current).forEach((c) => {
-          c.send(typeData);
-        });
+        if (typeData.type === "RevealedElementsResponse") {
+          return;
+        }
+        sendAll(typeData);
       });
 
       conn.on("close", function () {
@@ -151,16 +159,34 @@ function useDmConnection(
     }
   }
 
-  function log(m: GameMessage) {
-    const stamped = stamp({ id: "warden", name: "warden" }, m);
-    if (!m.transient) {
+  function sendAll(stamped: StampedMessage) {
+    if (!stamped.transient) {
       storeMessage(stamped);
     }
     setTransientMessages((tms) =>
       rotateArray([...tms, stamped], MAX_MESSAGE_NBR)
     );
-    if (connRef.current) {
-      connRef.current.send(stamped);
+    if (playerConnectionsRef.current) {
+      Object.values(playerConnectionsRef.current).forEach((c) => {
+        c.send(stamped);
+      });
+    }
+  }
+
+  function log(m: GameMessage) {
+    const stamped = stamp({ id: "warden", name: "warden" }, m);
+    sendAll(stamped);
+  }
+
+  function updateRevealedElements(c: Game) {
+    const response: SyncMessage = {
+      type: "RevealedElementsResponse",
+      props: { revealedElements: getAllRevealedElements(c) },
+    };
+    if (playerConnectionsRef.current) {
+      Object.values(playerConnectionsRef.current).forEach((c) => {
+        c.send(response);
+      });
     }
   }
 
@@ -172,13 +198,16 @@ function useDmConnection(
     sessionCode,
     connections: Object.values(connectionsState),
     log,
+    updateRevealedElements,
     messages: transientMessages,
   };
 }
 
 export function DmSession({ game, setGame }: Props) {
-  const { sessionCode, connections, log, messages } = useDmConnection(
+  const revealedElements: RevealedElement[] = getAllRevealedElements(game);
+  const { sessionCode, connections, log, messages, updateRevealedElements } = useDmConnection(
     game.messages,
+    revealedElements,
     (m) => {
       setGame((g) => ({
         ...g,
@@ -192,7 +221,7 @@ export function DmSession({ game, setGame }: Props) {
     .map((c) => c.character)
     .filter((x): x is Character => x !== null);
 
-  const commonContext: Log = { log };
+  const commonContext: Log & RevealedElements = { log, revealedElements };
 
   const leftPart = (
     <>
@@ -218,6 +247,7 @@ export function DmSession({ game, setGame }: Props) {
         mode={mode}
         setMode={setMode}
         log={log}
+        updateRevealedElements={updateRevealedElements}
       />
     </>
   );

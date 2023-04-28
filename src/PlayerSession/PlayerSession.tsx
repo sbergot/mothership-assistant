@@ -6,12 +6,13 @@ import {
   AnyMessage,
   GameMessage,
   Log,
+  RevealedElements,
   StampedMessage,
   SyncMessage,
 } from "Messages/types";
 import Peer, { DataConnection } from "peerjs";
 import { useEffect, useRef, useState } from "react";
-import { Character } from "Rules/types";
+import { Character, RevealedElement } from "Rules/types";
 import { useLog } from "Services/messageServices";
 import { MobileLayout } from "UI/MobileLayout";
 
@@ -25,6 +26,7 @@ type ConnectionStatus =
 function usePlayerConnection(sessionCode: string, character: Character) {
   const browserId = useBrowserId();
   const [messages, setMessages] = useState<StampedMessage[]>([]);
+  const [revealedElements, setRevealedElements] = useState<RevealedElement[]>([]);
   const [connectionStatus, setConnectionStatus] =
     useState<ConnectionStatus>("connecting");
   const debounceRef = useRef(false);
@@ -93,6 +95,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
       setConnectionStatus("connected");
       syncLog({ type: "UpdateChar", props: { character } });
       syncLog({ type: "MessageHistoryRequest", props: {} });
+      syncLog({ type: "RevealedElementsRequest", props: {} });
     });
     // Handle incoming data (messages only since this is the signal sender)
     conn.on("data", function (data) {
@@ -106,6 +109,13 @@ function usePlayerConnection(sessionCode: string, character: Character) {
       }
       if (typeData.type === "MessageHistoryResponse") {
         setMessages(typeData.props.messages);
+        return;
+      }
+      if (typeData.type === "RevealedElementsRequest") {
+        return;
+      }
+      if (typeData.type === "RevealedElementsResponse") {
+        setRevealedElements(typeData.props.revealedElements);
         return;
       }
       setMessages((m) => [...m, typeData]);
@@ -151,8 +161,8 @@ function usePlayerConnection(sessionCode: string, character: Character) {
   }, [character]);
 
   return !!sessionCode
-    ? { log, messages, connectionStatus }
-    : { log: stub.log, messages: stub.messages, connectionStatus };
+    ? { log, messages, connectionStatus, revealedElements }
+    : { log: stub.log, messages: stub.messages, connectionStatus, revealedElements };
 }
 
 interface Props extends ReadWriteCharacter {
@@ -160,7 +170,7 @@ interface Props extends ReadWriteCharacter {
 }
 
 export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
-  const { log, messages, connectionStatus } = usePlayerConnection(
+  const { log, messages, connectionStatus, revealedElements } = usePlayerConnection(
     sessionCode,
     character
   );
@@ -171,7 +181,7 @@ export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
     setMode,
   };
 
-  const commonContext: Log = { log };
+  const commonContext: Log & RevealedElements = { log, revealedElements };
 
   const leftPart = (
     <>

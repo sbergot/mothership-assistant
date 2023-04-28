@@ -86,9 +86,8 @@ interface ProgressProps {
   max: number;
 }
 
-function getButtonClasses({
+function getButtonColorClasses({
   disabled,
-  rounded,
   dark,
   light,
   noBorder,
@@ -105,10 +104,15 @@ function getButtonClasses({
   const cursor = disabled
     ? "cursor-not-allowed"
     : "cursor-pointer active:scale-90";
-  const corners = rounded ? "px-4 rounded-3xl" : "px-2 rounded-lg";
   const border = noBorder ? "" : "border-2";
-  const classes = `py-1 transition-all ${border} ${colors} ${cursor} ${corners}`;
+  const classes = `${border} ${colors} ${cursor}`;
   return classes;
+}
+
+function getButtonClasses(buttonStyle: ButtonStyle) {
+  const corners = buttonStyle.rounded ? "px-4 rounded-3xl" : "px-2 rounded-lg";
+
+  return `py-1 transition-all ${getButtonColorClasses(buttonStyle)} ${corners}`;
 }
 
 export function Progress({ current, max }: ProgressProps) {
@@ -214,5 +218,27 @@ export function FileImport({ onLoad, label, ...buttonStyle }: FileImportProps) {
         }}
       />
     </>
+  );
+}
+
+interface RoundButtonProps extends Children, ButtonStyle {
+  onClick(): void;
+}
+
+export function RoundButton({
+  onClick,
+  children,
+  ...buttonStyle
+}: RoundButtonProps) {
+  const colors = getButtonColorClasses(buttonStyle);
+  return (
+    <div
+      className={`flex w-12 h-12 rounded-full transition-all active:scale-90 ${colors}`}
+      onClick={onClick}
+    >
+      <div className="inline-block w-6 h-6 mt-[6px] mx-auto scale-125">
+        {children}
+      </div>
+    </div>
   );
 }

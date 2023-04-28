@@ -7,7 +7,7 @@ interface Props {
   deleteCustomEntry(): void;
 }
 
-export function CustomEntryDisplay({
+export function CustomEntryEdit({
   customEntry,
   setCustomEntry,
   deleteCustomEntry,
