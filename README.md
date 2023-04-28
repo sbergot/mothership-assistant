@@ -19,6 +19,7 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 ## in development
 
+- import functions should merge content
 - clear logs & limit log size
 
 ## being considered
