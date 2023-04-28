@@ -1,5 +1,5 @@
 import { Monster } from "Rules/types";
-import { ButtonIcon, TrashIcon } from "UI/Icons";
+import { ButtonIcon, EyeIcon, EyeSlashIcon, TrashIcon } from "UI/Icons";
 import { Rating, Gauge } from "UI/Molecules";
 
 interface Props {
@@ -13,7 +13,15 @@ export function MonsterShort({ monster, setMonster, deleteMonster }: Props) {
     <div className="rounded-xl bg-mother-2 flex flex-col gap-4">
       <div className="rounded-3xl bg-mother-6 text-mother-1 text-center flex justify-center">
         <div className="flex-grow">{monster.name}</div>
-        <div className="mr-2">
+        <div className="mr-2 flex gap-1">
+          <ButtonIcon
+            light
+            onClick={() => {
+              setMonster((m) => ({ ...m, visibleToAll: !m.visibleToAll }));
+            }}
+          >
+            {monster.visibleToAll ? <EyeIcon /> : <EyeSlashIcon />}
+          </ButtonIcon>
           <ButtonIcon light onClick={deleteMonster}>
             <TrashIcon />
           </ButtonIcon>

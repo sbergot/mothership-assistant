@@ -1,5 +1,5 @@
 import { CustomEntry } from "Rules/types";
-import { ButtonIcon, TrashIcon } from "UI/Icons";
+import { ButtonIcon, EyeIcon, EyeSlashIcon, TrashIcon } from "UI/Icons";
 
 interface Props {
   customEntry: CustomEntry;
@@ -17,6 +17,14 @@ export function CustomEntryDisplay({
       <div className="rounded-3xl bg-mother-6 text-mother-1 text-center flex justify-center">
         <div className="flex-grow">{customEntry.name}</div>
         <div className="mr-2">
+          <ButtonIcon
+            light
+            onClick={() => {
+              setCustomEntry((m) => ({ ...m, visibleToAll: !m.visibleToAll }));
+            }}
+          >
+            {customEntry.visibleToAll ? <EyeIcon /> : <EyeSlashIcon />}
+          </ButtonIcon>
           <ButtonIcon light onClick={deleteCustomEntry}>
             <TrashIcon />
           </ButtonIcon>
