@@ -426,7 +426,12 @@ export interface WoundEffectEntry {
   type: WoundType;
 }
 
-export interface Npc extends WithId, WithWound {
+export interface CustomEntry extends WithId {
+  name: string;
+  description: string;
+}
+
+export interface Npc extends CustomEntry, WithWound {
   name: string;
   combat: number;
   instinct: number;

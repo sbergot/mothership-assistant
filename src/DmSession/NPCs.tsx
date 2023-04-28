@@ -17,6 +17,7 @@ export function NPCs({ game, setGame }: ReadWriteGame) {
       maxWounds: 2,
       wounds: 0,
       name,
+      description: "",
       id: uuidv4(),
     };
   }

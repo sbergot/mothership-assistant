@@ -40,6 +40,15 @@ export function NpcShort({ npc, setNpc, deleteNpc }: Props) {
           onChange={(n) => setNpc((m) => ({ ...m, wounds: n }))}
           onChangeLimit={(n) => setNpc((m) => ({ ...m, maxWounds: n }))}
         />
+        <div>
+          <textarea
+            value={npc.description}
+            className="input resize-none h-32"
+            onChange={(e) =>
+              setNpc((m) => ({ ...m, description: e.target.value }))
+            }
+          />
+        </div>
       </div>
     </div>
   );

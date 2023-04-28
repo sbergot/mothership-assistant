@@ -17,6 +17,7 @@ export function Monsters({ game, setGame }: ReadWriteGame) {
       maxWounds: 2,
       wounds: 0,
       name,
+      description: "",
       id: uuidv4(),
       health: 10,
       maxHealth: 10,

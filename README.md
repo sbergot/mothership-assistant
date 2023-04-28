@@ -20,7 +20,6 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 ## in development
 
 - Custom stat blocks
-- Description for npc & monster
 - Reveal monster npc & custom to players 
 - clear logs & limit log size
 

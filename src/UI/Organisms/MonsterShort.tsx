@@ -50,6 +50,15 @@ export function MonsterShort({ monster, setMonster, deleteMonster }: Props) {
             onChangeLimit={(n) => setMonster((m) => ({ ...m, maxWounds: n }))}
           />
         </div>
+        <div>
+          <textarea
+            value={monster.description}
+            className="input resize-none h-32"
+            onChange={(e) =>
+              setMonster((m) => ({ ...m, description: e.target.value }))
+            }
+          />
+        </div>
       </div>
     </div>
   );
