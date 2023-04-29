@@ -27,6 +27,13 @@ function download(filename: string, text: string) {
   document.body.removeChild(element);
 }
 
+function importData(key: string, body: string) {
+  const importedData = JSON.parse(body) as object;
+  const storedData = JSON.parse(localStorage[key]) as object;
+  const mergedData = { ...storedData, ...importedData };
+  localStorage[key] = JSON.stringify(mergedData);
+}
+
 interface Props {
   characterEntries: Entry<Character>[];
   deleteCharacterEntry(c: Entry<Character>): void;
@@ -104,7 +111,7 @@ export function MainMenu({
             <div className="shrink-0">
               <FileImport
                 onLoad={(body) => {
-                  localStorage["characters"] = body;
+                  importData("characters", body);
                   reloadCharacters();
                 }}
                 label="import characters"
@@ -235,7 +242,7 @@ export function MainMenu({
             <div>
               <FileImport
                 onLoad={(body) => {
-                  localStorage["games"] = body;
+                  importData("games", body);
                   reloadGames();
                 }}
                 label="import games"
