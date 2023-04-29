@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ReadWriteGame } from "./types";
 import { CustomEntry } from "Rules/types";
 import { uuidv4 } from "Services/storageServices";
-import { CustomEntryDisplay } from "UI/Organisms/CustomEntryDisplay";
+import { CustomEntryEdit } from "UI/Organisms/CustomEntryEdit";
 
 export function CustomEntries({ game, setGame }: ReadWriteGame) {
   const [newCustomEntryName, setNewCustomEntryName] = useState("");
@@ -24,7 +24,7 @@ export function CustomEntries({ game, setGame }: ReadWriteGame) {
       <Title>Custom entries</Title>
       <div className="flex flex-wrap justify-center items-center gap-2 mb-8">
         {customEntries.map((c) => (
-          <CustomEntryDisplay
+          <CustomEntryEdit
             key={c.id}
             customEntry={c}
             setCustomEntry={(setter) => {

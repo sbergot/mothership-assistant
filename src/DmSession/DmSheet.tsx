@@ -9,10 +9,25 @@ import { CustomEntries } from "./CustomEntries";
 
 interface Props extends ReadWriteGame, SetDmMode {
   characters: Character[];
+  updateRevealedElements(c: Game): void;
 }
 
-export function DmSheet({ game, setGame, setMode, characters }: Props) {
+export function DmSheet({
+  game,
+  setGame,
+  setMode,
+  characters,
+  updateRevealedElements,
+}: Props) {
   const contractors = characters.flatMap((c) => c.contractors);
+  function setGameAndUpdate(setter: (c: Game) => Game) {
+    function newSetter(c: Game): Game {
+      const newGame = setter(c);
+      updateRevealedElements(newGame);
+      return newGame;
+    }
+    setGame(newSetter);
+  }
   return (
     <div>
       <Button onClick={() => setMode({ mode: "DmRoll" })}>roll</Button>
@@ -28,9 +43,9 @@ export function DmSheet({ game, setGame, setMode, characters }: Props) {
           <ContractorShort key={c.id} contractor={c} onTitleClick={() => {}} />
         ))}
       </div>
-      <Monsters game={game} setGame={setGame} />
-      <NPCs game={game} setGame={setGame} />
-      <CustomEntries game={game} setGame={setGame} />
+      <Monsters game={game} setGame={setGameAndUpdate} />
+      <NPCs game={game} setGame={setGameAndUpdate} />
+      <CustomEntries game={game} setGame={setGameAndUpdate} />
     </div>
   );
 }

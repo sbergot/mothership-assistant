@@ -19,7 +19,7 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 ## in development
 
-- Reveal monster npc & custom to players 
+- import functions should merge content
 - clear logs & limit log size
 
 ## being considered

@@ -50,10 +50,10 @@ input[type=number] {
 .session-right-part {
   position: fixed;
   left: 2rem;
-  bottom: 0.5rem;
+  bottom: 4rem;
   width: 100%;
   max-width: calc(100vw - 4rem);
-  height: calc(100dvh - 2rem);
+  height: calc(100dvh - 5rem);
 }
 
 @media (min-width: 1024px) {

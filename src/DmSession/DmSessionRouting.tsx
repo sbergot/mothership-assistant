@@ -1,4 +1,4 @@
-import { Character } from "Rules/types";
+import { Character, Game } from "Rules/types";
 import { Modes, ReadWriteGame } from "./types";
 import { DmSheet } from "./DmSheet";
 import { DealDamage } from "./DealDamage";
@@ -9,6 +9,7 @@ interface Props extends ReadWriteGame, Log {
   characters: Character[];
   mode: Modes;
   setMode(mode: Modes): void;
+  updateRevealedElements(c: Game): void;
 }
 
 export function DmSessionRouting({
@@ -18,6 +19,7 @@ export function DmSessionRouting({
   characters,
   setMode,
   log,
+  updateRevealedElements
 }: Props) {
   if (mode.mode === "DmSheet") {
     return (
@@ -26,6 +28,7 @@ export function DmSessionRouting({
         setGame={setGame}
         setMode={setMode}
         characters={characters}
+        updateRevealedElements={updateRevealedElements}
       />
     );
   }

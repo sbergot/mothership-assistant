@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { ChatIcon, XIcon } from "./Icons";
+import { ChatIcon, EyeIcon, EyeSlashIcon, XIcon } from "./Icons";
+import { RoundButton } from "./Atoms";
 
 interface Props {
   leftPart: React.ReactNode;
@@ -16,18 +17,15 @@ export function MobileLayout({ leftPart, rightPart }: Props) {
       <div className="flex gap-2">
         <div className="max-w-2xl w-full">{leftPart}</div>
         <div
-          className={`transition-all session-right-part border-2 rounded-3xl p-4 mb-2 border-mother-5 bg-white ${visibilityClasses}`}
+          className={`transition-all session-right-part ${visibilityClasses}`}
         >
           {rightPart}
         </div>
       </div>
-      <div
-        className="w-12 h-12 rounded-full bg-mother-3 border-mother-5 hover:bg-mother-4 border-2 fixed right-8 bottom-8 transition-all cursor-pointer active:scale-90 visible lg:invisible flex items-center justify-center print:invisible"
-        onClick={() => setIsMessagePanelVisible((v) => !v)}
-      >
-        <div className="scale-125">
-          {isMessagePanelVisible ? <XIcon /> : <ChatIcon />}
-        </div>
+      <div className="fixed right-8 bottom-8 print:invisible visible lg:invisible">
+        <RoundButton onClick={() => setIsMessagePanelVisible((v) => !v)}>
+          {isMessagePanelVisible ? <EyeSlashIcon /> : <EyeIcon />}
+        </RoundButton>
       </div>
     </>
   );

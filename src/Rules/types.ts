@@ -447,3 +447,8 @@ export interface Game {
   monsters: Monster[];
   messages: StampedMessage[];
 }
+
+export interface RevealedElement {
+  name: string;
+  description: string;
+}

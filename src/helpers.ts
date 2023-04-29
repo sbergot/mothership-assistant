@@ -5,8 +5,11 @@ import { allSkillsDict, allSkillLevelDefinitionDict } from "Rules/Data/skills";
 import {
   BaseCharacter,
   Character,
+  CustomEntry,
+  Game,
   PanicRollAnalysis,
   PanicRollResult,
+  RevealedElement,
   RollMode,
   SaveRollAnalysis,
   SaveRollResult,
@@ -179,4 +182,18 @@ export function stamp(
 
 export function isCharacter(c: BaseCharacter): c is Character {
   return (c as any).credits != undefined;
+}
+
+function getRevealedElements(elts: CustomEntry[]): RevealedElement[] {
+  return elts
+    .filter((e) => e.visibleToAll)
+    .map(({ name, description }) => ({ name, description }));
+}
+
+export function getAllRevealedElements(game:Game): RevealedElement[] {
+  return [
+    ...getRevealedElements(game.monsters),
+    ...getRevealedElements(game.npcs),
+    ...getRevealedElements(game.customEntries),
+  ];
 }
