@@ -20,6 +20,15 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 ## in development
 
 - clear logs & limit log size
+- organize warden sheet into tabs
+- category for custom entries
+- table view tab for warden sheet
+  - each category is a table (+ npcs & monsters)
+  - possibility to pick an element at random
+- "library"
+  - stored in local storage
+  - warden tab to allow export/import tables from library
+  - can export/import library from main menu
 
 ## being considered
 
