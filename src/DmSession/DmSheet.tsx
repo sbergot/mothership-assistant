@@ -4,10 +4,10 @@ import { CharacterShort } from "UI/Organisms/CharacterShort";
 import { ContractorShort } from "UI/Organisms/ContractorShort";
 import { Monsters } from "./Monsters";
 import { NPCs } from "./NPCs";
-import { ReadWriteGame, SetDmMode } from "./types";
+import { ReadWriteGame } from "./types";
 import { CustomEntries } from "./CustomEntries";
 
-interface Props extends ReadWriteGame, SetDmMode {
+interface Props extends ReadWriteGame {
   characters: Character[];
   updateRevealedElements(c: Game): void;
 }
@@ -15,7 +15,6 @@ interface Props extends ReadWriteGame, SetDmMode {
 export function DmSheet({
   game,
   setGame,
-  setMode,
   characters,
   updateRevealedElements,
 }: Props) {
@@ -30,7 +29,6 @@ export function DmSheet({
   }
   return (
     <div>
-      <Button onClick={() => setMode({ mode: "DmRoll" })}>roll</Button>
       <Title>Characters</Title>
       <div className="flex flex-col gap-2 mb-8">
         {characters.map((c) => (

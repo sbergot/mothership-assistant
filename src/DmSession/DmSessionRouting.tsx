@@ -4,6 +4,7 @@ import { DmSheet } from "./DmSheet";
 import { DealDamage } from "./DealDamage";
 import { Log } from "Messages/types";
 import { Roll } from "./Roll";
+import { DmSessionTabs } from "./DmSessionTabs";
 
 interface Props extends ReadWriteGame, Log {
   characters: Character[];
@@ -19,22 +20,29 @@ export function DmSessionRouting({
   characters,
   setMode,
   log,
-  updateRevealedElements
+  updateRevealedElements,
 }: Props) {
   if (mode.mode === "DmSheet") {
     return (
-      <DmSheet
-        game={game}
-        setGame={setGame}
-        setMode={setMode}
-        characters={characters}
-        updateRevealedElements={updateRevealedElements}
-      />
+      <>
+        <DmSessionTabs mode={mode} setMode={setMode} />
+        <DmSheet
+          game={game}
+          setGame={setGame}
+          characters={characters}
+          updateRevealedElements={updateRevealedElements}
+        />
+      </>
     );
   }
 
   if (mode.mode === "DmRoll") {
-    return <Roll log={log} setMode={setMode} />;
+    return (
+      <>
+        <DmSessionTabs mode={mode} setMode={setMode} />
+        <Roll log={log} />
+      </>
+    );
   }
 
   if (mode.mode === "DealDamage") {

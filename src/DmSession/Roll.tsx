@@ -3,14 +3,12 @@ import { InflictedDamageType, RollMode, WoundType } from "Rules/types";
 import { applyRollMode, roll } from "Services/diceServices";
 import { Block, Button, Divider } from "UI/Atoms";
 import { useState } from "react";
-import { SetDmMode } from "./types";
-import { Rating } from "UI/Molecules";
 import { allWoundTables } from "Rules/Data/wounds";
 import { woundTypeToCriticalType } from "Services/damageServices";
 
 const allDiceTypes = [5, 10, 20, 100];
 
-export function Roll({ log, setMode }: Log & SetDmMode) {
+export function Roll({ log }: Log) {
   const [rollMode, setRollMode] = useState<RollMode>("normal");
   const [diceType, setDiceType] = useState<number>(5);
   const [diceNbr, setDiceNbr] = useState<number>(1);
@@ -133,14 +131,6 @@ export function Roll({ log, setMode }: Log & SetDmMode) {
         <div className="flex justify-center gap-2">
           <Button dark rounded onClick={rollDices}>
             roll
-          </Button>
-          <Button
-            rounded
-            onClick={() => {
-              setMode({ mode: "DmSheet" });
-            }}
-          >
-            back
           </Button>
         </div>
       </div>
