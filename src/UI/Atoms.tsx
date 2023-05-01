@@ -112,7 +112,7 @@ function getButtonColorClasses({
 function getButtonClasses(buttonStyle: ButtonStyle) {
   const corners = buttonStyle.rounded ? "px-4 rounded-3xl" : "px-2 rounded-lg";
 
-  return `py-1 transition-all ${getButtonColorClasses(buttonStyle)} ${corners}`;
+  return `py-1 text-center transition-all ${getButtonColorClasses(buttonStyle)} ${corners}`;
 }
 
 export function Progress({ current, max }: ProgressProps) {
