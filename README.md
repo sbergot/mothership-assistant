@@ -19,7 +19,6 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 ## in development
 
-- clear logs & limit log size
 - organize warden sheet into tabs
 - category for custom entries
 - table view tab for warden sheet
