@@ -1,6 +1,5 @@
 import { Monster } from "Rules/types";
-import { ButtonIcon, EyeIcon, EyeSlashIcon, TrashIcon } from "UI/Icons";
-import { Rating, Gauge } from "UI/Molecules";
+import { Rating, Gauge, BlockWithTitle, EntryHeader } from "UI/Molecules";
 
 interface Props {
   monster: Monster;
@@ -9,25 +8,19 @@ interface Props {
 }
 
 export function MonsterShort({ monster, setMonster, deleteMonster }: Props) {
+  const header = (
+    <EntryHeader
+      title={monster.name}
+      visible={monster.visibleToAll}
+      onToggleVisibility={() => {
+        setMonster((m) => ({ ...m, visibleToAll: !m.visibleToAll }));
+      }}
+      onDelete={deleteMonster}
+    />
+  );
   return (
-    <div className="rounded-xl bg-mother-2 flex flex-col gap-4">
-      <div className="rounded-3xl bg-mother-6 text-mother-1 text-center flex justify-center">
-        <div className="flex-grow">{monster.name}</div>
-        <div className="mr-2 flex gap-1">
-          <ButtonIcon
-            light
-            onClick={() => {
-              setMonster((m) => ({ ...m, visibleToAll: !m.visibleToAll }));
-            }}
-          >
-            {monster.visibleToAll ? <EyeIcon /> : <EyeSlashIcon />}
-          </ButtonIcon>
-          <ButtonIcon light onClick={deleteMonster}>
-            <TrashIcon />
-          </ButtonIcon>
-        </div>
-      </div>
-      <div className="p-4">
+    <BlockWithTitle light title={header}>
+      <div className="flex flex-col gap-2">
         <div className="flex justify-center gap-4">
           <Rating
             title="Combat"
@@ -40,7 +33,7 @@ export function MonsterShort({ monster, setMonster, deleteMonster }: Props) {
             onUpdate={(v) => setMonster((m) => ({ ...m, instinct: v }))}
           />
         </div>
-        <div className="flex flex-wrap justify-center gap-x-4 mt-4">
+        <div className="flex flex-wrap justify-center gap-x-4">
           <Gauge
             title="Health"
             limitName="Maximum"
@@ -69,6 +62,6 @@ export function MonsterShort({ monster, setMonster, deleteMonster }: Props) {
           />
         </div>
       </div>
-    </div>
+    </BlockWithTitle>
   );
 }

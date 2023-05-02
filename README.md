@@ -19,7 +19,6 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 ## in development
 
-- category for custom entries
 - table view tab for warden sheet
   - each category is a table (+ npcs & monsters)
   - possibility to pick an element at random
@@ -33,6 +32,7 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 - armor/weapons/equipment/contractors customization
 - throttle frequent character network updates
 - UI review:
+  - better font hierarchy
   - reduce various font sizes
   - make the UI denser
   - design a better "select" component instead of using buttons

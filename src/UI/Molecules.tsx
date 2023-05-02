@@ -2,6 +2,7 @@ import { ReadCharacter } from "CharacterSheet/types";
 import { allSkillLevelDefinitionDict, allSkillsDict } from "Rules/Data/skills";
 import { SkillDefinition } from "Rules/types";
 import { Children } from "./types";
+import { ButtonIcon, EyeIcon, EyeSlashIcon, TrashIcon } from "./Icons";
 
 interface RatingProps {
   title: string;
@@ -179,11 +180,17 @@ interface BlockWithTitleProps extends Children {
   light?: boolean;
 }
 
-export function BlockWithTitle({ light, title, children }: BlockWithTitleProps) {
-  const colors = light ? "bg-mother-2" : "bg-mother-4";
+export function BlockWithTitle({
+  light,
+  title,
+  children,
+}: BlockWithTitleProps) {
+  const colors = light ? "bg-mother-2 text-mother-6" : "bg-mother-4 text-mother-1";
   return (
-    <div className={`rounded-xl ${colors} text-mother-1 flex flex-col gap-2 pb-2`}>
-      <div className="rounded-3xl bg-mother-6 text-center relative">
+    <div
+      className={`rounded-xl ${colors} flex flex-col gap-2 pb-2`}
+    >
+      <div className="rounded-3xl bg-mother-6 text-mother-1 text-center relative">
         {title}
       </div>
       <div className="px-4 text-base">
@@ -214,4 +221,32 @@ export function SelectableBlockWithTitle({
     </div>
   );
   return <BlockWithTitle title={header}>{children}</BlockWithTitle>;
+}
+
+interface EntryHeaderProps {
+  title: string;
+  visible: boolean;
+  onToggleVisibility(): void;
+  onDelete(): void;
+}
+
+export function EntryHeader({
+  title,
+  visible,
+  onToggleVisibility,
+  onDelete,
+}: EntryHeaderProps) {
+  return (
+    <div className="text-center relative">
+      <div>{title}</div>
+      <div className="absolute right-2 top-0">
+        <ButtonIcon light onClick={onToggleVisibility}>
+          {visible ? <EyeIcon /> : <EyeSlashIcon />}
+        </ButtonIcon>
+        <ButtonIcon light onClick={onDelete}>
+          <TrashIcon />
+        </ButtonIcon>
+      </div>
+    </div>
+  );
 }

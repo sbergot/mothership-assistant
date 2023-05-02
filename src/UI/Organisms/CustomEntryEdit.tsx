@@ -1,6 +1,5 @@
 import { CustomEntry } from "Rules/types";
-import { ButtonIcon, EyeIcon, EyeSlashIcon, TrashIcon } from "UI/Icons";
-import { BlockWithTitle } from "UI/Molecules";
+import { BlockWithTitle, EntryHeader } from "UI/Molecules";
 
 interface Props {
   customEntry: CustomEntry;
@@ -14,22 +13,14 @@ export function CustomEntryEdit({
   deleteCustomEntry,
 }: Props) {
   const header = (
-    <div className="flex">
-      <div className="flex-grow">{customEntry.name}</div>
-      <div className="mr-2">
-        <ButtonIcon
-          light
-          onClick={() => {
-            setCustomEntry((m) => ({ ...m, visibleToAll: !m.visibleToAll }));
-          }}
-        >
-          {customEntry.visibleToAll ? <EyeIcon /> : <EyeSlashIcon />}
-        </ButtonIcon>
-        <ButtonIcon light onClick={deleteCustomEntry}>
-          <TrashIcon />
-        </ButtonIcon>
-      </div>
-    </div>
+    <EntryHeader
+      title={customEntry.name}
+      visible={customEntry.visibleToAll}
+      onToggleVisibility={() => {
+        setCustomEntry((m) => ({ ...m, visibleToAll: !m.visibleToAll }));
+      }}
+      onDelete={deleteCustomEntry}
+    />
   );
   return (
     <BlockWithTitle light title={header}>

@@ -22,7 +22,7 @@ export function CustomEntries({ game, setGame }: ReadWriteGame) {
   return (
     <>
       <Title>Custom entries</Title>
-      <div className="flex flex-wrap justify-center items-center gap-2 mb-8">
+      <div className="flex flex-wrap justify-evenly items-center gap-4 mb-8">
         {customEntries.map((c) => (
           <CustomEntryEdit
             key={c.id}

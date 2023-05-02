@@ -1,6 +1,5 @@
 import { Npc } from "Rules/types";
-import { ButtonIcon, EyeIcon, EyeSlashIcon, TrashIcon } from "UI/Icons";
-import { Rating, Gauge } from "UI/Molecules";
+import { Rating, Gauge, BlockWithTitle, EntryHeader } from "UI/Molecules";
 
 interface Props {
   npc: Npc;
@@ -9,25 +8,19 @@ interface Props {
 }
 
 export function NpcShort({ npc, setNpc, deleteNpc }: Props) {
+  const header = (
+    <EntryHeader
+      title={npc.name}
+      visible={npc.visibleToAll}
+      onToggleVisibility={() => {
+        setNpc((m) => ({ ...m, visibleToAll: !m.visibleToAll }));
+      }}
+      onDelete={deleteNpc}
+    />
+  );
   return (
-    <div className="rounded-xl bg-mother-2 flex flex-col gap-4">
-      <div className="rounded-3xl bg-mother-6 text-mother-1 text-center flex justify-center">
-        <div className="flex-grow">{npc.name}</div>
-        <div className="mr-2">
-          <ButtonIcon
-            light
-            onClick={() => {
-              setNpc((m) => ({ ...m, visibleToAll: !m.visibleToAll }));
-            }}
-          >
-            {npc.visibleToAll ? <EyeIcon /> : <EyeSlashIcon />}
-          </ButtonIcon>
-          <ButtonIcon light onClick={deleteNpc}>
-            <TrashIcon />
-          </ButtonIcon>
-        </div>
-      </div>
-      <div className="py-4 px-8">
+    <BlockWithTitle light title={header}>
+      <div className="flex flex-col gap-2">
         <div className="flex justify-center gap-4">
           <Rating
             title="Combat"
@@ -40,18 +33,20 @@ export function NpcShort({ npc, setNpc, deleteNpc }: Props) {
             onUpdate={(v) => setNpc((m) => ({ ...m, instinct: v }))}
           />
         </div>
-        <Gauge
-          title="Wounds"
-          limitName="Maximum"
-          current={npc.wounds}
-          limit={npc.maxWounds}
-          onChange={(n) => setNpc((m) => ({ ...m, wounds: n }))}
-          onChangeLimit={(n) => setNpc((m) => ({ ...m, maxWounds: n }))}
-        />
+        <div className="flex flex-wrap justify-center gap-x-4">
+          <Gauge
+            title="Wounds"
+            limitName="Maximum"
+            onChange={(n) => setNpc((m) => ({ ...m, wounds: n }))}
+            current={npc.wounds}
+            limit={npc.maxWounds}
+            onChangeLimit={(n) => setNpc((m) => ({ ...m, maxWounds: n }))}
+          />
+        </div>
         <div>
           <textarea
-            placeholder="description"
             value={npc.description}
+            placeholder="description"
             className="input resize-none h-32"
             onChange={(e) =>
               setNpc((m) => ({ ...m, description: e.target.value }))
@@ -59,6 +54,6 @@ export function NpcShort({ npc, setNpc, deleteNpc }: Props) {
           />
         </div>
       </div>
-    </div>
+    </BlockWithTitle>
   );
 }
