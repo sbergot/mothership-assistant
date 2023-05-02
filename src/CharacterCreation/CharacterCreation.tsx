@@ -21,7 +21,7 @@ const Steps: ((props: StepProps) => JSX.Element)[] = [
   NoteTraumaResponse,
   SelectSkills,
   RollEquipment,
-  PersonalDetails
+  PersonalDetails,
 ];
 
 interface Props {
@@ -34,8 +34,7 @@ export function CharacterCreation({ onComplete }: Props) {
   function next(character: Character) {
     if (Steps[step + 1] === undefined) {
       onComplete(character);
-    }
-    else {
+    } else {
       setCharacter(character);
       setStep((i) => i + 1);
     }
@@ -44,5 +43,9 @@ export function CharacterCreation({ onComplete }: Props) {
   if (Step === undefined) {
     return <div>error</div>;
   }
-  return <Step character={character} onConfirm={next} />;
+  return (
+    <div className="max-w-xl mx-auto w-full">
+      <Step character={character} onConfirm={next} />
+    </div>
+  );
 }

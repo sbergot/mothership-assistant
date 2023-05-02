@@ -51,79 +51,87 @@ export function RollEquipment({ character, onConfirm }: StepProps) {
     <div className="flex flex-col">
       <Block variant="light">
         <Title>8. Roll for your equipment trinket, patch & loadout </Title>
-        <div className="flex flex-col gap-2">
-          <BlockWithTitle title="Trinket">
-            <div className="mx-auto">{newCharacter.trinket || "-"}</div>
-          </BlockWithTitle>
-          <div className="self-center">
+        <div className="flex flex-col items-center gap-2">
+          <div className="max-w-sm w-full">
+            <BlockWithTitle title="Trinket">
+              <div className="mx-auto">{newCharacter.trinket || "-"}</div>
+            </BlockWithTitle>
+          </div>
+          <div className="mb-6">
             <Button rounded dark disabled={trinketRolled} onClick={rollTrinket}>
               Roll
             </Button>
           </div>
-          <BlockWithTitle title="Patch">
-            <div className="mx-auto">{newCharacter.patch || "-"}</div>
-          </BlockWithTitle>
-          <div className="self-center">
+          <div className="max-w-sm w-full">
+            <BlockWithTitle title="Patch">
+              <div className="mx-auto">{newCharacter.patch || "-"}</div>
+            </BlockWithTitle>
+          </div>
+          <div className="mb-6">
             <Button rounded dark disabled={patchRolled} onClick={rollPatch}>
               Roll
             </Button>
           </div>
           {(!gearOptionRolled || gearOption === "loadout") && (
-            <SelectableBlockWithTitle
-              selected={gearOption === "loadout"}
-              onClick={() => setGearOption("loadout")}
-              title="Random loadout"
-            >
-              <div className="mx-auto">
-                {gearOptionRolled ? (
-                  <div className="flex flex-wrap gap-1">
-                    {newCharacter.armor.map((a) => (
-                      <Tag key={a.id} variant="dark">
-                        {a.name}
-                      </Tag>
-                    ))}
-                    {newCharacter.weapons.map((a) => (
-                      <Tag key={a.id} variant="dark">
-                        {a.weaponType}
-                        {a.name !== "" ? ` - ${a.name}` : ""}
-                      </Tag>
-                    ))}
-                    {newCharacter.equipment.map((a) => (
-                      <Tag key={a.id} variant="dark">
-                        {a.name}
-                      </Tag>
-                    ))}
-                    <Tag variant="dark">{newCharacter.credits}cr</Tag>
-                  </div>
-                ) : (
-                  "-"
-                )}
-              </div>
-            </SelectableBlockWithTitle>
+            <div className="w-full">
+              <SelectableBlockWithTitle
+                selected={gearOption === "loadout"}
+                onClick={() => setGearOption("loadout")}
+                title="Random loadout"
+              >
+                <div className="mx-auto">
+                  {gearOptionRolled ? (
+                    <div className="flex flex-wrap gap-1">
+                      {newCharacter.armor.map((a) => (
+                        <Tag key={a.id} variant="dark">
+                          {a.name}
+                        </Tag>
+                      ))}
+                      {newCharacter.weapons.map((a) => (
+                        <Tag key={a.id} variant="dark">
+                          {a.weaponType}
+                          {a.name !== "" ? ` - ${a.name}` : ""}
+                        </Tag>
+                      ))}
+                      {newCharacter.equipment.map((a) => (
+                        <Tag key={a.id} variant="dark">
+                          {a.name}
+                        </Tag>
+                      ))}
+                      <Tag variant="dark">{newCharacter.credits}cr</Tag>
+                    </div>
+                  ) : (
+                    "-"
+                  )}
+                </div>
+              </SelectableBlockWithTitle>
+            </div>
           )}
           {!gearOptionRolled && <DividerOr />}
           {(!gearOptionRolled || gearOption === "credits") && (
-            <SelectableBlockWithTitle
-              selected={gearOption === "credits"}
-              onClick={() => setGearOption("credits")}
-              title="Starting credits"
-            >
-              <div className="mx-auto">
-                {gearOptionRolled ? (
-                  <Tag variant="dark">
-                    {formatCredits(newCharacter.credits)}cr
-                  </Tag>
-                ) : (
-                  "-"
-                )}
-              </div>
-            </SelectableBlockWithTitle>
+            <div className="w-full">
+              <SelectableBlockWithTitle
+                selected={gearOption === "credits"}
+                onClick={() => setGearOption("credits")}
+                title="Starting credits"
+              >
+                <div className="mx-auto">
+                  {gearOptionRolled ? (
+                    <Tag variant="dark">
+                      {formatCredits(newCharacter.credits)}cr
+                    </Tag>
+                  ) : (
+                    "-"
+                  )}
+                </div>
+              </SelectableBlockWithTitle>
+            </div>
           )}
           <div className="self-center">
             <Button
               rounded
               dark
-              disabled={gearOptionRolled}
+              disabled={gearOptionRolled || gearOption === null}
               onClick={rollGearOption}
             >
               Roll
