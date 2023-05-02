@@ -1,5 +1,5 @@
 import { MessagePanel } from "Messages/MessagePanel";
-import { Character, CustomEntry, Game, RevealedElement } from "Rules/types";
+import { Character, Game, RevealedElement } from "Rules/types";
 import { DataConnection, Peer } from "peerjs";
 import { useEffect, useRef, useState } from "react";
 import { Title } from "UI/Atoms";
@@ -13,10 +13,11 @@ import {
   SyncMessage,
 } from "Messages/types";
 import { ButtonIcon, CopyIcon } from "UI/Icons";
-import { getAllRevealedElements, stamp } from "helpers";
+import { getAllRevealedElements } from "helpers";
 import { Modes, ReadWriteGame } from "./types";
 import { DmSessionRouting } from "./DmSessionRouting";
 import { MobileLayout } from "UI/MobileLayout";
+import { stamp } from "Services/messageServices";
 
 interface Props extends ReadWriteGame {}
 

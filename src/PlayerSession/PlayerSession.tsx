@@ -1,6 +1,6 @@
 import { CharacterSheet } from "CharacterSheet";
 import { Modes, ReadWriteCharacter, SetMode } from "CharacterSheet/types";
-import { stamp, useBrowserId } from "helpers";
+import { useBrowserId } from "helpers";
 import { MessagePanel } from "Messages/MessagePanel";
 import {
   AnyMessage,
@@ -13,7 +13,7 @@ import {
 import Peer, { DataConnection } from "peerjs";
 import { useEffect, useRef, useState } from "react";
 import { Character, RevealedElement } from "Rules/types";
-import { useLog } from "Services/messageServices";
+import { stamp, useLog } from "Services/messageServices";
 import { MobileLayout } from "UI/MobileLayout";
 
 type ConnectionStatus =

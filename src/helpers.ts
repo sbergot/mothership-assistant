@@ -161,25 +161,6 @@ export function applyPanic(
   return entry.effect(character, log);
 }
 
-function getNow(): string {
-  const now = new Date();
-  const offset = now.getTimezoneOffset();
-  const nowLocal = new Date(now.getTime() - offset * 60 * 1000);
-  return nowLocal.toISOString().split(".")[0];
-}
-
-export function stamp(
-  character: { id: string; name: string },
-  m: GameMessage
-): StampedMessage {
-  return {
-    ...m,
-    author: character.name,
-    authorId: character.id,
-    time: getNow(),
-  };
-}
-
 export function isCharacter(c: BaseCharacter): c is Character {
   return (c as any).credits != undefined;
 }

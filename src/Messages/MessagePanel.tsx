@@ -12,7 +12,7 @@ import {
 } from "./types";
 import { ReadWriteCharacter, SetMode } from "CharacterSheet/types";
 import { SetDmMode } from "DmSession/types";
-import { ChatIcon, EyeIcon, NewsIcon } from "UI/Icons";
+import { ChatIcon, NewsIcon } from "UI/Icons";
 import { RevealedElementDisplay } from "UI/Organisms/RevealedElementDisplay";
 
 interface Props {
@@ -22,6 +22,11 @@ interface Props {
   commonContext: Log & RevealedElements;
   playerContext?: ReadWriteCharacter & SetMode;
   wardenContext?: SetDmMode;
+}
+
+function showLocalTime(t: string): string {
+  const date = new Date(t);
+  return date.toLocaleString();
 }
 
 export function MessagePanel({
@@ -34,6 +39,7 @@ export function MessagePanel({
 }: Props) {
   const messagesEnd = useRef<HTMLDivElement | null>(null);
   const [clearTime, setClearTime] = useState<Date>(new Date(0));
+  const [tab, setTab] = useState<"messages" | "data">("messages");
 
   useEffect(() => {
     if (messagesEnd.current) {
@@ -44,8 +50,6 @@ export function MessagePanel({
       });
     }
   }, [messages]);
-
-  const [tab, setTab] = useState<"messages" | "data">("messages");
 
   return (
     <div className="h-full">
@@ -73,7 +77,7 @@ export function MessagePanel({
             {messages
               .filter((m) => new Date(m.time) > clearTime)
               .map((m, i) => {
-                const stamp = `${m.author} - ${m.time}`;
+                const stamp = `${m.author} - ${showLocalTime(m.time)}`;
                 const isOwnMessage = m.authorId === authorId;
                 const context: MessageContext =
                   contextType === "player"
