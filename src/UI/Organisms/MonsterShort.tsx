@@ -61,6 +61,7 @@ export function MonsterShort({ monster, setMonster, deleteMonster }: Props) {
         <div>
           <textarea
             value={monster.description}
+            placeholder="description"
             className="input resize-none h-32"
             onChange={(e) =>
               setMonster((m) => ({ ...m, description: e.target.value }))

@@ -69,7 +69,7 @@ export function Gauge({
   limit,
   title,
   limitName,
-  onChangeLimit
+  onChangeLimit,
 }: GaugeProps) {
   return (
     <GaugeBase
@@ -140,7 +140,7 @@ interface SkillProps {
 export function Skill({ skill, selected, onClick }: SkillProps) {
   const levelDefinition = allSkillLevelDefinitionDict[skill.level];
   const cursor = !!onClick ? "cursor-pointer" : "cursor-default";
-  const leftPart = selected ? "✓" : `+${levelDefinition.bonus}`
+  const leftPart = selected ? "✓" : `+${levelDefinition.bonus}`;
   return (
     <span
       onClick={onClick ?? (() => {})}
@@ -175,12 +175,14 @@ export function SkillInTraining({
 }
 
 interface BlockWithTitleProps extends Children {
-  title: string;
+  title: React.ReactNode;
+  light?: boolean;
 }
 
-export function BlockWithTitle({ title, children }: BlockWithTitleProps) {
+export function BlockWithTitle({ light, title, children }: BlockWithTitleProps) {
+  const colors = light ? "bg-mother-2" : "bg-mother-4";
   return (
-    <div className="rounded-xl bg-mother-4 text-mother-1 flex flex-col gap-2 pb-2">
+    <div className={`rounded-xl ${colors} text-mother-1 flex flex-col gap-2 pb-2`}>
       <div className="rounded-3xl bg-mother-6 text-center relative">
         {title}
       </div>
@@ -203,20 +205,13 @@ export function SelectableBlockWithTitle({
   onClick,
 }: SelectableBlockWithTitleProps) {
   const classes = selected ? "bg-mother-6" : "bg-mother-1";
-  return (
-    <div
-      onClick={onClick}
-      className="rounded-xl bg-mother-4 text-mother-1 flex flex-col gap-2 pb-2 cursor-pointer"
-    >
-      <div className="rounded-3xl bg-mother-6 text-center relative">
-        <div
-          className={`circle-small ${classes} absolute left-0.5 top-0.5 border-2 border-mother-1`}
-        />
-        {title}
-      </div>
-      <div className="px-4 text-base">
-        <div className="flex flex-col gap-1">{children}</div>
-      </div>
+  const header = (
+    <div className="cursor-pointer" onClick={onClick}>
+      <div
+        className={`circle-small ${classes} absolute left-0.5 top-0.5 border-2 border-mother-1`}
+      />
+      {title}
     </div>
   );
+  return <BlockWithTitle title={header}>{children}</BlockWithTitle>;
 }

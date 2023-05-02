@@ -50,6 +50,7 @@ export function NpcShort({ npc, setNpc, deleteNpc }: Props) {
         />
         <div>
           <textarea
+            placeholder="description"
             value={npc.description}
             className="input resize-none h-32"
             onChange={(e) =>

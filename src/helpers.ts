@@ -187,7 +187,7 @@ export function isCharacter(c: BaseCharacter): c is Character {
 function getRevealedElements(elts: CustomEntry[]): RevealedElement[] {
   return elts
     .filter((e) => e.visibleToAll)
-    .map(({ name, description }) => ({ name, description }));
+    .map(({ name, description, category }) => ({ name: category ? `${category}: ${name}` : name, description }));
 }
 
 export function getAllRevealedElements(game:Game): RevealedElement[] {

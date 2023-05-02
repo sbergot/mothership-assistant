@@ -428,6 +428,7 @@ export interface WoundEffectEntry {
 
 export interface CustomEntry extends WithId {
   name: string;
+  category?: string;
   description: string;
   visibleToAll: boolean;
 }
