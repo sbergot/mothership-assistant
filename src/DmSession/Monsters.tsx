@@ -27,7 +27,6 @@ export function Monsters({ game, setGame }: ReadWriteGame) {
  
   return (
     <>
-      <Title>Monsters</Title>
       <div className="flex flex-col items-center gap-2 mb-8">
         {monsters.map((c) => (
           <MonsterShort

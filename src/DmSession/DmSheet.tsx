@@ -6,6 +6,7 @@ import { Monsters } from "./Monsters";
 import { NPCs } from "./NPCs";
 import { ReadWriteGame } from "./types";
 import { CustomEntries } from "./CustomEntries";
+import { FoldableSection } from "UI/Molecules";
 
 interface Props extends ReadWriteGame {
   characters: Character[];
@@ -29,21 +30,33 @@ export function DmSheet({
   }
   return (
     <div>
-      <Title>Characters</Title>
-      <div className="flex flex-col gap-2 mb-8">
-        {characters.map((c) => (
-          <CharacterShort key={c.id} character={c} onTitleClick={() => {}} />
-        ))}
-      </div>
-      <Title>Contractors</Title>
-      <div className="flex flex-col gap-2 mb-8">
-        {contractors.map((c) => (
-          <ContractorShort key={c.id} contractor={c} onTitleClick={() => {}} />
-        ))}
-      </div>
-      <Monsters game={game} setGame={setGameAndUpdate} />
-      <NPCs game={game} setGame={setGameAndUpdate} />
-      <CustomEntries game={game} setGame={setGameAndUpdate} />
+      <FoldableSection title="Characters">
+        <div className="flex flex-col gap-2 mb-8">
+          {characters.map((c) => (
+            <CharacterShort key={c.id} character={c} onTitleClick={() => {}} />
+          ))}
+        </div>
+      </FoldableSection>
+      <FoldableSection title="Contractors">
+        <div className="flex flex-col gap-2 mb-8">
+          {contractors.map((c) => (
+            <ContractorShort
+              key={c.id}
+              contractor={c}
+              onTitleClick={() => {}}
+            />
+          ))}
+        </div>
+      </FoldableSection>
+      <FoldableSection title="Monsters">
+        <Monsters game={game} setGame={setGameAndUpdate} />
+      </FoldableSection>
+      <FoldableSection title="NPCs">
+        <NPCs game={game} setGame={setGameAndUpdate} />
+      </FoldableSection>
+      <FoldableSection title="Custom Entries">
+        <CustomEntries game={game} setGame={setGameAndUpdate} />
+      </FoldableSection>
     </div>
   );
 }

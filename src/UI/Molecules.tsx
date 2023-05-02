@@ -2,7 +2,16 @@ import { ReadCharacter } from "CharacterSheet/types";
 import { allSkillLevelDefinitionDict, allSkillsDict } from "Rules/Data/skills";
 import { SkillDefinition } from "Rules/types";
 import { Children } from "./types";
-import { ButtonIcon, EyeIcon, EyeSlashIcon, TrashIcon } from "./Icons";
+import {
+  ButtonIcon,
+  ChevronDownIcon,
+  ChevronRightIcon,
+  EyeIcon,
+  EyeSlashIcon,
+  TrashIcon,
+} from "./Icons";
+import { useState } from "react";
+import { Title } from "./Atoms";
 
 interface RatingProps {
   title: string;
@@ -185,11 +194,11 @@ export function BlockWithTitle({
   title,
   children,
 }: BlockWithTitleProps) {
-  const colors = light ? "bg-mother-2 text-mother-6" : "bg-mother-4 text-mother-1";
+  const colors = light
+    ? "bg-mother-2 text-mother-6"
+    : "bg-mother-4 text-mother-1";
   return (
-    <div
-      className={`rounded-xl ${colors} flex flex-col gap-2 pb-2`}
-    >
+    <div className={`rounded-xl ${colors} flex flex-col gap-2 pb-2`}>
       <div className="rounded-3xl bg-mother-6 text-mother-1 text-center relative">
         {title}
       </div>
@@ -247,6 +256,31 @@ export function EntryHeader({
           <TrashIcon />
         </ButtonIcon>
       </div>
+    </div>
+  );
+}
+
+interface FoldableSectionProps extends Children {
+  title: string;
+}
+
+export function FoldableSection({ title, children }: FoldableSectionProps) {
+  const [opened, setOpened] = useState(true);
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="text-center relative">
+        <div className="absolute left-2 top-0">
+          <ButtonIcon onClick={() => setOpened((o) => !o)}>
+            {opened ? <ChevronDownIcon /> : <ChevronRightIcon />}
+          </ButtonIcon>
+        </div>
+        <Title>{title}</Title>
+      </div>
+      {opened && (
+        <div className="px-4 text-base">
+          <div className="flex flex-col gap-1">{children}</div>
+        </div>
+      )}
     </div>
   );
 }

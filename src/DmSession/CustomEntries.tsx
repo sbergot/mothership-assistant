@@ -21,7 +21,6 @@ export function CustomEntries({ game, setGame }: ReadWriteGame) {
  
   return (
     <>
-      <Title>Custom entries</Title>
       <div className="flex flex-wrap justify-evenly items-center gap-4 mb-8">
         {customEntries.map((c) => (
           <CustomEntryEdit

@@ -25,7 +25,6 @@ export function NPCs({ game, setGame }: ReadWriteGame) {
 
   return (
     <>
-      <Title>Npcs</Title>
       <div className="flex flex-wrap items-center justify-evenly gap-4 mb-8">
         {npcs.map((c) => (
           <NpcShort
