@@ -7,6 +7,7 @@ interface DmSessionMode<T extends string> {
 export type Modes =
   | DmSessionMode<"DmSheet">
   | DmSessionMode<"DmRoll">
+  | DmSessionMode<"DmTables">
   | DmSessionMode<"DealDamage"> & { damage: InflictedDamage };
 
 export interface ReadWriteGame {
