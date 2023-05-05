@@ -3,8 +3,9 @@ import { Equipment } from "Rules/types";
 import { uuidv4 } from "Services/storageServices";
 import { Block, Button, Title } from "UI/Atoms";
 import { SetMode, WriteBaseChar, WriteCharacter } from "./types";
+import { Rating } from "UI/Molecules";
 
-function newCustomItem(name: string, description: string): Equipment {
+function newCustomItem(name: string, description: string, quantity: number): Equipment {
   return {
     baseType: uuidv4(),
     cost: 0,
@@ -12,7 +13,7 @@ function newCustomItem(name: string, description: string): Equipment {
     equipped: true,
     id: uuidv4(),
     name,
-    quantity: 1,
+    quantity,
   };
 }
 
@@ -22,12 +23,13 @@ export function AddCustomItem({
 }: WriteBaseChar & SetMode) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const done = name && description;
+  const [quantity, setQuantity] = useState(1);
+  const done: boolean = !!name;
 
   function addItem() {
     setCharacter((char) => ({
       ...char,
-      equipment: [...char.equipment, newCustomItem(name, description)],
+      equipment: [...char.equipment, newCustomItem(name, description, quantity)],
     }));
     setMode({ mode: "CharacterSheet" });
   }
@@ -42,7 +44,7 @@ export function AddCustomItem({
           onChange={(e) => setName(e.target.value)}
         />
       </div>
-      <div>
+      <div className="mb-2">
         <label>Description</label>
         <input
           className="input"
@@ -50,7 +52,8 @@ export function AddCustomItem({
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
-      <div className="flex flex-col items-center mt-4 gap-2">
+      <Rating title="Quantity" value={quantity} onUpdate={setQuantity} />
+      <div className="flex justify-center mt-4 gap-2">
         <Button rounded dark disabled={!done} onClick={addItem}>
           Confirm
         </Button>
