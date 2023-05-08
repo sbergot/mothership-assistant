@@ -33,7 +33,8 @@ export function Table<T>({ columns, rows }: TableProps<T>) {
               const Cell = col.cell;
               return (
                 <td
-                  key={col.name}
+                  key={col.name + i}
+                  about={col.name + i}
                   className="border-2 border-mother-6 bg-mother-1 px-2"
                 >
                   <Cell key={col.name} elt={r} />

@@ -6,13 +6,15 @@ import { updateInList } from "helpers";
 import {
   AllowedIcon,
   ButtonIcon,
+  DiceIcon,
   EyeIcon,
   EyeSlashIcon,
   ForbiddenIcon,
 } from "UI/Icons";
 import { Button } from "UI/Atoms";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { simpleRoll } from "Services/diceServices";
+import { toDict } from "Services/storageServices";
 
 interface Props extends ReadWriteGame {}
 
@@ -33,7 +35,16 @@ function getColumns(
     {
       name: category,
       cell({ elt }) {
-        return <span>{elt.name}{elt.id === idSelected ? " - selected" : ""}</span>;
+        const color = elt.id === idSelected ? "text-mother-5" : "text-mother-1";
+        return (
+          <>
+            <span>{elt.name}</span>
+            <span className={`transition-colors ${color}`}>
+              {" "}
+              - <DiceIcon />
+            </span>
+          </>
+        );
       },
     },
     {
@@ -102,14 +113,22 @@ function getTables(game: Game) {
 
 export function DmTables({ game, setGame }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
-  const tables = getTables(game);
+  const tables = useMemo(() => getTables(game), [game]);
 
-  function updateElt(elt: CustomEntry, type: EntryType) {
+  const updateElt = useCallback((elt: CustomEntry, type: EntryType) => {
     setGame((oldGame) => ({
       ...oldGame,
       [type]: updateInList(oldGame[type], elt.id, () => elt),
     }));
-  }
+  }, [setGame]);
+
+  const allCollumns = useMemo(
+    () =>
+      toDict(tables.map((t) =>
+        ({ columns: getColumns(t.title, selected, (elt) => updateElt(elt, t.type)), title: t.title})
+      ), c => c.title),
+    [tables, selected]
+  );
 
   return (
     <div className="flex flex-col gap-4">
@@ -128,7 +147,7 @@ export function DmTables({ game, setGame }: Props) {
             roll {t.title}
           </Button>
           <Table
-            columns={getColumns(t.title, selected, (elt) => updateElt(elt, t.type))}
+            columns={allCollumns[t.title].columns}
             rows={t.entries}
           />
         </div>
