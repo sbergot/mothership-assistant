@@ -19,9 +19,10 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 ## in development
 
-- table view tab for warden sheet
-  - each category is a table (+ npcs & monsters)
-  - possibility to pick an element at random
+- timer tab for wardens
+  - timer may be reccurring
+  - timer has a name and creates a message for all or only the DM
+  - timer can be paused, removed or reset to 0
 - "library"
   - stored in local storage
   - warden tab to allow export/import tables from library

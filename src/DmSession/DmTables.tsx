@@ -10,6 +10,9 @@ import {
   EyeSlashIcon,
   ForbiddenIcon,
 } from "UI/Icons";
+import { Button } from "UI/Atoms";
+import { useState } from "react";
+import { simpleRoll } from "Services/diceServices";
 
 interface Props extends ReadWriteGame {}
 
@@ -23,13 +26,14 @@ interface Table {
 
 function getColumns(
   category: string,
+  idSelected: string | null,
   updateRow: (elt: CustomEntry) => void
 ): Column<CustomEntry>[] {
   return [
     {
       name: category,
       cell({ elt }) {
-        return <span>{elt.name}</span>;
+        return <span>{elt.name}{elt.id === idSelected ? " - selected" : ""}</span>;
       },
     },
     {
@@ -97,6 +101,7 @@ function getTables(game: Game) {
 }
 
 export function DmTables({ game, setGame }: Props) {
+  const [selected, setSelected] = useState<string | null>(null);
   const tables = getTables(game);
 
   function updateElt(elt: CustomEntry, type: EntryType) {
@@ -109,9 +114,21 @@ export function DmTables({ game, setGame }: Props) {
   return (
     <div className="flex flex-col gap-4">
       {tables.map((t) => (
-        <div>
+        <div className="flex flex-col gap-2 items-start">
+          <Button
+            dark
+            rounded
+            onClick={() => {
+              const entries = t.entries.filter((e) => !e.excluded);
+              const roll = simpleRoll(entries.length);
+              const result = entries[roll].id;
+              setSelected(result);
+            }}
+          >
+            roll {t.title}
+          </Button>
           <Table
-            columns={getColumns(t.title, (elt) => updateElt(elt, t.type))}
+            columns={getColumns(t.title, selected, (elt) => updateElt(elt, t.type))}
             rows={t.entries}
           />
         </div>
