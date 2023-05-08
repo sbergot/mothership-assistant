@@ -187,6 +187,7 @@ export function MainMenu({
                     npcs: [],
                     customEntries: [],
                     messages: [],
+                    timers: [],
                     title: newGameName,
                   });
                   setMode({ mode: "DmSession", gameId: newId });

@@ -60,7 +60,7 @@ export function DmSessionRouting({
     return (
       <>
         <DmSessionTabs mode={mode} setMode={setMode} />
-        <DmTimers log={log} />
+        <DmTimers log={log} game={game} setGame={setGame} />
       </>
     );
   }

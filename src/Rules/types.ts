@@ -448,9 +448,19 @@ export interface Game {
   customEntries: CustomEntry[];
   monsters: Monster[];
   messages: StampedMessage[];
+  timers: Timer[];
 }
 
 export interface RevealedElement {
   name: string;
   description: string;
+}
+
+export interface Timer extends WithId {
+  title: string;
+  intervalInSec: number;
+  currentTimeInSec: number;
+  isRecurring: boolean;
+  isPublic: boolean;
+  isPaused: boolean;
 }
