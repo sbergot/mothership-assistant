@@ -431,6 +431,7 @@ export interface CustomEntry extends WithId {
   category?: string;
   description: string;
   visibleToAll: boolean;
+  excluded: boolean;
 }
 
 export interface Npc extends CustomEntry, WithWound {

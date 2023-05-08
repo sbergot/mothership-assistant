@@ -22,6 +22,7 @@ export function Monsters({ game, setGame }: ReadWriteGame) {
       id: uuidv4(),
       health: 10,
       maxHealth: 10,
+      excluded: false,
     };
   }
  

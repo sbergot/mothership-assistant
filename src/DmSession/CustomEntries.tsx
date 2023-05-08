@@ -16,6 +16,7 @@ export function CustomEntries({ game, setGame }: ReadWriteGame) {
       description: "",
       visibleToAll: false,
       id: uuidv4(),
+      excluded: false,
     };
   }
  

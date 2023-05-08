@@ -20,6 +20,7 @@ export function NPCs({ game, setGame }: ReadWriteGame) {
       description: "",
       visibleToAll: false,
       id: uuidv4(),
+      excluded: false,
     };
   }
 
