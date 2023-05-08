@@ -8,6 +8,7 @@ export type Modes =
   | DmSessionMode<"DmSheet">
   | DmSessionMode<"DmRoll">
   | DmSessionMode<"DmTables">
+  | DmSessionMode<"DmTimers">
   | DmSessionMode<"DealDamage"> & { damage: InflictedDamage };
 
 export interface ReadWriteGame {

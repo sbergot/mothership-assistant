@@ -6,6 +6,7 @@ import { Log } from "Messages/types";
 import { Roll } from "./Roll";
 import { DmSessionTabs } from "./DmSessionTabs";
 import { DmTables } from "./DmTables";
+import { DmTimers } from "./DmTimers";
 
 interface Props extends ReadWriteGame, Log {
   characters: Character[];
@@ -51,6 +52,15 @@ export function DmSessionRouting({
       <>
         <DmSessionTabs mode={mode} setMode={setMode} />
         <DmTables game={game} setGame={setGame} />
+      </>
+    );
+  }
+
+  if (mode.mode === "DmTimers") {
+    return (
+      <>
+        <DmSessionTabs mode={mode} setMode={setMode} />
+        <DmTimers log={log} />
       </>
     );
   }

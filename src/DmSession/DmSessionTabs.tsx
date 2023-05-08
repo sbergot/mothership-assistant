@@ -1,6 +1,6 @@
 import { RoundButton } from "UI/Atoms";
 import { Modes, SetDmMode } from "./types";
-import { DiceIcon, GroupIcon, TableIcon } from "UI/Icons";
+import { ClockIcon, DiceIcon, GroupIcon, TableIcon } from "UI/Icons";
 
 interface Props extends SetDmMode {
   mode: Modes;
@@ -32,6 +32,14 @@ export function DmSessionTabs({ mode, setMode }: Props) {
         }}
       >
         <DiceIcon />
+      </RoundButton>
+      <RoundButton
+        light={mode.mode !== "DmTimers"}
+        onClick={() => {
+          setMode({ mode: "DmTimers" });
+        }}
+      >
+        <ClockIcon />
       </RoundButton>
     </div>
   );
