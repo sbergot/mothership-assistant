@@ -25,7 +25,7 @@ export function Monsters({ game, setGame }: ReadWriteGame) {
       excluded: false,
     };
   }
- 
+
   return (
     <>
       <div className="flex flex-col items-center gap-2 mb-8">
@@ -51,6 +51,7 @@ export function Monsters({ game, setGame }: ReadWriteGame) {
       <div className="flex items-center gap-2">
         <div className="shrink-0">
           <Button
+            disabled={newMonsterName === ""}
             onClick={() => {
               setGame((g) => ({
                 ...g,

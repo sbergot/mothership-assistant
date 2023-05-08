@@ -19,7 +19,7 @@ export function CustomEntries({ game, setGame }: ReadWriteGame) {
       excluded: false,
     };
   }
- 
+
   return (
     <>
       <div className="flex flex-wrap justify-evenly items-center gap-4 mb-8">
@@ -45,10 +45,14 @@ export function CustomEntries({ game, setGame }: ReadWriteGame) {
       <div className="flex items-center gap-2">
         <div className="shrink-0">
           <Button
+            disabled={newCustomEntryName === ""}
             onClick={() => {
               setGame((g) => ({
                 ...g,
-                customEntries: [...g.customEntries, newCustomEntry(newCustomEntryName)],
+                customEntries: [
+                  ...g.customEntries,
+                  newCustomEntry(newCustomEntryName),
+                ],
               }));
               setNewCustomEntryName("");
             }}
