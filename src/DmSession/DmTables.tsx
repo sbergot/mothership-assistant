@@ -115,18 +115,27 @@ export function DmTables({ game, setGame }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
   const tables = useMemo(() => getTables(game), [game]);
 
-  const updateElt = useCallback((elt: CustomEntry, type: EntryType) => {
-    setGame((oldGame) => ({
-      ...oldGame,
-      [type]: updateInList(oldGame[type], elt.id, () => elt),
-    }));
-  }, [setGame]);
+  const updateElt = useCallback(
+    (elt: CustomEntry, type: EntryType) => {
+      setGame((oldGame) => ({
+        ...oldGame,
+        [type]: updateInList(oldGame[type], elt.id, () => elt),
+      }));
+    },
+    [setGame]
+  );
 
   const allCollumns = useMemo(
     () =>
-      toDict(tables.map((t) =>
-        ({ columns: getColumns(t.title, selected, (elt) => updateElt(elt, t.type)), title: t.title})
-      ), c => c.title),
+      toDict(
+        tables.map((t) => ({
+          columns: getColumns(t.title, selected, (elt) =>
+            updateElt(elt, t.type)
+          ),
+          title: t.title,
+        })),
+        (c) => c.title
+      ),
     [tables, selected]
   );
 
@@ -146,10 +155,7 @@ export function DmTables({ game, setGame }: Props) {
           >
             roll {t.title}
           </Button>
-          <Table
-            columns={allCollumns[t.title].columns}
-            rows={t.entries}
-          />
+          <Table columns={allCollumns[t.title].columns} rows={t.entries} />
         </div>
       ))}
     </div>
