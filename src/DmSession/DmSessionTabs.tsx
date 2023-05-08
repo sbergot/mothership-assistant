@@ -10,20 +10,20 @@ export function DmSessionTabs({ mode, setMode }: Props) {
   return (
     <div className="flex justify-end gap-2 mb-2">
       <RoundButton
-        light={mode.mode !== "DmTables"}
-        onClick={() => {
-          setMode({ mode: "DmTables" });
-        }}
-      >
-        <TableIcon />
-      </RoundButton>
-      <RoundButton
         light={mode.mode !== "DmSheet"}
         onClick={() => {
           setMode({ mode: "DmSheet" });
         }}
       >
         <GroupIcon />
+      </RoundButton>
+      <RoundButton
+        light={mode.mode !== "DmTables"}
+        onClick={() => {
+          setMode({ mode: "DmTables" });
+        }}
+      >
+        <TableIcon />
       </RoundButton>
       <RoundButton
         light={mode.mode !== "DmRoll"}

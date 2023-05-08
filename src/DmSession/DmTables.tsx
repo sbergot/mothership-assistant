@@ -114,7 +114,7 @@ export function DmTables({ game, setGame }: Props) {
   return (
     <div className="flex flex-col gap-4">
       {tables.map((t) => (
-        <div className="flex flex-col gap-2 items-start">
+        <div key={t.title} className="flex flex-col gap-2 items-start">
           <Button
             dark
             rounded
