@@ -19,10 +19,6 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 ## in development
 
-- timer tab for wardens
-  - timer may be reccurring
-  - timer has a name and creates a message for all or only the DM
-  - timer can be paused, removed or reset to 0
 - put session code and player connections in separate warden tab
 - "library"
   - stored in local storage
