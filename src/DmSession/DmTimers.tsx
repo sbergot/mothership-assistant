@@ -63,7 +63,7 @@ export function DmTimers({ game, setGame }: Props) {
   return (
     <div>
       <Block variant="dark">
-        <div className="flex items-start gap-4">
+        <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="flex flex-col gap-2">
             <div>
               <label>Title</label>
@@ -90,7 +90,7 @@ export function DmTimers({ game, setGame }: Props) {
               />
             </div>
           </div>
-          <div className="flex flex-wrap gap-x-4 gap-y-10 pt-8">
+          <div className="flex flex-wrap flex-grow gap-x-4 gap-y-10 pt-8 w-64">
             <div className="flex justify-start">
               <input
                 className="input w-16 cursor-pointer"
@@ -128,7 +128,7 @@ export function DmTimers({ game, setGame }: Props) {
           </div>
         </div>
       </Block>
-      <div className="mt-4 flex flex-wrap justify-between gap-4">
+      <div className="mt-4 flex flex-wrap justify-start gap-4">
         {game.timers.map((t) => {
           const header = (
             <TimerHeader
@@ -142,7 +142,7 @@ export function DmTimers({ game, setGame }: Props) {
             />
           );
           return (
-            <div className="max-w-xs w-full">
+            <div className="w-64">
               <BlockWithTitle light title={header} key={t.id}>
                 <div className="flex justify-between">
                   <div className="flex gap-1">
