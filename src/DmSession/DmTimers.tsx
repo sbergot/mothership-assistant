@@ -95,7 +95,7 @@ export function DmTimers({ game, setGame }: Props) {
               <input
                 className="input w-16 cursor-pointer"
                 type="checkbox"
-                defaultChecked={newTimer.isPublic}
+                checked={newTimer.isPublic}
                 onChange={(e) =>
                   setNewTimer((t) => ({ ...t, isPublic: e.target.checked }))
                 }
@@ -106,7 +106,7 @@ export function DmTimers({ game, setGame }: Props) {
               <input
                 className="input w-16 cursor-pointer"
                 type="checkbox"
-                defaultChecked={newTimer.isRecurring}
+                checked={newTimer.isRecurring}
                 onChange={(e) =>
                   setNewTimer((t) => ({ ...t, isRecurring: e.target.checked }))
                 }

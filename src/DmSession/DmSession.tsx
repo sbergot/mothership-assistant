@@ -112,7 +112,7 @@ function useDmConnection(
         if (typeData.type === "MessageHistoryRequest") {
           const response: SyncMessage = {
             type: "MessageHistoryResponse",
-            props: { messages: messagesRef.current },
+            props: { messages: messagesRef.current.filter(m => !m.wardenOnly) },
           };
           conn.send(response);
           return;
@@ -167,7 +167,7 @@ function useDmConnection(
     setTransientMessages((tms) =>
       rotateArray([...tms, stamped], MAX_MESSAGE_NBR)
     );
-    if (playerConnectionsRef.current) {
+    if (playerConnectionsRef.current && !stamped.wardenOnly) {
       Object.values(playerConnectionsRef.current).forEach((c) => {
         c.send(stamped);
       });
@@ -227,6 +227,38 @@ export function DmSession({ game, setGame }: Props) {
   }, []);
 
   useEffect(() => {
+    const finishedTimers = game.timers
+      .filter((t) => t.currentTimeInMSec >= t.intervalInSec * 1000)
+      .map((t) => t.id);
+    if (finishedTimers.length > 0) {
+      setGame((g) => {
+        return {
+          ...g,
+          timers: timerRef.current.map((t) => {
+            if (!finishedTimers.includes(t.id)) {
+              return t;
+            }
+            return {
+              ...t,
+              currentTimeInMSec: 0,
+              isPaused: t.isRecurring ? t.isPaused : true,
+            };
+          }),
+        };
+      });
+      game.timers
+        .filter((t) => t.currentTimeInMSec >= t.intervalInSec * 1000)
+        .forEach((t) => {
+          log({
+            type: "SimpleMessage",
+            props: { content: `timer ${t.title} finished!` },
+            transient: true,
+            wardenOnly: !t.isPublic
+          });
+        });
+    }
+  }, [game]);
+  useEffect(() => {
     let previousTick = new Date();
     let previousRunningTimerIds = timerRef.current
       .filter((t) => !t.isPaused)
@@ -246,7 +278,6 @@ export function DmSession({ game, setGame }: Props) {
       previousTick = nextTick;
 
       setGame((g) => {
-
         return {
           ...g,
           timers: timerRef.current.map((t) => {

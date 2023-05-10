@@ -23,6 +23,7 @@ export interface Message<T extends string, P> {
   type: T;
   props: P;
   transient?: boolean;
+  wardenOnly?: boolean;
 }
 
 export interface SimpleMessage {
