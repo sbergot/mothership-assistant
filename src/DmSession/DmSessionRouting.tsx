@@ -51,7 +51,11 @@ export function DmSessionRouting({
     return (
       <>
         <DmSessionTabs mode={mode} setMode={setMode} />
-        <DmTables game={game} setGame={setGame} />
+        <DmTables
+          game={game}
+          setGame={setGame}
+          updateRevealedElements={updateRevealedElements}
+        />
       </>
     );
   }

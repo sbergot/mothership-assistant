@@ -16,7 +16,9 @@ import { useCallback, useMemo, useState } from "react";
 import { simpleRoll } from "Services/diceServices";
 import { toDict } from "Services/storageServices";
 
-interface Props extends ReadWriteGame {}
+interface Props extends ReadWriteGame {
+  updateRevealedElements(c: Game): void;
+}
 
 type EntryType = "monsters" | "npcs" | "customEntries";
 
@@ -111,32 +113,27 @@ function getTables(game: Game) {
   return tables;
 }
 
-export function DmTables({ game, setGame }: Props) {
+export function DmTables({ game, setGame, updateRevealedElements }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
   const tables = useMemo(() => getTables(game), [game]);
 
-  const updateElt = useCallback(
-    (elt: CustomEntry, type: EntryType) => {
-      setGame((oldGame) => ({
+  const updateElt = (elt: CustomEntry, type: EntryType) => {
+    setGame((oldGame) => {
+      const newGame = {
         ...oldGame,
         [type]: updateInList(oldGame[type], elt.id, () => elt),
-      }));
-    },
-    [setGame]
-  );
+      };
+      updateRevealedElements(newGame);
+      return newGame;
+    });
+  };
 
-  const allCollumns = useMemo(
-    () =>
-      toDict(
-        tables.map((t) => ({
-          columns: getColumns(t.title, selected, (elt) =>
-            updateElt(elt, t.type)
-          ),
-          title: t.title,
-        })),
-        (c) => c.title
-      ),
-    [tables, selected]
+  const allCollumns = toDict(
+    tables.map((t) => ({
+      columns: getColumns(t.title, selected, (elt) => updateElt(elt, t.type)),
+      title: t.title,
+    })),
+    (c) => c.title
   );
 
   return (
