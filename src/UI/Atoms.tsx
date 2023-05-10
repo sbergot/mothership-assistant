@@ -150,6 +150,41 @@ export function Progress({ current, max }: ProgressProps) {
   );
 }
 
+
+export function Progress2({ current, max }: ProgressProps) {
+  const radius = 14;
+  const circumference = radius * 2 * Math.PI;
+  const percent = current / max;
+  const offset = 16;
+  return (
+    <div className="inline-flex items-center justify-center">
+      <svg className="w-8 h-8">
+        <circle
+          className="text-mother-3"
+          strokeWidth="4"
+          stroke="currentColor"
+          fill="transparent"
+          r={radius}
+          cx={offset}
+          cy={offset}
+        />
+        <circle
+          className="text-mother-5 -rotate-90 origin-center"
+          strokeWidth="4"
+          strokeDasharray={circumference}
+          strokeDashoffset={circumference - percent * circumference}
+          strokeLinecap="round"
+          stroke="currentColor"
+          fill="transparent"
+          r={radius}
+          cx={offset}
+          cy={offset}
+        />
+      </svg>
+    </div>
+  );
+}
+
 interface ConfirmationButtonProps extends ButtonStyle {
   onConfirm(): void;
   label: string;
