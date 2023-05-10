@@ -49,7 +49,7 @@ export function NPCs({ game, setGame }: ReadWriteGame) {
       <div className="flex items-center gap-2">
         <div className="shrink-0">
           <Button
-            disabled={newNpcName === ""}
+            disabled={newNpcName.replace(/\s/g, '') === ""}
             onClick={() => {
               setGame((g) => ({
                 ...g,

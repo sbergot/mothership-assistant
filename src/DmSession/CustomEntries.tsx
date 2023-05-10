@@ -45,7 +45,7 @@ export function CustomEntries({ game, setGame }: ReadWriteGame) {
       <div className="flex items-center gap-2">
         <div className="shrink-0">
           <Button
-            disabled={newCustomEntryName === ""}
+            disabled={newCustomEntryName.replace(/\s/g, '') === ""}
             onClick={() => {
               setGame((g) => ({
                 ...g,

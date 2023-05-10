@@ -51,7 +51,7 @@ export function Monsters({ game, setGame }: ReadWriteGame) {
       <div className="flex items-center gap-2">
         <div className="shrink-0">
           <Button
-            disabled={newMonsterName === ""}
+            disabled={newMonsterName.replace(/\s/g, '') === ""}
             onClick={() => {
               setGame((g) => ({
                 ...g,
