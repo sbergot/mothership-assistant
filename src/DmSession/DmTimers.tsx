@@ -1,15 +1,16 @@
-import { Log } from "Messages/types";
 import { Timer, WithId } from "Rules/types";
 import { ReadWriteGame } from "./types";
 import { uuidv4 } from "Services/storageServices";
 import { useState } from "react";
 import { Block, Button } from "UI/Atoms";
+import { ButtonIcon, PauseIcon, PlayIcon, ResetIcon, XIcon } from "UI/Icons";
+import { deleteInList, updateInList } from "helpers";
 
-interface Props extends Log, ReadWriteGame {}
+interface Props extends ReadWriteGame {}
 
 function getNewTimer(): Timer {
   return {
-    currentTimeInSec: 0,
+    currentTimeInMSec: 0,
     id: uuidv4(),
     intervalInSec: 60,
     isPaused: true,
@@ -19,7 +20,7 @@ function getNewTimer(): Timer {
   };
 }
 
-export function DmTimers({ log, game, setGame }: Props) {
+export function DmTimers({ game, setGame }: Props) {
   const [newTimer, setNewTimer] = useState(getNewTimer());
   return (
     <div>
@@ -74,6 +75,7 @@ export function DmTimers({ log, game, setGame }: Props) {
         </div>
       </Block>
       <Button
+        disabled={newTimer.title === ""}
         onClick={() => {
           setGame((g) => ({ ...g, timers: [...g.timers, newTimer] }));
           setNewTimer(getNewTimer());
@@ -83,7 +85,46 @@ export function DmTimers({ log, game, setGame }: Props) {
       </Button>
       <div>
         {game.timers.map((t) => (
-          <div key={t.id}>{t.title}</div>
+          <div key={t.id}>
+            <div>{t.title} - {Math.round(t.currentTimeInMSec / 1000)}</div>
+            <ButtonIcon
+              onClick={() =>
+                setGame((g) => ({
+                  ...g,
+                  timers: updateInList(g.timers, t.id, (t1) => ({
+                    ...t1,
+                    isPaused: !t1.isPaused,
+                  })),
+                }))
+              }
+            >
+              {t.isPaused ? <PlayIcon /> : <PauseIcon />}
+            </ButtonIcon>
+            <ButtonIcon
+              onClick={() => {
+                setGame((g) => ({
+                  ...g,
+                  timers: deleteInList(g.timers, t.id),
+                }));
+              }}
+            >
+              <XIcon />
+            </ButtonIcon>
+            <ButtonIcon
+              disabled={!t.isPaused}
+              onClick={() =>
+                setGame((g) => ({
+                  ...g,
+                  timers: updateInList(g.timers, t.id, (t1) => ({
+                    ...t1,
+                    currentTimeInMSec: 0,
+                  })),
+                }))
+              }
+            >
+              <ResetIcon />
+            </ButtonIcon>
+          </div>
         ))}
       </div>
     </div>

@@ -459,7 +459,7 @@ export interface RevealedElement {
 export interface Timer extends WithId {
   title: string;
   intervalInSec: number;
-  currentTimeInSec: number;
+  currentTimeInMSec: number;
   isRecurring: boolean;
   isPublic: boolean;
   isPaused: boolean;

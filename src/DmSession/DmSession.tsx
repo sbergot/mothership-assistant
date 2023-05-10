@@ -13,7 +13,7 @@ import {
   SyncMessage,
 } from "Messages/types";
 import { ButtonIcon, CopyIcon } from "UI/Icons";
-import { getAllRevealedElements } from "helpers";
+import { getAllRevealedElements, updateInList } from "helpers";
 import { Modes, ReadWriteGame } from "./types";
 import { DmSessionRouting } from "./DmSessionRouting";
 import { MobileLayout } from "UI/MobileLayout";
@@ -206,17 +206,59 @@ function useDmConnection(
 
 export function DmSession({ game, setGame }: Props) {
   const revealedElements: RevealedElement[] = getAllRevealedElements(game);
-  const { sessionCode, connections, log, messages, updateRevealedElements } = useDmConnection(
-    game.messages,
-    revealedElements,
-    (m) => {
+  const { sessionCode, connections, log, messages, updateRevealedElements } =
+    useDmConnection(game.messages, revealedElements, (m) => {
       setGame((g) => ({
         ...g,
         messages: rotateArray([...g.messages, m], MAX_MESSAGE_NBR),
       }));
-    }
-  );
+    });
   const [mode, setMode] = useState<Modes>({ mode: "DmSheet" });
+  const timerRef = useRef(game.timers);
+  timerRef.current = game.timers;
+
+  useEffect(() => {
+    if (game.timers.some((t) => !t.isPaused)) {
+      setGame((g) => ({
+        ...g,
+        timers: g.timers.map((t) => ({ ...t, isPaused: true })),
+      }));
+    }
+  }, []);
+
+  useEffect(() => {
+    let previousTick = new Date();
+    let previousRunningTimerIds = timerRef.current
+      .filter((t) => !t.isPaused)
+      .map((t) => t.id);
+    setInterval(() => {
+      const nextRunningTimerIds = timerRef.current
+        .filter((t) => !t.isPaused)
+        .map((t) => t.id);
+      const timersToUpdate = nextRunningTimerIds.filter((t) =>
+        previousRunningTimerIds.includes(t)
+      );
+      previousRunningTimerIds = nextRunningTimerIds;
+
+      const nextTick = new Date();
+      const delta = nextTick.getTime() - previousTick.getTime();
+      console.log("tick", previousTick, nextTick, delta);
+      previousTick = nextTick;
+
+      setGame((g) => {
+
+        return {
+          ...g,
+          timers: timerRef.current.map((t) => {
+            if (!timersToUpdate.includes(t.id)) {
+              return t;
+            }
+            return { ...t, currentTimeInMSec: t.currentTimeInMSec + delta };
+          }),
+        };
+      });
+    }, 1000);
+  }, []);
 
   const characters: Character[] = connections
     .map((c) => c.character)
