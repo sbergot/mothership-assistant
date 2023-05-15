@@ -17,7 +17,6 @@ import { simpleRoll } from "Services/diceServices";
 import { toDict } from "Services/storageServices";
 
 interface Props extends ReadWriteGame {
-  updateRevealedElements(c: Game): void;
 }
 
 type EntryType = "monsters" | "npcs" | "customEntries";
@@ -113,7 +112,7 @@ function getTables(game: Game) {
   return tables;
 }
 
-export function DmTables({ game, setGame, updateRevealedElements }: Props) {
+export function DmTables({ game, setGame }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
   const tables = useMemo(() => getTables(game), [game]);
 
@@ -123,7 +122,6 @@ export function DmTables({ game, setGame, updateRevealedElements }: Props) {
         ...oldGame,
         [type]: updateInList(oldGame[type], elt.id, () => elt),
       };
-      updateRevealedElements(newGame);
       return newGame;
     });
   };

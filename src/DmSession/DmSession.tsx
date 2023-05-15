@@ -217,6 +217,15 @@ export function DmSession({ game, setGame }: Props) {
   const timerRef = useRef(game.timers);
   timerRef.current = game.timers;
 
+  function setGameAndUpdate(setter: (c: Game) => Game) {
+    function newSetter(c: Game): Game {
+      const newGame = setter(c);
+      updateRevealedElements(newGame);
+      return newGame;
+    }
+    setGame(newSetter);
+  }
+
   useEffect(() => {
     if (game.timers.some((t) => !t.isPaused)) {
       setGame((g) => ({
@@ -274,7 +283,6 @@ export function DmSession({ game, setGame }: Props) {
 
       const nextTick = new Date();
       const delta = nextTick.getTime() - previousTick.getTime();
-      console.log("tick", previousTick, nextTick, delta);
       previousTick = nextTick;
 
       setGame((g) => {
@@ -316,12 +324,11 @@ export function DmSession({ game, setGame }: Props) {
       ))}
       <DmSessionRouting
         game={game}
-        setGame={setGame}
+        setGame={setGameAndUpdate}
         characters={characters}
         mode={mode}
         setMode={setMode}
         log={log}
-        updateRevealedElements={updateRevealedElements}
       />
     </>
   );

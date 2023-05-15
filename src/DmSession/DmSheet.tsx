@@ -10,24 +10,14 @@ import { FoldableSection } from "UI/Molecules";
 
 interface Props extends ReadWriteGame {
   characters: Character[];
-  updateRevealedElements(c: Game): void;
 }
 
 export function DmSheet({
   game,
   setGame,
   characters,
-  updateRevealedElements,
 }: Props) {
   const contractors = characters.flatMap((c) => c.contractors);
-  function setGameAndUpdate(setter: (c: Game) => Game) {
-    function newSetter(c: Game): Game {
-      const newGame = setter(c);
-      updateRevealedElements(newGame);
-      return newGame;
-    }
-    setGame(newSetter);
-  }
   return (
     <div>
       <FoldableSection title="Characters">
@@ -49,13 +39,13 @@ export function DmSheet({
         </div>
       </FoldableSection>
       <FoldableSection title="Monsters">
-        <Monsters game={game} setGame={setGameAndUpdate} />
+        <Monsters game={game} setGame={setGame} />
       </FoldableSection>
       <FoldableSection title="NPCs">
-        <NPCs game={game} setGame={setGameAndUpdate} />
+        <NPCs game={game} setGame={setGame} />
       </FoldableSection>
       <FoldableSection title="Custom Entries">
-        <CustomEntries game={game} setGame={setGameAndUpdate} />
+        <CustomEntries game={game} setGame={setGame} />
       </FoldableSection>
     </div>
   );

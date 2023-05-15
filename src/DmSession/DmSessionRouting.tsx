@@ -12,7 +12,6 @@ interface Props extends ReadWriteGame, Log {
   characters: Character[];
   mode: Modes;
   setMode(mode: Modes): void;
-  updateRevealedElements(c: Game): void;
 }
 
 export function DmSessionRouting({
@@ -22,7 +21,6 @@ export function DmSessionRouting({
   characters,
   setMode,
   log,
-  updateRevealedElements,
 }: Props) {
   if (mode.mode === "DmSheet") {
     return (
@@ -32,7 +30,6 @@ export function DmSessionRouting({
           game={game}
           setGame={setGame}
           characters={characters}
-          updateRevealedElements={updateRevealedElements}
         />
       </>
     );
@@ -54,7 +51,6 @@ export function DmSessionRouting({
         <DmTables
           game={game}
           setGame={setGame}
-          updateRevealedElements={updateRevealedElements}
         />
       </>
     );
