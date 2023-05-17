@@ -1,5 +1,5 @@
 import { MessagePanel } from "Messages/MessagePanel";
-import { Character, Game, RevealedElement } from "Rules/types";
+import { Character, CustomEntry, Game, RevealedElement } from "Rules/types";
 import { DataConnection, Peer } from "peerjs";
 import { useEffect, useRef, useState } from "react";
 import { Title } from "UI/Atoms";
@@ -13,7 +13,7 @@ import {
   SyncMessage,
 } from "Messages/types";
 import { ButtonIcon, CopyIcon } from "UI/Icons";
-import { getAllRevealedElements, updateInList } from "helpers";
+import { getDebouncer } from "helpers";
 import { Modes, ReadWriteGame } from "./types";
 import { DmSessionRouting } from "./DmSessionRouting";
 import { MobileLayout } from "UI/MobileLayout";
@@ -29,6 +29,25 @@ interface ConnectionInfo {
   id: string;
   character: Character | null;
   state: ConnectionState;
+}
+
+const gameSyncDebouncer = getDebouncer(500);
+
+function getRevealedElements(elts: CustomEntry[]): RevealedElement[] {
+  return elts
+    .filter((e) => e.visibleToAll)
+    .map(({ name, description, category }) => ({
+      name: category ? `${category}: ${name}` : name,
+      description,
+    }));
+}
+
+function getAllRevealedElements(game: Game): RevealedElement[] {
+  return [
+    ...getRevealedElements(game.monsters),
+    ...getRevealedElements(game.npcs),
+    ...getRevealedElements(game.customEntries),
+  ];
 }
 
 function rotateArray<T>(arr: T[], limit: number): T[] {
@@ -112,7 +131,9 @@ function useDmConnection(
         if (typeData.type === "MessageHistoryRequest") {
           const response: SyncMessage = {
             type: "MessageHistoryResponse",
-            props: { messages: messagesRef.current.filter(m => !m.wardenOnly) },
+            props: {
+              messages: messagesRef.current.filter((m) => !m.wardenOnly),
+            },
           };
           conn.send(response);
           return;
@@ -220,7 +241,7 @@ export function DmSession({ game, setGame }: Props) {
   function setGameAndUpdate(setter: (c: Game) => Game) {
     function newSetter(c: Game): Game {
       const newGame = setter(c);
-      updateRevealedElements(newGame);
+      gameSyncDebouncer(() => updateRevealedElements(newGame));
       return newGame;
     }
     setGame(newSetter);
@@ -262,7 +283,7 @@ export function DmSession({ game, setGame }: Props) {
             type: "SimpleMessage",
             props: { content: `timer ${t.title} finished!` },
             transient: true,
-            wardenOnly: !t.isPublic
+            wardenOnly: !t.isPublic,
           });
         });
     }

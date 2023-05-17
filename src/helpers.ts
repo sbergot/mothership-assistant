@@ -161,20 +161,10 @@ export function applyPanic(
   return entry.effect(character, log);
 }
 
-export function isCharacter(c: BaseCharacter): c is Character {
-  return (c as any).credits != undefined;
-}
-
-function getRevealedElements(elts: CustomEntry[]): RevealedElement[] {
-  return elts
-    .filter((e) => e.visibleToAll)
-    .map(({ name, description, category }) => ({ name: category ? `${category}: ${name}` : name, description }));
-}
-
-export function getAllRevealedElements(game:Game): RevealedElement[] {
-  return [
-    ...getRevealedElements(game.monsters),
-    ...getRevealedElements(game.npcs),
-    ...getRevealedElements(game.customEntries),
-  ];
+export function getDebouncer(delay: number): (cb: () => void) => void {
+  let debounceTimer: number;
+  return (callback: () => void) => {
+    window.clearTimeout(debounceTimer);
+    debounceTimer = window.setTimeout(callback, delay);
+  };
 }
