@@ -9,7 +9,8 @@ export type Modes =
   | DmSessionMode<"DmRoll">
   | DmSessionMode<"DmTables">
   | DmSessionMode<"DmTimers">
-  | DmSessionMode<"DealDamage"> & { damage: InflictedDamage };
+  | DmSessionMode<"DealDamage"> & { damage: InflictedDamage }
+  | DmSessionMode<"AddAttack"> & { monsterId: string };
 
 export interface ReadWriteGame {
   game: Game;
