@@ -19,16 +19,17 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 ## in development
 
+- add attacks on monsters
+- allow players to roll damage without rolling attack
+
+## being considered
+
 - put session code and player connections in separate warden tab
 - "library"
   - stored in local storage
   - warden tab to allow export/import tables from library
   - can export/import library from main menu
-
-## being considered
-
 - armor/weapons/equipment/contractors customization
-- throttle frequent character network updates
 - UI review:
   - better font hierarchy
   - reduce various font sizes

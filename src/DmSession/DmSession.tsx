@@ -114,7 +114,7 @@ function useDmConnection(
       }));
 
       conn.on("data", function (data) {
-        console.log("Data received", data);
+        console.debug("Data received", data);
         const typeData = data as AnyMessage;
         if (typeData.type === "UpdateChar") {
           const newChar = typeData.props.character;

@@ -99,7 +99,7 @@ function usePlayerConnection(sessionCode: string, character: Character) {
     });
     // Handle incoming data (messages only since this is the signal sender)
     conn.on("data", function (data) {
-      console.log("data received", data);
+      console.debug("data received", data);
       const typeData = data as AnyMessage;
       if (typeData.type === "UpdateChar") {
         return;
