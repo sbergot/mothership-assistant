@@ -116,6 +116,7 @@ export type DamageType =
   | "fixedWounds"
   | "xd5"
   | "xd10"
+  | "xd20"
   | "d5MinusOneWounds"
   | "d10x10"
   | "d100";
@@ -440,7 +441,16 @@ export interface Npc extends CustomEntry, WithWound {
   instinct: number;
 }
 
-export interface Monster extends Npc, WithHealth {}
+export interface MonsterAttack {
+  name: string;
+  description: string;
+  critical: NormalizedCriticalType;
+  damage: Damage;
+}
+
+export interface Monster extends Npc, WithHealth {
+  attacks: MonsterAttack[];
+}
 
 export interface Game {
   title: string;

@@ -23,6 +23,7 @@ export function Monsters({ game, setGame }: ReadWriteGame) {
       health: 10,
       maxHealth: 10,
       excluded: false,
+      attacks: []
     };
   }
 
