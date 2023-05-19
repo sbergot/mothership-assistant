@@ -10,11 +10,13 @@ import { useState } from "react";
 import { allWoundTables } from "Rules/Data/wounds";
 import { ReadWriteGame, SetDmMode } from "./types";
 import { updateInList } from "helpers";
+import { uuidv4 } from "Services/storageServices";
 
 const allDiceTypes = [5, 10, 20, 100];
 
 interface Props extends ReadWriteGame, SetDmMode {
   monsterId: string;
+  attackId?: string;
 }
 
 export function AddAttack({ game, setGame, monsterId, setMode }: Props) {
@@ -28,8 +30,9 @@ export function AddAttack({ game, setGame, monsterId, setMode }: Props) {
     useState<InflictedDamageType>("health");
 
   function back() {
-    setMode({ mode: "DmSheet" });
+    setMode({ mode: "ListAttacks", monsterId });
   }
+
   function getDamageType(): DamageType {
     switch (diceType) {
       case 5:
@@ -65,6 +68,7 @@ export function AddAttack({ game, setGame, monsterId, setMode }: Props) {
             damage: getDamage(),
             description,
             name: attackName,
+            id: uuidv4(),
           },
         ],
       })),

@@ -71,7 +71,7 @@ export function MonsterShort({
         <Button
           dark
           rounded
-          onClick={() => setMode({ mode: "AddAttack", monsterId: monster.id })}
+          onClick={() => setMode({ mode: "ListAttacks", monsterId: monster.id })}
         >
           Edit attacks
         </Button>

@@ -8,6 +8,7 @@ import { DmSessionTabs } from "./DmSessionTabs";
 import { DmTables } from "./DmTables";
 import { DmTimers } from "./DmTimers";
 import { AddAttack } from "./AddAttack";
+import { ListAttacks } from "./ListAttacks";
 
 interface Props extends ReadWriteGame, Log {
   characters: Character[];
@@ -78,6 +79,17 @@ export function DmSessionRouting({
     );
   }
 
+  if (mode.mode === "ListAttacks") {
+    return (
+      <ListAttacks
+        game={game}
+        setGame={setGame}
+        setMode={setMode}
+        monsterId={mode.monsterId}
+      />
+    );
+  }
+
   if (mode.mode === "AddAttack") {
     return (
       <AddAttack
@@ -85,6 +97,7 @@ export function DmSessionRouting({
         setGame={setGame}
         setMode={setMode}
         monsterId={mode.monsterId}
+        attackId={mode.attackId}
       />
     );
   }

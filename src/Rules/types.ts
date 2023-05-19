@@ -441,7 +441,7 @@ export interface Npc extends CustomEntry, WithWound {
   instinct: number;
 }
 
-export interface MonsterAttack {
+export interface MonsterAttack extends WithId {
   name: string;
   description: string;
   critical: NormalizedCriticalType;
