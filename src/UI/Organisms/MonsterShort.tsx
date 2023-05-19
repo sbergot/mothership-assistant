@@ -1,13 +1,20 @@
+import { SetDmMode } from "DmSession/types";
 import { Monster } from "Rules/types";
+import { Button } from "UI/Atoms";
 import { Rating, Gauge, BlockWithTitle, EntryHeader } from "UI/Molecules";
 
-interface Props {
+interface Props extends SetDmMode {
   monster: Monster;
   setMonster(setter: (m: Monster) => Monster): void;
   deleteMonster(): void;
 }
 
-export function MonsterShort({ monster, setMonster, deleteMonster }: Props) {
+export function MonsterShort({
+  monster,
+  setMonster,
+  deleteMonster,
+  setMode,
+}: Props) {
   const header = (
     <EntryHeader
       title={monster.name}
@@ -61,6 +68,13 @@ export function MonsterShort({ monster, setMonster, deleteMonster }: Props) {
             }
           />
         </div>
+        <Button
+          dark
+          rounded
+          onClick={() => setMode({ mode: "AddAttack", monsterId: monster.id })}
+        >
+          Edit attacks
+        </Button>
       </div>
     </BlockWithTitle>
   );

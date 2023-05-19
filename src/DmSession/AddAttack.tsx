@@ -1,4 +1,3 @@
-import { Log } from "Messages/types";
 import {
   Damage,
   DamageType,
@@ -6,21 +5,19 @@ import {
   RollMode,
   WoundType,
 } from "Rules/types";
-import { applyRollMode, roll } from "Services/diceServices";
 import { Block, Button, Divider } from "UI/Atoms";
 import { useState } from "react";
 import { allWoundTables } from "Rules/Data/wounds";
-import { woundTypeToCriticalType } from "Services/damageServices";
-import { ReadWriteGame } from "./types";
+import { ReadWriteGame, SetDmMode } from "./types";
 import { updateInList } from "helpers";
 
 const allDiceTypes = [5, 10, 20, 100];
 
-interface Props extends ReadWriteGame {
+interface Props extends ReadWriteGame, SetDmMode {
   monsterId: string;
 }
 
-export function AddAttack({ game, setGame, monsterId }: Props) {
+export function AddAttack({ game, setGame, monsterId, setMode }: Props) {
   const [attackName, setAttackName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [rollMode, setRollMode] = useState<RollMode>("normal");
@@ -30,6 +27,9 @@ export function AddAttack({ game, setGame, monsterId }: Props) {
   const [inflictedType, setInflictedType] =
     useState<InflictedDamageType>("health");
 
+  function back() {
+    setMode({ mode: "DmSheet" });
+  }
   function getDamageType(): DamageType {
     switch (diceType) {
       case 5:
@@ -69,11 +69,30 @@ export function AddAttack({ game, setGame, monsterId }: Props) {
         ],
       })),
     }));
+    back();
   }
 
   return (
     <Block variant="light">
       <div className="flex flex-col gap-2">
+        <Block variant="dark">
+          <div>
+            <label>Attack name</label>
+            <input
+              className="input"
+              value={attackName}
+              onChange={(e) => setAttackName(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Description</label>
+            <textarea
+              className="input resize-none h-32"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+        </Block>
         <div className="flex justify-center gap-2">
           {allDiceTypes.map((n) => (
             <Button
@@ -155,6 +174,9 @@ export function AddAttack({ game, setGame, monsterId }: Props) {
         <div className="flex justify-center gap-2">
           <Button dark rounded onClick={addAttack}>
             add
+          </Button>
+          <Button rounded onClick={back}>
+            back
           </Button>
         </div>
       </div>

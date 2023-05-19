@@ -2,11 +2,11 @@ import { Title, Button } from "UI/Atoms";
 import { MonsterShort } from "UI/Organisms/MonsterShort";
 import { updateInList, deleteInList } from "helpers";
 import { useState } from "react";
-import { ReadWriteGame } from "./types";
+import { ReadWriteGame, SetDmMode } from "./types";
 import { Monster } from "Rules/types";
 import { uuidv4 } from "Services/storageServices";
 
-export function Monsters({ game, setGame }: ReadWriteGame) {
+export function Monsters({ game, setGame, setMode }: ReadWriteGame & SetDmMode) {
   const [newMonsterName, setNewMonsterName] = useState("");
   const { monsters } = game;
 
@@ -46,6 +46,7 @@ export function Monsters({ game, setGame }: ReadWriteGame) {
                 monsters: deleteInList(g.monsters, c.id),
               }));
             }}
+            setMode={setMode}
           />
         ))}
       </div>
