@@ -1,7 +1,7 @@
 import { MonsterAttack } from "Rules/types";
 import { ReadWriteGame, SetDmMode } from "./types";
 import { BlockWithTitle } from "UI/Molecules";
-import { ButtonIcon, TrashIcon } from "UI/Icons";
+import { ButtonIcon, EditIcon, TrashIcon } from "UI/Icons";
 import { deleteInList, updateInList } from "helpers";
 import { Button } from "UI/Atoms";
 
@@ -29,6 +29,9 @@ export function ListAttacks({ game, setGame, setMode, monsterId }: Props) {
               })),
             }))
           }
+          onEdit={() =>
+            setMode({ mode: "AddAttack", monsterId, attackId: a.id })
+          }
         />
       ))}
       <div className="flex justify-center gap-2">
@@ -50,10 +53,13 @@ export function ListAttacks({ game, setGame, setMode, monsterId }: Props) {
 interface ShortAttackProps {
   attack: MonsterAttack;
   onDelete(): void;
+  onEdit(): void;
 }
 
-function ShortAttack({ attack, onDelete }: ShortAttackProps) {
-  const header = <AttackHeader title={attack.name} onDelete={onDelete} />;
+function ShortAttack({ attack, onDelete, onEdit }: ShortAttackProps) {
+  const header = (
+    <AttackHeader title={attack.name} onDelete={onDelete} onEdit={onEdit} />
+  );
   return (
     <div className="w-64">
       <BlockWithTitle title={header}>{attack.name}</BlockWithTitle>
@@ -64,13 +70,17 @@ function ShortAttack({ attack, onDelete }: ShortAttackProps) {
 interface AttackHeaderProps {
   title: string;
   onDelete(): void;
+  onEdit(): void;
 }
 
-function AttackHeader({ title, onDelete }: AttackHeaderProps) {
+function AttackHeader({ title, onDelete, onEdit }: AttackHeaderProps) {
   return (
     <div className="text-center relative">
       <div>{title}</div>
       <div className="absolute right-2 top-0">
+        <ButtonIcon light onClick={onEdit}>
+          <EditIcon />
+        </ButtonIcon>
         <ButtonIcon light onClick={onDelete}>
           <TrashIcon />
         </ButtonIcon>
