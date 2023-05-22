@@ -6,42 +6,63 @@ import {
   WoundType,
 } from "Rules/types";
 import { Block, Button, Divider } from "UI/Atoms";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { allWoundTables } from "Rules/Data/wounds";
 import { ReadWriteGame, SetDmMode } from "./types";
 import { updateInList } from "helpers";
 import { uuidv4 } from "Services/storageServices";
 
-const allDiceTypes = [5, 10, 20, 100];
+const allDiceTypes: DamageType[] = ["xd5", "xd10", "xd20", "d100"];
 
 interface Props extends ReadWriteGame, SetDmMode {
   monsterId: string;
   attackId?: string;
 }
 
-export function AddAttack({ game, setGame, monsterId, setMode }: Props) {
+export function AddAttack({
+  game,
+  setGame,
+  monsterId,
+  setMode,
+  attackId,
+}: Props) {
   const [attackName, setAttackName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [rollMode, setRollMode] = useState<RollMode>("normal");
-  const [diceType, setDiceType] = useState<number>(5);
+  const [diceType, setDiceType] = useState<DamageType>("xd5");
   const [diceNbr, setDiceNbr] = useState<number>(1);
   const [woundType, setWoundType] = useState<WoundType>("bleeding");
   const [inflictedType, setInflictedType] =
     useState<InflictedDamageType>("health");
 
+  useEffect(() => {
+    if (attackId === undefined) {
+      return;
+    }
+    const monster = game.monsters.find((m) => m.id === monsterId);
+    if (monster === undefined) {
+      return;
+    }
+    const attack = monster.attacks.find((a) => a.id === attackId);
+    if (attack === undefined) {
+      return;
+    }
+    attack
+  }, [attackId]);
+
   function back() {
     setMode({ mode: "ListAttacks", monsterId });
   }
 
-  function getDamageType(): DamageType {
-    switch (diceType) {
-      case 5:
-        return "xd5";
-      case 10:
-        return "xd10";
-      case 20:
-        return "xd20";
-      case 100:
+  function getDamageTypeDescr(dmType: DamageType): string {
+    switch (dmType) {
+      case "xd5":
+        return "d5";
+      case "xd10":
+        return "d10";
+      case "xd20":
+        return "d20";
+      case "d100":
         return "d100";
       default:
         throw new Error("Unknown dice type");
@@ -52,7 +73,7 @@ export function AddAttack({ game, setGame, monsterId, setMode }: Props) {
     return {
       amount: diceNbr,
       rollMode,
-      damageType: getDamageType(),
+      damageType: diceType,
     };
   }
 
@@ -106,7 +127,7 @@ export function AddAttack({ game, setGame, monsterId, setMode }: Props) {
                 setDiceType(n);
               }}
             >
-              d{n}
+              {getDamageTypeDescr(n)}
             </Button>
           ))}
         </div>
