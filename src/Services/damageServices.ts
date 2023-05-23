@@ -9,6 +9,7 @@ import {
   WoundType,
   WithHealth,
   WithWound,
+  RollMode,
 } from "Rules/types";
 import { applyRollMode, roll } from "./diceServices";
 
@@ -156,6 +157,13 @@ export function applyDamage(
   return newChar;
 }
 
+export function getRollModeSuffix(rollMode: RollMode): string {
+  if (rollMode === "normal") { return ""; }
+  if (rollMode === "advantage") { return " [+]"; }
+  if (rollMode === "disadvantage") { return " [-]"; }
+  throw new Error("unknown roll mode");
+}
+
 export function getDamageDescription(damages: Damage): string {
   if (damages.damageType === "d100") {
     return "d100";
@@ -174,6 +182,9 @@ export function getDamageDescription(damages: Damage): string {
   }
   if (damages.damageType === "xd10") {
     return `${damages.amount}d10`;
+  }
+  if (damages.damageType === "xd20") {
+    return `${damages.amount}d20`;
   }
   if (damages.damageType === "xd5") {
     return `${damages.amount}d5`;

@@ -1,18 +1,23 @@
-import {
-  Damage,
-  DamageType,
-  InflictedDamageType,
-  RollMode,
-  WoundType,
-} from "Rules/types";
+import { Damage, DamageType, RollMode, WoundType, Monster } from "Rules/types";
 import { Block, Button, Divider } from "UI/Atoms";
 import { useEffect, useState } from "react";
 import { allWoundTables } from "Rules/Data/wounds";
 import { ReadWriteGame, SetDmMode } from "./types";
 import { updateInList } from "helpers";
 import { uuidv4 } from "Services/storageServices";
+import {
+  getDamageDescription,
+  getRollModeSuffix,
+} from "Services/damageServices";
 
-const allDiceTypes: DamageType[] = ["xd5", "xd10", "xd20", "d100"];
+const allDiceTypes: DamageType[] = [
+  "xd5",
+  "xd10",
+  "xd20",
+  "d100",
+  "fixedDamage",
+  "fixedWounds",
+];
 
 interface Props extends ReadWriteGame, SetDmMode {
   monsterId: string;
@@ -32,8 +37,6 @@ export function AddAttack({
   const [diceType, setDiceType] = useState<DamageType>("xd5");
   const [diceNbr, setDiceNbr] = useState<number>(1);
   const [woundType, setWoundType] = useState<WoundType>("bleeding");
-  const [inflictedType, setInflictedType] =
-    useState<InflictedDamageType>("health");
 
   useEffect(() => {
     if (attackId === undefined) {
@@ -47,7 +50,12 @@ export function AddAttack({
     if (attack === undefined) {
       return;
     }
-    attack
+    setAttackName(attack.name);
+    setDescription(attack.description);
+    setRollMode(attack.damage.rollMode);
+    setDiceType(attack.damage.damageType);
+    setDiceNbr(attack.damage.amount);
+    setWoundType(attack.critical.woundType);
   }, [attackId]);
 
   function back() {
@@ -56,6 +64,8 @@ export function AddAttack({
 
   function getDamageTypeDescr(dmType: DamageType): string {
     switch (dmType) {
+      case "fixedDamage":
+        return "fixed";
       case "xd5":
         return "d5";
       case "xd10":
@@ -64,6 +74,8 @@ export function AddAttack({
         return "d20";
       case "d100":
         return "d100";
+      case "fixedWounds":
+        return "fixed wounds";
       default:
         throw new Error("Unknown dice type");
     }
@@ -77,21 +89,39 @@ export function AddAttack({
     };
   }
 
-  function addAttack() {
+  function updateMonster(setter: (m: Monster) => Monster) {
     setGame((g) => ({
       ...g,
-      monsters: updateInList(g.monsters, monsterId, (m) => ({
-        ...m,
-        attacks: [
-          ...m.attacks,
-          {
-            critical: { rollMode: "normal", woundType },
-            damage: getDamage(),
-            description,
-            name: attackName,
-            id: uuidv4(),
-          },
-        ],
+      monsters: updateInList(g.monsters, monsterId, setter),
+    }));
+  }
+
+  function addAttack() {
+    updateMonster((m) => ({
+      ...m,
+      attacks: [
+        ...m.attacks,
+        {
+          critical: { rollMode: "normal", woundType },
+          damage: getDamage(),
+          description,
+          name: attackName,
+          id: uuidv4(),
+        },
+      ],
+    }));
+    back();
+  }
+
+  function updateAttack() {
+    updateMonster((m) => ({
+      ...m,
+      attacks: updateInList(m.attacks, attackId!, (a) => ({
+        ...a,
+        critical: { rollMode: "normal", woundType },
+        damage: getDamage(),
+        description,
+        name: attackName,
       })),
     }));
     back();
@@ -99,7 +129,7 @@ export function AddAttack({
 
   return (
     <Block variant="light">
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-4">
         <Block variant="dark">
           <div>
             <label>Attack name</label>
@@ -118,21 +148,24 @@ export function AddAttack({
             />
           </div>
         </Block>
-        <div className="flex justify-center gap-2">
-          {allDiceTypes.map((n) => (
-            <Button
-              light={diceType !== n}
-              rounded
-              onClick={() => {
-                setDiceType(n);
-              }}
-            >
-              {getDamageTypeDescr(n)}
-            </Button>
-          ))}
+        <div>
+          <div className="text-center">Damage type</div>
+          <div className="flex justify-center gap-2">
+            {allDiceTypes.map((n) => (
+              <Button
+                light={diceType !== n}
+                rounded
+                onClick={() => {
+                  setDiceType(n);
+                }}
+              >
+                {getDamageTypeDescr(n)}
+              </Button>
+            ))}
+          </div>
         </div>
         <div className="self-center">
-          <span className="mr-4">Dice #</span>
+          <span className="mr-4">#</span>
           <input
             type="number"
             className="input w-10"
@@ -175,30 +208,18 @@ export function AddAttack({
             </Button>
           ))}
         </div>
-        <div className="flex flex-wrap gap-2 justify-center">
-          <Button
-            light={inflictedType !== "health"}
-            rounded
-            onClick={() => {
-              setInflictedType("health");
-            }}
-          >
-            health
-          </Button>
-          <Button
-            light={inflictedType !== "wounds"}
-            rounded
-            onClick={() => {
-              setInflictedType("wounds");
-            }}
-          >
-            wounds
-          </Button>
+        <div className="text-center">
+          {getDamageDescription(getDamage())}
+          {getRollModeSuffix(rollMode)}
         </div>
         <Divider />
         <div className="flex justify-center gap-2">
-          <Button dark rounded onClick={addAttack}>
-            add
+          <Button
+            dark
+            rounded
+            onClick={attackId === undefined ? addAttack : updateAttack}
+          >
+            {attackId === undefined ? "add" : "update"}
           </Button>
           <Button rounded onClick={back}>
             back
