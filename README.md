@@ -21,6 +21,7 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 - add attacks on monsters
 - allow players to roll damage without rolling attack
+- add message to remind players to reduce stats/saves when stress goes over 20
 - schema version for games
 
 ## being considered
