@@ -1,12 +1,18 @@
-import { Title, Button } from "UI/Atoms";
+import { Button } from "UI/Atoms";
 import { MonsterShort } from "UI/Organisms/MonsterShort";
 import { updateInList, deleteInList } from "helpers";
 import { useState } from "react";
 import { ReadWriteGame, SetDmMode } from "./types";
 import { Monster } from "Rules/types";
 import { uuidv4 } from "Services/storageServices";
+import { Log } from "Messages/types";
 
-export function Monsters({ game, setGame, setMode }: ReadWriteGame & SetDmMode) {
+export function Monsters({
+  game,
+  setGame,
+  setMode,
+  log,
+}: ReadWriteGame & SetDmMode & Log) {
   const [newMonsterName, setNewMonsterName] = useState("");
   const { monsters } = game;
 
@@ -23,7 +29,7 @@ export function Monsters({ game, setGame, setMode }: ReadWriteGame & SetDmMode) 
       health: 10,
       maxHealth: 10,
       excluded: false,
-      attacks: []
+      attacks: [],
     };
   }
 
@@ -47,13 +53,14 @@ export function Monsters({ game, setGame, setMode }: ReadWriteGame & SetDmMode) 
               }));
             }}
             setMode={setMode}
+            log={log}
           />
         ))}
       </div>
       <div className="flex items-center gap-2">
         <div className="shrink-0">
           <Button
-            disabled={newMonsterName.replace(/\s/g, '') === ""}
+            disabled={newMonsterName.replace(/\s/g, "") === ""}
             onClick={() => {
               setGame((g) => ({
                 ...g,

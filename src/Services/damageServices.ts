@@ -32,11 +32,77 @@ export function woundTypeToCriticalType(wt: WoundType): CriticalType {
   throw new Error("Unknown wound type");
 }
 
+export function deNormalizeCriticalType(
+  normalizedCriticalType: NormalizedCriticalType
+): CriticalType {
+  const { rollMode, woundType } = normalizedCriticalType;
+  if (woundType === "bleeding") {
+    if (rollMode === "normal") {
+      return "Bleeding";
+    }
+    if (rollMode === "advantage") {
+      return "Bleeding [+]";
+    }
+    if (rollMode === "disadvantage") {
+      return "Bleeding [-]";
+    }
+  }
+  if (woundType === "blunt") {
+    if (rollMode === "normal") {
+      return "Blunt Force";
+    }
+    if (rollMode === "advantage") {
+      return "Blunt Force [+]";
+    }
+    if (rollMode === "disadvantage") {
+      return "Blunt Force [-]";
+    }
+  }
+  if (woundType === "fire") {
+    if (rollMode === "normal") {
+      return "Fire/Explosives";
+    }
+    if (rollMode === "advantage") {
+      return "Fire/Explosives [+]";
+    }
+    if (rollMode === "disadvantage") {
+      return "Fire/Explosives [-]";
+    }
+  }
+  if (woundType === "gore") {
+    if (rollMode === "normal") {
+      return "Gore";
+    }
+    if (rollMode === "advantage") {
+      return "Gore [+]";
+    }
+    if (rollMode === "disadvantage") {
+      return "Gore [-]";
+    }
+  }
+  if (woundType === "gunshot") {
+    if (rollMode === "normal") {
+      return "Gunshot";
+    }
+    if (rollMode === "advantage") {
+      return "Gunshot [+]";
+    }
+    if (rollMode === "disadvantage") {
+      return "Gunshot [-]";
+    }
+  }
+
+  throw new Error("unknown critical type");
+}
+
 export function normalizeCriticalType(
   criticalType: CriticalType
 ): NormalizedCriticalType[] {
   if (criticalType === "Bleeding") {
     return [{ woundType: "bleeding", rollMode: "normal" }];
+  }
+  if (criticalType === "Bleeding [-]") {
+    return [{ woundType: "bleeding", rollMode: "disadvantage" }];
   }
   if (criticalType === "Bleeding [+]") {
     return [{ woundType: "bleeding", rollMode: "advantage" }];
@@ -44,26 +110,35 @@ export function normalizeCriticalType(
   if (criticalType === "Blunt Force") {
     return [{ woundType: "blunt", rollMode: "normal" }];
   }
+  if (criticalType === "Blunt Force [-]") {
+    return [{ woundType: "blunt", rollMode: "disadvantage" }];
+  }
   if (criticalType === "Blunt Force [+]") {
     return [{ woundType: "blunt", rollMode: "advantage" }];
   }
   if (criticalType === "Fire/Explosives") {
     return [{ woundType: "fire", rollMode: "normal" }];
   }
-  if (criticalType === "Fire/Explosives [+]") {
-    return [{ woundType: "fire", rollMode: "advantage" }];
-  }
   if (criticalType === "Fire/Explosives [-]") {
     return [{ woundType: "fire", rollMode: "disadvantage" }];
   }
+  if (criticalType === "Fire/Explosives [+]") {
+    return [{ woundType: "fire", rollMode: "advantage" }];
+  }
   if (criticalType === "Gore") {
     return [{ woundType: "gore", rollMode: "advantage" }];
+  }
+  if (criticalType === "Gore [-]") {
+    return [{ woundType: "gore", rollMode: "disadvantage" }];
   }
   if (criticalType === "Gore [+]") {
     return [{ woundType: "gore", rollMode: "advantage" }];
   }
   if (criticalType === "Gunshot") {
     return [{ woundType: "gunshot", rollMode: "normal" }];
+  }
+  if (criticalType === "Gunshot [-]") {
+    return [{ woundType: "gunshot", rollMode: "disadvantage" }];
   }
   if (criticalType === "Gunshot [+]") {
     return [{ woundType: "gunshot", rollMode: "advantage" }];

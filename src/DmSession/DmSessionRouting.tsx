@@ -33,6 +33,7 @@ export function DmSessionRouting({
           setGame={setGame}
           characters={characters}
           setMode={setMode}
+          log={log}
         />
       </>
     );

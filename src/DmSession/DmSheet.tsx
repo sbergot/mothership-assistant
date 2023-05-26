@@ -7,8 +7,9 @@ import { NPCs } from "./NPCs";
 import { ReadWriteGame, SetDmMode } from "./types";
 import { CustomEntries } from "./CustomEntries";
 import { FoldableSection } from "UI/Molecules";
+import { Log } from "Messages/types";
 
-interface Props extends ReadWriteGame, SetDmMode {
+interface Props extends ReadWriteGame, SetDmMode, Log {
   characters: Character[];
 }
 
@@ -16,7 +17,8 @@ export function DmSheet({
   game,
   setGame,
   characters,
-  setMode
+  setMode,
+  log
 }: Props) {
   const contractors = characters.flatMap((c) => c.contractors);
   return (
@@ -40,7 +42,7 @@ export function DmSheet({
         </div>
       </FoldableSection>
       <FoldableSection title="Monsters">
-        <Monsters game={game} setGame={setGame} setMode={setMode} />
+        <Monsters game={game} setGame={setGame} setMode={setMode} log={log}/>
       </FoldableSection>
       <FoldableSection title="NPCs">
         <NPCs game={game} setGame={setGame} />

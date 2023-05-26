@@ -1,9 +1,11 @@
 import { SetDmMode } from "DmSession/types";
+import { Log } from "Messages/types";
 import { Monster } from "Rules/types";
+import { deNormalizeCriticalType, rollDamages } from "Services/damageServices";
 import { Button } from "UI/Atoms";
 import { Rating, Gauge, BlockWithTitle, EntryHeader } from "UI/Molecules";
 
-interface Props extends SetDmMode {
+interface Props extends SetDmMode, Log {
   monster: Monster;
   setMonster(setter: (m: Monster) => Monster): void;
   deleteMonster(): void;
@@ -14,6 +16,7 @@ export function MonsterShort({
   setMonster,
   deleteMonster,
   setMode,
+  log
 }: Props) {
   const header = (
     <EntryHeader
@@ -68,6 +71,18 @@ export function MonsterShort({
             }
           />
         </div>
+        {monster.attacks.map(a => <Button
+          dark
+          rounded
+          onClick={() => {
+            log({
+              type: "DamageMessage",
+              props: { ...rollDamages(a.damage, deNormalizeCriticalType(a.critical), false) },
+            });
+          }}
+        >
+          {a.name}
+        </Button>)}
         <Button
           dark
           rounded

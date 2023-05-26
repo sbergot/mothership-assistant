@@ -91,15 +91,19 @@ export type WoundType = "blunt" | "bleeding" | "gunshot" | "fire" | "gore";
 
 export type CriticalType =
   | "Gunshot"
+  | "Gunshot [-]"
   | "Gunshot [+]"
   | "Bleeding"
+  | "Bleeding [-]"
   | "Bleeding [+]"
   | "Blunt Force"
+  | "Blunt Force [-]"
   | "Blunt Force [+]"
   | "Fire/Explosives"
   | "Fire/Explosives [-]"
   | "Fire/Explosives [+]"
   | "Gore"
+  | "Gore [-]"
   | "Gore [+]"
   | "Bleeding [+] or Gore [+]"
   | "Bleeding + Gore";
