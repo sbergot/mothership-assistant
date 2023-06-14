@@ -14,6 +14,7 @@ import { Block, Button, Divider } from "UI/Atoms";
 import { SelectableRating, Skill } from "UI/Molecules";
 import { ReadWriteCharacter, SetMode } from "./types";
 import { allSkillsDict } from "Rules/Data/skills";
+import { spendAmmoForWeapon } from "Services/characterServices";
 
 interface Props extends ReadWriteCharacter, Log, SetMode {
   weaponId?: string;
@@ -42,31 +43,7 @@ export function RollStat({
     if (weaponId === undefined) {
       return;
     }
-    setCharacter((c) => ({
-      ...c,
-      weapons: updateInList(c.weapons, weaponId, (w) => {
-        if (w.shots == null) {
-          return w;
-        }
-        if (w.shots > 1) {
-          return {
-            ...w,
-            shots: w.shots - 1,
-          };
-        }
-        if (w.shots === 1 && w.magazines! > 0) {
-          return {
-            ...w,
-            shots: w.magazineSize,
-            magazines: w.magazines! - 1
-          };
-        }
-        return {
-          ...w,
-          shots: 0,
-        };
-      }),
-    }));
+    setCharacter((c) => spendAmmoForWeapon(c, weaponId));
   }
 
   return (

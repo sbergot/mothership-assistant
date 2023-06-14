@@ -1,5 +1,6 @@
+import { updateInList } from "helpers";
 import { uuidv4 } from "./storageServices";
-import { Character } from "Rules/types";
+import { BaseCharacter, Character } from "Rules/types";
 
 export function initCharacter(): Character {
   return {
@@ -41,5 +42,33 @@ export function initCharacter(): Character {
     creationComplete: false,
     woundEffects: [],
     contractors: [],
+  };
+}
+
+export function spendAmmoForWeapon<T extends BaseCharacter>(character: T, weaponId: string): T {
+  return {
+    ...character,
+    weapons: updateInList(character.weapons, weaponId, (w) => {
+      if (w.shots == null) {
+        return w;
+      }
+      if (w.shots > 1) {
+        return {
+          ...w,
+          shots: w.shots - 1,
+        };
+      }
+      if (w.shots === 1 && w.magazines! > 0) {
+        return {
+          ...w,
+          shots: w.magazineSize,
+          magazines: w.magazines! - 1,
+        };
+      }
+      return {
+        ...w,
+        shots: 0,
+      };
+    }),
   };
 }

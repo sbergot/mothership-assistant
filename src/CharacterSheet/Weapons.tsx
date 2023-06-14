@@ -1,18 +1,30 @@
 import { Block, Button, Divider, Progress, Title } from "UI/Atoms";
 import { Weapon as WeaponType } from "Rules/types";
-import { ReadBaseChar, SetMode } from "./types";
+import { ReadWriteBaseChar, SetMode, WriteBaseChar } from "./types";
+import { FireIcon } from "UI/Icons";
+import { spendAmmoForWeapon } from "Services/characterServices";
+import { Log } from "Messages/types";
+import { rollDamages } from "Services/damageServices";
 
 export function Weapons({
   character,
+  setCharacter,
   setMode,
-}: ReadBaseChar & SetMode) {
+  log
+}: ReadWriteBaseChar & SetMode & Log) {
   return (
     <Block variant="light">
       <Title>Weapons</Title>
       <Divider />
       <div className="flex flex-wrap justify-center items-center gap-4">
         {character.weapons.map((w) => (
-          <Weapon key={w.id} weapon={w} setMode={setMode} />
+          <Weapon
+            key={w.id}
+            weapon={w}
+            setMode={setMode}
+            setCharacter={setCharacter}
+            log={log}
+          />
         ))}
       </div>
       <div className="flex justify-center items-center gap-8 mt-4">
@@ -28,11 +40,11 @@ export function Weapons({
   );
 }
 
-interface WeaponProps extends SetMode {
+interface WeaponProps extends SetMode, WriteBaseChar, Log {
   weapon: WeaponType;
 }
 
-function Weapon({ weapon, setMode }: WeaponProps) {
+function Weapon({ weapon, setCharacter, setMode, log }: WeaponProps) {
   const hasAmmo = weapon.magazineSize !== null;
   const justify = hasAmmo ? "justify-between" : "justify-center";
   return (
@@ -66,6 +78,20 @@ function Weapon({ weapon, setMode }: WeaponProps) {
           noBorder
         >
           Attack
+        </Button>
+        <Button
+          dark
+          rounded
+          noBorder
+          onClick={() => {
+            setCharacter((c) => spendAmmoForWeapon(c, weapon.id));
+            log({
+              type: "DamageMessage",
+              props: { ...rollDamages(weapon.damage[0], weapon.critical, false) },
+            });
+          }}
+        >
+          <FireIcon />
         </Button>
       </div>
     </div>

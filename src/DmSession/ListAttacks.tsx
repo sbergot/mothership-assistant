@@ -4,6 +4,10 @@ import { BlockWithTitle } from "UI/Molecules";
 import { ButtonIcon, EditIcon, TrashIcon } from "UI/Icons";
 import { deleteInList, updateInList } from "helpers";
 import { Button } from "UI/Atoms";
+import {
+  deNormalizeCriticalType,
+  getDamageDescription,
+} from "Services/damageServices";
 
 interface Props extends ReadWriteGame, SetDmMode {
   monsterId: string;
@@ -62,7 +66,14 @@ function ShortAttack({ attack, onDelete, onEdit }: ShortAttackProps) {
   );
   return (
     <div className="w-64">
-      <BlockWithTitle title={header}>{attack.name}</BlockWithTitle>
+      <BlockWithTitle title={header}>
+        <div>{attack.name}</div>{" "}
+        <div>
+          {getDamageDescription(attack.damage)} -{" "}
+          {deNormalizeCriticalType(attack.critical)}
+        </div>
+        {attack.description && <div className="text-xs">{attack.description}</div>}
+      </BlockWithTitle>
     </div>
   );
 }

@@ -1,8 +1,9 @@
 import { SetDmMode } from "DmSession/types";
 import { Log } from "Messages/types";
 import { Monster } from "Rules/types";
-import { deNormalizeCriticalType, rollDamages } from "Services/damageServices";
+import { deNormalizeCriticalType, getDamageDescription, rollDamages } from "Services/damageServices";
 import { Button } from "UI/Atoms";
+import { FireIcon } from "UI/Icons";
 import { Rating, Gauge, BlockWithTitle, EntryHeader } from "UI/Molecules";
 
 interface Props extends SetDmMode, Log {
@@ -77,11 +78,12 @@ export function MonsterShort({
           onClick={() => {
             log({
               type: "DamageMessage",
-              props: { ...rollDamages(a.damage, deNormalizeCriticalType(a.critical), false) },
+              props: { ...rollDamages(a.damage, deNormalizeCriticalType(a.critical), false, a.name) },
             });
           }}
         >
-          {a.name}
+          {a.name} {getDamageDescription(a.damage)} - {deNormalizeCriticalType(a.critical)}
+          <FireIcon />
         </Button>)}
         <Button
           dark

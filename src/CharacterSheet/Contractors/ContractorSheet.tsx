@@ -134,7 +134,7 @@ export function ContractorSheet({
         setMode={setMode}
       />
       <ContractorStats contractor={contractor} setMode={setMode} />
-      <Weapons character={contractor} setMode={setMode} />
+      <Weapons character={contractor} setMode={setMode} setCharacter={setContractor} log={log} />
       <Armor character={contractor} setMode={setMode} />
       <Equipment character={contractor} setMode={setMode} />
       <div className="flex justify-center gap-2">

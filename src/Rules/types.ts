@@ -224,6 +224,7 @@ export interface Damage {
 export type InflictedDamageType = "health" | "wounds";
 
 export interface InflictedDamage {
+  name?: string;
   amount: RollWithMode;
   criticalType: CriticalType;
   inflicted: InflictedDamageType;

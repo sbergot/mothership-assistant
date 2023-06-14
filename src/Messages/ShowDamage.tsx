@@ -8,11 +8,12 @@ export function ShowDamage({
   criticalType,
   inflicted,
   context,
+  name
 }: InflictedDamage & { context: MessageContext }) {
   const { result, rolls } = amount;
   return (
     <div>
-      <div>Damage</div>
+      <div>Damage{name ? ` - ${name}` : ""}</div>
       {rolls.map((r, i) => (
         <span key={i} className={`mx-1 ${r === result ? "" : "text-mother-4"}`}>
           {r}

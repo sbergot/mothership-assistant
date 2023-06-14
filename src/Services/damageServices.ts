@@ -241,28 +241,28 @@ export function getRollModeSuffix(rollMode: RollMode): string {
 
 export function getDamageDescription(damages: Damage): string {
   if (damages.damageType === "d100") {
-    return "d100";
+    return "d100 DMG";
   }
   if (damages.damageType === "d10x10") {
-    return "d10x10";
+    return "d10x10 DMG";
   }
   if (damages.damageType === "d5MinusOneWounds") {
-    return "d5 - 1 wounds";
+    return "d5 - 1 Wounds";
   }
   if (damages.damageType === "fixedDamage") {
-    return `fixed ${damages.amount}`;
+    return `${damages.amount} DMG`;
   }
   if (damages.damageType === "fixedWounds") {
-    return `fixed ${damages.amount} wounds`;
+    return `${damages.amount} Wounds`;
   }
   if (damages.damageType === "xd10") {
-    return `${damages.amount}d10`;
+    return `${damages.amount}d10 DMG`;
   }
   if (damages.damageType === "xd20") {
-    return `${damages.amount}d20`;
+    return `${damages.amount}d20 DMG`;
   }
   if (damages.damageType === "xd5") {
-    return `${damages.amount}d5`;
+    return `${damages.amount}d5 DMG`;
   }
 
   throw new Error("unknown damage type");
@@ -328,12 +328,16 @@ export function innerRollDamages(
 export function rollDamages(
   damages: Damage,
   criticalType: CriticalType,
-  isCritical: boolean
+  isCritical: boolean,
+  attackName: string = ""
 ): InflictedDamage {
   const damage = innerRollDamages(damages, criticalType);
   if (isCritical) {
     damage.amount.result *= 2;
     damage.amount.rolls = damage.amount.rolls.map((v) => v * 2);
+  }
+  if (attackName) {
+    damage.name = attackName;
   }
   return damage;
 }
