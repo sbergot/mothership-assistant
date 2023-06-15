@@ -2,21 +2,13 @@ import { analyseSaveRoll } from "helpers";
 import { Log } from "Messages/types";
 import { useState } from "react";
 import { allSaves } from "Rules/data";
-import { RollMode, SaveRoll, SaveRollResult, SaveType } from "Rules/types";
-import { simpleRoll } from "Services/diceServices";
+import { RollMode, SaveType } from "Rules/types";
+import { rollSave } from "Services/diceServices";
 import { Block, Button, Divider } from "UI/Atoms";
 import { SelectableRating } from "UI/Molecules";
 import { ReadWriteCharacter, SetMode } from "./types";
 
 interface Props extends ReadWriteCharacter, Log, SetMode {}
-
-function rollSave(roll: SaveRoll): SaveRollResult {
-  const result =
-    roll.rollMode === "normal"
-      ? [simpleRoll(100)]
-      : [simpleRoll(100), simpleRoll(100)];
-  return { ...roll, result };
-}
 
 export function RollSave({ character, setCharacter, log, setMode }: Props) {
   const [save, setSave] = useState<SaveType>("body");

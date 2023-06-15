@@ -19,10 +19,10 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 ## in development
 
-- add attacks on monsters - done?
+- add attacks on monsters - done ?
 - allow players to roll damage without rolling attack - done ?
-- add speed stat on monsters
-- add quick roll button on rating component
+- add speed stat on monsters - done ?
+- add quick roll button on rating component - done ?
 - add message to remind players to reduce stats/saves when stress goes over 20
 - schema version for games
 

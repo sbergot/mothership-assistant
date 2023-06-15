@@ -36,6 +36,7 @@ export function Monsters({
 
   return (
     <>
+    <div className="text-center">Hold shift for advantage roll and ctrl for disadvantage</div>
       <div className="flex flex-col items-center gap-2 mb-8">
         {monsters.map((c) => (
           <MonsterShort

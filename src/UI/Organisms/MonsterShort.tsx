@@ -1,7 +1,12 @@
 import { SetDmMode } from "DmSession/types";
 import { Log } from "Messages/types";
-import { Monster } from "Rules/types";
-import { deNormalizeCriticalType, getDamageDescription, rollDamages } from "Services/damageServices";
+import { Monster, RollMode } from "Rules/types";
+import {
+  deNormalizeCriticalType,
+  getDamageDescription,
+  rollDamages,
+} from "Services/damageServices";
+import { rollStat } from "Services/diceServices";
 import { Button } from "UI/Atoms";
 import { FireIcon } from "UI/Icons";
 import { Rating, Gauge, BlockWithTitle, EntryHeader } from "UI/Molecules";
@@ -17,7 +22,7 @@ export function MonsterShort({
   setMonster,
   deleteMonster,
   setMode,
-  log
+  log,
 }: Props) {
   const header = (
     <EntryHeader
@@ -29,6 +34,25 @@ export function MonsterShort({
       onDelete={deleteMonster}
     />
   );
+  function rollMonsterStat(
+    stat: "combat" | "speed" | "instinct",
+    event: React.MouseEvent<HTMLSpanElement, MouseEvent>
+  ) {
+    const rollMode: RollMode = event.shiftKey
+      ? "advantage"
+      : event.ctrlKey
+      ? "disadvantage"
+      : "normal";
+    const results = rollStat({
+      stat: { value: monster.combat, name: stat },
+      skill: null,
+      rollMode,
+    });
+    log({
+      type: "StatRollMessage",
+      props: results,
+    });
+  }
   return (
     <BlockWithTitle light title={header}>
       <div className="flex flex-col gap-2">
@@ -37,16 +61,25 @@ export function MonsterShort({
             title="Combat"
             value={monster.combat}
             onUpdate={(v) => setMonster((m) => ({ ...m, combat: v }))}
+            onRoll={(e) => {
+              rollMonsterStat("combat", e);
+            }}
           />
           <Rating
             title="Speed"
             value={monster.speed}
             onUpdate={(v) => setMonster((m) => ({ ...m, speed: v }))}
+            onRoll={(e) => {
+              rollMonsterStat("speed", e);
+            }}
           />
           <Rating
             title="Instinct"
             value={monster.instinct}
             onUpdate={(v) => setMonster((m) => ({ ...m, instinct: v }))}
+            onRoll={(e) => {
+              rollMonsterStat("instinct", e);
+            }}
           />
         </div>
         <div className="flex flex-wrap justify-center gap-x-4">
@@ -77,23 +110,35 @@ export function MonsterShort({
             }
           />
         </div>
-        {monster.attacks.map(a => <Button
-          dark
-          rounded
-          onClick={() => {
-            log({
-              type: "DamageMessage",
-              props: { ...rollDamages(a.damage, deNormalizeCriticalType(a.critical), false, a.name) },
-            });
-          }}
-        >
-          {a.name} {getDamageDescription(a.damage)} - {deNormalizeCriticalType(a.critical)}
-          <FireIcon />
-        </Button>)}
+        {monster.attacks.map((a) => (
+          <Button
+            dark
+            rounded
+            onClick={() => {
+              log({
+                type: "DamageMessage",
+                props: {
+                  ...rollDamages(
+                    a.damage,
+                    deNormalizeCriticalType(a.critical),
+                    false,
+                    a.name
+                  ),
+                },
+              });
+            }}
+          >
+            {a.name} {getDamageDescription(a.damage)} -{" "}
+            {deNormalizeCriticalType(a.critical)}
+            <FireIcon />
+          </Button>
+        ))}
         <Button
           dark
           rounded
-          onClick={() => setMode({ mode: "ListAttacks", monsterId: monster.id })}
+          onClick={() =>
+            setMode({ mode: "ListAttacks", monsterId: monster.id })
+          }
         >
           Edit attacks
         </Button>

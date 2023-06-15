@@ -1,7 +1,7 @@
 import { Children } from "./types";
 
 interface ButtonIconProps extends Children {
-  onClick(): void;
+  onClick: React.MouseEventHandler<HTMLSpanElement>;
   disabled?: boolean;
   light?: boolean;
 }

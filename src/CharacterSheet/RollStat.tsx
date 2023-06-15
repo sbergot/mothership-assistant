@@ -2,14 +2,8 @@ import { analyseStatRoll, updateInList } from "helpers";
 import { Log } from "Messages/types";
 import { useState } from "react";
 import { allStats } from "Rules/data";
-import {
-  CharacterSkill,
-  RollMode,
-  StatRoll,
-  StatRollResult,
-  StatType,
-} from "Rules/types";
-import { simpleRoll } from "Services/diceServices";
+import { CharacterSkill, RollMode, StatType } from "Rules/types";
+import { rollStat } from "Services/diceServices";
 import { Block, Button, Divider } from "UI/Atoms";
 import { SelectableRating, Skill } from "UI/Molecules";
 import { ReadWriteCharacter, SetMode } from "./types";
@@ -18,14 +12,6 @@ import { spendAmmoForWeapon } from "Services/characterServices";
 
 interface Props extends ReadWriteCharacter, Log, SetMode {
   weaponId?: string;
-}
-
-function rollStat(roll: StatRoll): StatRollResult {
-  const result =
-    roll.rollMode === "normal"
-      ? [simpleRoll(100)]
-      : [simpleRoll(100), simpleRoll(100)];
-  return { ...roll, result };
 }
 
 export function RollStat({
@@ -38,13 +24,6 @@ export function RollStat({
   const [stat, setStat] = useState<StatType>("combat");
   const [skill, setSkill] = useState<CharacterSkill | null>(null);
   const [rollMode, setRollMode] = useState<RollMode>("normal");
-
-  function spendAmmo() {
-    if (weaponId === undefined) {
-      return;
-    }
-    setCharacter((c) => spendAmmoForWeapon(c, weaponId));
-  }
 
   return (
     <Block variant="light">
@@ -121,7 +100,9 @@ export function RollStat({
             if (!analysis.isSuccess) {
               setCharacter((c) => ({ ...c, stress: c.stress + 1 }));
             }
-            spendAmmo();
+            if (weaponId !== undefined) {
+              setCharacter((c) => spendAmmoForWeapon(c, weaponId));
+            }
             setMode({ mode: "CharacterSheet" });
           }}
         >

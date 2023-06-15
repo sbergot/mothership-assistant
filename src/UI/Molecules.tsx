@@ -6,6 +6,7 @@ import {
   ButtonIcon,
   ChevronDownIcon,
   ChevronRightIcon,
+  DiceIcon,
   EyeIcon,
   EyeSlashIcon,
   TrashIcon,
@@ -17,9 +18,10 @@ interface RatingProps {
   title: string;
   value: number;
   onUpdate?(value: number): void;
+  onRoll?: React.MouseEventHandler<HTMLSpanElement>;
 }
 
-export function Rating({ value, title, onUpdate }: RatingProps) {
+export function Rating({ value, title, onUpdate, onRoll }: RatingProps) {
   return (
     <div className="flex flex-col items-center">
       <div className="bg-mother-1 circle text-3xl border-4 border-mother-6 flex items-center justify-center">
@@ -33,7 +35,14 @@ export function Rating({ value, title, onUpdate }: RatingProps) {
           }
         />
       </div>
-      <div>{title}</div>
+      <div>
+        {title}
+        {onRoll && (
+          <ButtonIcon onClick={onRoll}>
+            <DiceIcon />
+          </ButtonIcon>
+        )}
+      </div>
     </div>
   );
 }

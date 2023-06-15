@@ -357,7 +357,7 @@ export interface GenericRollResult {
 }
 
 export interface StatRoll {
-  stat: { name: StatType; value: number };
+  stat: { name: string; value: number };
   skill: CharacterSkill | null;
   rollMode: RollMode;
 }
