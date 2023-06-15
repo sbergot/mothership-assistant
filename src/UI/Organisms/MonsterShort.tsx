@@ -39,6 +39,11 @@ export function MonsterShort({
             onUpdate={(v) => setMonster((m) => ({ ...m, combat: v }))}
           />
           <Rating
+            title="Speed"
+            value={monster.speed}
+            onUpdate={(v) => setMonster((m) => ({ ...m, speed: v }))}
+          />
+          <Rating
             title="Instinct"
             value={monster.instinct}
             onUpdate={(v) => setMonster((m) => ({ ...m, instinct: v }))}

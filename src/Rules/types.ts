@@ -454,6 +454,7 @@ export interface MonsterAttack extends WithId {
 }
 
 export interface Monster extends Npc, WithHealth {
+  speed: number;
   attacks: MonsterAttack[];
 }
 

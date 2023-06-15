@@ -19,6 +19,7 @@ export function Monsters({
   function newMonster(name: string): Monster {
     return {
       combat: 0,
+      speed: 0,
       instinct: 0,
       maxWounds: 2,
       wounds: 0,
