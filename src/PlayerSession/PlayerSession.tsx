@@ -174,10 +174,22 @@ export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
     sessionCode,
     character
   );
+
+  function wrappedSetCharacter(setter: (c: Character) => Character): void {
+    function wrappedSetter(oldChar: Character): Character {
+      const newChar = setter(oldChar);
+      if (newChar.stress > 20 && newChar.stress > oldChar.stress) {
+        log({ type: "SimpleMessage", props: { content: "Max stress exceeded! Please reduce stress level to 20. The most relevant stat or save is reduced by the same amount of points." } })
+      }
+      return newChar;
+    }
+    setCharacter(wrappedSetter);
+  }
+
   const [mode, setMode] = useState<Modes>({ mode: "CharacterSheet" });
   const playerContext: ReadWriteCharacter & SetMode = {
     character,
-    setCharacter,
+    setCharacter: wrappedSetCharacter,
     setMode,
   };
 
@@ -188,7 +200,7 @@ export function PlayerSession({ character, setCharacter, sessionCode }: Props) {
       {connectionStatus}
       <CharacterSheet
         character={character}
-        setCharacter={setCharacter}
+        setCharacter={wrappedSetCharacter}
         log={log}
         mode={mode}
         setMode={setMode}

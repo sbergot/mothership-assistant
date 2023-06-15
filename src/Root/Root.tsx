@@ -5,7 +5,8 @@ import { PlayerSession } from "PlayerSession/PlayerSession";
 import { useState } from "react";
 import { Character, Game } from "Rules/types";
 import { createRepository } from "Services/storageServices";
-import { RootModes } from "./types";
+import { RootModes, Schema } from "./types";
+import useLocalStorage from "use-local-storage";
 
 const useCharacterRepo = createRepository<Character>("characters");
 const useGamesRepo = createRepository<Game>("games");
@@ -13,6 +14,7 @@ const useGamesRepo = createRepository<Game>("games");
 export function Root() {
   const characterRepo = useCharacterRepo();
   const gamesRepo = useGamesRepo();
+  useLocalStorage<Schema>("schema", { version: "1.0" });
   const [mode, setMode] = useState<RootModes>({ mode: "MainMenu" });
 
   if (mode.mode === "MainMenu") {

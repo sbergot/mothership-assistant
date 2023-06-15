@@ -22,3 +22,7 @@ export type RootModes =
   | DmSessionMode
   | CreateCharacterMode
   | MainMenuMode;
+
+export interface Schema {
+  version: string;
+}
