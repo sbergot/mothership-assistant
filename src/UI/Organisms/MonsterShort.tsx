@@ -65,14 +65,7 @@ export function MonsterShort({
               rollMonsterStat("combat", e);
             }}
           />
-          <Rating
-            title="Speed"
-            value={monster.speed}
-            onUpdate={(v) => setMonster((m) => ({ ...m, speed: v }))}
-            onRoll={(e) => {
-              rollMonsterStat("speed", e);
-            }}
-          />
+
           <Rating
             title="Instinct"
             value={monster.instinct}
