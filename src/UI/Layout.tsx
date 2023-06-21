@@ -5,7 +5,7 @@ export function Layout({ children }: Children) {
     <div className="p-4 max-w-6xl bg-mother-1 flex flex-col">
       <div className="self-center">
         <h1 className="text-4xl">
-          <a href="/">Mothership assistant - beta version</a>
+          <a href="/">{import.meta.env.VITE_TITLE}</a>
         </h1>
         <h2>Mothership is a tabletop rpg by Tuesday Knight Games</h2>
         <a className="link" href="https://www.tuesdayknightgames.com">
