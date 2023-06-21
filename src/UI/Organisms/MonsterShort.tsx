@@ -51,6 +51,7 @@ export function MonsterShort({
     log({
       type: "StatRollMessage",
       props: results,
+      wardenOnly: true
     });
   }
   return (

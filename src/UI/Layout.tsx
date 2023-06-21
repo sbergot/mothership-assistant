@@ -3,7 +3,7 @@ import { Children } from "./types";
 export function Layout({ children }: Children) {
   return (
     <div className="p-4 max-w-6xl bg-mother-1 flex flex-col">
-      <div className="self-center">
+      <div className="pl-12">
         <h1 className="text-4xl">
           <a href="/">{import.meta.env.VITE_TITLE}</a>
         </h1>
