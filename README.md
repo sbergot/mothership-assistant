@@ -22,6 +22,8 @@ Feel free to submit any feedback here: https://github.com/sbergot/mothership-ass
 
 ## being considered
 
+- allow warden to rename Monster/NPC/Custom
+- allow warden to transfert an NPC into a contractor
 - put session code and player connections in separate warden tab
 - "library"
   - stored in local storage
