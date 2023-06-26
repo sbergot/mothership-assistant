@@ -13,6 +13,7 @@ export default defineConfig({
         "debug-armors.html",
         "debug-equipment.html",
         "debug-weapons.html",
+        "debug-icons.html",
       ],
     },
   },
