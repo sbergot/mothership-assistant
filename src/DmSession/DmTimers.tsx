@@ -1,4 +1,4 @@
-import { Timer, WithId } from "Rules/types";
+import { Timer } from "Rules/types";
 import { ReadWriteGame } from "./types";
 import { uuidv4 } from "Services/storageServices";
 import { useState } from "react";
@@ -9,10 +9,9 @@ import {
   PlayIcon,
   ResetIcon,
   TrashIcon,
-  XIcon,
 } from "UI/Icons";
 import { deleteInList, updateInList } from "helpers";
-import { BlockWithTitle, EntryHeader } from "UI/Molecules";
+import { BlockWithTitle } from "UI/Molecules";
 
 function formatNbr(n: number) {
   return String(n).padStart(2, "0");
@@ -174,8 +173,13 @@ export function DmTimers({ game, setGame }: Props) {
                       <ResetIcon />
                     </ButtonIcon>
                   </div>
-                  <span className="text-lg text-mother-5">{formatTime(t.currentTimeInMSec)}</span>
-                  <Progress2 current={t.currentTimeInMSec} max={t.intervalInSec * 1000} />
+                  <span className="text-lg text-mother-5">
+                    {formatTime(t.currentTimeInMSec)}
+                  </span>
+                  <Progress2
+                    current={t.currentTimeInMSec}
+                    max={t.intervalInSec * 1000}
+                  />
                 </div>
               </BlockWithTitle>
             </div>

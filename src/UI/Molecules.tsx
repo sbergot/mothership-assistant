@@ -4,9 +4,11 @@ import { SkillDefinition } from "Rules/types";
 import { Children } from "./types";
 import {
   ButtonIcon,
+  CheckIcon,
   ChevronDownIcon,
   ChevronRightIcon,
   DiceIcon,
+  EditIcon,
   EyeIcon,
   EyeSlashIcon,
   TrashIcon,
@@ -246,6 +248,7 @@ interface EntryHeaderProps {
   visible: boolean;
   onToggleVisibility(): void;
   onDelete(): void;
+  setTitle(s: string): void;
 }
 
 export function EntryHeader({
@@ -253,11 +256,24 @@ export function EntryHeader({
   visible,
   onToggleVisibility,
   onDelete,
+  setTitle,
 }: EntryHeaderProps) {
+  const [nameEditable, setNameEditable] = useState(false);
   return (
-    <div className="text-center relative">
-      <div>{title}</div>
+    <div className="flex relative">
+      {nameEditable ? (
+        <input
+          className="text-mother-5 text-sm w-40 mx-1 my-0.5"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+      ) : (
+        <div className="w-40 truncate whitespace-nowrap">{title}</div>
+      )}
       <div className="absolute right-2 top-0">
+        <ButtonIcon light onClick={() => setNameEditable((e) => !e)}>
+          {nameEditable ? <CheckIcon /> : <EditIcon />}
+        </ButtonIcon>
         <ButtonIcon light onClick={onToggleVisibility}>
           {visible ? <EyeIcon /> : <EyeSlashIcon />}
         </ButtonIcon>

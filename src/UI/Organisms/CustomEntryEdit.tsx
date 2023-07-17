@@ -20,6 +20,7 @@ export function CustomEntryEdit({
         setCustomEntry((m) => ({ ...m, visibleToAll: !m.visibleToAll }));
       }}
       onDelete={deleteCustomEntry}
+      setTitle={(s) => setCustomEntry((ce) => ({ ...ce, name: s }))}
     />
   );
   return (

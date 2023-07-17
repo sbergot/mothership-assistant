@@ -2,7 +2,7 @@ import { Divider, Title } from "UI/Atoms";
 import { Table } from "UI/Organisms/Table";
 import { meleeWeaponsColumns, sortBy, weaponsColumns } from "./columns";
 import { allWeapons } from "Rules/Data/weapons";
-import { AllowedIcon, ChatIcon, ChevronDownIcon, ChevronRightIcon, ClockIcon, CopyIcon, DangerIcon, DiceIcon, EditIcon, EyeIcon, EyeSlashIcon, FireIcon, ForbiddenIcon, GroupIcon, MinusIcon, NewsIcon, PauseIcon, PlayIcon, PlusIcon, ResetIcon, TableIcon, TrashIcon, XIcon } from "UI/Icons";
+import { AllowedIcon, ChatIcon, CheckIcon, ChevronDownIcon, ChevronRightIcon, ClockIcon, CopyIcon, DangerIcon, DiceIcon, EditIcon, EyeIcon, EyeSlashIcon, FireIcon, ForbiddenIcon, GroupIcon, MinusIcon, NewsIcon, PauseIcon, PlayIcon, PlusIcon, ResetIcon, TableIcon, TrashIcon, XIcon } from "UI/Icons";
 
 export function IconsDebug() {
   return (
@@ -32,6 +32,7 @@ export function IconsDebug() {
       <div><ResetIcon /> reset</div>
       <div><EditIcon /> edit</div>
       <div><FireIcon /> fire</div>
+      <div><CheckIcon /> check</div>
       </div>
     </div>
   );

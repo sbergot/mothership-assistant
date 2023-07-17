@@ -32,6 +32,7 @@ export function MonsterShort({
         setMonster((m) => ({ ...m, visibleToAll: !m.visibleToAll }));
       }}
       onDelete={deleteMonster}
+      setTitle={(s) => setMonster((m) => ({ ...m, name: s }))}
     />
   );
   function rollMonsterStat(
@@ -51,7 +52,7 @@ export function MonsterShort({
     log({
       type: "StatRollMessage",
       props: results,
-      wardenOnly: true
+      wardenOnly: true,
     });
   }
   return (

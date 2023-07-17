@@ -16,6 +16,7 @@ export function NpcShort({ npc, setNpc, deleteNpc }: Props) {
         setNpc((m) => ({ ...m, visibleToAll: !m.visibleToAll }));
       }}
       onDelete={deleteNpc}
+      setTitle={(s) => setNpc((npc) => ({ ...npc, name: s }))}
     />
   );
   return (
