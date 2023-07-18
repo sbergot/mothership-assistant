@@ -24,7 +24,7 @@ export function CustomEntryEdit({
     />
   );
   return (
-    <BlockWithTitle light title={header}>
+    <BlockWithTitle light title={header} className="w-64">
       <input
         className="input"
         placeholder="category"

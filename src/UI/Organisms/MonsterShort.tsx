@@ -56,7 +56,7 @@ export function MonsterShort({
     });
   }
   return (
-    <BlockWithTitle light title={header}>
+    <BlockWithTitle light title={header} className="max-w-md w-full">
       <div className="flex flex-col gap-2">
         <div className="flex justify-center gap-4">
           <Rating

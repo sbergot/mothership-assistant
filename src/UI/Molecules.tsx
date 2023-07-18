@@ -1,7 +1,7 @@
 import { ReadCharacter } from "CharacterSheet/types";
 import { allSkillLevelDefinitionDict, allSkillsDict } from "Rules/Data/skills";
 import { SkillDefinition } from "Rules/types";
-import { Children } from "./types";
+import { Children, ClassName } from "./types";
 import {
   ButtonIcon,
   CheckIcon,
@@ -195,7 +195,7 @@ export function SkillInTraining({
   );
 }
 
-interface BlockWithTitleProps extends Children {
+interface BlockWithTitleProps extends Children, ClassName {
   title: React.ReactNode;
   light?: boolean;
 }
@@ -204,13 +204,14 @@ export function BlockWithTitle({
   light,
   title,
   children,
+  className
 }: BlockWithTitleProps) {
   const colors = light
     ? "bg-mother-2 text-mother-6"
     : "bg-mother-4 text-mother-1";
   return (
-    <div className={`rounded-xl ${colors} flex flex-col gap-2 pb-2`}>
-      <div className="rounded-3xl bg-mother-6 text-mother-1 text-center relative">
+    <div className={`rounded-xl ${colors} flex flex-col gap-2 pb-2 ${className}`}>
+      <div className="rounded-3xl bg-mother-6 text-mother-1 text-center relative px-2 pt-1">
         {title}
       </div>
       <div className="px-4 text-base">
@@ -260,17 +261,17 @@ export function EntryHeader({
 }: EntryHeaderProps) {
   const [nameEditable, setNameEditable] = useState(false);
   return (
-    <div className="flex relative">
+    <div className="flex justify-between">
       {nameEditable ? (
         <input
-          className="text-mother-5 text-sm w-40 mx-1 my-0.5"
+          className="text-mother-5 text-sm mb-1 w-full"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
       ) : (
-        <div className="w-40 truncate whitespace-nowrap">{title}</div>
+        <div className="truncate whitespace-nowrap">{title}</div>
       )}
-      <div className="absolute right-2 top-0">
+      <div className="flex">
         <ButtonIcon light onClick={() => setNameEditable((e) => !e)}>
           {nameEditable ? <CheckIcon /> : <EditIcon />}
         </ButtonIcon>
