@@ -249,7 +249,7 @@ export const allSkills: SkillDefinition[] = [
       name: "psychology",
       level: "Expert",
       description: "The study of behavior and the human mind.",
-      prerequisites: ["zoology", "botany"],
+      prerequisites: ["zoology", "botany", "linguistics"],
     },
     {
       key: "wildernessSurvival",
@@ -323,7 +323,7 @@ export const allSkills: SkillDefinition[] = [
       name: "sophontology",
       level: "Master",
       description: "The study of the behavior and mind of inhuman entities",
-      prerequisites: ["psychology", "linguistics"],
+      prerequisites: ["psychology"],
     },
     {
       key: "surgery",
