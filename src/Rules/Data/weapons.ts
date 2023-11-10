@@ -23,7 +23,7 @@ export const allWeapons: WeaponExt[] = [
       id: "",
       name: "D&C 7",
       equipped: true,
-      cost: 850,
+      cost: 250,
       weaponRange: "close",
       damageString: "1d5 DMG",
       shots: 6,
