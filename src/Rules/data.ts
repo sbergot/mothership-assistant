@@ -425,6 +425,7 @@ export const allArmors: Armor[] = [
     name: "Standard Crew Attire",
     equipped: true,
     armorPoints: 1,
+    damageReduction: 0,
     cost: 100,
     oxygenSupply: 0,
     notes: "",
@@ -436,6 +437,7 @@ export const allArmors: Armor[] = [
     name: "Advanced Battle Dress",
     equipped: true,
     armorPoints: 10,
+    damageReduction: 3,
     cost: 12000,
     oxygenSupply: 1,
     notes:
@@ -448,6 +450,7 @@ export const allArmors: Armor[] = [
     name: "Standard Battle Dress",
     equipped: true,
     armorPoints: 7,
+    damageReduction: 0,
     cost: 2000,
     oxygenSupply: 0,
     notes: "Includes short-range comms.",
@@ -459,6 +462,7 @@ export const allArmors: Armor[] = [
     name: "Hazard Suit",
     equipped: true,
     armorPoints: 5,
+    damageReduction: 0,
     cost: 4000,
     oxygenSupply: 1,
     notes:
@@ -471,6 +475,7 @@ export const allArmors: Armor[] = [
     name: "Vaccsuit",
     equipped: true,
     armorPoints: 3,
+    damageReduction: 0,
     cost: 10000,
     oxygenSupply: 12,
     notes:

@@ -240,6 +240,7 @@ export interface Armor extends WithId {
   name: string;
   equipped: boolean;
   armorPoints: number;
+  damageReduction: number;
   cost: number;
   oxygenSupply: number;
   notes: string;
