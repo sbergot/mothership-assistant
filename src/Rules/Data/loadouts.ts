@@ -133,7 +133,7 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
           },
         },
       ],
-      equipments: [{ ref: "stimpak" }],
+      equipments: [{ ref: "stimpak", custom: { quantity: 5 } }],
     },
     {
       armors: [{ ref: "advancedBattleDress" }],
