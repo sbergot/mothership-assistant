@@ -137,7 +137,7 @@ export type ConditionType =
   | "lossOfConfidence"
   | "deflated"
   | "doomed"
-  | "paranoid"
+  | "suspicious"
   | "deathWish"
   | "catatonic"
   | "spiraling"

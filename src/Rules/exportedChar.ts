@@ -953,7 +953,7 @@ export const data: any = {
       { conditionType: "lossOfConfidence" },
       { conditionType: "deflated" },
       { conditionType: "doomed" },
-      { conditionType: "paranoid" },
+      { conditionType: "suspicious" },
       { conditionType: "deathWish" },
       { conditionType: "catatonic" },
       { conditionType: "spiraling" },

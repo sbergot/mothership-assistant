@@ -133,7 +133,7 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
           },
         },
       ],
-      equipments: [{ ref: "stimpak", custom: { quantity: 1, cost: 80 } }],
+      equipments: [{ ref: "stimpak" }],
     },
     {
       armors: [{ ref: "advancedBattleDress" }],
@@ -227,7 +227,7 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
     {
       armors: [{ ref: "standardCrewAttire" }],
       weapons: [{ ref: "stunBaton" }],
-      equipments: [{ ref: "petSynthetic" }],
+      equipments: [{ ref: "petOrganic" }],
     },
     {
       armors: [{ ref: "standardCrewAttire" }],
@@ -283,7 +283,7 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
     {
       armors: [{ ref: "hazardSuit" }],
       weapons: [{ ref: "flamethrower", custom: { magazines: 0, shots: 1 } }],
-      equipments: [{ ref: "painPills" }, { ref: "electronicToolSet" }],
+      equipments: [{ ref: "stimpak" }, { ref: "electronicToolSet" }],
     },
     {
       armors: [{ ref: "vaccsuit" }],
@@ -320,7 +320,7 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
       armors: [scrubs],
       weapons: [{ ref: "scalpel" }],
       equipments: [
-        { ref: "automed", custom: { quantity: 6 } },
+        { ref: "automed" },
         { ref: "oxygenTank" },
         simpleEquipment("Filter mask", { cost: 50 }),
       ],
@@ -399,7 +399,7 @@ export const loadoutRefs: Record<CharacterClass, LoadoutRef[]> = {
       equipments: [
         simpleEquipment("Drill", { cost: 20 }),
         { ref: "paracord" },
-        { ref: "droneRecon" },
+        { ref: "droneSalvage" },
       ],
     },
     {

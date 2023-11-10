@@ -51,7 +51,7 @@ export const stressTable: StressEffect[] = [
     },
   },
   {
-    name: "anxious",
+    name: "nervous",
     description: "gain 1 stress",
     effect(c) {
       return { ...c, stress: c.stress + 1 };
@@ -161,14 +161,14 @@ export const stressTable: StressEffect[] = [
     },
   },
   {
-    name: "paranoid",
+    name: "suspicious",
     description:
       "For the next week, whenever someone joins your group (even if they only left for a short period of time), make a Fear Save or gain 1 Stress.",
     effect(c) {
       return {
         ...c,
         conditions: addCondition(c.conditions, {
-          conditionType: "paranoid",
+          conditionType: "suspicious",
         }),
       };
     },
@@ -284,9 +284,9 @@ export const stressTable: StressEffect[] = [
     },
   },
   {
-    name: "collapse",
+    name: "retire",
     description:
-      "You no longer control this character. Hand your sheet to the Warden and roll up a new character to play.",
+      "Roll up a new character to play.",
     effect(c) {
       return { ...c };
     },
@@ -343,8 +343,8 @@ export const allConditionDefinitions: ConditionDefinition[] = [
       "You feel cursed and unlucky. All Critical Successes are instead Critical Failures.",
   },
   {
-    conditionType: "paranoid",
-    name: "Paranoid",
+    conditionType: "suspicious",
+    name: "suspicious",
     description:
       "For the next week, whenever someone joins your group (even if they only left for a short period of time), make a Fear Save or gain 1 Stress.",
   },

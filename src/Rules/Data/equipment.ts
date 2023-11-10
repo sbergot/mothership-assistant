@@ -104,19 +104,9 @@ export const allEquipment: Equipment[] = [
   },
   {
     id: "",
-    name: "Drone (Recon)",
-    description:
-      "Remote controlled drone. Requires two hands to operate receiver. Can fly up to 450m high, to a distance of 3km from operator. Battery operated. Can run for 2 hours. Can record and transmit footage to receiver. If purchased separately, can be equipped with up to two of the following (at their regular cost): binoculars, radio jammer, Geiger counter, medscanner, personal locator, infrared goggles, emergency beacon, cybernetic diagnostic scanner, bioscanner.",
-    equipped: true,
-    quantity: 1,
-    cost: 5000,
-    baseType: "droneRecon",
-  },
-  {
-    id: "",
     name: "Drone (Salvage)",
     description:
-      "Remote controlled drone. Requires two hands to operate receiver. Can fly up to 10m high, to anywhere Long Range from the operator. Battery operated. Can run for 2 hours. Can record and transmit footage to receiver. Can be equipped with a laser cutter if purchased separately. Can carry up to 225kg.",
+      "Battery operated remote controlled drone. Requires two hands to operate receiver. Can fly up to 450m high, to a distance of 3km from operator. Can run for 2 hours. Can record and transmit footage to receiver. If purchased separately, can be equipped with up to two of the following: binoculars, radio jammer, Geiger counter, laser cutter, medscanner, personal locator, infrared goggles, emergency beacon, cybernetic diagnostic scanner, bioscanner. Can carry up to 20-30kg.",
     equipped: true,
     quantity: 1,
     cost: 10000,
@@ -422,9 +412,9 @@ export const allEquipment: Equipment[] = [
     id: "",
     name: "Stimpak",
     description:
-      "Cures cryosickness. Restores 1d10 Health and grants Advantage to Strength and Combat for 2d10 minutes. There is a danger of addiction and/or overdose if used frequently. ",
+      "Cures cryosickness, reduces Stress by 1, restores 1d10 Health, and grants [+] to all rolls for 1d10 min. Roll 1d10. If you roll under the amount of doses you’ve taken in the past 24 hours, make a Death Save.",
     equipped: true,
-    quantity: 5,
+    quantity: 1,
     cost: 1000,
     baseType: "stimpak",
   },
