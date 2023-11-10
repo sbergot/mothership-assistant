@@ -50,10 +50,8 @@ export const allWoundTables: WoundTable[] = [
             effect: addBleeding(5),
         },
         {
-            description: "Major artery cut.",
-            effect(c) {
-                return c
-            },
+            description: "Major artery cut. Bleeding +6.",
+            effect: addBleeding(6),
         },
         {
             description: "Throat slit or heart pierced. Death Check.",
@@ -86,37 +84,37 @@ export const allWoundTables: WoundTable[] = [
             },
         },
         {
-            description: "Concussion. [-] on Intellect Checks.",
+            description: "Concussion. [-] on mental tasks.",
             effect(c) {
                 return c
             },
         },
         {
-            description: "Leg or foot broken.",
+            description: "Leg or foot broken. [-] on Speed Checks.",
             effect(c) {
                 return c
             },
         },
         {
-            description: "Arm or hand broken.",
+            description: "Arm or hand broken. [-] manual tasks.",
             effect(c) {
                 return c
             },
         },
         {
-            description: "Snapped collarbone.",
+            description: "Snapped collarbone. [-] on Strength Checks.",
             effect(c) {
                 return c
             },
         },
         {
-            description: "Back broken.",
+            description: "Back broken. [-] on all rolls.",
             effect(c) {
                 return c
             },
         },
         {
-            description: "Skull cracked.",
+            description: "Skull cracked. [-] on all rolls.",
             effect(c) {
                 return c
             },
@@ -182,7 +180,7 @@ export const allWoundTables: WoundTable[] = [
             },
         },
         {
-            description: "Body on fire.",
+            description: "Body on fire. 3d10 Damage per round.",
             effect(c) {
                 return c
             },
@@ -226,7 +224,7 @@ export const allWoundTables: WoundTable[] = [
         {
             description: "Ripped off flesh. -1d10 Strength.",
             effect(c) {
-                return {...c, body: c.body - roll(2, 10)}
+                return {...c, strength: c.strength - roll(1, 10)}
             },
         },
         {
@@ -244,10 +242,8 @@ export const allWoundTables: WoundTable[] = [
             effect: addBleeding(6),
         },
         {
-            description: "Guts spooled on floor.",
-            effect(c) {
-                return c
-            },
+            description: "Guts spooled on floor. Bleeding +7.",
+            effect: addBleeding(7),
         },
         {
             description: "Head explodes. No Death Check. You have died.",
@@ -278,7 +274,7 @@ export const allWoundTables: WoundTable[] = [
             },
         },
         {
-            description: "FRactured extremity.",
+            description: "Fractured extremity.",
             effect(c) {
                 return c
             },
@@ -304,10 +300,8 @@ export const allWoundTables: WoundTable[] = [
             effect: addBleeding(4),
         },
         {
-            description: "Sucking chest wound.",
-            effect(c) {
-                return c
-            },
+            description: "Sucking chest wound. Bleeding +5.",
+            effect: addBleeding(5),
         },
         {
             description: "Headshot. Death Check.",
