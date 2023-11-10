@@ -29,7 +29,7 @@ export function AddWeapon({
       cell({ elt }) {
         return (
           <div className="py-1">
-            <div className="leading-none">{elt.baseType}</div>
+            <div className="leading-none">{elt.weaponType}</div>
             <div className="text-sm leading-none">{elt.damageString}</div>
           </div>
         );
