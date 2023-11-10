@@ -24,12 +24,22 @@ export const allEquipment: Equipment[] = [
   },
   {
     id: "",
+    name: "Battery (High Power)",
+    description:
+      "Heavy duty battery used for powering laser cutters, salvage drones, and other items. Can be recharged in 1 hour if connected to power or in 6 hours with solar power. Add waterproofing (+500cr).",
+    equipped: true,
+    quantity: 1,
+    cost: 500,
+    baseType: "binoculars",
+  },
+  {
+    id: "",
     name: "Binoculars",
     description:
       "20x magnification. Add thermal vision (+300cr) or night vision (+1kcr).",
     equipped: true,
     quantity: 1,
-    cost: 300,
+    cost: 150,
     baseType: "binoculars",
   },
   {
@@ -39,7 +49,7 @@ export const allEquipment: Equipment[] = [
       "Allows the user to scan the immediate area for signs of life. Generally can scan for 100m in all directions, without being blocked by most known metals. Can tell the location of signs of life, but not what that life is.",
     equipped: true,
     quantity: 1,
-    cost: 150,
+    cost: 3000,
     baseType: "bioscanner",
   },
   {
@@ -69,7 +79,7 @@ export const allEquipment: Equipment[] = [
       "Allows communication from ship-to-ship within a reasonable distance, as well as surface-to-surface within a dozen kilometers. Blocked by radio jammer.",
     equipped: true,
     quantity: 1,
-    cost: 30,
+    cost: 100,
     baseType: "shortrangecomms",
   },
   {
@@ -79,7 +89,7 @@ export const allEquipment: Equipment[] = [
       "Rucksack-sized communication device for use in surface-to-ship comunication.",
     equipped: true,
     quantity: 1,
-    cost: 65,
+    cost: 1000,
     baseType: "longrangecomms",
   },
   {
@@ -89,7 +99,7 @@ export const allEquipment: Equipment[] = [
       "Allows the user to scan androids and other cybernetic organisms in order to diagnose any physical or mental issues they may be having. Often distrusted by androids.",
     equipped: true,
     quantity: 1,
-    cost: 500,
+    cost: 2000,
     baseType: "cyberneticDiagnostic",
   },
   {
@@ -119,7 +129,7 @@ export const allEquipment: Equipment[] = [
       "A full set of tools for doing detailed repair or construction work on electronics.",
     equipped: true,
     quantity: 1,
-    cost: 650,
+    cost: 100,
     baseType: "electronicToolSet",
   },
   {
@@ -129,7 +139,7 @@ export const allEquipment: Equipment[] = [
       "A small device that sends up a flare and then emits a loud beep every few seconds. Additionally, sends out a call on all radio channels to ships or vehicles in the area, but can be blocked by a radio jammer.",
     equipped: true,
     quantity: 1,
-    cost: 30,
+    cost: 2000,
     baseType: "emergencyBeacon",
   },
   {
@@ -169,7 +179,7 @@ export const allEquipment: Equipment[] = [
       "Handheld or shoulder mounted. Illuminates 10m ahead of the user.",
     equipped: true,
     quantity: 1,
-    cost: 10,
+    cost: 30,
     baseType: "flashlight",
   },
   {
@@ -179,7 +189,7 @@ export const allEquipment: Equipment[] = [
       "Portable stretcher that can fit within a rucksack. Allows the user to safely strap down the patient and carry them to a location where their wounds can be better treated. Unfolds to roughly 2m.",
     equipped: true,
     quantity: 1,
-    cost: 100,
+    cost: 150,
     baseType: "foldableStretcher",
   },
   {
@@ -198,7 +208,7 @@ export const allEquipment: Equipment[] = [
       "Often worn by marines, the HUD allows the wearer to see through the body cams of others in their unit, and can connect to any smart-link upgaded weapon.",
     equipped: true,
     quantity: 1,
-    cost: 75,
+    cost: 100,
     baseType: "headsUpDisplayHUD",
   },
   {
@@ -208,7 +218,7 @@ export const allEquipment: Equipment[] = [
       "Allows the wearer to see heat signatures, sometimes up to several hours old. Add night vision for (+1kcr).",
     equipped: true,
     quantity: 1,
-    cost: 100,
+    cost: 1500,
     baseType: "infraredGoggles",
   },
   {
@@ -248,7 +258,7 @@ export const allEquipment: Equipment[] = [
       "Grants a magnetic grip to the wearer, allowing them to easily walk on the exterior of a ship (in space, while docked, or free-floating), metal based asteroids, or any other magnetic surface.",
     equipped: true,
     quantity: 1,
-    cost: 55,
+    cost: 350,
     baseType: "magboots",
   },
   {
@@ -258,7 +268,7 @@ export const allEquipment: Equipment[] = [
       "Allows the user to scan a living or dead body to analyze it for disease or abnormalities, without having to do a biopsy (or autopsy). Results are often non-instantaneous and may require a lab for analysis.",
     equipped: true,
     quantity: 1,
-    cost: 150,
+    cost: 8000,
     baseType: "medscanner",
   },
   {
@@ -296,7 +306,7 @@ export const allEquipment: Equipment[] = [
     description: "General purpose lightweight nylon rope.",
     equipped: true,
     quantity: 1,
-    cost: 10,
+    cost: 50,
     baseType: "paracord",
   },
   {
@@ -316,7 +326,7 @@ export const allEquipment: Equipment[] = [
       "Allows crewmembers at a control center (or on the bridge of a ship) to track the location of the wearer.",
     equipped: true,
     quantity: 1,
-    cost: 45,
+    cost: 200,
     baseType: "personalLocator",
   },
   {
@@ -338,16 +348,6 @@ export const allEquipment: Equipment[] = [
     quantity: 1,
     cost: 15000,
     baseType: "petSynthetic",
-  },
-  {
-    id: "",
-    name: "Pain Pills",
-    description:
-      "When ingested, immediately restores 1d10 health and lowers Stress by 1. There is a danger of addiction and/or overdose if used frequently.",
-    equipped: true,
-    quantity: 5,
-    cost: 450,
-    baseType: "painPills",
   },
   {
     id: "",
@@ -376,7 +376,7 @@ export const allEquipment: Equipment[] = [
       "Rucksack-sized device which, when activated, renders incomprehensible the radio signals of all within 100km.",
     equipped: true,
     quantity: 1,
-    cost: 175,
+    cost: 4000,
     baseType: "radioJammer",
   },
   {
@@ -386,7 +386,7 @@ export const allEquipment: Equipment[] = [
       "When worn, filters toxic air and/or allows for underwater breathing for up to twenty minutes at a time without resurfacing. Can be connected to an oxygen tank.",
     equipped: true,
     quantity: 1,
-    cost: 45,
+    cost: 500,
     baseType: "rebreather",
   },
   {
@@ -405,7 +405,7 @@ export const allEquipment: Equipment[] = [
       "Used to research xenoflora and xenofauna in the field. Can take vital signs, DNA samples ,and collect other data on foreign material. Results may not be instaneous and may require a lab for complete analysis.",
     equipped: true,
     quantity: 1,
-    cost: 250,
+    cost: 50,
     baseType: "sampleKit",
   },
   {
@@ -425,7 +425,7 @@ export const allEquipment: Equipment[] = [
       "Cures cryosickness. Restores 1d10 Health and grants Advantage to Strength and Combat for 2d10 minutes. There is a danger of addiction and/or overdose if used frequently. ",
     equipped: true,
     quantity: 5,
-    cost: 600,
+    cost: 1000,
     baseType: "stimpak",
   },
   {
@@ -435,7 +435,7 @@ export const allEquipment: Equipment[] = [
       "Can pump 50 liters of filtered water per hour from even the most brackish swamps.",
     equipped: true,
     quantity: 1,
-    cost: 15,
+    cost: 50,
     baseType: "waterFiltrationDevice",
   },
 ];
