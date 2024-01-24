@@ -314,6 +314,13 @@ export function innerRollDamages(
       criticalType,
     };
   }
+  if (damages.damageType === "xd20") {
+    return {
+      amount: applyRollMode(damages.rollMode, () => roll(damages.amount, 10)),
+      inflicted: "health",
+      criticalType,
+    };
+  }
   if (damages.damageType === "xd5") {
     return {
       amount: applyRollMode(damages.rollMode, () => roll(damages.amount, 5)),
