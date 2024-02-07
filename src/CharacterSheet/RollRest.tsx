@@ -70,7 +70,8 @@ export function RollRest({ character, setCharacter, log, setMode }: Props) {
           rounded
           onClick={() => {
             const results = rollSave({
-              save: { value: character[save], name: save },
+	      save: { value: character[save], name: save },
+	      skill: null,
               rollMode,
             });
             log({

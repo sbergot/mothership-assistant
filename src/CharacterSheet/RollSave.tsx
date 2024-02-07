@@ -2,16 +2,18 @@ import { analyseSaveRoll } from "helpers";
 import { Log } from "Messages/types";
 import { useState } from "react";
 import { allSaves } from "Rules/data";
-import { RollMode, SaveType } from "Rules/types";
+import { CharacterSkill, RollMode, SaveType } from "Rules/types";
 import { rollSave } from "Services/diceServices";
 import { Block, Button, Divider } from "UI/Atoms";
-import { SelectableRating } from "UI/Molecules";
+import { SelectableRating, Skill } from "UI/Molecules";
 import { ReadWriteCharacter, SetMode } from "./types";
+import { allSkillsDict } from "Rules/Data/skills";
 
 interface Props extends ReadWriteCharacter, Log, SetMode {}
 
 export function RollSave({ character, setCharacter, log, setMode }: Props) {
   const [save, setSave] = useState<SaveType>("body");
+  const [skill, setSkill] = useState<CharacterSkill | null>(null);
   const [rollMode, setRollMode] = useState<RollMode>("normal");
 
   return (
@@ -24,6 +26,19 @@ export function RollSave({ character, setCharacter, log, setMode }: Props) {
             value={character[s]}
             onClick={() => setSave(s)}
             selected={s === save}
+          />
+        ))}
+      </div>
+      <Divider />
+      <div className="flex flex-wrap justify-center items-center gap-4">
+        {character.skills.map((s) => (
+          <Skill
+            key={s.type}
+            skill={allSkillsDict[s.type]}
+            onClick={() => {
+              setSkill((ss) => (ss?.type === s.type ? null : s));
+            }}
+            selected={s.type === skill?.type}
           />
         ))}
       </div>
@@ -57,7 +72,8 @@ export function RollSave({ character, setCharacter, log, setMode }: Props) {
           rounded
           onClick={() => {
             const results = rollSave({
-              save: { value: character[save], name: save },
+	      save: { value: character[save], name: save },
+	      skill,
               rollMode,
             });
             log({
