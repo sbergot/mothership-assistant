@@ -18,7 +18,4 @@ export default defineConfig({
       ],
     },
   },
-  test: {
-      includeSource: ["src/**/*.ts"],
-  },
 });
