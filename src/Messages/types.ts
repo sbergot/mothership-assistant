@@ -13,7 +13,6 @@ import {
   PanicRollResult,
   RevealedElement,
   RollResult,
-  RollResult,
   WoundEffectEntry,
 } from "Rules/types";
 

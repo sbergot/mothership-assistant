@@ -1,5 +1,5 @@
 import { analyseRoll } from "helpers";
-import { RollAnalysis, RollResult } from "./Rules/types";
+import { RollAnalysis } from "./Rules/types";
 import { expect, test } from "vitest";
 
 test('analyseRoll p. 19 (non-critical advantage success)', () => {
