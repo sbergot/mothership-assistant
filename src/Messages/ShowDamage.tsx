@@ -22,6 +22,7 @@ export function ShowDamage({
       <span>
         - {criticalType} - {inflicted}
       </span>
+{/*
       <div>
         <Button
           dark
@@ -50,6 +51,7 @@ export function ShowDamage({
           Take damage
         </Button>
       </div>
+*/}
     </div>
   );
 }
