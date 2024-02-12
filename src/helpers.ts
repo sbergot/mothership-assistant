@@ -11,10 +11,8 @@ import {
   PanicRollResult,
   RevealedElement,
   RollMode,
-  SaveRollAnalysis,
-  SaveRollResult,
-  StatRollAnalysis,
-  StatRollResult,
+  RollAnalysis,
+  RollResult,
   WithId,
 } from "Rules/types";
 import { uuidv4 } from "Services/storageServices";
@@ -36,7 +34,7 @@ const rollModeDescr: Record<RollMode, string> = {
   normal: "",
 };
 
-export function analyseStatRoll(rollResult: StatRollResult): StatRollAnalysis {
+export function analyseRoll(rollResult: RollResult): RollAnalysis {
   const { stat, skill, rollMode, result } = rollResult;
   let rollValue = result[0];
   if (rollMode === "advantage") {
@@ -58,40 +56,6 @@ export function analyseStatRoll(rollResult: StatRollResult): StatRollAnalysis {
   const skillDescription =
     skillDefinition !== null ? ` + ${skillDefinition?.name}` : "";
   const rollDescritpion = `${stat.name}${skillDescription}${rollModeDescr[rollMode]}`;
-  return {
-    ...rollResult,
-    skillDefinition,
-    skillLevel,
-    target,
-    rollValue,
-    isSuccess,
-    isCritical,
-    rollDescritpion,
-  };
-}
-
-export function analyseSaveRoll(rollResult: SaveRollResult): SaveRollAnalysis {
-  const { save, skill, rollMode, result } = rollResult;
-  let rollValue = result[0];
-  if (rollMode === "advantage") {
-    rollValue = Math.min(...result);
-  }
-  if (rollMode === "disadvantage") {
-    rollValue = Math.max(...result);
-  }
-  const skillDefinition = skill !== null ? allSkillsDict[skill.type] : null;
-  const skillLevel =
-    skillDefinition !== null
-      ? allSkillLevelDefinitionDict[skillDefinition.level]
-      : null;
-  const skillBonus =
-    skill?.lossOfConfidence || skillLevel == null ? 0 : skillLevel.bonus;
-  const target = save.value + skillBonus;
-  const isSuccess = rollValue < target;
-  const isCritical = rollValue % 11 === 0;
-  const skillDescription =
-    skillDefinition !== null ? ` + ${skillDefinition?.name}` : "";
-  const rollDescritpion = `${save.name}${skillDescription}${rollModeDescr[rollMode]}`;
   return {
     ...rollResult,
     skillDefinition,

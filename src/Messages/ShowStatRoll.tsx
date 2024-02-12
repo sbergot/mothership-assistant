@@ -1,9 +1,9 @@
-import { analyseStatRoll } from "helpers";
-import { StatRollResult } from "Rules/types";
+import { analyseRoll } from "helpers";
+import { RollResult } from "Rules/types";
 
-export function ShowStatRoll(rollResult: StatRollResult) {
+export function ShowStatRoll(rollResult: RollResult) {
   const { rollDescritpion, rollValue, target, isSuccess, result, isCritical } =
-    analyseStatRoll(rollResult);
+    analyseRoll(rollResult);
   return (
     <div>
       <div>Stat roll: {rollDescritpion}</div>

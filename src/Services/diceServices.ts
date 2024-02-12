@@ -1,4 +1,4 @@
-import { RollMode, RollWithMode, SaveRoll, SaveRollResult, StatRoll, StatRollResult } from "Rules/types";
+import { RollMode, RollWithMode, Roll, RollResult } from "Rules/types";
 
 export function simpleRoll(sides: number): number {
     return Math.floor(Math.random() * sides);
@@ -33,7 +33,7 @@ export function applyRollMode(rollMode: RollMode, roll: () => number): RollWithM
   throw new Error("unknwon roll mode");
 }
 
-export function rollStat(roll: StatRoll): StatRollResult {
+export function rollStat(roll: Roll): RollResult {
   const result =
     roll.rollMode === "normal"
       ? [simpleRoll(100)]
@@ -41,7 +41,7 @@ export function rollStat(roll: StatRoll): StatRollResult {
   return { ...roll, result };
 }
 
-export function rollSave(roll: SaveRoll): SaveRollResult {
+export function rollSave(roll: Roll): RollResult {
   const result =
     roll.rollMode === "normal"
       ? [simpleRoll(100)]

@@ -1,5 +1,5 @@
-import { analyseStatRoll } from "helpers";
-import { AttackRollResult, StatRollResult } from "Rules/types";
+import { analyseRoll } from "helpers";
+import { AttackRollResult, RollResult } from "Rules/types";
 import { MessageContext } from "./types";
 import { Button } from "UI/Atoms";
 import { getDamageDescription, rollDamages } from "Services/damageServices";
@@ -10,7 +10,7 @@ export function ShowAttackRoll({
   context,
 }: AttackRollResult & { context: MessageContext }) {
   const { rollDescritpion, rollValue, target, isSuccess, result, isCritical } =
-    analyseStatRoll(roll);
+    analyseRoll(roll);
   const weapon =
     context.type === "player"
       ? context.character.weapons.find((w) => w.id === weaponId)
