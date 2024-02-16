@@ -1,15 +1,11 @@
-import { GameMessage, StampedMessage } from "Messages/types";
+import { GameMessage } from "Messages/types";
 import { useMemo } from "react";
 import { stressTable } from "Rules/data";
 import { allSkillsDict, allSkillLevelDefinitionDict } from "Rules/Data/skills";
 import {
-  BaseCharacter,
   Character,
-  CustomEntry,
-  Game,
   PanicRollAnalysis,
   PanicRollResult,
-  RevealedElement,
   RollMode,
   SaveRollAnalysis,
   SaveRollResult,
@@ -18,6 +14,12 @@ import {
   WithId,
 } from "Rules/types";
 import { uuidv4 } from "Services/storageServices";
+
+interface AnalyzedRoll {
+  value: number;
+  isSuccess: boolean;
+  isCritical: boolean;
+}
 
 export function formatCredits(c: number): string {
   if (Math.abs(c) >= 1000) {
@@ -36,15 +38,28 @@ const rollModeDescr: Record<RollMode, string> = {
   normal: "",
 };
 
+function analyseSingleRoll(value: number, target: number): AnalyzedRoll {
+  return {
+    value,
+    isSuccess: value < target,
+    isCritical: value % 11 === 0,
+  };
+}
+
+function evaluateRoll(roll: AnalyzedRoll): number {
+  const successFactor = roll.isSuccess ? 1 : -1;
+  // a successful roll is always better than a failed one
+  // in case of a success a critical is positive contribution,
+  // but a negative contribution in case of a failure
+  return successFactor * 5 + (roll.isCritical ? 1 : 0) * successFactor;
+}
+
+function sortByRollResult(rolls: AnalyzedRoll[]): AnalyzedRoll[] {
+  return rolls.sort((r1, r2) => evaluateRoll(r1) - evaluateRoll(r2));
+}
+
 export function analyseStatRoll(rollResult: StatRollResult): StatRollAnalysis {
   const { stat, skill, rollMode, result } = rollResult;
-  let rollValue = result[0];
-  if (rollMode === "advantage") {
-    rollValue = Math.min(...result);
-  }
-  if (rollMode === "disadvantage") {
-    rollValue = Math.max(...result);
-  }
   const skillDefinition = skill !== null ? allSkillsDict[skill.type] : null;
   const skillLevel =
     skillDefinition !== null
@@ -53,8 +68,18 @@ export function analyseStatRoll(rollResult: StatRollResult): StatRollAnalysis {
   const skillBonus =
     skill?.lossOfConfidence || skillLevel == null ? 0 : skillLevel.bonus;
   const target = stat.value + skillBonus;
-  const isSuccess = rollValue < target;
-  const isCritical = rollValue % 11 === 0;
+  const analysedRolls = result.map((r) => analyseSingleRoll(r, target));
+  let bestRoll = analysedRolls[0];
+  if (rollMode === "advantage") {
+    const sortedRolls = sortByRollResult(analysedRolls);
+    bestRoll = sortedRolls[sortedRolls.length - 1];
+  }
+  if (rollMode === "disadvantage") {
+    const sortedRolls = sortByRollResult(analysedRolls);
+    bestRoll = sortedRolls[0];
+  }
+  const { isSuccess, isCritical } = bestRoll;
+  const rollValue = bestRoll.value;
   const skillDescription =
     skillDefinition !== null ? ` + ${skillDefinition?.name}` : "";
   const rollDescritpion = `${stat.name}${skillDescription}${rollModeDescr[rollMode]}`;
