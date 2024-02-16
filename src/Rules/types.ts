@@ -389,6 +389,7 @@ export interface RollWithMode {
 
 export interface SaveRoll {
   save: { name: SaveType; value: number };
+  skill: CharacterSkill | null;
   rollMode: RollMode;
 }
 
@@ -397,6 +398,8 @@ export interface SaveRollResult extends SaveRoll {
 }
 
 export interface SaveRollAnalysis extends SaveRollResult {
+  skillDefinition: SkillDefinition | null;
+  skillLevel: SkillLevelDefinition | null;
   target: number;
   rollValue: number;
   isSuccess: boolean;
