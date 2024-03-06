@@ -12,8 +12,7 @@ import {
   PanicEffect,
   PanicRollResult,
   RevealedElement,
-  SaveRollResult,
-  StatRollResult,
+  RollResult,
   WoundEffectEntry,
 } from "Rules/types";
 
@@ -47,10 +46,10 @@ export type SyncMessage =
 
 export type GameMessage =
   | Message<"GenericRollMessage", GenericRollResult>
-  | Message<"StatRollMessage", StatRollResult>
+  | Message<"StatRollMessage", RollResult>
   | Message<"AttackRollMessage", AttackRollResult>
-  | Message<"SaveRollMessage", SaveRollResult>
-  | Message<"RestRollMessage", SaveRollResult>
+  | Message<"SaveRollMessage", RollResult>
+  | Message<"RestRollMessage", RollResult>
   | Message<"PanicRollMessage", PanicRollResult>
   | Message<"DeathCheckMessage", DeathCheckResult>
   | Message<"PanicEffectMessage", PanicEffect>

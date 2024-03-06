@@ -1,8 +1,8 @@
-import { analyseSaveRoll } from "helpers";
+import { analyseRoll } from "helpers";
 import { Log } from "Messages/types";
 import { useState } from "react";
 import { allSaves } from "Rules/data";
-import { RollMode, SaveRoll, SaveRollResult, SaveType } from "Rules/types";
+import { RollMode, Roll, RollResult, SaveType } from "Rules/types";
 import { simpleRoll } from "Services/diceServices";
 import { Block, Button, Divider } from "UI/Atoms";
 import { SelectableRating } from "UI/Molecules";
@@ -10,7 +10,7 @@ import { ReadWriteCharacter, SetMode } from "./types";
 
 interface Props extends ReadWriteCharacter, Log, SetMode {}
 
-function rollSave(roll: SaveRoll): SaveRollResult {
+function rollSave(roll: Roll): RollResult {
   const result =
     roll.rollMode === "normal"
       ? [simpleRoll(100)]
@@ -70,7 +70,7 @@ export function RollRest({ character, setCharacter, log, setMode }: Props) {
           rounded
           onClick={() => {
             const results = rollSave({
-	      save: { value: character[save], name: save },
+	      stat: { value: character[save], name: save },
 	      skill: null,
               rollMode,
             });
@@ -78,7 +78,7 @@ export function RollRest({ character, setCharacter, log, setMode }: Props) {
               type: "RestRollMessage",
               props: results,
             });
-            const analysis = analyseSaveRoll(results);
+            const analysis = analyseRoll(results);
             if (analysis.isSuccess) {
               setCharacter((c) => ({
                 ...c,

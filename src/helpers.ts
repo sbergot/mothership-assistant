@@ -7,10 +7,8 @@ import {
   PanicRollAnalysis,
   PanicRollResult,
   RollMode,
-  SaveRollAnalysis,
-  SaveRollResult,
-  StatRollAnalysis,
-  StatRollResult,
+  RollAnalysis,
+  RollResult,
   WithId,
 } from "Rules/types";
 import { uuidv4 } from "Services/storageServices";
@@ -58,7 +56,7 @@ function sortByRollResult(rolls: AnalyzedRoll[]): AnalyzedRoll[] {
   return rolls.sort((r1, r2) => evaluateRoll(r1) - evaluateRoll(r2));
 }
 
-export function analyseStatRoll(rollResult: StatRollResult): StatRollAnalysis {
+export function analyseRoll(rollResult: RollResult): RollAnalysis {
   const { stat, skill, rollMode, result } = rollResult;
   const skillDefinition = skill !== null ? allSkillsDict[skill.type] : null;
   const skillLevel =
@@ -95,42 +93,8 @@ export function analyseStatRoll(rollResult: StatRollResult): StatRollAnalysis {
   };
 }
 
-export function analyseSaveRoll(rollResult: SaveRollResult): SaveRollAnalysis {
-  const { save, skill, rollMode, result } = rollResult;
-  let rollValue = result[0];
-  if (rollMode === "advantage") {
-    rollValue = Math.min(...result);
-  }
-  if (rollMode === "disadvantage") {
-    rollValue = Math.max(...result);
-  }
-  const skillDefinition = skill !== null ? allSkillsDict[skill.type] : null;
-  const skillLevel =
-    skillDefinition !== null
-      ? allSkillLevelDefinitionDict[skillDefinition.level]
-      : null;
-  const skillBonus =
-    skill?.lossOfConfidence || skillLevel == null ? 0 : skillLevel.bonus;
-  const target = save.value + skillBonus;
-  const isSuccess = rollValue < target;
-  const isCritical = rollValue % 11 === 0;
-  const skillDescription =
-    skillDefinition !== null ? ` + ${skillDefinition?.name}` : "";
-  const rollDescritpion = `${save.name}${skillDescription}${rollModeDescr[rollMode]}`;
-  return {
-    ...rollResult,
-    skillDefinition,
-    skillLevel,
-    target,
-    rollValue,
-    isSuccess,
-    isCritical,
-    rollDescritpion,
-  };
-}
-
 export function analysePanicRoll(
-  rollResult: PanicRollResult
+  rollResult: PanicRollResult,
 ): PanicRollAnalysis {
   const { stress, rollMode, result } = rollResult;
   let rollValue = result[0];
@@ -157,7 +121,7 @@ export function analysePanicRoll(
 export function updateInList<T extends WithId>(
   list: T[],
   id: string,
-  setter: (e: T) => T
+  setter: (e: T) => T,
 ): T[] {
   return list.map((e) => {
     if (e.id !== id) {
@@ -190,7 +154,7 @@ export function useBrowserId(): string {
 export function applyPanic(
   character: Character,
   log: (m: GameMessage) => void,
-  result: number
+  result: number,
 ): Character {
   log({ type: "PanicEffectMessage", props: { result } });
   const entry = stressTable[result];

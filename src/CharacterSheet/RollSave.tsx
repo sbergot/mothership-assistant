@@ -1,4 +1,4 @@
-import { analyseSaveRoll } from "helpers";
+import { analyseRoll } from "helpers";
 import { Log } from "Messages/types";
 import { useState } from "react";
 import { allSaves } from "Rules/data";
@@ -72,7 +72,7 @@ export function RollSave({ character, setCharacter, log, setMode }: Props) {
           rounded
           onClick={() => {
             const results = rollSave({
-	      save: { value: character[save], name: save },
+	      stat: { value: character[save], name: save },
 	      skill,
               rollMode,
             });
@@ -80,7 +80,7 @@ export function RollSave({ character, setCharacter, log, setMode }: Props) {
               type: "SaveRollMessage",
               props: results,
             });
-            const analysis = analyseSaveRoll(results);
+            const analysis = analyseRoll(results);
             if (!analysis.isSuccess) {
               setCharacter((c) => ({ ...c, stress: c.stress + 1 }));
             }

@@ -357,17 +357,17 @@ export interface GenericRollResult {
   result: RollWithMode;
 }
 
-export interface StatRoll {
+export interface Roll {
   stat: { name: string; value: number };
   skill: CharacterSkill | null;
   rollMode: RollMode;
 }
 
-export interface StatRollResult extends StatRoll {
+export interface RollResult extends Roll {
   result: number[];
 }
 
-export interface StatRollAnalysis extends StatRollResult {
+export interface RollAnalysis extends RollResult {
   skillDefinition: SkillDefinition | null;
   skillLevel: SkillLevelDefinition | null;
   target: number;
@@ -378,33 +378,13 @@ export interface StatRollAnalysis extends StatRollResult {
 }
 
 export interface AttackRollResult {
-  roll: StatRollResult;
+  roll: RollResult;
   weaponId: string;
 }
 
 export interface RollWithMode {
   rolls: number[];
   result: number;
-}
-
-export interface SaveRoll {
-  save: { name: SaveType; value: number };
-  skill: CharacterSkill | null;
-  rollMode: RollMode;
-}
-
-export interface SaveRollResult extends SaveRoll {
-  result: number[];
-}
-
-export interface SaveRollAnalysis extends SaveRollResult {
-  skillDefinition: SkillDefinition | null;
-  skillLevel: SkillLevelDefinition | null;
-  target: number;
-  rollValue: number;
-  isSuccess: boolean;
-  isCritical: boolean;
-  rollDescritpion: string;
 }
 
 export interface PanicRoll {

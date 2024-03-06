@@ -1,4 +1,4 @@
-import { analyseStatRoll, updateInList } from "helpers";
+import { analyseRoll, updateInList } from "helpers";
 import { Log } from "Messages/types";
 import { useState } from "react";
 import { allStats } from "Rules/data";
@@ -96,7 +96,7 @@ export function RollStat({
                     props: { weaponId, roll: results },
                   }
             );
-            const analysis = analyseStatRoll(results);
+            const analysis = analyseRoll(results);
             if (!analysis.isSuccess) {
               setCharacter((c) => ({ ...c, stress: c.stress + 1 }));
             }

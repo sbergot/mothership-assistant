@@ -1,9 +1,9 @@
-import { analyseSaveRoll } from "helpers";
-import { SaveRollResult } from "Rules/types";
+import { analyseRoll } from "helpers";
+import { RollResult } from "Rules/types";
 
-export function ShowRestRoll(rollResult: SaveRollResult) {
+export function ShowRestRoll(rollResult: RollResult) {
   const { rollDescritpion, rollValue, target, isSuccess, result } =
-    analyseSaveRoll(rollResult);
+    analyseRoll(rollResult);
   return (
     <div>
       <div>Save roll: {rollDescritpion}</div>
