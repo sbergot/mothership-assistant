@@ -36,7 +36,7 @@ export function MonsterShort({
     />
   );
   function rollMonsterStat(
-    stat: "combat" | "speed" | "instinct",
+    stat: "combat" | "instinct",
     event: React.MouseEvent<HTMLSpanElement, MouseEvent>
   ) {
     const rollMode: RollMode = event.shiftKey
@@ -45,7 +45,7 @@ export function MonsterShort({
       ? "disadvantage"
       : "normal";
     const results = rollStat({
-      stat: { value: monster.combat, name: stat },
+      stat: { value: monster[stat], name: stat },
       skill: null,
       rollMode,
     });
