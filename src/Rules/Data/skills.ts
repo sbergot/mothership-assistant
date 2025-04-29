@@ -170,7 +170,7 @@ export const allSkills: SkillDefinition[] = [
       level: "Expert",
       description:
         "Design and effective use of explosive devices (bombs, grenade, shells, land mines, etc.).",
-      prerequisites: ["juryRigging", "chemistry"],
+      prerequisites: ["juryRigging", "chemistry", "militaryTraining"],
     },
     {
       key: "fieldMedicine",
